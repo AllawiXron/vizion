@@ -3,322 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>viZion | Multi-Style Hoodies</title>
+    <title>viZion | LIMITED DROP</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Orbitron:wght@800&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
         :root {
-            --accent: #bc13fe; /* Neon Purple */
-            --cyan: #0ff;
-            --dark: #080808;
-            --glass: rgba(255, 255, 255, 0.03);
+            --accent: #a855f7;
+            --neon: #00f2ff;
+            --bg: #050505;
+            --danger: #ff0055;
         }
 
         body {
-            background-color: var(--dark);
+            background-color: var(--bg);
             color: white;
-            font-family: 'Poppins', 'Cairo', sans-serif;
+            font-family: 'Cairo', sans-serif;
             margin: 0;
-            background: radial-gradient(circle at center, #1a0b2e 0%, #080808 100%);
-            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        .header {
+        /* --- DISCOUNT TIMER BANNER --- */
+        .timer-banner {
+            background: linear-gradient(90deg, var(--danger), #80002a);
             text-align: center;
-            padding: 40px 20px;
+            padding: 10px;
+            font-weight: 900;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(255, 0, 85, 0.4);
         }
 
+        #countdown { font-family: 'Orbitron'; letter-spacing: 2px; }
+
+        /* --- LOGO --- */
+        .header { text-align: center; padding: 30px 0; }
         .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
-            letter-spacing: 10px;
-            background: linear-gradient(to right, #fff, var(--accent), var(--cyan));
+            font-family: 'Orbitron';
+            font-size: 3.5rem;
+            background: linear-gradient(to bottom, #fff, var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
             margin: 0;
+            filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5));
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
 
-        /* PRODUCT GRID */
-        .section-title {
-            text-align: center;
-            font-family: 'Cairo';
-            color: var(--cyan);
-            margin-bottom: 30px;
-        }
-
+        /* --- PRODUCT GRID --- */
         .hoodie-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 15px;
-            margin-bottom: 50px;
+            margin: 40px 0;
         }
 
         .hoodie-card {
-            background: var(--glass);
+            background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 20px;
             padding: 10px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.4s;
             position: relative;
             text-align: center;
         }
 
-        .hoodie-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-            box-shadow: 0 0 20px rgba(188, 19, 254, 0.3);
-        }
-
         .hoodie-card.selected {
-            border: 2px solid var(--cyan);
-            background: rgba(0, 255, 255, 0.05);
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+            border-color: var(--neon);
+            background: rgba(0, 242, 255, 0.05);
+            transform: scale(1.05);
         }
 
-        .hoodie-card img {
-            width: 100%;
-            border-radius: 15px;
-            margin-bottom: 10px;
+        .hoodie-card img { width: 100%; border-radius: 15px; }
+
+        /* Unique Stock Label */
+        .individual-stock {
+            font-size: 0.7rem;
+            color: var(--danger);
+            font-weight: bold;
+            margin-top: 5px;
         }
 
-        .hoodie-card p {
-            font-size: 0.9rem;
-            margin: 5px 0;
-            font-weight: 600;
-        }
-
-        /* ORDER SECTION */
-        .order-container {
+        /* --- CHECKOUT BOX --- */
+        .checkout-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            background: rgba(0,0,0,0.5);
-            padding: 40px;
+            gap: 30px;
+            background: rgba(255,255,255,0.02);
+            padding: 30px;
             border-radius: 30px;
             border: 1px solid rgba(255,255,255,0.05);
             backdrop-filter: blur(10px);
         }
 
-        .price-box {
-            text-align: center;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 20px;
-            margin-bottom: 20px;
-        }
+        .price-section { text-align: center; }
+        .old-price { text-decoration: line-through; opacity: 0.4; font-size: 1.5rem; }
+        .new-price { font-size: 3rem; font-weight: 900; color: var(--neon); display: block; }
 
-        .current-price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--cyan);
-        }
-
-        .old-price {
-            text-decoration: line-through;
-            opacity: 0.5;
-            margin-right: 15px;
-        }
-
-        .stock-notice {
-            color: #ff4757;
-            font-family: 'Cairo';
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            animation: pulse 1.5s infinite;
-        }
-
-        /* FORM STYLES */
-        .order-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .input-group {
-            text-align: right;
-        }
-
-        .input-group label {
-            display: block;
-            font-family: 'Cairo';
-            margin-bottom: 5px;
-            color: #ccc;
-        }
-
-        .input-field {
-            width: 100%;
+        /* Real-Time Stock Tracker */
+        .live-stock-box {
+            background: rgba(255, 0, 85, 0.1);
+            border: 1px solid var(--danger);
             padding: 15px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            color: white;
-            text-align: right;
-            font-family: 'Cairo';
-            box-sizing: border-box;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
         }
 
-        .size-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            margin-top: 10px;
+        .pulse-dot {
+            height: 10px; width: 10px; background: var(--danger);
+            border-radius: 50%; display: inline-block;
+            margin-right: 10px; animation: animate-pulse 1s infinite;
         }
 
-        .size-btn {
-            padding: 10px 15px;
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 8px;
-            cursor: pointer;
-            background: none;
-            color: white;
-            font-weight: bold;
+        /* --- FORM --- */
+        .order-form { display: flex; flex-direction: column; gap: 15px; }
+        .input-field {
+            width: 100%; padding: 15px; background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
+            color: white; text-align: right; font-family: 'Cairo';
         }
-
-        .size-btn.active {
-            background: var(--accent);
-            border-color: var(--accent);
-        }
+        .input-field:focus { border-color: var(--neon); outline: none; }
 
         .submit-btn {
-            background: linear-gradient(45deg, var(--accent), var(--cyan));
-            color: white;
-            border: none;
-            padding: 20px;
-            border-radius: 15px;
-            font-weight: 800;
-            font-size: 1.2rem;
-            cursor: pointer;
-            font-family: 'Cairo';
-            margin-top: 10px;
-            transition: 0.3s;
+            background: linear-gradient(45deg, var(--accent), var(--neon));
+            color: white; border: none; padding: 20px; border-radius: 15px;
+            font-weight: 900; font-size: 1.3rem; cursor: pointer;
+            font-family: 'Cairo'; transition: 0.3s;
+            animation: bounceIn 2s infinite;
         }
 
-        .submit-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 20px rgba(188, 19, 254, 0.6);
+        @keyframes animate-pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
-        @media (max-width: 768px) {
-            .order-container { grid-template-columns: 1fr; }
-            .logo { font-size: 2rem; }
-        }
+        @media (max-width: 768px) { .checkout-container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
+    <div class="timer-banner">
+        ⚠️ عرض ينتهي خلال: <span id="countdown">14:59</span> - اطلب الآن قبل انتهاء الخصم!
+    </div>
+
     <header class="header">
-        <h1 class="logo animate__animated animate__zoomIn">viZion</h1>
-        <p style="letter-spacing: 3px; opacity: 0.7;">STREETWEAR COLLECTION</p>
+        <h1 class="logo animate__animated animate__pulse animate__infinite">viZion</h1>
     </header>
 
     <div class="container">
         
-        <h2 class="section-title">1. اختر الموديل (Select Style)</h2>
+        <h2 style="text-align: center; color: var(--neon);">1. اختر الموديل الخاص بك</h2>
         
         <div class="hoodie-grid">
-            <div class="hoodie-card selected" onclick="selectStyle(this, 'Classic viZion Black')">
-                <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400" alt="Style 1">
-                <p>Classic Black</p>
+            <div class="hoodie-card selected" onclick="selectStyle(this, 'Shadow Black', 4)">
+                <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=300" alt="Style 1">
+                <p>Shadow Black</p>
+                <div class="individual-stock">بقي <span class="stock-num">4</span> قطع فقط</div>
             </div>
-            <div class="hoodie-card" onclick="selectStyle(this, 'Neon Purple Edition')">
-                <img src="https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=400" alt="Style 2">
+            <div class="hoodie-card" onclick="selectStyle(this, 'Neon Purple', 7)">
+                <img src="https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=300" alt="Style 2">
                 <p>Neon Purple</p>
+                <div class="individual-stock">بقي <span class="stock-num">7</span> قطع فقط</div>
             </div>
-            <div class="hoodie-card" onclick="selectStyle(this, 'Cyber White')">
-                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400" alt="Style 3">
+            <div class="hoodie-card" onclick="selectStyle(this, 'Cyber White', 3)">
+                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=300" alt="Style 3">
                 <p>Cyber White</p>
+                <div class="individual-stock">بقي <span class="stock-num">3</span> قطع فقط</div>
             </div>
-            <div class="hoodie-card" onclick="selectStyle(this, 'Midnight Blue')">
-                <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=400" alt="Style 4">
-                <p>Midnight Blue</p>
+            <div class="hoodie-card" onclick="selectStyle(this, 'Void Blue', 5)">
+                <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=300" alt="Style 4">
+                <p>Void Blue</p>
+                <div class="individual-stock">بقي <span class="stock-num">5</span> قطع فقط</div>
             </div>
-            <div class="hoodie-card" onclick="selectStyle(this, 'Urban Grey')">
-                <img src="https://images.unsplash.com/photo-1563124417-64240749701d?w=400" alt="Style 5">
-                <p>Urban Grey</p>
+            <div class="hoodie-card" onclick="selectStyle(this, 'Titanium Grey', 6)">
+                <img src="https://images.unsplash.com/photo-1563124417-64240749701d?w=300" alt="Style 5">
+                <p>Titanium Grey</p>
+                <div class="individual-stock">بقي <span class="stock-num">6</span> قطع فقط</div>
             </div>
         </div>
 
-        <div class="order-container">
+        <div class="checkout-container">
             <div class="animate__animated animate__fadeInLeft">
-                <div class="price-box">
+                <div class="price-section">
                     <span class="old-price">35,000 IQD</span>
-                    <span class="current-price">21,000 IQD</span>
+                    <span class="new-price">21,000 IQD</span>
                 </div>
-                
-                <div class="stock-notice">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    باقي 5 قطع فقط في المخزن
+
+                <div class="live-stock-box">
+                    <div class="pulse-dot"></div>
+                    <strong>تنبيه:</strong> الموديل <span id="current-name" style="color:var(--neon)">Shadow Black</span> 
+                    بقي منه <span id="current-stock" style="font-size: 1.5rem; color:var(--danger)">4</span> قطع فقط!
                 </div>
-                
-                <div style="margin-top: 30px; text-align: center; border: 1px dashed rgba(255,255,255,0.2); padding: 20px; border-radius: 20px;">
-                    <p>الموديل المختار:</p>
-                    <h3 id="display-style" style="color: var(--cyan);">Classic Black</h3>
-                </div>
+
+                <p style="text-align: center; opacity: 0.6; font-size: 0.8rem;">
+                    🔥 14 شخص يشاهدون هذا المنتج الآن
+                </p>
             </div>
 
             <div class="animate__animated animate__fadeInRight">
                 <form action="https://formspree.io/f/mjgonzyw" method="POST" class="order-form">
+                    <input type="hidden" name="Product" id="input-style" value="Shadow Black">
                     
-                    <input type="hidden" name="Selected_Style" id="style-input" value="Classic Black">
-                    <input type="hidden" name="Size" id="size-input" value="M">
+                    <select name="Size" class="input-field" style="background: var(--accent);">
+                        <option value="S">Size: S</option>
+                        <option value="M" selected>Size: M</option>
+                        <option value="L">Size: L</option>
+                        <option value="XL">Size: XL</option>
+                        <option value="XXL">Size: XXL</option>
+                    </select>
 
-                    <div class="input-group">
-                        <label>القياس (Size)</label>
-                        <div class="size-buttons">
-                            <button type="button" class="size-btn" onclick="setSize(this, 'S')">S</button>
-                            <button type="button" class="size-btn active" onclick="setSize(this, 'M')">M</button>
-                            <button type="button" class="size-btn" onclick="setSize(this, 'L')">L</button>
-                            <button type="button" class="size-btn" onclick="setSize(this, 'XL')">XL</button>
-                            <button type="button" class="size-btn" onclick="setSize(this, 'XXL')">XXL</button>
-                        </div>
-                    </div>
-
-                    <input type="text" name="Name" class="input-field" placeholder="اسمك الكامل" required>
+                    <input type="text" name="Name" class="input-field" placeholder="الاسم الكامل" required>
                     <input type="text" name="Province" class="input-field" placeholder="المحافظة" required>
                     <input type="text" name="Area" class="input-field" placeholder="المنطقة" required>
-                    <input type="text" name="Landmark" class="input-field" placeholder="اقرب نقطة داله لبيتك" required>
+                    <input type="text" name="Landmark" class="input-field" placeholder="اقرب نقطة داله" required>
                     <input type="tel" name="Phone" class="input-field" placeholder="رقم الهاتف" required>
 
-                    <button type="submit" class="submit-btn">تثبيت الطلب - ORDER NOW</button>
+                    <button type="submit" class="submit-btn">تثبيت الطلب - اطلب الآن</button>
                 </form>
             </div>
         </div>
     </div>
 
     <script>
-        function selectStyle(element, styleName) {
-            // Remove selection from all
-            document.querySelectorAll('.hoodie-card').forEach(card => card.classList.remove('selected'));
-            // Add selection to clicked
-            element.classList.add('selected');
-            // Update inputs
-            document.getElementById('style-input').value = styleName;
-            document.getElementById('display-style').innerText = styleName;
+        // --- 1. Fake Countdown Timer ---
+        let time = 899; // 15 minutes
+        const timerElement = document.getElementById('countdown');
+        setInterval(() => {
+            let minutes = Math.floor(time / 60);
+            let seconds = time % 60;
+            timerElement.innerHTML = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            if (time > 0) time--;
+        }, 1000);
+
+        // --- 2. Style & Stock Selection ---
+        function selectStyle(el, name, stock) {
+            document.querySelectorAll('.hoodie-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            
+            document.getElementById('input-style').value = name;
+            document.getElementById('current-name').innerText = name;
+            document.getElementById('current-stock').innerText = stock;
         }
 
-        function setSize(btn, size) {
-            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            document.getElementById('size-input').value = size;
-        }
+        // --- 3. Fake Stock Reducer (The Sales Hack) ---
+        setInterval(() => {
+            const currentStockEl = document.getElementById('current-stock');
+            let currentVal = parseInt(currentStockEl.innerText);
+            
+            // 20% chance to drop stock every 5 seconds to make it look real
+            if (Math.random() > 0.8 && currentVal > 1) {
+                currentVal--;
+                currentStockEl.innerText = currentVal;
+                currentStockEl.classList.add('animate__animated', 'animate__flash');
+                setTimeout(() => currentStockEl.classList.remove('animate__flash'), 1000);
+                
+                // Also update the stock number in the card grid
+                document.querySelector('.selected .stock-num').innerText = currentVal;
+            }
+        }, 5000);
     </script>
 </body>
 </html>
