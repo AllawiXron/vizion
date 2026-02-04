@@ -15,6 +15,7 @@
             --neon: #00f2ff;   
             --bg: #050505;
             --danger: #ff0055; 
+            --success: #00ff88;
             --glass: rgba(255, 255, 255, 0.05);
         }
 
@@ -39,20 +40,20 @@
             position: sticky;
             top: 0;
             z-index: 2000;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             box-shadow: 0 4px 15px rgba(255, 0, 85, 0.4);
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
-        #countdown { font-family: 'Orbitron'; color: var(--neon); font-size: 1rem; }
+        #countdown { font-family: 'Orbitron'; color: var(--neon); font-size: 0.95rem; }
 
-        /* --- MOBILE OPTIMIZED HEADER --- */
+        /* --- HEADER --- */
         .header { text-align: center; padding: 25px 0 15px; }
         .logo {
             font-family: 'Orbitron';
-            font-size: 2.8rem; /* Scaled for mobile */
+            font-size: 2.8rem;
             background: linear-gradient(to right, #fff, var(--accent), var(--neon));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -70,10 +71,10 @@
             margin: 20px 0;
         }
 
-        /* --- 2-COLUMN MOBILE GRID --- */
+        /* --- 2-COLUMN GRID --- */
         .hoodie-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Two per row on mobile */
+            grid-template-columns: 1fr 1fr;
             gap: 12px;
             margin-bottom: 30px;
         }
@@ -114,7 +115,7 @@
             font-weight: bold;
         }
 
-        /* --- MOBILE CHECKOUT AREA --- */
+        /* --- CHECKOUT AREA --- */
         .checkout-container {
             background: rgba(15, 15, 15, 0.95);
             padding: 20px;
@@ -124,17 +125,37 @@
             margin-bottom: 20px;
         }
 
-        .price-box { text-align: center; margin-bottom: 20px; }
+        .price-box { text-align: center; margin-bottom: 15px; }
         .old-price { text-decoration: line-through; opacity: 0.5; font-size: 1.1rem; }
         .new-price { font-size: 2.8rem; font-weight: 800; color: var(--neon); display: block; line-height: 1; }
         
+        /* FREE DELIVERY BADGE */
+        .delivery-highlight {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--success);
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            display: inline-block;
+            margin-top: 5px;
+            border: 1px solid var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
         .urgency-box {
             background: rgba(255, 0, 85, 0.05);
             border: 1px solid var(--danger);
             padding: 15px;
             border-radius: 15px;
             text-align: center;
-            margin-bottom: 20px;
+            margin: 15px 0;
         }
 
         .input-field {
@@ -154,9 +175,8 @@
             margin-top: 10px;
         }
 
-        /* Pulse for the "Watching" text */
         .viewing-now {
-            text-align: center; font-size: 0.8rem; color: var(--neon); margin-top: 10px; opacity: 0.8;
+            text-align: center; font-size: 0.8rem; color: var(--neon); margin-top: 15px; opacity: 0.8;
         }
 
         @media (min-width: 768px) {
@@ -169,8 +189,9 @@
 <body>
 
     <div class="timer-banner">
-        <i class="fas fa-bolt"></i>
-        ينتهي الخصم خلال: <span id="countdown">15:00</span>
+        <span><i class="fas fa-truck-moving"></i> توصيل مجاني لكل المحافظات</span>
+        <span style="opacity: 0.5">|</span>
+        <span>ينتهي العرض: <span id="countdown">15:00</span></span>
     </div>
 
     <header class="header">
@@ -180,7 +201,7 @@
 
     <div class="container">
         <div class="section-header">
-            <h2>1. اختر الموديل</h2>
+            <h2>1. اختر الموديل الخاص بك</h2>
         </div>
         
         <div class="hoodie-grid">
@@ -215,17 +236,22 @@
             <div>
                 <div class="price-box">
                     <span class="old-price">35,000 IQD</span>
-                    <span class="new-price">21,000 IQD</span>
+                    <span class="new-price">25,000 IQD</span>
+                    <div class="delivery-highlight">
+                        <i class="fas fa-check-circle"></i> توصيل مجاني لجميع المحافظات
+                    </div>
                 </div>
                 <div class="urgency-box">
                     <p style="margin:0; font-weight:bold;">الموديل: <span id="current-name" style="color:var(--neon)">VILLIAN</span></p>
-                    <p style="margin:5px 0 0; color:var(--danger)">متبقي <span id="current-stock" style="font-size:1.4rem; font-weight:800;">4</span> قطع فقط في المخزن!</p>
+                    <p style="margin:5px 0 0; color:var(--danger)">متبقي <span id="current-stock" style="font-size:1.4rem; font-weight:800;">4</span> قطع فقط!</p>
                 </div>
             </div>
 
             <div class="form-panel">
                 <form action="https://formspree.io/f/mjgonzyw" method="POST">
                     <input type="hidden" name="Product" id="input-style" value="VILLIAN">
+                    <input type="hidden" name="Price" value="25000">
+                    <input type="hidden" name="Delivery" value="FREE">
                     
                     <select name="Size" class="input-field" style="border-right: 4px solid var(--accent)">
                         <option value="S">القياس: S</option>
@@ -236,13 +262,14 @@
                     </select>
 
                     <input type="text" name="Name" class="input-field" placeholder="الاسم الثلاثي" required>
-                    <input type="tel" name="Phone" class="input-field" placeholder="رقم الهاتف (آسيا/زين)" required>
+                    <input type="tel" name="Phone" class="input-field" placeholder="رقم الهاتف" required>
                     <input type="text" name="Province" class="input-field" placeholder="المحافظة" required>
-                    <input type="text" name="Address" class="input-field" placeholder="العنوان (المنطقة / نقطة دالة)" required>
+                    <input type="text" name="Address" class="input-field" placeholder="المنطقة / اقرب نقطة دالة" required>
                     
-                    <button type="submit" class="submit-btn">تأكيد طلب الشراء</button>
+                    <button type="submit" class="submit-btn">تثبيت الطلب - ٢٥ الف</button>
+                    
                     <div class="viewing-now">
-                        <i class="fas fa-eye"></i> 24 شخص يشاهدون هذا العرض الآن
+                        <i class="fas fa-shield-alt"></i> الدفع عند الاستلام | <i class="fas fa-eye"></i> 31 شخص يشاهد الآن
                     </div>
                 </form>
             </div>
@@ -250,7 +277,6 @@
     </div>
 
     <script>
-        // 1. Mobile Optimized Timer
         let time = 900;
         const timerElement = document.getElementById('countdown');
         setInterval(() => {
@@ -260,7 +286,6 @@
             if (time > 0) time--;
         }, 1000);
 
-        // 2. Selection Sync
         function selectStyle(el, name, stock) {
             document.querySelectorAll('.hoodie-card').forEach(c => c.classList.remove('selected'));
             el.classList.add('selected');
@@ -268,27 +293,23 @@
             document.getElementById('current-name').innerText = name;
             document.getElementById('current-stock').innerText = stock;
             
-            // Auto-scroll to form on mobile for better UX
             if(window.innerWidth < 768) {
                 document.querySelector('.price-box').scrollIntoView({ behavior: 'smooth' });
             }
         }
 
-        // 3. Fake Stock Reducer
         setInterval(() => {
             const active = document.querySelector('.hoodie-card.selected');
             if (active) {
                 const badge = active.querySelector('.stock-num');
                 let count = parseInt(badge.innerText);
-                if (Math.random() > 0.75 && count > 1) {
+                if (Math.random() > 0.8 && count > 1) {
                     count--;
                     badge.innerText = count;
                     document.getElementById('current-stock').innerText = count;
-                    document.getElementById('current-stock').style.color = "white";
-                    setTimeout(() => { document.getElementById('current-stock').style.color = "var(--danger)"; }, 300);
                 }
             }
-        }, 7000);
+        }, 8000);
     </script>
 </body>
 </html>
