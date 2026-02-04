@@ -11,16 +11,15 @@
 
     <style>
         :root {
-            --accent: #a855f7; /* Purple */
-            --neon: #00f2ff;   /* Cyan */
+            --accent: #a855f7; 
+            --neon: #00f2ff;   
             --bg: #050505;
-            --danger: #ff0055; /* Red for urgency */
+            --danger: #ff0055; 
             --glass: rgba(255, 255, 255, 0.03);
         }
 
         body {
             background-color: var(--bg);
-            /* Added a subtle texture for a premium feel */
             background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre-v2.png');
             background-attachment: fixed;
             color: white;
@@ -29,7 +28,6 @@
             overflow-x: hidden;
         }
 
-        /* --- URGENCY BANNER --- */
         .timer-banner {
             background: linear-gradient(90deg, #80002a, var(--danger));
             text-align: center;
@@ -48,7 +46,6 @@
 
         #countdown { font-family: 'Orbitron'; letter-spacing: 2px; color: var(--neon); }
 
-        /* --- HEADER --- */
         .header { text-align: center; padding: 40px 0 20px; }
         .logo {
             font-family: 'Orbitron';
@@ -57,19 +54,13 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
-            /* Subtle glow instead of bounce */
             filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.6));
         }
         .tagline { letter-spacing: 4px; opacity: 0.7; font-size: 0.9rem; margin-top: -10px; }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
 
-        /* --- HOODIE SELECTION GRID --- */
-        .section-header {
-            text-align: center;
-            margin-bottom: 30px;
-            position: relative;
-        }
+        .section-header { text-align: center; margin-bottom: 30px; }
         .section-header h2 { margin: 0; color: var(--neon); }
 
         .hoodie-grid {
@@ -99,7 +90,7 @@
             box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
         }
 
-        .hoodie-card img { width: 100%; border-radius: 15px; margin-bottom: 10px; }
+        .hoodie-card img { width: 100%; border-radius: 15px; margin-bottom: 10px; min-height: 200px; background: #111; }
         .hoodie-card p { font-weight: 700; margin: 5px 0; }
 
         .stock-badge {
@@ -112,12 +103,11 @@
             font-weight: bold;
         }
 
-        /* --- CHECKOUT AREA --- */
         .checkout-container {
             display: grid;
             grid-template-columns: 1fr 1.2fr;
             gap: 40px;
-            background: rgba(20, 20, 20, 0.6); /* Darker glass */
+            background: rgba(20, 20, 20, 0.8);
             padding: 40px;
             border-radius: 30px;
             border: 1px solid rgba(255,255,255,0.08);
@@ -125,12 +115,6 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        /* Left Side: Price & Urgency */
-        .info-panel {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
         .price-box { text-align: center; margin-bottom: 25px; }
         .old-price { text-decoration: line-through; opacity: 0.5; font-size: 1.4rem; }
         .new-price { font-size: 3.5rem; font-weight: 800; color: var(--neon); display: block; line-height: 1; }
@@ -141,217 +125,151 @@
             padding: 20px;
             border-radius: 15px;
             text-align: center;
-            position: relative;
         }
+
         .pulse-icon {
             color: var(--danger);
             animation: pulse-red 1.5s infinite;
-            margin-left: 10px;
-        }
-        .viewing-now {
-            text-align: center; margin-top: 15px; font-size: 0.85rem; opacity: 0.7; color: var(--neon);
         }
 
-        /* Right Side: Form */
-        .form-panel h3 { margin-top: 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; }
-        .order-form { display: flex; flex-direction: column; gap: 15px; }
-        
         .input-field {
             width: 100%; padding: 15px; background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.15); border-radius: 12px;
-            color: white; font-family: 'Cairo'; font-size: 1rem; transition: 0.3s;
-            box-sizing: border-box; /* Fixes padding issues */
+            color: white; font-family: 'Cairo'; font-size: 1rem; margin-bottom: 15px;
+            box-sizing: border-box;
         }
-        .input-field:focus { border-color: var(--neon); background: rgba(0, 242, 255, 0.05); outline: none; }
-        select.input-field { cursor: pointer; }
-        select.input-field option { background: #1a1a1a; color: white; }
 
-        /* --- THE FIX: NEW SUBMIT BUTTON --- */
         .submit-btn {
             background: linear-gradient(45deg, var(--accent), var(--neon), var(--accent));
             background-size: 200% auto;
             color: white; border: none; padding: 20px; border-radius: 15px;
             font-weight: 800; font-size: 1.4rem; cursor: pointer;
             font-family: 'Cairo'; transition: all 0.4s ease;
-            box-shadow: 0 4px 15px rgba(0, 242, 255, 0.2);
-            margin-top: 10px;
-            /* NO MORE BOUNCE ANIMATION HERE */
+            width: 100%;
         }
 
-        .submit-btn:hover {
-            background-position: right center; /* Smooth gradient shift */
-            transform: translateY(-3px); /* Slight lift */
-            box-shadow: 0 15px 30px rgba(168, 85, 247, 0.5); /* Strong glow on hover */
-        }
+        .submit-btn:hover { background-position: right center; transform: translateY(-3px); }
 
         @keyframes pulse-red {
-            0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.1); }
-            100% { opacity: 1; transform: scale(1); }
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
-        @media (max-width: 768px) { .checkout-container { grid-template-columns: 1fr; padding: 25px; } .logo { font-size: 3rem; }}
+        @media (max-width: 768px) { .checkout-container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <div class="timer-banner animate__animated animate__fadeInDown">
-        <i class="fas fa-stopwatch"></i>
-        ينتهي العرض والخصم خلال: <span id="countdown">15:00</span> دقيقة!
+    <div class="timer-banner">
+        <i class="fas fa-fire-alt"></i>
+        ينتهي العرض والخصم خلال: <span id="countdown">15:00</span>
     </div>
 
     <header class="header">
-        <h1 class="logo animate__animated animate__fadeIn">viZion</h1>
+        <h1 class="logo">viZion</h1>
         <p class="tagline">PREMIUM HOODIE COLLECTION</p>
     </header>
 
     <div class="container">
-        
         <div class="section-header">
-            <h2>1. اختر الموديل الخاص بك (Choose Style)</h2>
+            <h2>1. اختر الموديل الخاص بك</h2>
         </div>
         
-        <div class="hoodie-grid animate__animated animate__fadeInUp">
-            <div class="hoodie-card selected" onclick="selectStyle(this, 'Shadow Black', 4)">
-                <img src="https://imgur.com/5r8uhtH" alt="Style 1">
+        <div class="hoodie-grid">
+            <div class="hoodie-card selected" onclick="selectStyle(this, 'هودي VILLIAN', 4)">
+                <img src="https://i.imgur.com/5r8uhtH.jpg" alt="Style 1">
                 <p>هودي VILLIAN</p>
                 <span class="stock-badge"><i class="fas fa-bolt"></i> باقي <span class="stock-num">4</span></span>
             </div>
-            <div class="hoodie-card" onclick="selectStyle(this, 'Neon Purple', 7)">
-                <img src="https://imgur.com/u5ETI2z" alt="Style 2">
+            <div class="hoodie-card" onclick="selectStyle(this, 'هودي BERSERK', 7)">
+                <img src="https://i.imgur.com/u5ETI2z.jpg" alt="Style 2">
                 <p>هودي BERSERK</p>
                 <span class="stock-badge"><i class="fas fa-bolt"></i> باقي <span class="stock-num">7</span></span>
             </div>
-            <div class="hoodie-card" onclick="selectStyle(this, 'Cyber White', 3)">
-                <img src="https://imgur.com/8RSXqzw" alt="Style 3">
+            <div class="hoodie-card" onclick="selectStyle(this, 'هودي SNAKE', 3)">
+                <img src="https://i.imgur.com/8RSXqzw.jpg" alt="Style 3">
                 <p>هودي SNAKE</p>
                 <span class="stock-badge"><i class="fas fa-bolt"></i> باقي <span class="stock-num">3</span></span>
             </div>
-            <div class="hoodie-card" onclick="selectStyle(this, 'Void Blue', 5)">
-                <img src="https://imgur.com/hRoUcRo" alt="Style 4">
+            <div class="hoodie-card" onclick="selectStyle(this, 'هودي GREEK', 5)">
+                <img src="https://i.imgur.com/hRoUcRo.jpg" alt="Style 4">
                 <p>هودي GREEK</p>
                 <span class="stock-badge"><i class="fas fa-bolt"></i> باقي <span class="stock-num">5</span></span>
             </div>
-            <div class="hoodie-card" onclick="selectStyle(this, 'Titanium Grey', 6)">
-                <img src="https://imgur.com/VcQUhcA" alt="Style 5">
+            <div class="hoodie-card" onclick="selectStyle(this, 'هودي VILLIAN V2', 6)">
+                <img src="https://i.imgur.com/VcQUhcA.jpg" alt="Style 5">
                 <p>هودي VILLIAN V2</p>
                 <span class="stock-badge"><i class="fas fa-bolt"></i> باقي <span class="stock-num">6</span></span>
             </div>
         </div>
 
-        <div class="checkout-container animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
-            
+        <div class="checkout-container">
             <div class="info-panel">
                 <div class="price-box">
                     <div class="old-price">35,000 IQD</div>
                     <div class="new-price">21,000 IQD</div>
                 </div>
-
                 <div class="urgency-box">
-                    <p style="margin:0; font-size: 1.1rem;">
-                        <i class="fas fa-siren-on pulse-icon"></i> تنبيه نفاذ الكمية
-                    </p>
-                    <p style="margin: 10px 0 0 0;">
-                        الموديل المختار: <strong style="color:var(--neon)" id="current-name">Shadow Black</strong>
-                    </p>
-                    <p style="margin: 5px 0 0 0; font-size: 1.2rem; font-weight: bold;">
-                        بقي منه <span id="current-stock" style="color:var(--danger); font-size: 1.8rem;">4</span> قطع فقط!
-                    </p>
-                </div>
-                <div class="viewing-now">
-                    <i class="fas fa-eye"></i> 18 شخص يشاهدون هذا المنتج حالياً
+                    <p><i class="fas fa-exclamation-triangle pulse-icon"></i> تنبيه نفاذ الكمية</p>
+                    <p>الموديل المختار: <strong style="color:var(--neon)" id="current-name">هودي VILLIAN</strong></p>
+                    <p>بقي منه <span id="current-stock" style="color:var(--danger); font-size: 1.8rem;">4</span> قطع فقط!</p>
                 </div>
             </div>
 
             <div class="form-panel">
-                <h3>2. معلومات التوصيل (Shipping Info)</h3>
-                <form action="https://formspree.io/f/mjgonzyw" method="POST" class="order-form">
-                    <input type="hidden" name="Product_Style" id="input-style" value="Shadow Black">
-                    
-                    <div style="display: flex; gap: 10px;">
-                        <select name="Size" class="input-field" style="flex:1; border-color: var(--accent);">
-                            <option value="S">القياس: S</option>
-                            <option value="M" selected>القياس: M</option>
-                            <option value="L">القياس: L</option>
-                            <option value="XL">القياس: XL</option>
-                            <option value="XXL">القياس: XXL</option>
-                        </select>
-                        <input type="tel" name="Phone" class="input-field" style="flex:2;" placeholder="رقم الهاتف (07xxx)" required>
-                    </div>
-
+                <form action="https://formspree.io/f/mjgonzyw" method="POST">
+                    <input type="hidden" name="Product_Style" id="input-style" value="هودي VILLIAN">
+                    <select name="Size" class="input-field">
+                        <option value="S">القياس: S</option>
+                        <option value="M" selected>القياس: M</option>
+                        <option value="L">القياس: L</option>
+                        <option value="XL">القياس: XL</option>
+                        <option value="XXL">القياس: XXL</option>
+                    </select>
                     <input type="text" name="Name" class="input-field" placeholder="الاسم الثلاثي" required>
+                    <input type="tel" name="Phone" class="input-field" placeholder="رقم الهاتف" required>
                     <input type="text" name="Province" class="input-field" placeholder="المحافظة" required>
-                    <input type="text" name="Address_Details" class="input-field" placeholder="المنطقة / اقرب نقطة دالة" required>
-
-                    <button type="submit" class="submit-btn">
-                        تثبيت الطلب الآن <i class="fas fa-arrow-left" style="margin-right: 10px;"></i>
-                    </button>
+                    <input type="text" name="Address" class="input-field" placeholder="المنطقة / اقرب نقطة دالة" required>
+                    <button type="submit" class="submit-btn">تثبيت الطلب الآن</button>
                 </form>
             </div>
         </div>
     </div>
 
     <script>
-        // 1. The 15-Minute Timer
-        let time = 900; // 15 minutes in seconds
+        // 1. Fixed Timer
+        let time = 900;
         const timerElement = document.getElementById('countdown');
-        
-        const timerInterval = setInterval(() => {
+        setInterval(() => {
             let minutes = Math.floor(time / 60);
             let seconds = time % 60;
-            // Add leading zero if seconds less than 10
             timerElement.innerHTML = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-            
-            if (time > 0) {
-                time--;
-            } else {
-                clearInterval(timerInterval);
-                timerElement.innerHTML = "EXPIRED";
-                document.querySelector('.timer-banner').style.background = "#333";
-            }
+            if (time > 0) time--;
         }, 1000);
 
-        // 2. Style Selection Logic
+        // 2. Fixed Style Selection
         function selectStyle(el, name, stock) {
-            // Clear previous selection
             document.querySelectorAll('.hoodie-card').forEach(c => c.classList.remove('selected'));
-            // Highlight new selection
             el.classList.add('selected');
-            
-            // Update form and info box
             document.getElementById('input-style').value = name;
             document.getElementById('current-name').innerText = name;
-            
-            // Update stock display with a flash animation
-            const stockDisplay = document.getElementById('current-stock');
-            stockDisplay.innerText = stock;
-            stockDisplay.classList.add('animate__animated', 'animate__flash');
-            setTimeout(() => stockDisplay.classList.remove('animate__animated', 'animate__flash'), 1000);
+            document.getElementById('current-stock').innerText = stock;
         }
 
-        // 3. The "Fake Stock Drop" (Sales Trigger)
+        // 3. Fixed Fake Stock Drop (Removed the space in 'selectedCard')
         setInterval(() => {
-            // Find the currently selected style card
-            const selected Card = document.querySelector('.hoodie-card.selected');
-            const stockNumSpan = selectedCard.querySelector('.stock-num');
-            let currentStock = parseInt(stockNumSpan.innerText);
-            
-            // 30% chance to drop stock if it's greater than 1
-            if (Math.random() > 0.7 && currentStock > 1) {
-                currentStock--;
-                
-                // Update the number on the card
-                stockNumSpan.innerText = currentStock;
-                
-                // Update the large number in the checkout box
-                const largeStockDisplay = document.getElementById('current-stock');
-                largeStockDisplay.innerText = currentStock;
-                
-                // Flash red to draw attention
-                largeStockDisplay.style.color = '#ff0000';
-                setTimeout(() => { largeStockDisplay.style.color = 'var(--danger)'; }, 500);
+            const selectedCard = document.querySelector('.hoodie-card.selected');
+            if (selectedCard) {
+                const stockNumSpan = selectedCard.querySelector('.stock-num');
+                let currentStock = parseInt(stockNumSpan.innerText);
+                if (Math.random() > 0.7 && currentStock > 1) {
+                    currentStock--;
+                    stockNumSpan.innerText = currentStock;
+                    document.getElementById('current-stock').innerText = currentStock;
+                }
             }
-        }, 6000); // Check every 6 seconds
+        }, 6000);
     </script>
 </body>
 </html>
