@@ -1,0 +1,78 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #0f0f0f;
+  color: white;
+}
+
+.container {
+  max-width: 430px;
+  margin: auto;
+  padding: 20px;
+}
+
+.brand {
+  text-align: center;
+  font-size: 32px;
+  letter-spacing: 2px;
+}
+
+.tagline {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 15px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.price-box {
+  background: #1a1a1a;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  margin: 15px 0;
+}
+
+.price-box h2 {
+  margin: 0;
+  font-size: 28px;
+}
+
+form select,
+form input {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 16px;
+  background: white;
+  color: black;
+  font-size: 18px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.trust {
+  text-align: center;
+  margin-top: 15px;
+  color: #aaa;
+  font-size: 14px;
+}
