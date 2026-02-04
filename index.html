@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
   <meta charset="UTF-8">
   <title>viZion Hoodies</title>
@@ -9,8 +9,11 @@
 <body>
 
 <div class="container">
+
+  <div class="badge">🔥 خصم لفترة محدودة</div>
+
   <h1 class="brand">viZion Hoodies</h1>
-  <p class="tagline">Premium streetwear • Cash on delivery</p>
+  <p class="tagline">هودي خامة ممتازة • توصيل لكل العراق</p>
 
   <div class="gallery">
     <img src="img1.jpg">
@@ -18,37 +21,58 @@
     <img src="img3.jpg">
   </div>
 
-  <div class="price-box">
-    <h2>21,000 IQD</h2>
-    <p>🚚 Baghdad 3,000 / Other 4,000</p>
+  <div class="stock">
+    ⏳ باقي <span id="stock">5</span> فقط في المخزون
   </div>
 
-  <form action="https://formspree.io/f/mjgonzyw" method="POST">
+  <div class="price-box">
+    <p class="old">29,000 IQD</p>
+    <h2>21,000 IQD</h2>
+  </div>
+
+  <form action="https://formspree.io/f/mjgonzyw" method="POST" class="order">
+
     <select name="size" required>
-      <option value="">Select Size</option>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-      <option>XXL</option>
+      <option value="">اختر القياس</option>
+      <option>S</option><option>M</option><option>L</option>
+      <option>XL</option><option>XXL</option>
     </select>
 
     <select name="color" required>
-      <option value="">Select Color</option>
-      <option>Black</option>
-      <option>White</option>
-      <option>Grey</option>
+      <option value="">اختر اللون</option>
+      <option>أسود</option>
+      <option>أبيض</option>
+      <option>رمادي</option>
     </select>
 
-    <input type="text" name="name" placeholder="Full Name" required>
-    <input type="text" name="phone" placeholder="Phone Number" required>
-    <input type="text" name="address" placeholder="Full Address" required>
+    <input type="text" name="name" placeholder="اسمك" required>
+    <input type="text" name="province" placeholder="المحافظة" required>
+    <input type="text" name="area" placeholder="المنطقة" required>
+    <input type="text" name="landmark" placeholder="أقرب نقطة دالة لبيتك" required>
+    <input type="text" name="phone" placeholder="الرقم" required>
 
-    <button type="submit">🛒 Place Order</button>
+    <button type="submit" class="cta">
+      اطلب الآن قبل نفاذ الكمية
+    </button>
   </form>
 
-  <p class="trust">⭐⭐⭐⭐⭐ Trusted by customers across Iraq</p>
+  <div class="trust">
+    ⭐ 4.9/5 تقييم الزبائن  
+    <br> الدفع عند الاستلام
+  </div>
+
 </div>
+
+<script>
+  // Fake stock animation
+  let stock = 5;
+  setInterval(() => {
+    if(stock > 2){
+      stock--;
+      document.getElementById("stock").innerText = stock;
+    }
+  }, 8000);
+</script>
 
 </body>
 </html>
