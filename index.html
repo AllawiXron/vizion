@@ -39,15 +39,14 @@
             font-weight: 800;
             position: sticky;
             top: 0;
-            z-index: 2000;
+            z-index: 1000;
             font-size: 0.8rem;
-            box-shadow: 0 4px 15px rgba(255, 0, 85, 0.4);
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 10px;
         }
-        #countdown { font-family: 'Orbitron'; color: var(--neon); font-size: 0.95rem; }
+        #countdown { font-family: 'Orbitron'; color: var(--neon); }
 
         /* --- HEADER --- */
         .header { text-align: center; padding: 25px 0 15px; }
@@ -64,13 +63,6 @@
 
         .container { width: 92%; margin: 0 auto; }
 
-        .section-header h2 { 
-            text-align: center; 
-            font-size: 1.2rem; 
-            color: var(--neon); 
-            margin: 20px 0;
-        }
-
         /* --- 2-COLUMN GRID --- */
         .hoodie-grid {
             display: grid;
@@ -85,21 +77,18 @@
             border-radius: 15px;
             padding: 8px;
             cursor: pointer;
-            transition: 0.3s;
             text-align: center;
-            position: relative;
+            transition: 0.3s;
         }
 
         .hoodie-card.selected {
             border: 2px solid var(--neon);
             background: rgba(0, 242, 255, 0.08);
-            transform: scale(1.02);
         }
 
         .hoodie-card img { 
             width: 100%; 
             border-radius: 10px; 
-            background: #111;
             aspect-ratio: 1/1;
             object-fit: cover;
         }
@@ -122,7 +111,6 @@
             border-radius: 25px;
             border: 1px solid rgba(255,255,255,0.1);
             backdrop-filter: blur(15px);
-            margin-bottom: 20px;
         }
 
         .price-box { text-align: center; margin-bottom: 15px; }
@@ -141,15 +129,6 @@
             border: 1px solid var(--success);
         }
 
-        .urgency-box {
-            background: rgba(255, 0, 85, 0.05);
-            border: 1px solid var(--danger);
-            padding: 15px;
-            border-radius: 15px;
-            text-align: center;
-            margin: 15px 0;
-        }
-
         .input-field {
             width: 100%; height: 50px; padding: 0 15px; background: rgba(255,255,255,0.07);
             border: 1px solid rgba(255,255,255,0.15); border-radius: 12px;
@@ -157,48 +136,65 @@
             box-sizing: border-box; display: block;
         }
 
-        /* --- POLICY BOX --- */
-        .policy-box {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px dashed rgba(255, 255, 255, 0.2);
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            color: #ddd;
-        }
-
-        .confirm-check {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: var(--neon);
-        }
-
-        .confirm-check input { width: 18px; height: 18px; accent-color: var(--neon); }
-
         .submit-btn {
             background: linear-gradient(45deg, var(--accent), var(--neon), var(--accent));
             background-size: 200% auto;
             color: white; border: none; height: 60px; border-radius: 15px;
             font-weight: 800; font-size: 1.2rem; cursor: pointer;
-            font-family: 'Cairo'; transition: 0.4s;
-            width: 100%; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            font-family: 'Cairo'; width: 100%; margin-top: 10px;
         }
 
-        .viewing-now {
-            text-align: center; font-size: 0.8rem; color: var(--neon); margin-top: 15px; opacity: 0.8;
+        /* --- CUSTOM POPUP MODAL --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #111;
+            border: 2px solid var(--accent);
+            padding: 30px 20px;
+            border-radius: 25px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+        }
+
+        .modal-content i.alert-icon {
+            font-size: 3rem;
+            color: var(--danger);
+            margin-bottom: 15px;
+        }
+
+        .modal-content h3 { color: #fff; margin: 10px 0; font-size: 1.4rem; }
+        .modal-content p { color: #ccc; font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; }
+
+        .modal-btns { display: flex; gap: 10px; }
+        
+        .confirm-btn {
+            flex: 2; background: var(--success); color: #000; border: none;
+            padding: 15px; border-radius: 12px; font-weight: 800; font-family: 'Cairo';
+            cursor: pointer;
+        }
+
+        .cancel-btn {
+            flex: 1; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2);
+            padding: 15px; border-radius: 12px; font-weight: 600; font-family: 'Cairo';
+            cursor: pointer;
         }
 
         @media (min-width: 768px) {
-            .logo { font-size: 4rem; }
             .hoodie-grid { grid-template-columns: repeat(5, 1fr); }
-            .checkout-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 40px; }
+            .checkout-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
         }
     </style>
 </head>
@@ -206,7 +202,7 @@
 
     <div class="timer-banner">
         <span><i class="fas fa-truck-moving"></i> توصيل مجاني لكل المحافظات</span>
-        <span style="opacity: 0.5">|</span>
+        <span style="opacity: 0.3">|</span>
         <span>ينتهي العرض: <span id="countdown">15:00</span></span>
     </div>
 
@@ -216,10 +212,6 @@
     </header>
 
     <div class="container">
-        <div class="section-header">
-            <h2>1. اختر الموديل الخاص بك</h2>
-        </div>
-        
         <div class="hoodie-grid">
             <div class="hoodie-card selected" onclick="selectStyle(this, 'VILLIAN', 4)">
                 <img src="https://i.imgur.com/5r8uhtH.jpg" alt="Villian">
@@ -249,22 +241,14 @@
         </div>
 
         <div class="checkout-container">
-            <div>
-                <div class="price-box">
-                    <span class="old-price">35,000 IQD</span>
-                    <span class="new-price">25,000 IQD</span>
-                    <div class="delivery-highlight">
-                        <i class="fas fa-check-circle"></i> توصيل مجاني لجميع المحافظات
-                    </div>
-                </div>
-                <div class="urgency-box">
-                    <p style="margin:0; font-weight:bold;">الموديل: <span id="current-name" style="color:var(--neon)">VILLIAN</span></p>
-                    <p style="margin:5px 0 0; color:var(--danger)">متبقي <span id="current-stock" style="font-size:1.4rem; font-weight:800;">4</span> قطع فقط!</p>
-                </div>
+            <div class="price-box">
+                <span class="old-price">35,000 IQD</span>
+                <span class="new-price">25,000 IQD</span>
+                <div class="delivery-highlight">توصيل مجاني لجميع المحافظات</div>
             </div>
 
             <div class="form-panel">
-                <form action="https://formspree.io/f/mjgonzyw" method="POST">
+                <form id="orderForm" action="https://formspree.io/f/mjgonzyw" method="POST">
                     <input type="hidden" name="Product" id="input-style" value="VILLIAN">
                     
                     <select name="Size" class="input-field" style="border-right: 4px solid var(--accent)">
@@ -280,27 +264,33 @@
                     <input type="text" name="Province" class="input-field" placeholder="المحافظة" required>
                     <input type="text" name="Address" class="input-field" placeholder="المنطقة / اقرب نقطة دالة" required>
                     
-                    <div class="policy-box">
-                        <i class="fas fa-info-circle" style="color: var(--neon)"></i> 
-                        <b>سياسة الاستبدال:</b> لا يمكن استرجاع المنتج بعد تثبيت الطلب إلا في حال وجود خطأ في اللون أو التصميم. يرجى التأكد من الموديل والقياس.
-                    </div>
-
-                    <label class="confirm-check">
-                        <input type="checkbox" required>
-                        هل أنت متأكد من تثبيت طلبك؟
-                    </label>
-
                     <button type="submit" class="submit-btn">تثبيت الطلب الآن</button>
                     
-                    <div class="viewing-now">
-                        <i class="fas fa-shield-alt"></i> الدفع عند الاستلام | <i class="fas fa-eye"></i> 31 شخص يشاهد الآن
+                    <div style="text-align:center; font-size:0.8rem; margin-top:10px; color:var(--neon); opacity:0.8;">
+                        <i class="fas fa-shield-alt"></i> الدفع عند الاستلام
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content animate__animated animate__zoomIn">
+            <i class="fas fa-exclamation-triangle alert-icon"></i>
+            <h3>تأكيد الطلب النهائي</h3>
+            <p>
+                يرجى ملاحظة أنه <b>لا يوجد استرجاع</b> بعد تثبيت الطلب إلا في حال كان اللون أو التصميم مختلفاً عما طلبت. <br><br>
+                هل أنت متأكد من رغبتك في تثبيت الطلب؟
+            </p>
+            <div class="modal-btns">
+                <button class="confirm-btn" onclick="submitFinalForm()">نعم، تأكيد الطلب</button>
+                <button class="cancel-btn" onclick="closeModal()">تراجع</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // 1. Timer Logic
         let time = 900;
         const timerElement = document.getElementById('countdown');
         setInterval(() => {
@@ -310,30 +300,33 @@
             if (time > 0) time--;
         }, 1000);
 
+        // 2. Form & Modal Logic
+        const orderForm = document.getElementById('orderForm');
+        const modalOverlay = document.getElementById('modalOverlay');
+
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop form from sending immediately
+            modalOverlay.style.display = 'flex'; // Show the popup
+        });
+
+        function closeModal() {
+            modalOverlay.style.display = 'none'; // Hide popup
+        }
+
+        function submitFinalForm() {
+            orderForm.submit(); // Send the form data to Formspree
+        }
+
+        // 3. Selection Sync
         function selectStyle(el, name, stock) {
             document.querySelectorAll('.hoodie-card').forEach(c => c.classList.remove('selected'));
             el.classList.add('selected');
             document.getElementById('input-style').value = name;
-            document.getElementById('current-name').innerText = name;
-            document.getElementById('current-stock').innerText = stock;
             
             if(window.innerWidth < 768) {
                 document.querySelector('.price-box').scrollIntoView({ behavior: 'smooth' });
             }
         }
-
-        setInterval(() => {
-            const active = document.querySelector('.hoodie-card.selected');
-            if (active) {
-                const badge = active.querySelector('.stock-num');
-                let count = parseInt(badge.innerText);
-                if (Math.random() > 0.8 && count > 1) {
-                    count--;
-                    badge.innerText = count;
-                    document.getElementById('current-stock').innerText = count;
-                }
-            }
-        }, 8000);
     </script>
 </body>
 </html>
