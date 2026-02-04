@@ -1,389 +1,323 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>viZion | Premium Hoodies</title>
+    <title>viZion | Multi-Style Hoodies</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-    
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Orbitron:wght@800&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
         :root {
-            --primary: #8b5cf6; /* Neon Purple */
-            --secondary: #06b6d4; /* Neon Blue */
-            --bg: #0f172a;
-            --card-bg: #1e293b;
-            --text: #f8fafc;
-            --danger: #ef4444;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            --accent: #bc13fe; /* Neon Purple */
+            --cyan: #0ff;
+            --dark: #080808;
+            --glass: rgba(255, 255, 255, 0.03);
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
+            background-color: var(--dark);
+            color: white;
+            font-family: 'Poppins', 'Cairo', sans-serif;
+            margin: 0;
+            background: radial-gradient(circle at center, #1a0b2e 0%, #080808 100%);
+            min-height: 100vh;
         }
 
-        /* --- Animations --- */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(139, 92, 246, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
-        }
-
-        /* --- Header --- */
-        nav {
-            display: flex;
-            justify-content: center;
-            padding: 20px;
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+        .header {
+            text-align: center;
+            padding: 40px 20px;
         }
 
         .logo {
-            font-size: 2rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            letter-spacing: 10px;
+            background: linear-gradient(to right, #fff, var(--accent), var(--cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
+            margin: 0;
         }
 
-        /* --- Main Container --- */
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 20px;
+        }
+
+        /* PRODUCT GRID */
+        .section-title {
+            text-align: center;
+            font-family: 'Cairo';
+            color: var(--cyan);
+            margin-bottom: 30px;
+        }
+
+        .hoodie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .hoodie-card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            text-align: center;
+        }
+
+        .hoodie-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(188, 19, 254, 0.3);
+        }
+
+        .hoodie-card.selected {
+            border: 2px solid var(--cyan);
+            background: rgba(0, 255, 255, 0.05);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .hoodie-card img {
+            width: 100%;
+            border-radius: 15px;
+            margin-bottom: 10px;
+        }
+
+        .hoodie-card p {
+            font-size: 0.9rem;
+            margin: 5px 0;
+            font-weight: 600;
+        }
+
+        /* ORDER SECTION */
+        .order-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
-            align-items: center;
-            min-height: 90vh;
+            background: rgba(0,0,0,0.5);
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
         }
 
-        /* --- Image Section --- */
-        .product-image-container {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            animation: float 6s ease-in-out infinite;
+        .price-box {
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
         }
 
-        .product-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .product-image:hover {
-            transform: scale(1.05);
-        }
-
-        .discount-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--danger);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            z-index: 10;
-        }
-
-        /* --- Product Details --- */
-        .product-details h1 {
-            font-size: 3.5rem;
-            line-height: 1.1;
-            margin-bottom: 10px;
-            background: linear-gradient(to right, #fff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .price-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin: 20px 0;
+        .current-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--cyan);
         }
 
         .old-price {
             text-decoration: line-through;
-            color: #64748b;
-            font-size: 1.2rem;
+            opacity: 0.5;
+            margin-right: 15px;
         }
 
-        .new-price {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--secondary);
-        }
-
-        /* Scarcity Bar */
-        .stock-warning {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid var(--danger);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-        }
-
-        .stock-text {
-            color: var(--danger);
+        .stock-notice {
+            color: #ff4757;
+            font-family: 'Cairo';
             font-weight: bold;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
-            margin-bottom: 5px;
+            animation: pulse 1.5s infinite;
         }
 
-        .progress-bar {
-            width: 100%;
-            height: 6px;
-            background: #334155;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            width: 15%; /* Represents 5 items left */
-            height: 100%;
-            background: var(--danger);
-            border-radius: 3px;
-        }
-
-        /* --- Form Styling --- */
+        /* FORM STYLES */
         .order-form {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .form-title {
-            font-family: 'Cairo', sans-serif;
-            text-align: right;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-            color: var(--secondary);
-        }
-
-        .size-selector {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .size-btn {
-            background: transparent;
-            border: 1px solid #475569;
-            color: #94a3b8;
-            width: 45px;
-            height: 45px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
-        }
-
-        .size-btn:hover, .size-btn.active {
-            border-color: var(--primary);
-            background: var(--primary);
-            color: white;
-            transform: translateY(-2px);
+            flex-direction: column;
+            gap: 15px;
         }
 
         .input-group {
-            margin-bottom: 15px;
             text-align: right;
         }
 
         .input-group label {
-            font-family: 'Cairo', sans-serif;
             display: block;
+            font-family: 'Cairo';
             margin-bottom: 5px;
-            font-size: 0.9rem;
-            color: #cbd5e1;
+            color: #ccc;
         }
 
         .input-field {
             width: 100%;
-            padding: 12px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid #334155;
-            border-radius: 8px;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
             color: white;
-            font-family: 'Cairo', sans-serif;
             text-align: right;
-            transition: border-color 0.3s;
+            font-family: 'Cairo';
+            box-sizing: border-box;
         }
 
-        .input-field:focus {
-            outline: none;
-            border-color: var(--primary);
+        .size-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .size-btn {
+            padding: 10px 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            background: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .size-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
         }
 
         .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            border: none;
-            border-radius: 10px;
+            background: linear-gradient(45deg, var(--accent), var(--cyan));
             color: white;
-            font-weight: bold;
+            border: none;
+            padding: 20px;
+            border-radius: 15px;
+            font-weight: 800;
             font-size: 1.2rem;
             cursor: pointer;
+            font-family: 'Cairo';
             margin-top: 10px;
-            animation: pulse-glow 2s infinite;
-            font-family: 'Cairo', sans-serif;
+            transition: 0.3s;
         }
 
         .submit-btn:hover {
-            opacity: 0.9;
             transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(188, 19, 254, 0.6);
         }
 
-        /* --- Responsive --- */
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-                padding-top: 10px;
-            }
-            
-            .product-details h1 {
-                font-size: 2.5rem;
-                text-align: center;
-            }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
 
-            .price-container {
-                justify-content: center;
-            }
-            
-            .product-image-container {
-                margin-bottom: 20px;
-            }
+        @media (max-width: 768px) {
+            .order-container { grid-template-columns: 1fr; }
+            .logo { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <nav data-aos="fade-down">
-        <div class="logo">viZion</div>
-    </nav>
+    <header class="header">
+        <h1 class="logo animate__animated animate__zoomIn">viZion</h1>
+        <p style="letter-spacing: 3px; opacity: 0.7;">STREETWEAR COLLECTION</p>
+    </header>
 
     <div class="container">
         
-        <div class="product-image-container" data-aos="fade-right">
-            <div class="discount-badge">-40% OFF</div>
-            <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="viZion Hoodie" class="product-image">
+        <h2 class="section-title">1. اختر الموديل (Select Style)</h2>
+        
+        <div class="hoodie-grid">
+            <div class="hoodie-card selected" onclick="selectStyle(this, 'Classic viZion Black')">
+                <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400" alt="Style 1">
+                <p>Classic Black</p>
+            </div>
+            <div class="hoodie-card" onclick="selectStyle(this, 'Neon Purple Edition')">
+                <img src="https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=400" alt="Style 2">
+                <p>Neon Purple</p>
+            </div>
+            <div class="hoodie-card" onclick="selectStyle(this, 'Cyber White')">
+                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400" alt="Style 3">
+                <p>Cyber White</p>
+            </div>
+            <div class="hoodie-card" onclick="selectStyle(this, 'Midnight Blue')">
+                <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=400" alt="Style 4">
+                <p>Midnight Blue</p>
+            </div>
+            <div class="hoodie-card" onclick="selectStyle(this, 'Urban Grey')">
+                <img src="https://images.unsplash.com/photo-1563124417-64240749701d?w=400" alt="Style 5">
+                <p>Urban Grey</p>
+            </div>
         </div>
 
-        <div class="product-details" data-aos="fade-left">
-            <h1>viZion Hoodie <br><span style="font-size: 1.5rem; font-weight: 300; color: #94a3b8;">Limited Edition</span></h1>
-            
-            <div class="price-container">
-                <span class="old-price">35,000 IQD</span>
-                <span class="new-price">21,000 IQD</span>
+        <div class="order-container">
+            <div class="animate__animated animate__fadeInLeft">
+                <div class="price-box">
+                    <span class="old-price">35,000 IQD</span>
+                    <span class="current-price">21,000 IQD</span>
+                </div>
+                
+                <div class="stock-notice">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    باقي 5 قطع فقط في المخزن
+                </div>
+                
+                <div style="margin-top: 30px; text-align: center; border: 1px dashed rgba(255,255,255,0.2); padding: 20px; border-radius: 20px;">
+                    <p>الموديل المختار:</p>
+                    <h3 id="display-style" style="color: var(--cyan);">Classic Black</h3>
+                </div>
             </div>
 
-            <div class="stock-warning">
-                <div class="stock-text">
-                    <i class="fas fa-fire"></i> Hurry! Only 5 items left in stock
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
-                </div>
+            <div class="animate__animated animate__fadeInRight">
+                <form action="https://formspree.io/f/mjgonzyw" method="POST" class="order-form">
+                    
+                    <input type="hidden" name="Selected_Style" id="style-input" value="Classic Black">
+                    <input type="hidden" name="Size" id="size-input" value="M">
+
+                    <div class="input-group">
+                        <label>القياس (Size)</label>
+                        <div class="size-buttons">
+                            <button type="button" class="size-btn" onclick="setSize(this, 'S')">S</button>
+                            <button type="button" class="size-btn active" onclick="setSize(this, 'M')">M</button>
+                            <button type="button" class="size-btn" onclick="setSize(this, 'L')">L</button>
+                            <button type="button" class="size-btn" onclick="setSize(this, 'XL')">XL</button>
+                            <button type="button" class="size-btn" onclick="setSize(this, 'XXL')">XXL</button>
+                        </div>
+                    </div>
+
+                    <input type="text" name="Name" class="input-field" placeholder="اسمك الكامل" required>
+                    <input type="text" name="Province" class="input-field" placeholder="المحافظة" required>
+                    <input type="text" name="Area" class="input-field" placeholder="المنطقة" required>
+                    <input type="text" name="Landmark" class="input-field" placeholder="اقرب نقطة داله لبيتك" required>
+                    <input type="tel" name="Phone" class="input-field" placeholder="رقم الهاتف" required>
+
+                    <button type="submit" class="submit-btn">تثبيت الطلب - ORDER NOW</button>
+                </form>
             </div>
-
-            <form action="https://formspree.io/f/mjgonzyw" method="POST" class="order-form">
-                <div class="form-title">
-                    أكمل طلبك الآن
-                </div>
-
-                <label style="display:block; margin-bottom:10px; font-weight:bold;">Select Size:</label>
-                <div class="size-selector">
-                    <input type="hidden" name="Size" id="selected-size" value="M">
-                    <button type="button" class="size-btn" onclick="selectSize(this, 'S')">S</button>
-                    <button type="button" class="size-btn active" onclick="selectSize(this, 'M')">M</button>
-                    <button type="button" class="size-btn" onclick="selectSize(this, 'L')">L</button>
-                    <button type="button" class="size-btn" onclick="selectSize(this, 'XL')">XL</button>
-                    <button type="button" class="size-btn" onclick="selectSize(this, 'XXL')">XXL</button>
-                </div>
-
-                <div class="input-group">
-                    <label>الاسم الثلاثي</label>
-                    <input type="text" name="الاسم" class="input-field" placeholder="اكتب اسمك هنا" required>
-                </div>
-
-                <div class="input-group">
-                    <label>رقم الهاتف</label>
-                    <input type="tel" name="رقم_الهاتف" class="input-field" placeholder="07xxxxxxxxx" required>
-                </div>
-
-                <div class="input-group">
-                    <label>المحافظة</label>
-                    <input type="text" name="المحافظة" class="input-field" required>
-                </div>
-
-                <div class="input-group">
-                    <label>المنطقة</label>
-                    <input type="text" name="المنطقة" class="input-field" required>
-                </div>
-
-                <div class="input-group">
-                    <label>اقرب نقطة دالة</label>
-                    <input type="text" name="اقرب_نقطة_دالة" class="input-field" required>
-                </div>
-
-                <button type="submit" class="submit-btn">
-                    ORDER NOW - أطلب الآن
-                </button>
-            </form>
         </div>
     </div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize Animations
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
+        function selectStyle(element, styleName) {
+            // Remove selection from all
+            document.querySelectorAll('.hoodie-card').forEach(card => card.classList.remove('selected'));
+            // Add selection to clicked
+            element.classList.add('selected');
+            // Update inputs
+            document.getElementById('style-input').value = styleName;
+            document.getElementById('display-style').innerText = styleName;
+        }
 
-        // Size Selection Logic
-        function selectSize(btn, size) {
-            // Remove active class from all buttons
+        function setSize(btn, size) {
             document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
-            // Add active class to clicked button
             btn.classList.add('active');
-            // Update hidden input
-            document.getElementById('selected-size').value = size;
+            document.getElementById('size-input').value = size;
         }
     </script>
 </body>
