@@ -15,8 +15,9 @@
             --neon: #00f2ff;   
             --bg: #050505;
             --danger: #ff0055; 
+            --warning: #ffcc00; /* New alert color */
             --success: #00ff88;
-            --glass: rgba(255, 255, 255, 0.05);
+            --glass: rgba(255, 255, 255, 0.08);
         }
 
         body {
@@ -26,217 +27,277 @@
             color: white;
             font-family: 'Cairo', sans-serif;
             margin: 0;
-            padding-bottom: 40px;
+            padding-bottom: 60px;
             overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* --- STICKY TOP TIMER --- */
+        /* --- 1. HIGH VISIBILITY STICKY TIMER --- */
         .timer-banner {
-            background: linear-gradient(90deg, #80002a, var(--danger));
+            background: var(--danger);
+            color: white;
             text-align: center;
-            padding: 10px;
+            padding: 12px;
             font-weight: 800;
             position: sticky;
             top: 0;
             z-index: 1000;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            box-shadow: 0 5px 20px rgba(255, 0, 85, 0.5);
+            animation: pulse-bg 2s infinite;
         }
-        #countdown { font-family: 'Orbitron'; color: var(--neon); }
+        
+        @keyframes pulse-bg {
+            0% { background-color: var(--danger); }
+            50% { background-color: #cc0044; }
+            100% { background-color: var(--danger); }
+        }
+
+        #countdown { 
+            font-family: 'Orbitron'; 
+            background: #000; 
+            color: var(--warning); 
+            padding: 2px 8px; 
+            border-radius: 4px;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
 
         /* --- HEADER --- */
-        .header { text-align: center; padding: 25px 0 15px; }
+        .header { text-align: center; padding: 20px 0 10px; }
         .logo {
             font-family: 'Orbitron';
-            font-size: 2.8rem;
+            font-size: 3.2rem;
             background: linear-gradient(to right, #fff, var(--accent), var(--neon));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
-            filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5));
+            filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.6));
         }
-        .tagline { letter-spacing: 3px; opacity: 0.6; font-size: 0.75rem; margin-top: -5px; }
+        .tagline { letter-spacing: 4px; opacity: 0.8; font-size: 0.7rem; color: var(--neon); margin-top: -5px; }
 
-        .container { width: 92%; margin: 0 auto; }
+        .container { width: 94%; margin: 0 auto; }
 
-        /* --- 2-COLUMN GRID --- */
+        /* --- NEW: HERO SALE BOX --- */
+        .hero-offer {
+            background: rgba(255, 204, 0, 0.1);
+            border: 1px solid var(--warning);
+            color: var(--warning);
+            text-align: center;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-offer h2 { margin: 0; font-size: 1.4rem; font-weight: 800; }
+        .hero-offer p { margin: 5px 0 0; font-size: 0.9rem; color: #fff; }
+        .hero-offer::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shine 3s infinite;
+        }
+        @keyframes shine { 100% { left: 100%; } }
+
+        /* --- 2. MOBILE OPTIMIZED GRID --- */
         .hoodie-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            grid-template-columns: 1fr 1fr; /* Two columns */
+            gap: 10px; /* Small gap to maximize space */
             margin-bottom: 30px;
         }
 
         .hoodie-card {
-            background: var(--glass);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 8px;
+            background: #111;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 0; /* REMOVED PADDING FOR LARGER IMAGE */
             cursor: pointer;
             text-align: center;
-            transition: 0.3s;
+            transition: 0.2s;
+            overflow: hidden; /* Keeps image inside rounded corners */
+            position: relative;
         }
 
         .hoodie-card.selected {
             border: 2px solid var(--neon);
-            background: rgba(0, 242, 255, 0.08);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+            transform: translateY(-3px);
         }
 
         .hoodie-card img { 
             width: 100%; 
-            border-radius: 10px; 
+            display: block; /* Removes bottom gap */
             aspect-ratio: 1/1;
             object-fit: cover;
         }
 
-        .hoodie-card p { font-size: 0.85rem; font-weight: 700; margin: 8px 0 4px; }
+        /* Checkmark overlay when selected */
+        .hoodie-card.selected::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 5px; right: 5px;
+            background: var(--neon);
+            color: #000;
+            width: 25px; height: 25px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .card-details { padding: 8px 5px; } /* New wrapper for text */
+
+        .hoodie-card p { font-size: 0.9rem; font-weight: 700; margin: 0 0 5px; }
 
         .stock-badge {
-            background: rgba(255, 0, 85, 0.2);
+            display: inline-block;
+            background: rgba(255, 0, 85, 0.15);
             color: var(--danger);
-            font-size: 0.7rem;
-            padding: 2px 8px;
-            border-radius: 20px;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 6px;
             font-weight: bold;
         }
 
         /* --- CHECKOUT AREA --- */
         .checkout-container {
-            background: rgba(15, 15, 15, 0.95);
-            padding: 20px;
-            border-radius: 25px;
-            border: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(15px);
+            background: rgba(20, 20, 20, 0.95);
+            padding: 25px 15px;
+            border-radius: 20px;
+            border-top: 2px solid var(--neon);
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.8);
         }
 
-        .price-box { text-align: center; margin-bottom: 15px; }
-        .old-price { text-decoration: line-through; opacity: 0.5; font-size: 1.1rem; }
-        .new-price { font-size: 2.8rem; font-weight: 800; color: var(--neon); display: block; line-height: 1; }
+        .price-box { text-align: center; margin-bottom: 20px; }
+        .old-price { text-decoration: line-through; opacity: 0.5; font-size: 1.1rem; color: #ccc; }
+        .new-price { font-size: 3rem; font-weight: 900; color: var(--neon); display: block; line-height: 1.1; text-shadow: 0 0 20px rgba(0, 242, 255, 0.3); }
         
         .delivery-highlight {
-            background: rgba(0, 255, 136, 0.1);
+            background: rgba(0, 255, 136, 0.15);
             color: var(--success);
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 800;
             display: inline-block;
-            margin-top: 5px;
+            margin-top: 10px;
             border: 1px solid var(--success);
+            animation: pulse-green 2s infinite;
         }
+        @keyframes pulse-green { 50% { opacity: 0.7; } }
 
         .input-field {
-            width: 100%; height: 50px; padding: 0 15px; background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.15); border-radius: 12px;
-            color: white; font-family: 'Cairo'; font-size: 1rem; margin-bottom: 12px;
+            width: 100%; height: 55px; padding: 0 15px; 
+            background: #222;
+            border: 1px solid #333; border-radius: 12px;
+            color: white; font-family: 'Cairo'; font-size: 1.05rem; margin-bottom: 12px;
             box-sizing: border-box; display: block;
+            transition: 0.3s;
         }
+        .input-field:focus { border-color: var(--neon); outline: none; background: #2a2a2a; }
 
         .submit-btn {
-            background: linear-gradient(45deg, var(--accent), var(--neon), var(--accent));
-            background-size: 200% auto;
-            color: white; border: none; height: 60px; border-radius: 15px;
-            font-weight: 800; font-size: 1.2rem; cursor: pointer;
+            background: linear-gradient(45deg, var(--accent), var(--neon));
+            color: black; border: none; height: 65px; border-radius: 15px;
+            font-weight: 900; font-size: 1.3rem; cursor: pointer;
             font-family: 'Cairo'; width: 100%; margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(0, 242, 255, 0.3);
+            position: relative; overflow: hidden;
         }
-
-        /* --- CUSTOM POPUP MODAL --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(8px);
-            display: none; /* Hidden by default */
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            padding: 20px;
-        }
-
-        .modal-content {
-            background: #111;
-            border: 2px solid var(--accent);
-            padding: 30px 20px;
-            border-radius: 25px;
-            text-align: center;
-            max-width: 400px;
-            width: 100%;
-            position: relative;
-            box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
-        }
-
-        .modal-content i.alert-icon {
-            font-size: 3rem;
-            color: var(--danger);
-            margin-bottom: 15px;
-        }
-
-        .modal-content h3 { color: #fff; margin: 10px 0; font-size: 1.4rem; }
-        .modal-content p { color: #ccc; font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; }
-
-        .modal-btns { display: flex; gap: 10px; }
         
-        .confirm-btn {
-            flex: 2; background: var(--success); color: #000; border: none;
-            padding: 15px; border-radius: 12px; font-weight: 800; font-family: 'Cairo';
-            cursor: pointer;
+        /* Shimmer effect on button */
+        .submit-btn::after {
+            content: ''; position: absolute; top: 0; left: -50%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-20deg);
+            animation: shine-btn 3s infinite;
         }
+        @keyframes shine-btn { 0% { left: -50%; } 20% { left: 150%; } 100% { left: 150%; } }
 
-        .cancel-btn {
-            flex: 1; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2);
-            padding: 15px; border-radius: 12px; font-weight: 600; font-family: 'Cairo';
-            cursor: pointer;
+        /* --- POPUP MODAL --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); backdrop-filter: blur(10px);
+            display: none; justify-content: center; align-items: center;
+            z-index: 9999; padding: 20px;
         }
+        .modal-content {
+            background: #1a1a1a; border: 2px solid var(--danger);
+            padding: 30px 20px; border-radius: 20px; text-align: center;
+            width: 100%; max-width: 380px; position: relative;
+        }
+        .modal-content i.alert-icon { font-size: 3.5rem; color: var(--danger); margin-bottom: 15px; animation: bounce 2s infinite; }
+        .modal-btns { display: flex; gap: 10px; margin-top: 20px; }
+        .confirm-btn { flex: 2; background: var(--success); color: #000; border: none; padding: 15px; border-radius: 10px; font-weight: 800; font-size: 1rem; }
+        .cancel-btn { flex: 1; background: #333; color: #fff; border: 1px solid #555; padding: 15px; border-radius: 10px; font-weight: 600; }
 
         @media (min-width: 768px) {
-            .hoodie-grid { grid-template-columns: repeat(5, 1fr); }
-            .checkout-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+            .hoodie-grid { grid-template-columns: repeat(5, 1fr); gap: 20px; }
+            .checkout-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; }
         }
     </style>
 </head>
 <body>
 
     <div class="timer-banner">
-        <span><i class="fas fa-truck-moving"></i> توصيل مجاني لكل المحافظات</span>
-        <span style="opacity: 0.3">|</span>
-        <span>ينتهي العرض: <span id="countdown">15:00</span></span>
+        <span><i class="fas fa-shipping-fast"></i> توصيل مجاني</span>
+        <span>|</span>
+        <span>انتهاء العرض: <span id="countdown">15:00</span></span>
     </div>
 
     <header class="header">
         <h1 class="logo">viZion</h1>
-        <p class="tagline">PREMIUM STREETWEAR</p>
+        <p class="tagline">EST. 2024 - IRAQ</p>
     </header>
 
     <div class="container">
+        
+        <div class="hero-offer animate__animated animate__fadeInDown">
+            <h2>🔥 عرض خاص لفترة محدودة</h2>
+            <p>تخفيضات نهاية الموسم + توصيل مجاني لكافة المحافظات</p>
+        </div>
+
         <div class="hoodie-grid">
             <div class="hoodie-card selected" onclick="selectStyle(this, 'VILLIAN', 4)">
                 <img src="https://i.imgur.com/5r8uhtH.jpg" alt="Villian">
-                <p>هودي VILLIAN</p>
-                <span class="stock-badge">بقي <span class="stock-num">4</span> فقط</span>
+                <div class="card-details">
+                    <p>VILLIAN</p>
+                    <span class="stock-badge">بقي <span class="stock-num">4</span></span>
+                </div>
             </div>
             <div class="hoodie-card" onclick="selectStyle(this, 'BERSERK', 7)">
                 <img src="https://i.imgur.com/u5ETI2z.jpg" alt="Berserk">
-                <p>هودي BERSERK</p>
-                <span class="stock-badge">بقي <span class="stock-num">7</span> فقط</span>
+                <div class="card-details">
+                    <p>BERSERK</p>
+                    <span class="stock-badge">بقي <span class="stock-num">7</span></span>
+                </div>
             </div>
             <div class="hoodie-card" onclick="selectStyle(this, 'SNAKE', 3)">
                 <img src="https://i.imgur.com/8RSXqzw.jpg" alt="Snake">
-                <p>هودي SNAKE</p>
-                <span class="stock-badge">بقي <span class="stock-num">3</span> فقط</span>
+                <div class="card-details">
+                    <p>SNAKE</p>
+                    <span class="stock-badge">بقي <span class="stock-num">3</span></span>
+                </div>
             </div>
             <div class="hoodie-card" onclick="selectStyle(this, 'GREEK', 5)">
                 <img src="https://i.imgur.com/hRoUcRo.jpg" alt="Greek">
-                <p>هودي GREEK</p>
-                <span class="stock-badge">بقي <span class="stock-num">5</span> فقط</span>
+                <div class="card-details">
+                    <p>GREEK</p>
+                    <span class="stock-badge">بقي <span class="stock-num">5</span></span>
+                </div>
             </div>
             <div class="hoodie-card" onclick="selectStyle(this, 'VILLIAN V2', 6)">
                 <img src="https://i.imgur.com/VcQUhcA.jpg" alt="Villian V2">
-                <p>هودي VILLIAN V2</p>
-                <span class="stock-badge">بقي <span class="stock-num">6</span> فقط</span>
+                <div class="card-details">
+                    <p>VILLIAN V2</p>
+                    <span class="stock-badge">بقي <span class="stock-num">6</span></span>
+                </div>
             </div>
         </div>
 
@@ -244,30 +305,34 @@
             <div class="price-box">
                 <span class="old-price">35,000 IQD</span>
                 <span class="new-price">25,000 IQD</span>
-                <div class="delivery-highlight">توصيل مجاني لجميع المحافظات</div>
+                <div class="delivery-highlight">
+                    <i class="fas fa-check-circle"></i> توصيل مجاني واصل للباب
+                </div>
             </div>
 
             <div class="form-panel">
                 <form id="orderForm" action="https://formspree.io/f/mjgonzyw" method="POST">
                     <input type="hidden" name="Product" id="input-style" value="VILLIAN">
+                    <input type="hidden" name="Price" value="25000">
+                    <input type="hidden" name="Offer" value="Free Delivery">
                     
                     <select name="Size" class="input-field" style="border-right: 4px solid var(--accent)">
-                        <option value="S">القياس: S</option>
-                        <option value="M" selected>القياس: M</option>
-                        <option value="L">القياس: L</option>
-                        <option value="XL">القياس: XL</option>
-                        <option value="XXL">القياس: XXL</option>
+                        <option value="S">القياس: S (Small)</option>
+                        <option value="M" selected>القياس: M (Medium)</option>
+                        <option value="L">القياس: L (Large)</option>
+                        <option value="XL">القياس: XL (X-Large)</option>
+                        <option value="XXL">القياس: XXL (2X-Large)</option>
                     </select>
 
                     <input type="text" name="Name" class="input-field" placeholder="الاسم الثلاثي" required>
-                    <input type="tel" name="Phone" class="input-field" placeholder="رقم الهاتف" required>
+                    <input type="tel" name="Phone" class="input-field" placeholder="رقم الهاتف (07...)" required>
                     <input type="text" name="Province" class="input-field" placeholder="المحافظة" required>
-                    <input type="text" name="Address" class="input-field" placeholder="المنطقة / اقرب نقطة دالة" required>
+                    <input type="text" name="Address" class="input-field" placeholder="العنوان (اقرب نقطة دالة)" required>
                     
                     <button type="submit" class="submit-btn">تثبيت الطلب الآن</button>
                     
-                    <div style="text-align:center; font-size:0.8rem; margin-top:10px; color:var(--neon); opacity:0.8;">
-                        <i class="fas fa-shield-alt"></i> الدفع عند الاستلام
+                    <div style="text-align:center; font-size:0.85rem; margin-top:15px; color:#ccc; opacity:0.9;">
+                        <i class="fas fa-hand-holding-usd" style="color:var(--success)"></i> لا تدفع شيئاً الآن، الدفع عند الاستلام
                     </div>
                 </form>
             </div>
@@ -277,14 +342,14 @@
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-content animate__animated animate__zoomIn">
             <i class="fas fa-exclamation-triangle alert-icon"></i>
-            <h3>تأكيد الطلب النهائي</h3>
-            <p>
-                يرجى ملاحظة أنه <b>لا يوجد استرجاع</b> بعد تثبيت الطلب إلا في حال كان اللون أو التصميم مختلفاً عما طلبت. <br><br>
-                هل أنت متأكد من رغبتك في تثبيت الطلب؟
+            <h3 style="color:white">تنبيه هام قبل الطلب</h3>
+            <p style="color:#ddd; font-size:1rem;">
+                نحن ندفع تكلفة التوصيل عنك. <br>
+                يرجى التأكد من رغبتك بالشراء 100% لأن <b>الاسترجاع غير متوفر</b> إلا في حال وجود خطأ مصنعي.
             </p>
             <div class="modal-btns">
-                <button class="confirm-btn" onclick="submitFinalForm()">نعم، تأكيد الطلب</button>
-                <button class="cancel-btn" onclick="closeModal()">تراجع</button>
+                <button class="confirm-btn" onclick="submitFinalForm()">موافق، اطلب الآن</button>
+                <button class="cancel-btn" onclick="closeModal()">إلغاء</button>
             </div>
         </div>
     </div>
@@ -305,26 +370,30 @@
         const modalOverlay = document.getElementById('modalOverlay');
 
         orderForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Stop form from sending immediately
-            modalOverlay.style.display = 'flex'; // Show the popup
+            e.preventDefault(); 
+            modalOverlay.style.display = 'flex'; 
         });
 
         function closeModal() {
-            modalOverlay.style.display = 'none'; // Hide popup
+            modalOverlay.style.display = 'none'; 
         }
 
         function submitFinalForm() {
-            orderForm.submit(); // Send the form data to Formspree
+            const btn = document.querySelector('.confirm-btn');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الطلب...';
+            orderForm.submit(); 
         }
 
-        // 3. Selection Sync
+        // 3. Selection Sync with Scroll
         function selectStyle(el, name, stock) {
             document.querySelectorAll('.hoodie-card').forEach(c => c.classList.remove('selected'));
             el.classList.add('selected');
             document.getElementById('input-style').value = name;
             
+            // On mobile, slight scroll to form to encourage action
             if(window.innerWidth < 768) {
-                document.querySelector('.price-box').scrollIntoView({ behavior: 'smooth' });
+                const formOffset = document.querySelector('.checkout-container').offsetTop - 60;
+                window.scrollTo({ top: formOffset, behavior: 'smooth' });
             }
         }
     </script>
