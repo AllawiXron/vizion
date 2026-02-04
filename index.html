@@ -8,29 +8,33 @@
 </head>
 <body>
 
+<div class="floating-cta">
+  اطلب الآن 🔥
+</div>
+
 <div class="container">
 
-  <div class="badge">🔥 خصم لفترة محدودة</div>
+  <div class="badge glow">🔥 خصم خاص اليوم</div>
 
-  <h1 class="brand">viZion Hoodies</h1>
-  <p class="tagline">هودي خامة ممتازة • توصيل لكل العراق</p>
+  <h1 class="brand fade-in">viZion Hoodies</h1>
+  <p class="tagline slide-up">هودي فاخر • توصيل لكل العراق</p>
 
-  <div class="gallery">
+  <div class="gallery zoom-in">
     <img src="img1.jpg">
     <img src="img2.jpg">
     <img src="img3.jpg">
   </div>
 
-  <div class="stock">
-    ⏳ باقي <span id="stock">5</span> فقط في المخزون
+  <div class="stock pulse">
+    ⏳ باقي <span id="stock">7</span> فقط
   </div>
 
-  <div class="price-box">
+  <div class="price-box slide-up">
     <p class="old">29,000 IQD</p>
     <h2>21,000 IQD</h2>
   </div>
 
-  <form action="https://formspree.io/f/YOUR_ID" method="POST" class="order">
+  <form action="https://formspree.io/f/YOUR_ID" method="POST" class="order fade-in">
 
     <select name="size" required>
       <option value="">اختر القياس</option>
@@ -40,9 +44,7 @@
 
     <select name="color" required>
       <option value="">اختر اللون</option>
-      <option>أسود</option>
-      <option>أبيض</option>
-      <option>رمادي</option>
+      <option>أسود</option><option>أبيض</option><option>رمادي</option>
     </select>
 
     <input type="text" name="name" placeholder="اسمك" required>
@@ -51,27 +53,26 @@
     <input type="text" name="landmark" placeholder="أقرب نقطة دالة لبيتك" required>
     <input type="text" name="phone" placeholder="الرقم" required>
 
-    <button type="submit" class="cta">
+    <button type="submit" class="cta bounce">
       اطلب الآن قبل نفاذ الكمية
     </button>
   </form>
 
-  <div class="trust">
-    ⭐ 4.9/5 تقييم الزبائن  
-    <br> الدفع عند الاستلام
+  <div class="trust fade-in">
+    ⭐ 4.9/5 تقييم الزبائن <br>
+    الدفع عند الاستلام
   </div>
 
 </div>
 
 <script>
-  // Fake stock animation
-  let stock = 5;
-  setInterval(() => {
-    if(stock > 2){
-      stock--;
-      document.getElementById("stock").innerText = stock;
-    }
-  }, 8000);
+let stock = 7;
+setInterval(() => {
+  if(stock > 3){
+    stock--;
+    document.getElementById("stock").innerText = stock;
+  }
+}, 6000);
 </script>
 
 </body>
