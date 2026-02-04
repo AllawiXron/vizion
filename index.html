@@ -129,7 +129,6 @@
         .old-price { text-decoration: line-through; opacity: 0.5; font-size: 1.1rem; }
         .new-price { font-size: 2.8rem; font-weight: 800; color: var(--neon); display: block; line-height: 1; }
         
-        /* FREE DELIVERY BADGE */
         .delivery-highlight {
             background: rgba(0, 255, 136, 0.1);
             color: var(--success);
@@ -140,13 +139,6 @@
             display: inline-block;
             margin-top: 5px;
             border: 1px solid var(--success);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.6; }
-            100% { opacity: 1; }
         }
 
         .urgency-box {
@@ -165,6 +157,31 @@
             box-sizing: border-box; display: block;
         }
 
+        /* --- POLICY BOX --- */
+        .policy-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+
+        .confirm-check {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--neon);
+        }
+
+        .confirm-check input { width: 18px; height: 18px; accent-color: var(--neon); }
+
         .submit-btn {
             background: linear-gradient(45deg, var(--accent), var(--neon), var(--accent));
             background-size: 200% auto;
@@ -172,7 +189,6 @@
             font-weight: 800; font-size: 1.2rem; cursor: pointer;
             font-family: 'Cairo'; transition: 0.4s;
             width: 100%; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            margin-top: 10px;
         }
 
         .viewing-now {
@@ -250,8 +266,6 @@
             <div class="form-panel">
                 <form action="https://formspree.io/f/mjgonzyw" method="POST">
                     <input type="hidden" name="Product" id="input-style" value="VILLIAN">
-                    <input type="hidden" name="Price" value="25000">
-                    <input type="hidden" name="Delivery" value="FREE">
                     
                     <select name="Size" class="input-field" style="border-right: 4px solid var(--accent)">
                         <option value="S">القياس: S</option>
@@ -266,7 +280,17 @@
                     <input type="text" name="Province" class="input-field" placeholder="المحافظة" required>
                     <input type="text" name="Address" class="input-field" placeholder="المنطقة / اقرب نقطة دالة" required>
                     
-                    <button type="submit" class="submit-btn">تثبيت الطلب - ٢٥ الف</button>
+                    <div class="policy-box">
+                        <i class="fas fa-info-circle" style="color: var(--neon)"></i> 
+                        <b>سياسة الاستبدال:</b> لا يمكن استرجاع المنتج بعد تثبيت الطلب إلا في حال وجود خطأ في اللون أو التصميم. يرجى التأكد من الموديل والقياس.
+                    </div>
+
+                    <label class="confirm-check">
+                        <input type="checkbox" required>
+                        هل أنت متأكد من تثبيت طلبك؟
+                    </label>
+
+                    <button type="submit" class="submit-btn">تثبيت الطلب الآن</button>
                     
                     <div class="viewing-now">
                         <i class="fas fa-shield-alt"></i> الدفع عند الاستلام | <i class="fas fa-eye"></i> 31 شخص يشاهد الآن
