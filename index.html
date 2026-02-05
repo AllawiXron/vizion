@@ -2,1071 +2,642 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>viZion | Limited Drop - كن النسخة الأفضل من نفسك</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>viZion | هودي رجالي بجودة عالية</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@600;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --bg: #050505;
-            --accent: #00f2ff;
-            --primary: #a855f7;
-            --danger: #ff0055;
-            --success: #00ff88;
-            --discount-bg: #fff1f1;
-            --discount-text: #d90429;
-            --gold: #ffd700;
-            --elite: #ff6b35;
+            --primary: #111827;
+            --accent: #3B82F6;
+            --success: #10B981;
+            --danger: #EF4444;
+            --light: #F9FAFB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            background-color: var(--bg);
-            color: white;
             font-family: 'Cairo', sans-serif;
-            margin: 0;
+            background-color: #ffffff;
+            color: #1F2937;
+            line-height: 1.6;
             padding-bottom: 20px;
-            overflow-x: hidden;
-            position: relative;
         }
 
-        /* --- 1. URGENCY & SOCIAL PROOF HEADER --- */
-        .top-banner {
-            background: linear-gradient(90deg, #000, #d90429, #000);
-            border-bottom: 1px solid #222;
-            padding: 12px;
+        /* --- Trust Header --- */
+        .trust-bar {
+            background: var(--primary);
+            color: white;
+            padding: 12px 20px;
             text-align: center;
-            font-weight: 900;
-            font-size: 0.8rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            font-size: 0.9rem;
+            border-bottom: 2px solid var(--accent);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .live-timer { 
-            color: var(--danger); 
-            font-family: 'Orbitron'; 
-            background: rgba(0,0,0,0.7); 
-            padding: 4px 12px;
-            border-radius: 20px;
-            border: 1px solid var(--danger);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(255, 0, 85, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0); }
-        }
 
-        /* --- 2. SOCIAL PROOF BADGE --- */
-        .social-proof {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.75rem;
-        }
-        .sold-badge {
-            background: linear-gradient(45deg, var(--success), var(--accent));
-            color: #000;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-weight: 900;
-        }
-
-        /* --- 3. HERO WITH PSYCHOLOGICAL HOOKS --- */
-        .identity-transformation {
-            background: linear-gradient(45deg, #000, #1a0033, #000);
-            padding: 25px 20px;
-            text-align: center;
-            margin: 15px;
-            border-radius: 20px;
-            border: 1px solid var(--primary);
-            position: relative;
-            overflow: hidden;
-        }
-        .identity-transformation::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--primary), var(--danger), var(--success));
-        }
-        .identity-transformation h2 { 
-            margin: 0; 
-            font-size: 2rem; 
-            font-weight: 900; 
-            background: linear-gradient(45deg, var(--accent), var(--primary), var(--danger));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-        .identity-transformation .tagline {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-        .benefits {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .benefit-item {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 10px 15px;
-            font-size: 0.85rem;
+        .trust-item {
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        .benefit-item i {
+
+        .trust-item i {
             color: var(--success);
         }
 
-        /* --- 4. LIMITED EDITION BADGE --- */
-        .limited-badge {
-            position: fixed;
-            top: 100px;
-            left: 10px;
-            background: linear-gradient(45deg, var(--elite), var(--gold));
-            color: #000;
-            padding: 12px 15px;
-            border-radius: 0 15px 15px 0;
-            font-weight: 900;
-            font-size: 0.9rem;
-            z-index: 999;
-            transform: rotate(-90deg) translateX(-50%);
-            transform-origin: left top;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        }
-
-        /* --- 5. CONTAINER & LOGO --- */
-        .container { 
-            width: 92%; 
-            margin: 0 auto; 
-            max-width: 500px; 
-            position: relative;
-        }
-
-        .logo-area { 
-            text-align: center; 
-            padding: 25px 0 15px; 
-            position: relative;
-        }
-        .logo { 
-            font-family: 'Orbitron'; 
-            font-size: 3.5rem; 
-            letter-spacing: 5px; 
-            margin: 0; 
-            line-height: 1;
-            background: linear-gradient(45deg, var(--accent), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
-        }
-        .logo-subtitle {
-            font-size: 0.9rem;
-            color: #aaa;
-            margin-top: 5px;
-            letter-spacing: 2px;
-        }
-
-        /* --- 6. FOMO COUNTER --- */
-        .fomo-counter {
-            background: rgba(255, 0, 85, 0.1);
-            border: 1px solid rgba(255, 0, 85, 0.3);
-            border-radius: 15px;
-            padding: 12px;
+        /* --- Hero Section --- */
+        .hero {
+            padding: 25px 20px;
             text-align: center;
-            margin: 20px 0;
-            font-size: 0.9rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .fomo-item {
-            flex: 1;
-        }
-        .fomo-number {
-            font-family: 'Orbitron';
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--danger);
-            display: block;
-        }
-        .fomo-label {
-            font-size: 0.7rem;
-            opacity: 0.8;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--accent);
         }
 
-        /* --- 7. PRODUCT GRID WITH PSYCHOLOGY --- */
-        .product-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 15px; 
-            margin-bottom: 30px; 
+        .hero h1 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 800;
         }
-        
-        .card {
-            background: #111;
-            border: 1px solid #222;
-            border-radius: 25px;
+
+        .hero p {
+            color: #4B5563;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 15px;
+        }
+
+        /* --- Timer --- */
+        .timer-container {
+            background: var(--danger);
+            color: white;
+            padding: 12px;
+            border-radius: 12px;
+            display: inline-block;
+            margin: 10px 0;
+            font-weight: 700;
+        }
+
+        .timer {
+            font-family: 'Cairo', monospace;
+            font-size: 1.3rem;
+            direction: ltr;
+        }
+
+        /* --- Product Grid --- */
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #E5E7EB;
+            color: var(--primary);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .product-card {
+            border: 2px solid #E5E7EB;
+            border-radius: 15px;
             overflow: hidden;
-            position: relative;
-            transition: 0.3s;
+            transition: all 0.3s ease;
+            background: white;
             cursor: pointer;
         }
-        .card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 242, 255, 0.2);
-        }
-        .card.selected {
+
+        .product-card:hover {
             border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 242, 255, 0.3);
-            animation: selectedPulse 3s infinite;
-        }
-        @keyframes selectedPulse {
-            0% { border-color: var(--accent); }
-            50% { border-color: var(--primary); }
-            100% { border-color: var(--accent); }
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.1);
         }
 
-        .img-wrap { 
-            position: relative; 
-            width: 100%; 
-            aspect-ratio: 1/1; 
-        }
-        .img-wrap img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            transition: 0.5s;
-        }
-        .card:hover .img-wrap img {
-            transform: scale(1.05);
+        .product-card.selected {
+            border-color: var(--accent);
+            border-width: 3px;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.15);
         }
 
-        /* Stock Alert with Psychology */
-        .stock-pulse {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            left: 10px;
-            background: rgba(0,0,0,0.9);
-            backdrop-filter: blur(5px);
-            padding: 8px;
-            border-radius: 12px;
-            text-align: center;
-            font-size: 0.7rem;
-            font-weight: 900;
-            border: 1px solid rgba(255,0,85,0.5);
-            box-shadow: 0 0 10px rgba(255,0,85,0.3);
-        }
-        .pulse-dot { 
-            height: 8px; 
-            width: 8px; 
-            background: #00ff00; 
-            border-radius: 50%; 
-            display: inline-block; 
-            margin-left: 5px; 
-            animation: blink 1s infinite, shake 2s infinite;
-        }
-        @keyframes blink { 
-            0% { opacity: 1; } 
-            50% { opacity: 0.3; } 
-            100% { opacity: 1; } 
-        }
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-1px); }
-            75% { transform: translateX(1px); }
+        .product-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
         }
 
-        /* Authority & Social Proof Badges */
-        .discount-badge {
+        .product-badge {
             position: absolute;
             top: 10px;
             right: 10px;
-            background: linear-gradient(45deg, var(--success), var(--accent));
-            color: black;
-            font-size: 0.7rem;
-            font-weight: 900;
-            padding: 4px 10px;
-            border-radius: 50px;
-            z-index: 2;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        }
-        .popular-badge {
-            position: absolute;
-            top: 40px;
-            right: 10px;
-            background: linear-gradient(45deg, var(--danger), #ff6b35);
+            background: var(--success);
             color: white;
-            font-size: 0.6rem;
-            font-weight: 900;
-            padding: 3px 8px;
-            border-radius: 50px;
-            z-index: 2;
-        }
-
-        .card-name { 
-            padding: 12px; 
-            text-align: center; 
-            font-weight: 800; 
-            font-size: 0.95rem; 
-            position: relative;
-        }
-        .card-name::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 25%;
-            width: 50%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        }
-
-        /* --- 8. TRANSFORMATION STORY --- */
-        .transformation-story {
-            background: rgba(168, 85, 247, 0.05);
-            border: 1px solid rgba(168, 85, 247, 0.2);
+            padding: 4px 10px;
             border-radius: 20px;
-            padding: 20px;
-            margin: 25px 0;
-            text-align: center;
-            position: relative;
-        }
-        .story-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        .story-title {
-            font-size: 1.3rem;
-            font-weight: 900;
-            margin-bottom: 10px;
-            color: var(--accent);
-        }
-        .story-text {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            opacity: 0.9;
-        }
-
-        /* --- 9. THE CONVERSION FORM WITH PSYCHOLOGY --- */
-        .checkout-container {
-            background: #fff;
-            color: #000;
-            border-radius: 35px;
-            padding: 30px 20px;
-            margin-top: 20px;
-            box-shadow: 0 20px 60px rgba(0, 242, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-        .checkout-container::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--accent), var(--primary), var(--success));
-        }
-        
-        /* Price Psychology */
-        .price-section {
-            text-align: center;
-            margin-bottom: 25px;
-            background: var(--discount-bg);
-            padding: 25px 20px;
-            border-radius: 20px;
-            border: 2px dashed var(--discount-text);
-            position: relative;
-        }
-        .old-price { 
-            text-decoration: line-through; 
-            color: #888; 
-            font-size: 1.2rem; 
+            font-size: 0.8rem;
             font-weight: 700;
         }
-        .new-price { 
-            font-size: 3.5rem; 
-            font-weight: 900; 
-            color: #000; 
-            display: block; 
-            line-height: 1; 
-            margin: 5px 0;
-            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+
+        .stock-warning {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
         }
-        .price-per-day {
-            font-size: 0.8rem;
-            color: #666;
-            margin-top: 5px;
+
+        .product-info {
+            padding: 15px;
         }
-        .save-amount { 
-            background: var(--discount-text); 
-            color: #fff; 
-            padding: 5px 15px; 
-            border-radius: 5px; 
-            font-size: 0.9rem; 
-            font-weight: 900; 
+
+        .product-name {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .old-price {
+            color: #9CA3AF;
+            text-decoration: line-through;
+            font-size: 0.9rem;
+        }
+
+        .new-price {
+            color: var(--danger);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        /* --- Order Form --- */
+        .order-section {
+            background: var(--light);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 1px solid #E5E7EB;
+        }
+
+        .price-display {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: 2px dashed var(--accent);
+        }
+
+        .final-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+
+        .save-badge {
+            background: var(--success);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: 700;
             display: inline-block;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .form-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #D1D5DB;
+            border-radius: 10px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 12px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
             margin-top: 10px;
         }
 
-        /* Guarantee Badges */
-        .guarantee-badges {
-            display: flex;
-            justify-content: space-around;
-            margin: 20px 0;
-        }
-        .guarantee {
-            text-align: center;
-            flex: 1;
-        }
-        .guarantee i {
-            font-size: 1.5rem;
-            color: var(--success);
-            margin-bottom: 5px;
-        }
-        .guarantee span {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-
-        .form-title { 
-            font-weight: 900; 
-            font-size: 1.5rem; 
-            margin-bottom: 25px; 
-            text-align: center;
-            color: #000;
-            position: relative;
-        }
-        .form-title::after {
-            content: "";
-            position: absolute;
-            bottom: -8px;
-            right: 40%;
-            width: 20%;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 3px;
-        }
-
-        .field { 
-            margin-bottom: 20px; 
-            position: relative;
-        }
-        .field label { 
-            display: block; 
-            font-weight: 900; 
-            font-size: 0.95rem; 
-            margin-bottom: 8px; 
-            color: #333; 
-        }
-        
-        .input-style {
-            width: 100%;
-            background: #f8f8f8;
-            border: 2px solid #eee;
-            border-radius: 15px;
-            padding: 16px;
-            font-family: 'Cairo';
-            font-size: 1rem;
-            box-sizing: border-box;
-            transition: 0.3s;
-        }
-        .input-style:focus { 
-            border-color: var(--accent); 
-            background: #fff; 
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 242, 255, 0.1);
-        }
-
-        /* CTA Button with Psychology */
-        .submit-btn {
-            width: 100%;
-            background: linear-gradient(45deg, #000, #222);
-            color: #fff;
-            padding: 22px;
-            border-radius: 20px;
-            border: none;
-            font-family: 'Cairo';
-            font-weight: 900;
-            font-size: 1.5rem;
-            cursor: pointer;
-            margin-top: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            position: relative;
-            overflow: hidden;
-            transition: 0.3s;
-        }
         .submit-btn:hover {
-            background: linear-gradient(45deg, #111, #333);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            background: #2563EB;
         }
-        .submit-btn::after {
-            content: "✓";
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--success);
-            color: #000;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
+
+        .payment-note {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #6B7280;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 900;
+            gap: 8px;
         }
 
-        /* --- 10. SOCIAL PROOF SECTION --- */
-        .testimonials {
-            background: rgba(255,255,255,0.03);
-            border-radius: 20px;
-            padding: 20px;
-            margin: 30px 0;
-        }
-        .testimonial-title {
-            text-align: center;
-            font-weight: 900;
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: var(--accent);
-        }
-        .testimonial {
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-left: 3px solid var(--primary);
-        }
-        .testimonial-text {
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 10px;
-        }
-        .testimonial-author {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--accent);
-            text-align: left;
-        }
-
-        /* --- 11. FINAL URGENCY SECTION --- */
-        .final-urgency {
-            background: linear-gradient(45deg, rgba(255,0,85,0.1), rgba(168,85,247,0.1));
-            border: 1px solid rgba(255,0,85,0.3);
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            margin: 20px 0;
-            font-weight: 900;
-        }
-        .urgency-text {
-            font-size: 1.1rem;
-            color: var(--danger);
-            margin-bottom: 10px;
-        }
-
-        /* --- 12. POLICY MODAL --- */
-        .modal {
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%;
-            background: rgba(0,0,0,0.95); 
-            z-index: 9999;
-            display: none; 
-            align-items: center; 
-            justify-content: center; 
-            padding: 20px;
-        }
-        .modal-card {
-            background: #fff; 
-            color: #000; 
-            padding: 35px 25px; 
-            border-radius: 30px;
-            text-align: center; 
-            max-width: 400px; 
-            width: 100%;
-            position: relative;
-        }
-        .modal-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--accent), var(--primary));
-            border-radius: 30px 30px 0 0;
-        }
-        .policy-alert { 
-            background: #fff0f0; 
-            border: 1px solid #ffcccc; 
-            color: #d00; 
-            padding: 15px; 
-            border-radius: 15px; 
-            font-weight: 700; 
-            font-size: 0.9rem; 
-            margin: 20px 0; 
-        }
-        .confirm-btn { 
-            width: 100%; 
-            background: linear-gradient(45deg, var(--success), #00cc66); 
-            color: #000; 
-            padding: 18px; 
-            border: none; 
-            border-radius: 15px; 
-            font-weight: 900; 
-            font-size: 1.2rem; 
-            cursor: pointer; 
-            font-family: 'Cairo'; 
-            transition: 0.3s;
-        }
-        .confirm-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,255,136,0.3);
-        }
-
-        /* --- 13. FOOTER WITH TRUST SIGNALS --- */
-        .trust-footer {
-            text-align: center;
-            padding: 20px 0;
-            font-size: 0.8rem;
-            color: #aaa;
-            border-top: 1px solid #222;
-            margin-top: 30px;
-        }
-        .trust-icons {
+        /* --- Trust Badges --- */
+        .trust-badges {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 15px 0;
-            font-size: 1.5rem;
-        }
-        .trust-icons i {
-            color: var(--accent);
+            justify-content: space-around;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        /* --- 14. MOBILE OPTIMIZATION --- */
-        @media (max-width: 768px) {
-            .logo { font-size: 2.8rem; }
-            .identity-transformation h2 { font-size: 1.7rem; }
-            .new-price { font-size: 2.8rem; }
-            .product-grid { grid-template-columns: 1fr; }
-            .limited-badge { display: none; }
-            .benefits { flex-direction: column; }
+        .trust-badge {
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .trust-badge i {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .trust-badge span {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #4B5563;
+        }
+
+        /* --- Simple Testimonials --- */
+        .testimonial {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 10px;
+            color: #4B5563;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #6B7280;
+            font-size: 0.9rem;
+            margin-top: 30px;
+            border-top: 1px solid #E5E7EB;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 600px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .trust-bar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px 20px;
+            }
+            
+            .final-price {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.6rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. URGENCY HEADER WITH SOCIAL PROOF -->
-    <div class="top-banner">
-        <div class="social-proof">
-            <i class="fas fa-bolt" style="color: var(--success);"></i>
-            <span>تم بيع <span class="sold-badge">127</span> قطعة اليوم</span>
+    <!-- Trust Bar -->
+    <div class="trust-bar">
+        <div class="trust-item">
+            <i class="fas fa-shipping-fast"></i>
+            <span>توصيل مجاني لجميع المحافظات</span>
         </div>
-        <span class="live-timer" id="timer">14:59</span>
-        <div>
-            <i class="fas fa-shipping-fast" style="color: var(--accent);"></i>
-            <span>توصيل مجاني</span>
+        <div class="trust-item">
+            <i class="fas fa-shield-alt"></i>
+            <span>دفع آمن عند الاستلام</span>
         </div>
     </div>
 
-    <!-- 2. LIMITED EDITION BADGE -->
-    <div class="limited-badge">إصدار محدود جداً</div>
-
-    <!-- 3. HERO WITH IDENTITY TRANSFORMATION -->
-    <div class="identity-transformation animate__animated animate__fadeIn">
-        <h2>كن النسخة الأفضل من نفسك</h2>
-        <p class="tagline">هودي viZion ليس مجرد قطعة ملابس... إنه بيان. هويتك الجديدة.</p>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>هودي viZion - جودة ودقة في التصنيع</h1>
+        <p>هودي قطن عالي الجودة بتصميم عصري يناسب جميع الأوقات</p>
         
-        <div class="benefits">
-            <div class="benefit-item"><i class="fas fa-crown"></i> <span>تميز عن الآخرين</span></div>
-            <div class="benefit-item"><i class="fas fa-bolt"></i> <span>ثقة لا حدود لها</span></div>
-            <div class="benefit-item"><i class="fas fa-star"></i> <span>انتماء للنخبة</span></div>
+        <div class="timer-container">
+            <span>ينتهي العرض خلال: </span>
+            <span class="timer" id="timer">14:59</span>
         </div>
     </div>
 
+    <!-- Main Container -->
     <div class="container">
-        <!-- 4. LOGO WITH SUBTITLE -->
-        <div class="logo-area">
-            <h1 class="logo">viZion</h1>
-            <div class="logo-subtitle">لباس. هوية. تفوق.</div>
-        </div>
-
-        <!-- 5. FOMO COUNTER -->
-        <div class="fomo-counter">
-            <div class="fomo-item">
-                <span class="fomo-number" id="remaining-stock">21</span>
-                <span class="fomo-label">قطعة متبقية</span>
-            </div>
-            <div class="fomo-item">
-                <span class="fomo-number" id="sold-today">127</span>
-                <span class="fomo-label">تم بيعها اليوم</span>
-            </div>
-            <div class="fomo-item">
-                <span class="fomo-number" id="discount-time">15:00</span>
-                <span class="fomo-label">ينتهي العرض</span>
-            </div>
-        </div>
-
-        <!-- 6. PRODUCT GRID -->
+        <h2 class="section-title">اختر تصميمك المفضل</h2>
+        
+        <!-- Product Grid -->
         <div class="product-grid">
-            <div class="card selected" onclick="selectAndScroll(this, 'VILLIAN', 'الأكثر طلباً')">
-                <div class="discount-badge">وفر 10,000 دينار</div>
-                <div class="popular-badge">الأكثر طلباً</div>
-                <div class="img-wrap">
-                    <img src="https://i.imgur.com/5r8uhtH.jpg">
-                    <div class="stock-pulse">
-                        <span class="pulse-dot"></span> متوفر: <span class="s-count">3</span> قطع فقط
+            <div class="product-card selected" onclick="selectProduct(this, 'VILLIAN')">
+                <div style="position: relative;">
+                    <img src="https://i.imgur.com/5r8uhtH.jpg" alt="VILLIAN Hoodie" class="product-image">
+                    <div class="product-badge">خصم 10,000 دينار</div>
+                    <div class="stock-warning">متبقي 3 فقط</div>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">VILLIAN - تصميم كلاسيكي</div>
+                    <div class="product-price">
+                        <span class="old-price">35,000 دينار</span>
+                        <span class="new-price">25,000 دينار</span>
                     </div>
                 </div>
-                <div class="card-name">VILLIAN - هوية التمرد</div>
             </div>
 
-            <div class="card" onclick="selectAndScroll(this, 'BERSERK', 'جديد')">
-                <div class="discount-badge">وفر 10,000 دينار</div>
-                <div class="popular-badge">جديد</div>
-                <div class="img-wrap">
-                    <img src="https://i.imgur.com/u5ETI2z.jpg">
-                    <div class="stock-pulse">
-                        <span class="pulse-dot"></span> متوفر: <span class="s-count">7</span> قطع فقط
+            <div class="product-card" onclick="selectProduct(this, 'BERSERK')">
+                <div style="position: relative;">
+                    <img src="https://i.imgur.com/u5ETI2z.jpg" alt="BERSERK Hoodie" class="product-image">
+                    <div class="product-badge">خصم 10,000 دينار</div>
+                    <div class="stock-warning">متبقي 7 فقط</div>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">BERSERK - تصميم رياضي</div>
+                    <div class="product-price">
+                        <span class="old-price">35,000 دينار</span>
+                        <span class="new-price">25,000 دينار</span>
                     </div>
                 </div>
-                <div class="card-name">BERSERK - قوة لا تقهر</div>
             </div>
 
-            <div class="card" onclick="selectAndScroll(this, 'SNAKE', 'نفذ تقريباً')">
-                <div class="discount-badge">وفر 10,000 دينار</div>
-                <div class="popular-badge">نفذ تقريباً</div>
-                <div class="img-wrap">
-                    <img src="https://i.imgur.com/8RSXqzw.jpg">
-                    <div class="stock-pulse">
-                        <span class="pulse-dot"></span> متوفر: <span class="s-count">2</span> قطع فقط
+            <div class="product-card" onclick="selectProduct(this, 'SNAKE')">
+                <div style="position: relative;">
+                    <img src="https://i.imgur.com/8RSXqzw.jpg" alt="SNAKE Hoodie" class="product-image">
+                    <div class="product-badge">خصم 10,000 دينار</div>
+                    <div class="stock-warning">متبقي 2 فقط</div>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">SNAKE - تصميم مميز</div>
+                    <div class="product-price">
+                        <span class="old-price">35,000 دينار</span>
+                        <span class="new-price">25,000 دينار</span>
                     </div>
                 </div>
-                <div class="card-name">SNAKE - ذكاء استراتيجي</div>
             </div>
 
-            <div class="card" onclick="selectAndScroll(this, 'GREEK', 'كلاسيكي')">
-                <div class="discount-badge">وفر 10,000 دينار</div>
-                <div class="popular-badge">كلاسيكي</div>
-                <div class="img-wrap">
-                    <img src="https://i.imgur.com/hRoUcRo.jpg">
-                    <div class="stock-pulse">
-                        <span class="pulse-dot"></span> متوفر: <span class="s-count">5</span> قطع فقط
+            <div class="product-card" onclick="selectProduct(this, 'GREEK')">
+                <div style="position: relative;">
+                    <img src="https://i.imgur.com/hRoUcRo.jpg" alt="GREEK Hoodie" class="product-image">
+                    <div class="product-badge">خصم 10,000 دينار</div>
+                    <div class="stock-warning">متبقي 5 فقط</div>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">GREEK - تصميم فريد</div>
+                    <div class="product-price">
+                        <span class="old-price">35,000 دينار</span>
+                        <span class="new-price">25,000 دينار</span>
                     </div>
                 </div>
-                <div class="card-name">GREEK - أسطورة خالدة</div>
             </div>
         </div>
 
-        <!-- 7. TRANSFORMATION STORY -->
-        <div class="transformation-story">
-            <div class="story-icon">
-                <i class="fas fa-user-astronaut"></i>
+        <!-- Trust Badges -->
+        <div class="trust-badges">
+            <div class="trust-badge">
+                <i class="fas fa-check-circle"></i>
+                <span>جودة عالية</span>
             </div>
-            <h3 class="story-title">قصة تحول</h3>
-            <p class="story-text">
-                "منذ أن ارتديت viZion، لاحظت تغيراً في نظرة الناس لي. أصبحت أكثر ثقة، أكثر حضوراً. 
-                لم يعد مجرد هودي، بل أصبح جزءاً من هويتي الجديدة."
-            </p>
-        </div>
-
-        <!-- 8. SOCIAL PROOF -->
-        <div class="testimonials">
-            <h4 class="testimonial-title">ماذا يقول النخبة؟</h4>
-            
-            <div class="testimonial">
-                <p class="testimonial-text">"جودة لا تصدق! أشعر أنني شخص مختلف عندما أرتدي viZion. الأفضل على الإطلاق."</p>
-                <div class="testimonial-author">أحمد - بغداد</div>
+            <div class="trust-badge">
+                <i class="fas fa-truck"></i>
+                <span>توصيل سريع</span>
             </div>
-            
-            <div class="testimonial">
-                <p class="testimonial-text">"التصميم فريد والنظرات في الشارع مختلفة. حقاً يشعرك بأنك مميز."</p>
-                <div class="testimonial-author">محمد - البصرة</div>
+            <div class="trust-badge">
+                <i class="fas fa-undo"></i>
+                <span>استبدال مجاني</span>
             </div>
         </div>
 
-        <!-- 9. FINAL URGENCY -->
-        <div class="final-urgency">
-            <p class="urgency-text">⚠️ تحذير: هذه الدفعة محدودة ولن تتكرر!</p>
-            <p style="font-size: 0.9rem;">بمجرد نفاد الكمية، لن يكون متاحاً مرة أخرى هذا الموسم.</p>
+        <!-- Testimonial -->
+        <div class="testimonial">
+            <p class="testimonial-text">"الطلب وصل خلال يومين، الجودة ممتازة والتصميم أفضل مما توقعت. أنصح الجميع بالتجربة."</p>
+            <div class="testimonial-author">- أحمد من بغداد</div>
         </div>
 
-        <!-- 10. CONVERSION FORM -->
-        <div class="checkout-container" id="form-scroll-target">
-            <div class="price-section">
-                <span class="old-price">35,000 IQD</span>
-                <span class="new-price">25,000 IQD</span>
-                <span class="price-per-day">فقط 83 دينار يومياً (لمدة سنة)</span>
-                <span class="save-amount">وفرت 10,000 دينار اليوم</span>
+        <!-- Order Form -->
+        <div class="order-section">
+            <div class="price-display">
+                <div style="color: #6B7280; font-size: 0.9rem;">السعر الأصلي</div>
+                <div class="final-price">25,000 دينار</div>
+                <div class="save-badge">وفرت 10,000 دينار</div>
             </div>
 
-            <div class="guarantee-badges">
-                <div class="guarantee">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>ضمان الجودة</span>
-                </div>
-                <div class="guarantee">
-                    <i class="fas fa-truck"></i>
-                    <span>توصيل مجاني</span>
-                </div>
-                <div class="guarantee">
-                    <i class="fas fa-undo"></i>
-                    <span>استبدال مجاني</span>
-                </div>
-            </div>
-
-            <h3 class="form-title">انضم إلى النخبة - اكمل طلبك الآن</h3>
+            <h3 class="form-title">اكمل طلبك الآن</h3>
 
             <form id="orderForm" action="https://formspree.io/f/mjgonzyw" method="POST">
-                <input type="hidden" name="الموديل" id="hidden-style" value="VILLIAN - هوية التمرد">
+                <input type="hidden" name="الموديل" id="selected-model" value="VILLIAN">
                 
-                <div class="field">
-                    <label><i class="fas fa-user" style="color: var(--primary);"></i> اختر القياس المناسب لهويتك الجديدة/</label>
-                    <select name="القياس" class="input-style">
-                        <option>M (Oversize) - للثقة المتوسطة</option>
-                        <option>L (Oversize) - للثقة العالية</option>
-                        <option>XL (Oversize) - للقادة</option>
-                        <option>XXL (Oversize) - للأسطوريين</option>
+                <div class="form-group">
+                    <label class="form-label">الاسم الكامل</label>
+                    <input type="text" name="الاسم" class="form-input" placeholder="ادخل اسمك الثلاثي" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">اختر القياس</label>
+                    <select name="القياس" class="form-input" required>
+                        <option value="">اختر القياس المناسب</option>
+                        <option value="M">M (وسط)</option>
+                        <option value="L">L (كبير)</option>
+                        <option value="XL">XL (كبير جداً)</option>
+                        <option value="XXL">XXL (مقاس خاص)</option>
                     </select>
                 </div>
 
-                <div class="field">
-                    <label><i class="fas fa-signature" style="color: var(--primary);"></i> اسمك الكامل/</label>
-                    <input type="text" name="الاسم" class="input-style" placeholder="الاسم الثلاثي الكامل" required>
+                <div class="form-group">
+                    <label class="form-label">رقم الهاتف</label>
+                    <input type="tel" name="الهاتف" class="form-input" placeholder="07X-XXX-XXXX" required>
                 </div>
 
-                <div class="field">
-                    <label><i class="fas fa-map-marker-alt" style="color: var(--primary);"></i> المحافظة/</label>
-                    <input type="text" name="المحافظة" class="input-style" placeholder="مثال: بغداد، بابل..." required>
+                <div class="form-group">
+                    <label class="form-label">المحافظة</label>
+                    <input type="text" name="المحافظة" class="form-input" placeholder="مثل: بغداد، البصرة" required>
                 </div>
 
-                <div class="field">
-                    <label><i class="fas fa-location-dot" style="color: var(--primary);"></i> المنطقة/</label>
-                    <input type="text" name="المنطقة" class="input-style" placeholder="اسم المنطقة أو الحي" required>
+                <div class="form-group">
+                    <label class="form-label">العنوان التفصيلي</label>
+                    <textarea name="العنوان" class="form-input" rows="3" placeholder="المنطقة، الشارع، أقرب نقطة دالة" required></textarea>
                 </div>
 
-                <div class="field">
-                    <label><i class="fas fa-map-pin" style="color: var(--primary);"></i> أقرب نقطة دالة/</label>
-                    <input type="text" name="نقطة_دالة" class="input-style" placeholder="جامع، مدرسة، محل مشهور" required>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-shopping-cart"></i> تأكيد الطلب الآن
+                </button>
+                
+                <div class="payment-note">
+                    <i class="fas fa-lock" style="color: var(--success);"></i>
+                    <span>الدفع عند الاستلام فقط - لا تدفع أي شيء مقدماً</span>
                 </div>
-
-                <div class="field">
-                    <label><i class="fas fa-phone" style="color: var(--primary);"></i> رقم التواصل/</label>
-                    <input type="tel" name="الهاتف" class="input-style" placeholder="07XXXXXXXX" required>
-                </div>
-
-                <button type="submit" class="submit-btn">أنا أستحق viZion - أكمل الطلب</button>
-                <p style="text-align:center; font-size:0.8rem; color:#666; margin-top:15px;">
-                    <i class="fas fa-check-circle" style="color:var(--success)"></i> الدفع نقداً عند الاستلام فقط
-                </p>
             </form>
         </div>
 
-        <!-- 11. TRUST FOOTER -->
-        <div class="trust-footer">
-            <div class="trust-icons">
-                <i class="fas fa-lock"></i>
-                <i class="fas fa-award"></i>
-                <i class="fas fa-heart"></i>
-            </div>
-            <p>جميع الحقوق محفوظة © viZion 2023</p>
-            <p style="font-size: 0.7rem; margin-top: 5px;">هذا العرض خاص ولن يتكرر قريباً</p>
-        </div>
-    </div>
-
-    <!-- 12. POLICY MODAL -->
-    <div class="modal" id="policyModal">
-        <div class="modal-card animate__animated animate__zoomIn">
-            <i class="fas fa-crown" style="font-size:3rem; color:#000;"></i>
-            <h3>مرحباً بك في النخبة!</h3>
-            <p>أنت على بعد خطوة واحدة من التحول. تأكيد طلبك يعني:</p>
-            <div class="policy-alert">
-                <i class="fas fa-exclamation-triangle"></i> 
-                هودي viZion يصنع خصيصاً لك، لذلك لا يمكن الاسترجاع إلا في حال وجود عيب في الصنعة.
-            </div>
-            <p style="font-weight: 700; margin: 15px 0;">هل أنت متأكد أنك تريد إكمال رحلة التحول؟</p>
-            <button class="confirm-btn" onclick="submitFinal()">نعم، أنا أستحق viZion</button>
-            <button style="background:none; border:none; color:#999; margin-top:15px; font-family:'Cairo';" onclick="closeModal()">أحتاج إلى التفكير</button>
+        <!-- Simple Footer -->
+        <div class="footer">
+            <p>© 2023 viZion. جميع الحقوق محفوظة.</p>
+            <p style="font-size: 0.8rem; margin-top: 5px;">التوصيل خلال 2-4 أيام عمل</p>
         </div>
     </div>
 
     <script>
-        // 1. Triple Timer System
-        let timeLeft = 900;
-        let stockLeft = 21;
-        let soldToday = 127;
-        
+        // Simple Timer
+        let timeLeft = 900; // 15 minutes
         const timerElement = document.getElementById('timer');
-        const discountTimerElement = document.getElementById('discount-time');
-        const stockElement = document.getElementById('remaining-stock');
-        const soldElement = document.getElementById('sold-today');
         
-        setInterval(() => {
-            // Main timer
-            let m = Math.floor(timeLeft / 60);
-            let s = timeLeft % 60;
-            timerElement.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
-            discountTimerElement.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+        const timerInterval = setInterval(() => {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
             
-            // Randomly decrease stock every 30 seconds to create urgency
-            if (timeLeft % 30 === 0 && stockLeft > 0 && Math.random() > 0.7) {
-                stockLeft--;
-                stockElement.innerText = stockLeft;
-                soldToday++;
-                soldElement.innerText = soldToday;
-                
-                // Update the product cards randomly
-                const counts = document.querySelectorAll('.s-count');
-                const randomCard = counts[Math.floor(Math.random() * counts.length)];
-                let val = parseInt(randomCard.innerText);
-                if (val > 0) {
-                    randomCard.innerText = val - 1;
-                    randomCard.style.color = 'var(--danger)';
-                    setTimeout(() => randomCard.style.color = '#fff', 2000);
-                }
+            timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                clearInterval(timerInterval);
+                timerElement.textContent = "انتهى العرض";
             }
-            
-            if (timeLeft > 0) timeLeft--;
         }, 1000);
 
-        // 2. Auto Scroll & Select with Psychology
-        function selectAndScroll(el, name, badge) {
-            document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
-            el.classList.add('selected');
+        // Product Selection
+        let selectedProduct = 'VILLIAN';
+        
+        function selectProduct(card, model) {
+            // Remove selected class from all cards
+            document.querySelectorAll('.product-card').forEach(c => {
+                c.classList.remove('selected');
+            });
             
-            // Update hidden input with emotional description
-            document.getElementById('hidden-style').value = `${name} - ${badge}`;
+            // Add selected class to clicked card
+            card.classList.add('selected');
             
-            // Scroll to form with smooth behavior
-            document.getElementById('form-scroll-target').scrollIntoView({ 
+            // Update hidden input
+            document.getElementById('selected-model').value = model;
+            selectedProduct = model;
+            
+            // Smooth scroll to form
+            document.querySelector('.order-section').scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
-            
-            // Show a quick confirmation
-            const originalText = el.querySelector('.card-name').innerText;
-            el.querySelector('.card-name').innerText = "✓ تم الاختيار - ممتاز!";
-            setTimeout(() => {
-                el.querySelector('.card-name').innerText = originalText;
-            }, 1500);
         }
 
-        // 3. Form & Modal with Psychology
-        const form = document.getElementById('orderForm');
-        const modal = document.getElementById('policyModal');
-        
-        form.addEventListener('submit', (e) => {
+        // Form Submission
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Add emotional loading state
-            const submitBtn = form.querySelector('.submit-btn');
-            const originalText = submitBtn.innerText;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحضير لتحولك...';
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تأكيد طلبك...';
             submitBtn.disabled = true;
             
-            // Show modal after brief delay (builds anticipation)
+            // Simulate processing delay
             setTimeout(() => {
-                modal.style.display = 'flex';
-                submitBtn.innerText = originalText;
-                submitBtn.disabled = false;
-            }, 800);
-        });
-        
-        function closeModal() { 
-            modal.style.display = 'none'; 
-        }
-        
-        function submitFinal() {
-            const confirmBtn = document.querySelector('.confirm-btn');
-            confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تأكيد انضمامك للنخبة...';
-            
-            // Simulate processing delay (creates commitment)
-            setTimeout(() => {
-                form.submit();
+                // Show success message
+                alert('شكراً لك! تم استلام طلبك بنجاح. سنتصل بك خلال 24 ساعة لتأكيد التفاصيل.');
+                
+                // Actually submit the form
+                this.submit();
             }, 1500);
-        }
-
-        // 4. Random Stock Pulse with Psychology
-        setInterval(() => {
-            const counts = document.querySelectorAll('.s-count');
-            const target = counts[Math.floor(Math.random() * counts.length)];
-            let val = parseInt(target.innerText);
-            
-            // Occasionally decrease stock to create real-time FOMO
-            if(val > 1 && Math.random() > 0.85) {
-                target.innerText = val - 1;
-                target.style.color = 'var(--danger)';
-                target.style.fontWeight = '900';
-                target.style.transform = 'scale(1.3)';
-                
-                // Update main stock counter
-                stockLeft--;
-                stockElement.innerText = stockLeft;
-                soldToday++;
-                soldElement.innerText = soldToday;
-                
-                setTimeout(() => {
-                    target.style.color = '#fff';
-                    target.style.transform = 'scale(1)';
-                }, 2000);
-            }
-        }, 10000);
-
-        // 5. Emotional welcome message
-        setTimeout(() => {
-            if (!localStorage.getItem('viZionWelcome')) {
-                alert("مرحباً بك في عالم viZion! نحن سعداء بوجودك هنا. عرض اليوم خاص جداً ومحدود.");
-                localStorage.setItem('viZionWelcome', 'true');
-            }
-        }, 2000);
-
-        // 6. Scroll animations
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            const cards = document.querySelectorAll('.card');
-            
-            cards.forEach((card, index) => {
-                if (isElementInViewport(card)) {
-                    setTimeout(() => {
-                        card.classList.add('animate__animated', 'animate__fadeInUp');
-                    }, index * 100);
-                }
-            });
         });
 
-        function isElementInViewport(el) {
-            const rect = el.getBoundingClientRect();
-            return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
-        }
+        // Simple stock simulation (subtract 1 from random product every 30 seconds)
+        setInterval(() => {
+            const stockWarnings = document.querySelectorAll('.stock-warning');
+            const randomIndex = Math.floor(Math.random() * stockWarnings.length);
+            const warning = stockWarnings[randomIndex];
+            
+            const currentText = warning.textContent;
+            const currentNumber = parseInt(currentText.match(/\d+/)[0]);
+            
+            if (currentNumber > 1) {
+                warning.textContent = `متبقي ${currentNumber - 1} فقط`;
+                
+                // Briefly highlight the change
+                warning.style.backgroundColor = '#EF4444';
+                setTimeout(() => {
+                    warning.style.backgroundColor = 'rgba(0,0,0,0.7)';
+                }, 1000);
+            }
+        }, 30000); // Every 30 seconds
     </script>
 </body>
 </html>
