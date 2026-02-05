@@ -2,570 +2,291 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="🔥 العرض الأخير! viZion براند ملابس - إحجز تصميمك المفضل الآن!">
-    <title>🔥 viZion | براند عراقي</title>
-    
-    <!-- Fonts -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 viZion - هوديات عراقية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* ===== RESET & BASE ===== */
+        /* RESET */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
-
-        html, body {
-            width: 100%;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
+        
         body {
-            background: #000000;
-            color: #ffffff;
+            background: #000;
+            color: #fff;
             font-family: 'Cairo', sans-serif;
+            font-size: 14px;
             line-height: 1.4;
-            font-size: 15px;
-            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
-
-        /* ===== URGENCY BAR ===== */
-        .urgency-bar {
-            background: linear-gradient(90deg, #ff0033, #ff3300);
-            color: white;
-            text-align: center;
-            padding: 10px 12px;
-            font-weight: 900;
-            font-size: 13px;
+        
+        /* FIXED HEADER */
+        .header {
             position: fixed;
             top: 0;
             right: 0;
             left: 0;
+            background: linear-gradient(90deg, #ff0033, #ff6600);
+            padding: 8px 12px;
             z-index: 1000;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            gap: 8px;
-            border-bottom: 2px solid white;
-            height: 45px;
+            height: 50px;
         }
-
-        #timer {
-            font-family: 'Cairo';
-            font-size: 16px;
+        
+        .logo {
+            font-size: 22px;
+            font-weight: 900;
+            color: white;
+        }
+        
+        .timer {
             background: rgba(0,0,0,0.3);
             padding: 4px 10px;
             border-radius: 6px;
-            min-width: 80px;
-            text-align: center;
             font-weight: 900;
+            font-size: 14px;
         }
-
-        /* ===== MAIN CONTENT ===== */
-        .main-content {
-            padding-top: 45px; /* For fixed urgency bar */
+        
+        /* MAIN CONTENT */
+        .main {
+            padding-top: 50px;
+            padding-bottom: 70px;
         }
-
+        
         .container {
             padding: 12px;
-            max-width: 100%;
         }
-
-        /* ===== SIMPLE HEADER ===== */
-        .simple-header {
-            text-align: center;
-            padding: 12px 0 5px;
-        }
-
-        .logo {
-            font-family: 'Cairo';
-            font-size: 32px;
-            font-weight: 900;
-            margin: 0;
-            background: linear-gradient(to right, #ff0033, #ff6600);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1;
-        }
-
-        .tagline {
-            color: #888;
-            font-size: 13px;
-            margin-top: 4px;
-        }
-
-        /* ===== PRODUCTS SECTION ===== */
-        .products-section {
-            margin-top: 10px;
-        }
-
+        
+        /* PRODUCTS */
         .section-title {
-            font-size: 20px;
             text-align: center;
-            margin-bottom: 12px;
-            color: white;
-            position: relative;
-            padding-bottom: 6px;
+            font-size: 16px;
+            margin: 10px 0 15px;
+            color: #ff6600;
         }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 50%;
-            transform: translateX(50%);
-            width: 80px;
-            height: 2px;
-            background: linear-gradient(90deg, #ff0033, #ff6600);
-            border-radius: 2px;
-        }
-
+        
         .products-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             margin-bottom: 15px;
         }
-
-        @media (min-width: 500px) {
-            .products-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (min-width: 768px) {
-            .products-grid {
-                grid-template-columns: repeat(5, 1fr);
-                gap: 12px;
-            }
-        }
-
+        
         .product-card {
             background: #111;
-            border: 2px solid #222;
-            border-radius: 10px;
+            border-radius: 8px;
             overflow: hidden;
-            transition: all 0.3s ease;
-            position: relative;
-            cursor: pointer;
+            border: 2px solid #222;
         }
-
-        .product-card:active {
-            transform: scale(0.98);
-        }
-
+        
         .product-card.selected {
             border-color: #ff0033;
-            box-shadow: 0 0 20px rgba(255, 0, 51, 0.4);
-            transform: scale(0.98);
+            box-shadow: 0 0 10px rgba(255,0,51,0.4);
         }
-
-        .product-card.low-stock::after {
-            content: 'آخر قطع!';
-            position: absolute;
-            top: 6px;
-            right: 6px;
-            background: #ff0033;
-            color: white;
-            font-size: 9px;
-            padding: 2px 6px;
-            border-radius: 10px;
-            font-weight: 900;
-            z-index: 2;
-        }
-
+        
         .product-image {
             width: 100%;
-            height: 150px;
+            height: 130px;
             object-fit: cover;
-            display: block;
         }
-
-        @media (min-width: 768px) {
-            .product-image {
-                height: 170px;
-            }
-        }
-
+        
         .product-info {
             padding: 10px;
-            text-align: center;
         }
-
+        
         .product-name {
             font-size: 14px;
             font-weight: 700;
-            margin-bottom: 6px;
+            text-align: center;
+            margin-bottom: 5px;
         }
-
+        
         .product-stock {
-            background: rgba(255, 0, 51, 0.9);
+            background: #ff0033;
             color: white;
             padding: 3px 8px;
             border-radius: 10px;
             font-size: 11px;
             font-weight: 700;
+            text-align: center;
             display: inline-block;
+            width: 100%;
         }
-
-        /* ===== PRICE REVEAL SECTION ===== */
-        .price-reveal-section {
-            background: #111111;
-            border: 2px solid #ff0033;
-            border-radius: 12px;
-            padding: 15px;
-            margin: 15px 0;
-            position: relative;
-            overflow: hidden;
+        
+        /* PRICE & FORM */
+        .price-form-section {
             display: none;
+            background: #111;
+            border: 2px solid #ff0033;
+            border-radius: 10px;
+            margin-top: 15px;
+            padding: 15px;
         }
-
-        .price-reveal-section.active {
+        
+        .price-form-section.active {
             display: block;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.3s;
         }
-
+        
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        .price-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .selected-product-name {
-            font-size: 18px;
-            font-weight: 900;
-            color: #ff0033;
-        }
-
-        .price-display {
+        
+        .selected-product {
+            background: rgba(255,0,51,0.1);
+            border-radius: 8px;
+            padding: 10px;
             text-align: center;
-            margin: 15px 0;
+            margin-bottom: 15px;
+            border: 1px dashed #ff0033;
         }
-
-        .new-price {
-            font-size: 36px;
+        
+        .selected-product span {
+            color: #ff0033;
             font-weight: 900;
-            color: #ffffff;
-            line-height: 1;
         }
-
+        
+        .price {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .new-price {
+            font-size: 28px;
+            font-weight: 900;
+            color: #fff;
+        }
+        
         .new-price span {
             color: #ff0033;
-            font-size: 38px;
+            font-size: 32px;
         }
-
+        
         .old-price {
             text-decoration: line-through;
             color: #888;
-            font-size: 16px;
+            font-size: 14px;
             margin-top: 5px;
         }
-
-        .discount-badge {
-            background: #ff0033;
-            color: white;
-            padding: 6px 15px;
-            border-radius: 15px;
-            font-size: 14px;
-            font-weight: 900;
-            display: inline-block;
-        }
-
-        .benefits {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-            justify-content: center;
-        }
-
-        .benefit {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: #ccc;
-            font-size: 12px;
-            background: rgba(255,255,255,0.05);
-            padding: 6px 10px;
-            border-radius: 8px;
-            flex: 1;
-            min-width: 140px;
-            justify-content: center;
-        }
-
-        .benefit i {
-            color: #00ff88;
-            font-size: 12px;
-        }
-
-        /* ===== COMPACT FORM SECTION ===== */
-        .form-section {
-            display: none;
-            margin: 20px 0 15px;
-        }
-
-        .form-section.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .form-container {
-            background: #111;
-            border: 2px solid #ff0033;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .form-header {
-            background: linear-gradient(90deg, #ff0033, #ff3300);
-            padding: 12px 15px;
-            text-align: center;
-        }
-
-        .form-header h3 {
-            color: white;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin: 0;
-        }
-
-        .form-content {
-            padding: 15px;
-        }
-
-        .selected-display {
-            background: rgba(255, 0, 51, 0.1);
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 15px;
-            text-align: center;
-            border: 1px dashed rgba(255, 0, 51, 0.3);
-        }
-
-        .selected-display span {
-            color: #ff0033;
-            font-weight: 900;
-            font-size: 15px;
-        }
-
+        
+        /* FORM */
         .form-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 12px;
+            gap: 10px;
         }
-
-        @media (min-width: 500px) {
-            .form-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
+        
         .form-group {
             margin-bottom: 0;
         }
-
+        
         .form-label {
             display: block;
             margin-bottom: 5px;
             color: #ccc;
             font-size: 13px;
         }
-
+        
         .form-input, .form-select {
             width: 100%;
             background: #222;
             border: 1px solid #444;
             border-radius: 8px;
-            padding: 10px 12px;
-            color: white;
+            padding: 10px;
+            color: #fff;
             font-family: 'Cairo';
             font-size: 14px;
-            height: 42px;
+            height: 40px;
         }
-
-        .form-input:focus, .form-select:focus {
-            outline: none;
-            border-color: #ff0033;
-            box-shadow: 0 0 0 2px rgba(255, 0, 51, 0.2);
-        }
-
-        .full-width {
-            grid-column: 1 / -1;
-        }
-
+        
         .submit-btn {
             width: 100%;
-            background: linear-gradient(135deg, #ff0033, #ff3300);
+            background: linear-gradient(90deg, #ff0033, #ff6600);
             color: white;
             border: none;
-            padding: 14px;
-            border-radius: 10px;
+            padding: 12px;
+            border-radius: 8px;
             font-size: 16px;
             font-weight: 900;
-            font-family: 'Cairo';
             margin-top: 15px;
-            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            transition: all 0.3s ease;
         }
-
-        .submit-btn:hover, .submit-btn:active {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 0, 51, 0.3);
-        }
-
+        
         .payment-note {
             text-align: center;
             color: #00ff88;
             margin-top: 10px;
             font-size: 13px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
         }
-
-        /* ===== STOCK ALERT ===== */
-        .stock-alert {
-            background: rgba(255, 0, 51, 0.1);
-            border: 1px solid #ff0033;
-            border-radius: 10px;
-            padding: 12px;
+        
+        /* STOCK WARNING */
+        .stock-warning {
+            background: rgba(255,0,51,0.1);
+            border-radius: 8px;
+            padding: 10px;
             text-align: center;
-            margin: 15px 0;
-            display: none;
-        }
-
-        .stock-alert.active {
-            display: block;
-        }
-
-        .stock-alert h3 {
-            color: #ff0033;
-            font-size: 15px;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        .stock-bar {
-            width: 100%;
-            height: 8px;
-            background: #333;
-            border-radius: 4px;
             margin: 10px 0;
-            overflow: hidden;
-        }
-
-        .stock-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ff0033, #ff6600);
-            width: 20%;
-            border-radius: 4px;
-            transition: width 0.5s ease;
-        }
-
-        /* ===== ACTIVITY ===== */
-        .activity {
-            background: rgba(255,0,51,0.05);
-            border-radius: 10px;
-            padding: 12px;
-            margin: 15px 0;
-        }
-
-        .activity-title {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #ff0033;
-            font-size: 15px;
-            margin-bottom: 10px;
-        }
-
-        .activity-item {
-            background: rgba(255,255,255,0.05);
-            border-radius: 6px;
-            padding: 8px;
-            margin-bottom: 8px;
+            border: 1px solid #ff0033;
             font-size: 13px;
         }
-
-        /* ===== STICKY BAR ===== */
+        
+        /* STICKY ORDER */
         .sticky-order {
             position: fixed;
             bottom: 0;
             right: 0;
-            width: 100%;
+            left: 0;
             background: rgba(0,0,0,0.95);
-            padding: 12px 15px;
-            display: flex;
+            padding: 10px 12px;
+            display: none;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
+            z-index: 999;
             border-top: 2px solid #ff0033;
-            backdrop-filter: blur(10px);
-            transform: translateY(0);
-            transition: transform 0.3s ease;
-            display: none;
         }
-
+        
         .sticky-order.active {
             display: flex;
         }
-
+        
         .sticky-price {
             font-size: 16px;
             font-weight: 700;
         }
-
+        
         .sticky-price span {
             color: #ff0033;
             font-size: 18px;
         }
-
+        
         .sticky-btn {
             background: #ff0033;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 8px 15px;
             border-radius: 8px;
             font-weight: 900;
             font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
         }
-
-        .sticky-btn:hover, .sticky-btn:active {
-            background: #ff3300;
-            transform: translateY(-2px);
-        }
-
-        /* ===== MODAL ===== */
+        
+        /* MODAL */
         .modal {
             position: fixed;
             top: 0;
+            right: 0;
+            bottom: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
             background: rgba(0,0,0,0.95);
             z-index: 2000;
             display: none;
@@ -573,45 +294,34 @@
             justify-content: center;
             padding: 15px;
         }
-
+        
         .modal-content {
             background: #111;
             border: 2px solid #ff0033;
-            border-radius: 12px;
+            border-radius: 10px;
             padding: 20px;
             width: 100%;
-            max-width: 380px;
+            max-width: 350px;
             text-align: center;
-            animation: modalIn 0.3s ease;
         }
-
-        @keyframes modalIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
+        
         .modal-title {
             color: #ff0033;
-            font-size: 20px;
-            margin-bottom: 12px;
+            font-size: 18px;
+            margin-bottom: 10px;
         }
-
+        
         .modal-text {
             color: #ccc;
             font-size: 14px;
-            line-height: 1.5;
             margin-bottom: 20px;
-            text-align: right;
-            padding: 10px;
-            background: rgba(255,0,51,0.05);
-            border-radius: 8px;
         }
-
+        
         .modal-buttons {
             display: flex;
             gap: 10px;
         }
-
+        
         .modal-confirm {
             flex: 2;
             background: #ff0033;
@@ -620,10 +330,8 @@
             padding: 12px;
             border-radius: 8px;
             font-weight: 900;
-            font-size: 15px;
-            cursor: pointer;
         }
-
+        
         .modal-cancel {
             flex: 1;
             background: #333;
@@ -631,387 +339,185 @@
             border: none;
             padding: 12px;
             border-radius: 8px;
-            font-size: 14px;
-            cursor: pointer;
         }
-
-        /* ===== NOTIFICATION ===== */
+        
+        /* NOTIFICATION */
         .notification {
             position: fixed;
-            top: 55px;
+            top: 60px;
             right: 12px;
             background: #111;
-            border: 2px solid #ff0033;
+            border: 1px solid #ff0033;
             border-radius: 8px;
-            padding: 12px;
-            width: calc(100% - 24px);
-            max-width: 320px;
+            padding: 10px;
             z-index: 999;
             display: none;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        .notification-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #ff0033;
-            margin-bottom: 8px;
-        }
-
-        .notification-text {
-            color: #ccc;
+            max-width: 300px;
             font-size: 13px;
         }
-
-        /* ===== SELECTION MESSAGE ===== */
-        .selection-message {
-            text-align: center;
-            padding: 12px;
-            margin: 12px 0;
-            background: rgba(255, 0, 51, 0.05);
-            border-radius: 8px;
-            border: 1px dashed #ff0033;
-            display: none;
-        }
-
-        .selection-message.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        /* ===== FOOTER ===== */
+        
+        /* FOOTER */
         .footer {
             text-align: center;
-            padding: 25px 0 80px;
+            padding: 20px 0 80px;
             color: #666;
-            font-size: 13px;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 15px 0;
-        }
-
-        .social-links a {
-            color: #666;
-            font-size: 18px;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: #ff0033;
-        }
-
-        /* ===== UTILITIES ===== */
-        .text-center {
-            text-align: center;
-        }
-        
-        .mb-8 {
-            margin-bottom: 8px;
-        }
-        
-        .mb-12 {
-            margin-bottom: 12px;
-        }
-        
-        .mt-8 {
-            margin-top: 8px;
-        }
-        
-        .mt-12 {
-            margin-top: 12px;
-        }
-        
-        .hidden {
-            display: none !important;
-        }
-
-        /* ===== SMALL SCREEN ADJUSTMENTS ===== */
-        @media (max-width: 374px) {
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .benefit {
-                min-width: 100%;
-            }
+            font-size: 12px;
         }
     </style>
 </head>
 <body>
-    <!-- URGENCY BAR -->
-    <div class="urgency-bar">
-        <i class="fas fa-fire"></i>
-        <span>ينتهي خلال:</span>
-        <div id="timer">02:13:47</div>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo">viZion</div>
+        <div class="timer" id="timer">02:00:00</div>
     </div>
 
     <!-- NOTIFICATION -->
     <div class="notification" id="notification">
-        <div class="notification-header">
-            <i class="fas fa-bolt"></i>
-            <span>تم حجز جديد!</span>
-        </div>
-        <div class="notification-text">
-            قام <span id="notifName">محمد</span> بحجز <span id="notifProduct">VILLIAN</span> منذ دقيقة!
-        </div>
+        <i class="fas fa-bolt" style="color:#ff0033; margin-left:5px;"></i>
+        <span id="notificationText">تم حجز جديد!</span>
     </div>
 
-    <div class="main-content">
+    <!-- MAIN CONTENT -->
+    <div class="main">
         <div class="container">
-            <!-- SIMPLE HEADER -->
-            <div class="simple-header">
-                <h1 class="logo">viZion</h1>
-                <p class="tagline">براند عراقي</p>
+            <!-- PRODUCTS -->
+            <div class="section-title">اختار الهودي اللي يعجبك</div>
+            
+            <div class="products-grid" id="productsGrid">
+                <!-- سيتم إضافته بالجافاسكريبت -->
             </div>
-
-            <!-- SELECTION MESSAGE -->
-            <div class="selection-message" id="selectionMessage">
-                <h3 style="color: #ff0033; margin-bottom: 8px; font-size: 15px;">
-                    <i class="fas fa-check-circle"></i> تم اختيار المنتج!
-                </h3>
-                <p style="color: #ccc; font-size: 13px;">اخترت <strong id="selectedProductName">VILLIAN</strong>. هسه تكدر تشوف السعر وتحجز!</p>
+            
+            <!-- STOCK WARNING -->
+            <div class="stock-warning" id="stockWarning">
+                <i class="fas fa-exclamation-triangle"></i>
+                الكمية محدودة! إحجز هسه قبل ما تخلص
             </div>
-
-            <!-- PRODUCTS SECTION -->
-            <div class="products-section">
-                <h2 class="section-title">اختار الهودي اللي يعجبك</h2>
-                <p style="text-align: center; color: #888; margin-bottom: 15px; font-size: 13px;">
-                    دوس على التصميم حتى تشوف السعر وتكمل الطلب
-                </p>
-                
-                <div class="products-grid" id="productsGrid">
-                    <!-- سيتم إضافته بواسطة JavaScript -->
-                </div>
-            </div>
-
-            <!-- PRICE REVEAL SECTION -->
-            <div class="price-reveal-section" id="priceReveal">
-                <div class="price-header">
-                    <div class="selected-product-name" id="revealProductName">VILLIAN</div>
-                    <div class="discount-badge">خصم 28%</div>
+            
+            <!-- PRICE & FORM -->
+            <div class="price-form-section" id="priceFormSection">
+                <div class="selected-product">
+                    المنتج المختار: <span id="selectedProductName">VILLIAN</span>
                 </div>
                 
-                <div class="price-display">
+                <div class="price">
                     <div class="new-price"><span>25,000</span> دينار</div>
                     <div class="old-price">السعر الأصلي: 35,000 دينار</div>
-                    <div style="color: #00ff88; font-size: 13px; margin-top: 8px;">
-                        <i class="fas fa-truck"></i> التوصيل مجاني لجميع المحافظات
-                    </div>
                 </div>
                 
-                <div class="benefits">
-                    <div class="benefit">
-                        <i class="fas fa-check-circle"></i>
-                        <span>قطن مبطن - خامة ممتازة</span>
-                    </div>
-                    <div class="benefit">
-                        <i class="fas fa-check-circle"></i>
-                        <span>دفع عند الاستلام</span>
-                    </div>
-                    <div class="benefit">
-                        <i class="fas fa-check-circle"></i>
-                        <span>ضمان الجودة</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- STOCK ALERT -->
-            <div class="stock-alert" id="stockAlert">
-                <h3>
-                    <i class="fas fa-exclamation-triangle"></i>
-                    تنبيه: الكمية قربت تخلص!
-                </h3>
-                <p style="color: #ff9999; font-size: 13px;">🔥 فقط 15% من الكمية الأصلية متبقية!</p>
-                <div class="stock-bar">
-                    <div class="stock-fill" id="stockFill"></div>
-                </div>
-                <p style="color: #ff9999; font-size: 12px;">⏳ لا تفوتها، احجز هسه!</p>
-            </div>
-
-            <!-- ACTIVITY -->
-            <div class="activity">
-                <div class="activity-title">
-                    <i class="fas fa-bolt"></i>
-                    <span>🔥 طلبات الحجز حالياً:</span>
-                </div>
-                <div id="activityList">
-                    <!-- سيتم إضافته بواسطة JavaScript -->
-                </div>
-            </div>
-
-            <!-- COMPACT FORM SECTION -->
-            <div class="form-section" id="formSection">
-                <div class="form-container">
-                    <div class="form-header">
-                        <h3>
-                            <i class="fas fa-clipboard-check"></i>
-                            أكمل بيانات الحجز
-                        </h3>
-                    </div>
+                <form id="orderForm">
+                    <input type="hidden" name="product" id="productInput" value="">
                     
-                    <div class="form-content">
-                        <div class="selected-display">
-                            المنتج المختار: <span id="formProductName">VILLIAN</span>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">القياس:</label>
+                            <select class="form-select" name="size" required>
+                                <option value="" selected disabled>-- اختر --</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                            </select>
                         </div>
                         
-                        <form id="orderForm">
-                            <input type="hidden" name="product" id="productInput" value="">
-                            
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label class="form-label">القياس:</label>
-                                    <select class="form-select" name="size" required>
-                                        <option value="" disabled selected>-- اختر --</option>
-                                        <option value="S">S</option>
-                                        <option value="M">M</option>
-                                        <option value="L">L</option>
-                                        <option value="XL">XL</option>
-                                        <option value="XXL">XXL</option>
-                                        <option value="XXXL">XXXL</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label class="form-label">الاسم:</label>
-                                    <input type="text" class="form-input" name="name" placeholder="الاسم الثلاثي" required>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label class="form-label">المحافظة:</label>
-                                    <input type="text" class="form-input" name="city" placeholder="محافظة السكن" required>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label class="form-label">المنطقة:</label>
-                                    <input type="text" class="form-input" name="area" placeholder="المنطقة/الحي" required>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label class="form-label">نقطة دالة:</label>
-                                    <input type="text" class="form-input" name="landmark" placeholder="أقرب نقطة دالة" required>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label class="form-label">رقم الهاتف:</label>
-                                    <input type="tel" class="form-input" name="phone" placeholder="رقم الهاتف" required>
-                                </div>
-                            </div>
-                            
-                            <button type="submit" class="submit-btn">
-                                <i class="fas fa-lock"></i> تأكيد الحجز الآن
-                            </button>
-                            
-                            <div class="payment-note">
-                                <i class="fas fa-shield-alt"></i> الدفع عند الاستلام - توصيل مجاني
-                            </div>
-                        </form>
+                        <div class="form-group">
+                            <label class="form-label">الاسم:</label>
+                            <input type="text" class="form-input" name="name" placeholder="الاسم الثلاثي" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">المحافظة:</label>
+                            <input type="text" class="form-input" name="city" placeholder="المحافظة" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">المنطقة:</label>
+                            <input type="text" class="form-input" name="area" placeholder="المنطقة/الحي" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">رقم الهاتف:</label>
+                            <input type="tel" class="form-input" name="phone" placeholder="رقم الهاتف" required>
+                        </div>
                     </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-lock"></i> تأكيد الحجز
+                    </button>
+                </form>
+                
+                <div class="payment-note">
+                    <i class="fas fa-shield-alt"></i> الدفع عند الاستلام - توصيل مجاني
                 </div>
             </div>
-
+            
             <!-- FOOTER -->
             <div class="footer">
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                </div>
-                <p>viZion &copy; 2023 - براند عراقي</p>
-                <p style="font-size: 12px; margin-top: 8px;">جميع الحقوق محفوظة | هذا العرض ساري حتى نفاذ الكمية</p>
+                <p>viZion &copy; 2023</p>
+                <p style="font-size:11px; margin-top:5px;">براند عراقي</p>
             </div>
         </div>
     </div>
 
-    <!-- STICKY ORDER BAR -->
+    <!-- STICKY ORDER -->
     <div class="sticky-order" id="stickyOrder">
         <div class="sticky-price">السعر: <span>25,000</span> دينار</div>
         <button class="sticky-btn" onclick="scrollToForm()">
-            <i class="fas fa-shopping-cart"></i> أكمل الحجز
+            <i class="fas fa-shopping-cart"></i> أكمل الطلب
         </button>
     </div>
 
     <!-- MODAL -->
     <div class="modal" id="modal">
         <div class="modal-content">
-            <h3 class="modal-title">⚠️ تأكيد الطلب</h3>
+            <h3 class="modal-title">تأكيد الطلب</h3>
             <div class="modal-text">
                 <p>شكراً لاختيارك viZion!</p>
-                <p>سيتم التواصل معك خلال 24 ساعة لتأكيد العنوان.</p>
-                <p style="font-size: 12px; color: #ffcc00; margin: 8px 0;">
-                    رقم طلبك: <strong id="orderNumber">#${Math.floor(10000 + Math.random() * 90000)}</strong>
+                <p>سيتم التواصل معك خلال 24 ساعة.</p>
+                <p style="color:#ff0033; margin-top:10px; font-size:13px;">
+                    ممنوع الاسترجاع إلا إذا المنتج غير عن اللي طلبته.
                 </p>
-                <p style="color: #ff0033; font-weight: 700; margin-top: 10px; font-size: 13px;">
-                    ممنوع الاسترجاع إلا إذا اللون أو التصميم غير عن اللي طلبته.
-                </p>
-                <p style="font-weight: 700; margin-top: 10px;">هل أنت متأكد؟</p>
+                <p><b>هل أنت متأكد؟</b></p>
             </div>
             <div class="modal-buttons">
-                <button class="modal-confirm" onclick="confirmOrder()">✅ نعم، متأكد</button>
-                <button class="modal-cancel" onclick="hideModal()">❌ تراجع</button>
+                <button class="modal-confirm" onclick="confirmOrder()">نعم</button>
+                <button class="modal-cancel" onclick="hideModal()">تراجع</button>
             </div>
         </div>
     </div>
 
     <script>
-        // ====================
-        // INITIAL DATA
-        // ====================
+        // بيانات المنتجات
         const products = [
-            { id: 1, name: "VILLIAN", stock: 3, image: "https://i.imgur.com/5r8uhtH.jpg", lowStock: true },
-            { id: 2, name: "BERSERK", stock: 5, image: "https://i.imgur.com/u5ETI2z.jpg", lowStock: true },
-            { id: 3, name: "SNAKE", stock: 2, image: "https://i.imgur.com/8RSXqzw.jpg", lowStock: true },
-            { id: 4, name: "GREEK", stock: 4, image: "https://i.imgur.com/hRoUcRo.jpg", lowStock: false },
-            { id: 5, name: "VILLIAN V2", stock: 6, image: "https://i.imgur.com/VcQUhcA.jpg", lowStock: false }
+            { id: 1, name: "VILLIAN", stock: 3, image: "https://i.imgur.com/5r8uhtH.jpg" },
+            { id: 2, name: "BERSERK", stock: 5, image: "https://i.imgur.com/u5ETI2z.jpg" },
+            { id: 3, name: "SNAKE", stock: 2, image: "https://i.imgur.com/8RSXqzw.jpg" },
+            { id: 4, name: "GREEK", stock: 4, image: "https://i.imgur.com/hRoUcRo.jpg" },
+            { id: 5, name: "VILLIAN V2", stock: 6, image: "https://i.imgur.com/VcQUhcA.jpg" }
         ];
 
-        const cities = ["بغداد", "البصرة", "نينوى", "ذي قار", "بابل", "كربلاء", "النجف", "الأنبار", "صلاح الدين", "واسط"];
-        const names = ["محمد", "علي", "حسن", "حسين", "أحمد", "مصطفى", "عمر", "خالد", "سعيد", "ناصر"];
-
-        // ====================
-        // INITIALIZE PAGE
-        // ====================
+        // تهيئة الصفحة
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize all components
             renderProducts();
             startTimer();
-            startActivity();
-            updateStockBar();
-            
-            // Show first notification after 3 seconds
-            setTimeout(() => showNotification(), 3000);
+            showRandomNotification();
         });
 
-        // ====================
-        // RENDER PRODUCTS
-        // ====================
+        // عرض المنتجات
         function renderProducts() {
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
             
-            products.forEach((product, index) => {
+            products.forEach(product => {
                 const card = document.createElement('div');
-                card.className = `product-card ${product.lowStock ? 'low-stock' : ''}`;
+                card.className = 'product-card';
                 card.onclick = () => selectProduct(product.id);
                 
                 card.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <img src="${product.image}" class="product-image">
                     <div class="product-info">
                         <div class="product-name">${product.name}</div>
-                        <div class="product-stock">متبقي ${product.stock} قطع!</div>
+                        <div class="product-stock">متبقي ${product.stock} قطع</div>
                     </div>
                 `;
                 
@@ -1019,328 +525,145 @@
             });
         }
 
-        // ====================
-        // SELECT PRODUCT
-        // ====================
+        // اختيار المنتج
         function selectProduct(productId) {
-            // Remove selection from all cards
+            // إزالة التحديد من جميع البطاقات
             document.querySelectorAll('.product-card').forEach(card => {
                 card.classList.remove('selected');
             });
             
-            // Add selection to clicked card
-            const selectedCard = document.querySelector(`.product-card:nth-child(${productId})`);
-            if (selectedCard) {
-                selectedCard.classList.add('selected');
-            }
+            // إضافة التحديد للبطاقة المختارة
+            const card = document.querySelector(`.product-card:nth-child(${productId})`);
+            if (card) card.classList.add('selected');
             
-            // Update all sections with selected product
+            // تحديث المعلومات
             const product = products.find(p => p.id === productId);
             if (product) {
-                // Update selection message
                 document.getElementById('selectedProductName').textContent = product.name;
-                document.getElementById('selectionMessage').classList.add('active');
-                
-                // Update price reveal section
-                document.getElementById('revealProductName').textContent = product.name;
-                document.getElementById('priceReveal').classList.add('active');
-                
-                // Update form
-                document.getElementById('formProductName').textContent = product.name;
                 document.getElementById('productInput').value = product.name;
                 
-                // Show stock alert
-                document.getElementById('stockAlert').classList.add('active');
-                
-                // Show form section
-                document.getElementById('formSection').classList.add('active');
-                
-                // Show sticky order bar
+                // إظهار قسم السعر والنموذج
+                document.getElementById('priceFormSection').classList.add('active');
                 document.getElementById('stickyOrder').classList.add('active');
                 
-                // Auto-scroll to form section
+                // تمرير إلى القسم
                 setTimeout(() => {
-                    document.getElementById('formSection').scrollIntoView({ 
+                    document.getElementById('priceFormSection').scrollIntoView({ 
                         behavior: 'smooth',
                         block: 'start'
                     });
                 }, 300);
                 
-                // Show notification about selection
+                // إظهار إشعار
                 showNotification(`تم اختيار ${product.name}!`);
             }
         }
 
-        // ====================
-        // SCROLL TO FORM
-        // ====================
+        // تمرير إلى النموذج
         function scrollToForm() {
-            const formSection = document.getElementById('formSection');
-            
-            // Make sure form is active
-            formSection.classList.add('active');
-            
-            // Scroll to form
-            formSection.scrollIntoView({ 
+            document.getElementById('priceFormSection').scrollIntoView({ 
                 behavior: 'smooth',
                 block: 'start'
             });
-            
-            // Highlight form
-            formSection.style.boxShadow = '0 0 0 3px rgba(255, 0, 51, 0.5)';
-            setTimeout(() => {
-                formSection.style.boxShadow = 'none';
-            }, 1500);
-            
-            // Focus on first input field
-            setTimeout(() => {
-                const firstInput = document.querySelector('#orderForm input, #orderForm select');
-                if (firstInput) {
-                    firstInput.focus();
-                }
-            }, 600);
         }
 
-        // ====================
-        // COUNTDOWN TIMER
-        // ====================
-        let timeLeft = 7200; // 2 hours in seconds
-        
+        // العداد التنازلي
         function startTimer() {
-            const timerElement = document.getElementById('timer');
+            let timeLeft = 7200; // ساعتان
             
             function updateTimer() {
                 const hours = Math.floor(timeLeft / 3600);
                 const minutes = Math.floor((timeLeft % 3600) / 60);
                 const seconds = timeLeft % 60;
                 
-                timerElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                document.getElementById('timer').textContent = 
+                    `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
                 
-                // Intensify when time is low
-                if (timeLeft < 600) { // Last 10 minutes
-                    timerElement.style.color = '#ff0033';
-                    timerElement.style.animation = 'none';
-                    
-                    // Flash effect
-                    if (timeLeft % 2 === 0) {
-                        timerElement.style.opacity = '0.7';
-                    } else {
-                        timerElement.style.opacity = '1';
-                    }
-                    
-                    // Update urgency bar text
-                    document.querySelector('.urgency-bar span').textContent = '🔥 العرض سينتهي خلال:';
-                }
-                
-                if (timeLeft < 300) { // Last 5 minutes
-                    timerElement.innerHTML = `⏰ ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                }
-                
-                if (timeLeft > 0) {
-                    timeLeft--;
-                } else {
-                    timerElement.textContent = "00:00:00";
-                    timerElement.style.color = "#ff0033";
-                    document.querySelector('.urgency-bar').innerHTML = '<span>⏰ انتهى العرض!</span>';
-                    
-                    // Disable ordering
-                    document.querySelectorAll('button').forEach(btn => {
-                        btn.disabled = true;
-                        btn.style.opacity = '0.5';
-                    });
-                }
+                if (timeLeft > 0) timeLeft--;
+                else document.getElementById('timer').textContent = '00:00:00';
             }
             
-            updateTimer(); // Initial call
+            updateTimer();
             setInterval(updateTimer, 1000);
         }
 
-        // ====================
-        // STOCK BAR
-        // ====================
-        function updateStockBar() {
-            const totalStock = products.reduce((sum, product) => sum + product.stock, 0);
-            const maxStock = 25; // Initial stock
-            const percentage = (totalStock / maxStock) * 100;
+        // إشعارات عشوائية
+        function showRandomNotification() {
+            const notifications = [
+                "محمد من بغداد حجز VILLIAN",
+                "علي من البصرة حجز SNAKE",
+                "حسن من كربلاء حجز BERSERK",
+                "آخر 2 قطع من GREEK!"
+            ];
             
-            document.getElementById('stockFill').style.width = `${percentage}%`;
+            function show() {
+                const text = notifications[Math.floor(Math.random() * notifications.length)];
+                document.getElementById('notificationText').textContent = text;
+                document.getElementById('notification').style.display = 'block';
+                
+                setTimeout(() => {
+                    document.getElementById('notification').style.display = 'none';
+                }, 3000);
+                
+                setTimeout(show, Math.random() * 15000 + 10000); // كل 10-25 ثانية
+            }
             
-            // Update stock every 30 seconds
+            setTimeout(show, 5000);
+        }
+
+        // إظهار إشعار
+        function showNotification(text) {
+            document.getElementById('notificationText').textContent = text;
+            document.getElementById('notification').style.display = 'block';
+            
             setTimeout(() => {
-                // Randomly decrease one product's stock
-                const availableProducts = products.filter(p => p.stock > 0);
-                if (availableProducts.length > 0) {
-                    const randomIndex = Math.floor(Math.random() * availableProducts.length);
-                    const product = availableProducts[randomIndex];
-                    
-                    if (product.stock > 0) {
-                        product.stock--;
-                        
-                        // Update product display
-                        const stockElement = document.querySelector(`.product-card:nth-child(${product.id}) .product-stock`);
-                        if (stockElement) {
-                            stockElement.textContent = `متبقي ${product.stock} قطع!`;
-                            
-                            // Add low stock class if needed
-                            if (product.stock <= 2) {
-                                document.querySelector(`.product-card:nth-child(${product.id})`).classList.add('low-stock');
-                            }
-                            
-                            // Show notification for very low stock
-                            if (product.stock === 1) {
-                                showNotification(`آخر قطعة من ${product.name}!`);
-                            }
-                        }
-                        
-                        // Re-render stock bar
-                        updateStockBar();
-                    }
-                }
-            }, 30000); // Every 30 seconds
+                document.getElementById('notification').style.display = 'none';
+            }, 3000);
         }
 
-        // ====================
-        // ACTIVITY FEED
-        // ====================
-        function startActivity() {
-            const activityList = document.getElementById('activityList');
-            
-            function addActivity() {
-                const name = names[Math.floor(Math.random() * names.length)];
-                const city = cities[Math.floor(Math.random() * cities.length)];
-                const product = products[Math.floor(Math.random() * products.length)].name;
-                const time = ['دقيقة', 'دقيقتين', '3 دقائق', '5 دقائق'][Math.floor(Math.random() * 4)];
-                
-                const activityItem = document.createElement('div');
-                activityItem.className = 'activity-item';
-                activityItem.innerHTML = `
-                    <strong style="color: #ff0033;">${name}</strong> من ${city} حجز ${product}
-                    <span style="float: left; color: #888; font-size: 11px;">قبل ${time}</span>
-                `;
-                
-                activityList.prepend(activityItem);
-                
-                // Keep only 4 items
-                if (activityList.children.length > 4) {
-                    activityList.removeChild(activityList.lastChild);
-                }
-                
-                // Random interval between 10-30 seconds
-                setTimeout(addActivity, Math.random() * 20000 + 10000);
-            }
-            
-            // Add initial activities
-            for (let i = 0; i < 3; i++) {
-                setTimeout(addActivity, i * 1500);
-            }
-        }
-
-        // ====================
-        // NOTIFICATIONS
-        // ====================
-        function showNotification(message = null) {
-            const notification = document.getElementById('notification');
-            
-            if (message) {
-                // Custom notification
-                const name = names[Math.floor(Math.random() * names.length)];
-                const product = products[Math.floor(Math.random() * products.length)].name;
-                
-                document.getElementById('notifName').textContent = name;
-                document.getElementById('notifProduct').textContent = product;
-            }
-            
-            notification.style.display = 'block';
-            
-            // Auto hide after 5 seconds
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 5000);
-        }
-
-        // ====================
-        // FORM HANDLING
-        // ====================
+        // التعامل مع النموذج
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            showModal();
+            document.getElementById('modal').style.display = 'flex';
         });
 
-        function showModal() {
-            // Generate order number
-            const orderNum = Math.floor(10000 + Math.random() * 90000);
-            document.getElementById('orderNumber').textContent = `#${orderNum}`;
-            
-            // Show modal
-            document.getElementById('modal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
+        // إخفاء المودال
         function hideModal() {
             document.getElementById('modal').style.display = 'none';
-            document.body.style.overflow = 'auto';
         }
 
+        // تأكيد الطلب
         function confirmOrder() {
             const confirmBtn = document.querySelector('.modal-confirm');
-            const form = document.getElementById('orderForm');
-            
-            // Show loading state
-            confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التأكيد...';
+            confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
             confirmBtn.disabled = true;
             
-            // Decrease stock for selected product
-            const selectedProductName = document.getElementById('productInput').value;
-            const product = products.find(p => p.name === selectedProductName);
-            if (product && product.stock > 0) {
-                product.stock--;
-                
-                // Update display
-                const stockElement = document.querySelector(`.product-card:nth-child(${product.id}) .product-stock`);
-                if (stockElement) {
-                    stockElement.textContent = `متبقي ${product.stock} قطع!`;
-                }
-                
-                updateStockBar();
-            }
-            
-            // Show success message
             setTimeout(() => {
                 document.querySelector('.modal-text').innerHTML = `
-                    <div style="text-align: center; color: #00ff88;">
-                        <h3 style="font-size: 22px; margin-bottom: 12px;">🎉 تم تأكيد حجزك!</h3>
-                        <p style="font-size: 14px;">سيتم التواصل معك خلال 24 ساعة</p>
-                        <p style="font-size: 13px; color: #ffcc00; margin-top: 8px;">
-                            رقم طلبك: #${Math.floor(10000 + Math.random() * 90000)}
-                        </p>
+                    <div style="color:#00ff88; text-align:center;">
+                        <h3 style="margin-bottom:10px;">🎉 تم تأكيد طلبك!</h3>
+                        <p>سيتم التواصل معك قريباً</p>
+                        <p style="font-size:13px; margin-top:10px;">شكراً لثقتك بـ viZion</p>
                     </div>
                 `;
                 
                 document.querySelector('.modal-buttons').innerHTML = `
-                    <button class="modal-confirm" onclick="location.reload()" style="width: 100%; background: #00ff88; color: #000;">
-                        ✅ تم - إغلاق
+                    <button class="modal-confirm" onclick="location.reload()" style="width:100%; background:#00ff88; color:#000;">
+                        تم بنجاح
                     </button>
                 `;
                 
-                // Submit form after 2 seconds
+                // إرسال النموذج بعد 2 ثانية
                 setTimeout(() => {
-                    form.submit();
+                    document.getElementById('orderForm').submit();
                 }, 2000);
             }, 1500);
         }
 
-        // ====================
-        // MOBILE OPTIMIZATIONS
-        // ====================
-        // Prevent zoom on double-tap
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function(event) {
-            const now = (new Date()).getTime();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
+        // منع التكبير على الجوال
+        document.addEventListener('touchstart', function(e) {
+            if (e.touches.length > 1) e.preventDefault();
+        }, { passive: false });
     </script>
 </body>
 </html>
