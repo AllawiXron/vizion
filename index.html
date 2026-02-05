@@ -165,10 +165,12 @@
                         <div class="relative">
                             <select name="القياس" class="w-full bg-gray-50 border-2 border-gray-200 focus:border-brand-accent focus:bg-white focus:ring-4 focus:ring-brand-accent/20 rounded-xl p-3 font-orbitron font-bold outline-none appearance-none transition-all" required>
                                 <option value="" disabled selected>-- اختر القياس --</option>
-                                <option value="M">M (Oversize)</option>
-                                <option value="L">L (Oversize)</option>
-                                <option value="XL">XL (Oversize)</option>
-                                <option value="XXL">XXL (Oversize)</option>
+                                <option value="S">S (سمول)</option>
+                                <option value="M">M (مديم)</option>
+                                <option value="L">L (لارج)</option>
+                                <option value="XL">XL (اكس لارج)</option>
+                                <option value="XXL">XXL (2X لارج)</option>
+                                <option value="XXXL">XXXL (3X لارج)</option>
                             </select>
                             <i class="fas fa-chevron-down absolute left-4 top-4 text-gray-400 pointer-events-none"></i>
                         </div>
@@ -218,7 +220,7 @@
                 <div class="flex items-start gap-2">
                     <i class="fas fa-info-circle text-red-500 mt-0.5 text-sm"></i>
                     <p class="text-red-700 text-[11px] font-bold leading-relaxed">
-                        تنبيه: لا يوجد استرجاع بعد تثبيت الطلب إلا في حال وجود عيب مصنعي. (القطع Oversize - قصة عريضة).
+                        تنبيه: لا يوجد استرجاع بعد تثبيت الطلب إلا في حال وصلك اللون او التصميم غير عن الي طلبته.
                     </p>
                 </div>
             </div>
@@ -337,7 +339,7 @@
 
         // --- LOGIC: TOAST ---
         const cities = ['بغداد', 'البصرة', 'اربيل', 'النجف', 'كربلاء', 'الموصل', 'الأنبار'];
-        const names = ['علي', 'محمد', 'أحمد', 'حسين', 'يوسف', 'حسن', 'عبدالله', 'عمر'];
+        const names = ['علي', 'محمد', 'أحمد', 'حسين', 'عباس', 'حسن', 'عبدالله', 'علاوي'];
         
         function showToast() {
             const t = document.getElementById('toast');
@@ -385,3 +387,4 @@
     </script>
 </body>
 </html>
+
