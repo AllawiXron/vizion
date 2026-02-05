@@ -2,9 +2,9 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="🔥 العرض الأخير! viZion براند هوديات - إحجز تصميمك المفضل الآن!">
-    <title>🔥 viZion | هوديات عراقية</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="🔥 العرض الأخير! viZion براند هوديات - إحجز تصميمك المفضل الآن قبل نفاذ الكمية!">
+    <title>🔥 viZion | هوديات عراقية - آخر فرصة للطلب!</title>
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
@@ -17,111 +17,249 @@
             margin: 0;
             padding: 0;
             -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
         }
 
         html, body {
             width: 100%;
             overflow-x: hidden;
             scroll-behavior: smooth;
+            background: #000;
+            position: relative;
         }
 
         body {
-            background: #000000;
+            background: radial-gradient(circle at 20% 30%, #1a0000 0%, #000 70%);
             color: #ffffff;
             font-family: 'Cairo', sans-serif;
-            line-height: 1.4;
-            font-size: 15px;
-            -webkit-font-smoothing: antialiased;
-            padding-bottom: 70px; /* For sticky bar */
+            line-height: 1.5;
+            font-size: 16px;
+            padding-bottom: 80px; /* For sticky bar */
+            min-height: 100vh;
         }
 
-        /* ===== URGENCY BAR ===== */
+        /* ===== FLASHING URGENCY BAR ===== */
         .urgency-bar {
-            background: linear-gradient(90deg, #ff0033, #ff6600, #ff0033);
+            background: linear-gradient(90deg, #ff0033 0%, #ff6600 50%, #ff0033 100%);
+            background-size: 200% 100%;
             color: white;
             text-align: center;
-            padding: 12px 15px;
+            padding: 14px 15px;
             font-weight: 900;
-            font-size: 14px;
+            font-size: 15px;
             position: fixed;
             top: 0;
             right: 0;
             left: 0;
-            z-index: 1000;
+            z-index: 10000;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            border-bottom: 2px solid white;
-            height: 50px;
-            animation: pulse 2s infinite;
+            gap: 12px;
+            border-bottom: 3px solid #ffcc00;
+            height: 60px;
+            animation: urgencyPulse 1.5s infinite;
+            box-shadow: 0 5px 15px rgba(255, 0, 51, 0.5);
         }
 
-        @keyframes pulse {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        @keyframes urgencyPulse {
+            0%, 100% { background-position: 0% 50%; opacity: 1; }
+            50% { background-position: 100% 50%; opacity: 0.9; }
         }
 
         #timer {
             font-family: 'Cairo';
-            font-size: 18px;
-            background: rgba(0,0,0,0.4);
-            padding: 5px 12px;
-            border-radius: 8px;
-            min-width: 90px;
+            font-size: 20px;
+            background: rgba(0,0,0,0.7);
+            padding: 8px 16px;
+            border-radius: 12px;
+            min-width: 110px;
             text-align: center;
             font-weight: 900;
-            border: 1px solid white;
+            border: 2px solid white;
+            box-shadow: 0 0 15px rgba(255, 0, 51, 0.7);
+            animation: timerPulse 1s infinite alternate;
+        }
+
+        @keyframes timerPulse {
+            from { box-shadow: 0 0 15px rgba(255, 0, 51, 0.7); }
+            to { box-shadow: 0 0 25px rgba(255, 102, 0, 0.9); }
+        }
+
+        /* ===== SCARCITY BADGE ===== */
+        .scarcity-badge {
+            position: fixed;
+            top: 70px;
+            left: 15px;
+            background: linear-gradient(45deg, #ff0033, #ff6600);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 900;
+            z-index: 9999;
+            animation: bounce 2s infinite;
+            box-shadow: 0 5px 15px rgba(255, 0, 51, 0.5);
+            border: 2px solid white;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         /* ===== MAIN CONTENT ===== */
         .main-content {
-            padding-top: 50px; /* For fixed urgency bar */
+            padding-top: 70px; /* For fixed urgency bar */
         }
 
         .container {
-            padding: 15px;
-            max-width: 100%;
+            padding: 20px 15px;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
-        /* ===== HEADER ===== */
+        /* ===== HEADER WITH PSYCHOLOGY ===== */
         .header {
             text-align: center;
-            padding: 20px 0 15px;
+            padding: 20px 0 25px;
             position: relative;
+            background: linear-gradient(180deg, rgba(255,0,51,0.1) 0%, transparent 100%);
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 20px;
         }
 
         .logo {
             font-family: 'Cairo';
-            font-size: 40px;
+            font-size: 52px;
             font-weight: 900;
             margin: 0;
-            background: linear-gradient(to right, #ff0033, #ff6600, #ff0033);
+            background: linear-gradient(to right, #ff0033, #ffcc00, #ff6600);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1;
-            text-shadow: 0 0 20px rgba(255, 0, 51, 0.3);
+            text-shadow: 0 0 30px rgba(255, 0, 51, 0.4);
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo::after {
+            content: '🔥';
+            position: absolute;
+            top: -10px;
+            right: -15px;
+            font-size: 30px;
+            animation: fire 1s infinite alternate;
+        }
+
+        @keyframes fire {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.2) rotate(10deg); }
         }
 
         .tagline {
-            color: #ff9999;
-            font-size: 14px;
-            margin-top: 5px;
+            color: #ffcc00;
+            font-size: 16px;
+            margin-top: 8px;
             font-weight: 700;
+            background: rgba(0,0,0,0.6);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 204, 0, 0.3);
         }
 
-        /* ===== COMPACT PRODUCTS SECTION ===== */
+        /* ===== SOCIAL PROOF BADGE ===== */
+        .social-proof {
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid #00ff88;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            margin: 0 0 25px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-proof-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 100px;
+        }
+
+        .social-proof-number {
+            font-size: 28px;
+            font-weight: 900;
+            color: #00ff88;
+            line-height: 1;
+        }
+
+        .social-proof-text {
+            font-size: 12px;
+            color: #ccc;
+            margin-top: 5px;
+        }
+
+        /* ===== PSYCHOLOGICAL HEADER ===== */
+        .psych-header {
+            background: linear-gradient(135deg, rgba(255,0,51,0.2) 0%, rgba(255,102,0,0.2) 100%);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 2px solid rgba(255,0,51,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .psych-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%);
+            animation: shine 3s infinite;
+            z-index: 1;
+        }
+
+        .psych-header h2 {
+            color: white;
+            font-size: 22px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .psych-header p {
+            color: #ffcc00;
+            font-size: 16px;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ===== PRODUCTS SECTION ===== */
         .products-section {
-            margin-top: 10px;
+            margin-top: 20px;
         }
 
         .section-title {
-            font-size: 20px;
+            font-size: 24px;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: white;
             position: relative;
-            padding-bottom: 8px;
+            padding-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .section-title::after {
@@ -130,207 +268,172 @@
             bottom: 0;
             right: 50%;
             transform: translateX(50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #ff0033, #ff6600);
-            border-radius: 3px;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff0033, #ffcc00);
+            border-radius: 4px;
         }
 
+        .selection-hint {
+            text-align: center;
+            color: #ff9999;
+            margin-bottom: 20px;
+            font-size: 15px;
+            padding: 12px;
+            background: rgba(255,0,51,0.1);
+            border-radius: 10px;
+            border: 1px dashed #ff0033;
+            animation: hintPulse 2s infinite;
+        }
+
+        @keyframes hintPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        /* ===== PRODUCT GRID ===== */
         .products-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        @media (min-width: 500px) {
-            .products-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (min-width: 768px) {
-            .products-grid {
-                grid-template-columns: repeat(5, 1fr);
-                gap: 15px;
-            }
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
         .product-card {
-            background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
-            border: 2px solid #222;
-            border-radius: 12px;
+            background: linear-gradient(145deg, #1a1a1a 0%, #111 100%);
+            border: 3px solid #222;
+            border-radius: 15px;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             cursor: pointer;
             height: 100%;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(255, 0, 51, 0.3);
+            border-color: #ff0033;
         }
 
         .product-card:active {
-            transform: scale(0.98);
+            transform: scale(0.97);
         }
 
         .product-card.selected {
-            border-color: #ff0033;
-            box-shadow: 0 0 25px rgba(255, 0, 51, 0.4);
+            border-color: #ffcc00;
+            box-shadow: 0 0 35px rgba(255, 204, 0, 0.6);
             transform: scale(0.98);
+            animation: selectedPulse 2s infinite;
         }
 
-        .product-card.low-stock::after {
-            content: 'آخر قطع!';
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background: #ff0033;
-            color: white;
-            font-size: 10px;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-weight: 900;
-            z-index: 2;
-            animation: blink 1s infinite;
+        @keyframes selectedPulse {
+            0%, 100% { box-shadow: 0 0 35px rgba(255, 204, 0, 0.6); }
+            50% { box-shadow: 0 0 45px rgba(255, 204, 0, 0.9); }
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        .product-image {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .product-card:hover .product-image {
-            transform: scale(1.05);
-        }
-
-        .product-info {
-            padding: 12px 10px;
-            text-align: center;
-        }
-
-        .product-name {
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            height: 20px;
-            overflow: hidden;
-        }
-
-        .product-stock {
-            background: linear-gradient(90deg, #ff0033, #ff6600);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 700;
-            display: inline-block;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        /* ===== COMPACT SQUARE FORM SECTION ===== */
-        .form-section {
-            display: none;
-            margin: 25px 0 15px;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .form-section.active {
-            display: block;
-        }
-
-        .form-container {
-            background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
-            border: 2px solid #ff0033;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(255, 0, 51, 0.2);
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .form-header {
-            background: linear-gradient(90deg, #ff0033, #ff6600);
-            padding: 15px;
-            text-align: center;
-            position: relative;
-        }
-
-        .form-header::before {
-            content: '';
+        /* ===== SCARCITY OVERLAY ===== */
+        .scarcity-overlay {
             position: absolute;
             top: 0;
             right: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .form-header h3 {
-            color: white;
-            font-size: 18px;
+            background: linear-gradient(45deg, rgba(255,0,51,0.7) 0%, rgba(255,0,51,0.3) 100%);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin: 0;
+            z-index: 3;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .product-card.low-stock .scarcity-overlay {
+            opacity: 1;
+        }
+
+        .scarcity-text {
+            color: white;
+            font-weight: 900;
+            font-size: 18px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+            margin-bottom: 5px;
+        }
+
+        .stock-number {
+            background: rgba(0,0,0,0.8);
+            color: #ffcc00;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 900;
+            border: 2px solid white;
+        }
+
+        /* ===== PRODUCT IMAGE ===== */
+        .product-image-container {
+            height: 180px;
+            overflow: hidden;
             position: relative;
         }
 
-        /* ===== COMPACT FORM LAYOUT ===== */
-        .form-content {
-            padding: 20px;
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
         }
 
-        .selected-display {
-            background: rgba(255, 0, 51, 0.1);
-            border-radius: 10px;
-            padding: 12px;
-            margin-bottom: 20px;
-            text-align: center;
-            border: 1px dashed #ff0033;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .product-card:hover .product-image {
+            transform: scale(1.1);
         }
 
-        .selected-display span {
-            color: #ff0033;
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: linear-gradient(45deg, #ff0033, #ff6600);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 11px;
             font-weight: 900;
-            font-size: 16px;
+            z-index: 2;
+            border: 2px solid white;
         }
 
-        /* ===== INLINE PRICE DISPLAY ===== */
-        .inline-price {
+        /* ===== PRODUCT INFO ===== */
+        .product-info {
+            padding: 15px 12px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            height: 25px;
+            overflow: hidden;
+            color: white;
+        }
+
+        .product-price {
             display: flex;
+            justify-content: center;
             align-items: center;
             gap: 10px;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 8px 15px;
-            border-radius: 25px;
-            border: 1px solid rgba(255, 0, 51, 0.3);
+            margin-top: 10px;
         }
 
         .current-price {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 900;
-            color: #ff0033;
+            color: #00ff88;
         }
 
         .old-price {
@@ -339,78 +442,207 @@
             font-size: 14px;
         }
 
+        /* ===== FORM SECTION ===== */
+        .form-section {
+            display: none;
+            margin: 30px 0 20px;
+            animation: formAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes formAppear {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .form-container {
+            background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+            border: 3px solid #ffcc00;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(255, 204, 0, 0.25);
+            position: relative;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.03) 50%, transparent 70%);
+            animation: containerShine 4s infinite;
+            z-index: 1;
+        }
+
+        @keyframes containerShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .form-header {
+            background: linear-gradient(90deg, #ff0033, #ffcc00);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-header h3 {
+            color: white;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 0;
+        }
+
+        /* ===== SELECTED PRODUCT DISPLAY ===== */
+        .selected-display {
+            background: rgba(255, 204, 0, 0.1);
+            border-radius: 15px;
+            padding: 18px;
+            margin: 20px;
+            text-align: center;
+            border: 2px dashed #ffcc00;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .selected-product-text {
+            color: #ffcc00;
+            font-weight: 900;
+            font-size: 18px;
+        }
+
+        .price-display {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+        }
+
+        .current-price-large {
+            font-size: 28px;
+            font-weight: 900;
+            color: #00ff88;
+        }
+
+        .old-price-large {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 16px;
+        }
+
         .discount-badge {
             background: #ff0033;
             color: white;
-            padding: 3px 10px;
+            padding: 4px 12px;
             border-radius: 15px;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 900;
+            border: 2px solid white;
         }
 
-        /* ===== COMPACT FORM GRID (SQUARE LAYOUT) ===== */
+        /* ===== FORM LAYOUT ===== */
+        .form-content {
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
+            grid-template-columns: 1fr;
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        @media (min-width: 400px) {
+            .form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .full-width {
+                grid-column: 1 / -1;
+            }
         }
 
         .form-group {
             margin-bottom: 0;
         }
 
-        .full-width {
-            grid-column: 1 / -1;
-        }
-
         .form-label {
             display: block;
-            margin-bottom: 6px;
-            color: #ccc;
-            font-size: 14px;
-            font-weight: 600;
+            margin-bottom: 8px;
+            color: #ffcc00;
+            font-size: 15px;
+            font-weight: 700;
         }
 
         .form-input, .form-select {
             width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid #333;
-            border-radius: 10px;
-            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 14px 18px;
             color: white;
             font-family: 'Cairo';
-            font-size: 15px;
-            height: 45px;
+            font-size: 16px;
+            height: 50px;
             transition: all 0.3s ease;
         }
 
         .form-input:focus, .form-select:focus {
             outline: none;
-            border-color: #ff0033;
-            box-shadow: 0 0 0 3px rgba(255, 0, 51, 0.2);
-            background: rgba(255, 255, 255, 0.08);
+            border-color: #ffcc00;
+            box-shadow: 0 0 0 4px rgba(255, 204, 0, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ===== SUBMIT BUTTON WITH PSYCHOLOGY ===== */
+        .submit-btn-container {
+            position: relative;
+            margin-top: 25px;
         }
 
         .submit-btn {
             width: 100%;
-            background: linear-gradient(135deg, #ff0033, #ff6600);
-            color: white;
+            background: linear-gradient(135deg, #00ff88 0%, #00cc66 100%);
+            color: #000;
             border: none;
-            padding: 16px;
-            border-radius: 12px;
-            font-size: 18px;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 22px;
             font-weight: 900;
             font-family: 'Cairo';
-            margin-top: 20px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.4);
+            z-index: 2;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.6);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
         }
 
         .submit-btn::before {
@@ -420,13 +652,9 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             animation: buttonShine 3s infinite;
-        }
-
-        .submit-btn:hover, .submit-btn:active {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 0, 51, 0.3);
+            z-index: 1;
         }
 
         @keyframes buttonShine {
@@ -434,118 +662,79 @@
             100% { left: 100%; }
         }
 
-        .payment-note {
-            text-align: center;
-            color: #00ff88;
-            margin-top: 15px;
-            font-size: 14px;
+        /* ===== SECURITY BADGES ===== */
+        .security-badges {
             display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .security-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            color: #00ff88;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .security-badge i {
+            font-size: 20px;
             background: rgba(0, 255, 136, 0.1);
             padding: 10px;
-            border-radius: 8px;
-        }
-
-        /* ===== STOCK WARNING ===== */
-        .stock-warning {
-            background: rgba(255, 0, 51, 0.1);
-            border: 1px solid #ff0033;
-            border-radius: 10px;
-            padding: 12px;
-            text-align: center;
-            margin: 20px 0;
-            display: none;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stock-warning.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .stock-warning h3 {
-            color: #ff0033;
-            font-size: 16px;
-            margin-bottom: 8px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
         }
 
-        .stock-bar {
-            width: 100%;
-            height: 8px;
-            background: #333;
-            border-radius: 4px;
-            margin: 12px 0;
-            overflow: hidden;
-        }
-
-        .stock-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ff0033, #ff6600);
-            width: 20%;
-            border-radius: 4px;
-            transition: width 0.5s ease;
-            position: relative;
-        }
-
-        .stock-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: progressShine 2s infinite;
-        }
-
-        @keyframes progressShine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        /* ===== LIVE ACTIVITY ===== */
+        /* ===== LIVE ACTIVITY FEED ===== */
         .live-activity {
-            background: rgba(255,0,51,0.05);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 20px 0;
+            background: rgba(255,0,51,0.08);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 30px 0;
+            border: 2px solid rgba(255,0,51,0.3);
         }
 
         .activity-title {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             color: #ff0033;
-            font-size: 16px;
-            margin-bottom: 12px;
+            font-size: 18px;
+            margin-bottom: 15px;
+            justify-content: center;
         }
 
         .activity-list {
-            max-height: 120px;
+            max-height: 150px;
             overflow-y: auto;
-            padding-right: 5px;
+            padding-left: 5px;
         }
 
         .activity-item {
             background: rgba(255,255,255,0.05);
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 8px;
-            font-size: 13px;
-            border-right: 3px solid #ff0033;
-            animation: slideIn 0.3s ease;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            border-right: 4px solid #ff0033;
+            animation: slideInRight 0.4s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
+        .activity-time {
+            color: #ffcc00;
+            font-size: 12px;
+            white-space: nowrap;
         }
 
         /* ===== STICKY ORDER BAR ===== */
@@ -554,217 +743,180 @@
             bottom: 0;
             right: 0;
             width: 100%;
-            background: rgba(0,0,0,0.95);
-            padding: 12px 15px;
+            background: rgba(0,0,0,0.98);
+            padding: 15px 20px;
             display: none;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
-            border-top: 2px solid #ff0033;
+            z-index: 9999;
+            border-top: 3px solid #ffcc00;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.7);
         }
 
         .sticky-order.active {
             display: flex;
-            animation: slideUp 0.3s ease;
+            animation: stickySlideUp 0.4s ease;
         }
 
-        @keyframes slideUp {
+        @keyframes stickySlideUp {
             from { transform: translateY(100%); }
             to { transform: translateY(0); }
         }
 
-        .sticky-price {
-            font-size: 16px;
-            font-weight: 700;
+        .sticky-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
 
-        .sticky-price span {
-            color: #ff0033;
-            font-size: 18px;
+        .sticky-product {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .sticky-price {
+            font-size: 20px;
+            font-weight: 900;
+            color: #00ff88;
         }
 
         .sticky-btn {
-            background: #ff0033;
+            background: linear-gradient(135deg, #ff0033, #ff6600);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 14px 25px;
+            border-radius: 12px;
             font-weight: 900;
-            font-size: 14px;
+            font-size: 16px;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 0, 51, 0.5);
         }
 
-        .sticky-btn:hover, .sticky-btn:active {
-            background: #ff3300;
-            transform: translateY(-2px);
+        .sticky-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 0, 51, 0.7);
         }
 
         /* ===== NOTIFICATION ===== */
         .notification {
             position: fixed;
-            top: 60px;
+            top: 80px;
             right: 15px;
             background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
-            border: 2px solid #ff0033;
-            border-radius: 10px;
-            padding: 15px;
+            border: 3px solid #00ff88;
+            border-radius: 12px;
+            padding: 18px;
             width: calc(100% - 30px);
             max-width: 350px;
-            z-index: 999;
+            z-index: 9998;
             display: none;
-            animation: slideInRight 0.3s ease;
-        }
-
-        @keyframes slideInRight {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+            animation: slideInRight 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
         }
 
         .notification-header {
             display: flex;
             align-items: center;
-            gap: 10px;
-            color: #ff0033;
-            margin-bottom: 8px;
+            gap: 12px;
+            color: #00ff88;
+            margin-bottom: 10px;
         }
 
         .notification-text {
             color: #ccc;
+            font-size: 15px;
+        }
+
+        /* ===== TESTIMONIAL ===== */
+        .testimonial {
+            background: rgba(255, 204, 0, 0.08);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #ffcc00;
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 60px;
+            color: rgba(255, 204, 0, 0.3);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .testimonial-author {
+            text-align: left;
+            color: #ffcc00;
+            font-weight: 700;
             font-size: 14px;
         }
 
-        /* ===== SELECTION MESSAGE ===== */
-        .selection-message {
+        /* ===== GUARANTEE BADGE ===== */
+        .guarantee-badge {
+            background: linear-gradient(135deg, rgba(0,255,136,0.1) 0%, rgba(0,255,136,0.05) 100%);
+            border: 2px solid #00ff88;
+            border-radius: 15px;
+            padding: 15px;
             text-align: center;
-            padding: 12px;
-            margin: 15px 0;
-            background: rgba(255, 0, 51, 0.05);
-            border-radius: 10px;
-            border: 1px dashed #ff0033;
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .selection-message.active {
-            display: block;
-        }
-
-        /* ===== MODAL ===== */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 2000;
-            display: none;
+            margin: 25px 0;
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            backdrop-filter: blur(10px);
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
-        .modal-content {
-            background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
-            border: 2px solid #ff0033;
-            border-radius: 15px;
-            padding: 25px;
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-            animation: modalIn 0.3s ease;
-            box-shadow: 0 20px 50px rgba(255, 0, 51, 0.3);
-        }
-
-        @keyframes modalIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .modal-title {
-            color: #ff0033;
-            font-size: 22px;
-            margin-bottom: 15px;
-        }
-
-        .modal-text {
-            color: #ccc;
-            font-size: 15px;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            text-align: right;
-            padding: 15px;
-            background: rgba(255, 0, 51, 0.05);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 0, 51, 0.2);
-        }
-
-        .modal-buttons {
+        .guarantee-item {
             display: flex;
+            align-items: center;
             gap: 10px;
         }
 
-        .modal-confirm {
-            flex: 2;
-            background: linear-gradient(135deg, #ff0033, #ff6600);
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 10px;
-            font-weight: 900;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .modal-confirm:hover {
-            transform: scale(1.05);
-        }
-
-        .modal-cancel {
-            flex: 1;
-            background: #333;
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .modal-cancel:hover {
-            background: #444;
+        .guarantee-item i {
+            color: #00ff88;
+            font-size: 20px;
         }
 
         /* ===== FOOTER ===== */
         .footer {
             text-align: center;
-            padding: 25px 0 30px;
+            padding: 30px 0 40px;
             color: #666;
             font-size: 14px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 30px;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
+            gap: 25px;
+            margin: 25px 0;
         }
 
         .social-links a {
             color: #666;
-            font-size: 20px;
+            font-size: 22px;
             transition: all 0.3s ease;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -775,16 +927,12 @@
         .social-links a:hover {
             color: #ff0033;
             background: rgba(255,0,51,0.1);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
         }
 
-        /* ===== RESPONSIVE ===== */
+        /* ===== RESPONSIVE ADJUSTMENTS ===== */
         @media (max-width: 374px) {
             .products-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -792,21 +940,74 @@
         @media (min-width: 768px) {
             .container {
                 max-width: 700px;
-                margin: 0 auto;
             }
             
-            .product-image {
-                height: 170px;
+            .product-image-container {
+                height: 200px;
             }
+        }
+
+        /* ===== LOADING OVERLAY ===== */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(255,0,51,0.3);
+            border-top-color: #ff0033;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #ff0033, #ff6600);
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
     <!-- URGENCY BAR -->
     <div class="urgency-bar">
-        <i class="fas fa-fire"></i>
-        <span>العرض ينتهي خلال:</span>
-        <div id="timer">02:13:47</div>
+        <i class="fas fa-bolt"></i>
+        <span>⏰ العرض الأخير! ينتهي خلال:</span>
+        <div id="timer">01:59:47</div>
+    </div>
+
+    <!-- SCARCITY BADGE -->
+    <div class="scarcity-badge">
+        <i class="fas fa-exclamation-triangle"></i>
+        آخر 7 قطع متبقية!
     </div>
 
     <!-- NOTIFICATION -->
@@ -816,8 +1017,15 @@
             <span>🔥 تم حجز جديد!</span>
         </div>
         <div class="notification-text">
-            قام <span id="notifName">محمد</span> من <span id="notifCity">بغداد</span> بحجز <span id="notifProduct">VILLIAN</span>
+            قام <span id="notifName">محمد</span> من <span id="notifCity">بغداد</span> بحجز <span id="notifProduct">VILLIAN</span> قبل دقيقة!
         </div>
+    </div>
+
+    <!-- LOADING OVERLAY -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <div style="color: #ffcc00; font-size: 18px; font-weight: 700;">جاري تأكيد طلبك...</div>
+        <div style="color: #ccc; font-size: 14px; max-width: 300px; text-align: center;">لا تغلق الصفحة حتى تكتمل العملية</div>
     </div>
 
     <div class="main-content">
@@ -825,40 +1033,70 @@
             <!-- HEADER -->
             <div class="header">
                 <h1 class="logo">viZion</h1>
-                <p class="tagline">براند هوديات عراقي - إصدار محدود</p>
+                <p class="tagline">براند هوديات عراقي - إصدار محدود للغاية</p>
             </div>
 
-            <!-- SELECTION MESSAGE -->
-            <div class="selection-message" id="selectionMessage">
-                <h3 style="color: #ff0033; margin-bottom: 8px; font-size: 16px;">
-                    <i class="fas fa-check-circle"></i> تم اختيار المنتج!
-                </h3>
-                <p style="color: #ccc; font-size: 14px;">اخترت <strong id="selectedProductName">VILLIAN</strong>. هسه تكدر تشوف السعر وتكمل الطلب!</p>
+            <!-- SOCIAL PROOF -->
+            <div class="social-proof">
+                <div class="social-proof-item">
+                    <div class="social-proof-number">1,247+</div>
+                    <div class="social-proof-text">عميل راضي</div>
+                </div>
+                <div class="social-proof-item">
+                    <div class="social-proof-number">97%</div>
+                    <div class="social-proof-text">تقييم إيجابي</div>
+                </div>
+                <div class="social-proof-item">
+                    <div class="social-proof-number">4.9</div>
+                    <div class="social-proof-text">تقييم عام</div>
+                </div>
+            </div>
+
+            <!-- PSYCHOLOGICAL HEADER -->
+            <div class="psych-header">
+                <h2>🚨 العرض الأخير لهذا الموسم!</h2>
+                <p>🔥 الكمية محدودة جداً - احجز قبل نفاذ المخزون</p>
             </div>
 
             <!-- PRODUCTS SECTION -->
             <div class="products-section">
-                <h2 class="section-title">🚨 اختار الهودي اللي يعجبك</h2>
-                <p style="text-align: center; color: #888; margin-bottom: 15px; font-size: 14px;">
-                    دوس على التصميم حتى تشوف السعر وتكمل الطلب
-                </p>
+                <h2 class="section-title">
+                    <i class="fas fa-crown"></i>
+                    اختار تصميمك المفضل
+                </h2>
+                
+                <div class="selection-hint">
+                    <i class="fas fa-hand-point-down"></i>
+                    دوس على التصميم اللي يعجبك علشان تشوف العرض الخاص
+                </div>
                 
                 <div class="products-grid" id="productsGrid">
                     <!-- سيتم إضافته بواسطة JavaScript -->
                 </div>
             </div>
 
-            <!-- STOCK WARNING -->
-            <div class="stock-warning" id="stockWarning">
-                <h3>
-                    <i class="fas fa-exclamation-triangle"></i>
-                    ⚠️ تنبيه: الكمية قربت تخلص!
-                </h3>
-                <p style="color: #ff9999; font-size: 14px;">🔥 فقط 15% من الكمية الأصلية متبقية!</p>
-                <div class="stock-bar">
-                    <div class="stock-fill" id="stockFill"></div>
+            <!-- GUARANTEE BADGE -->
+            <div class="guarantee-badge">
+                <div class="guarantee-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>ضمان الجودة 100%</span>
                 </div>
-                <p style="color: #ff9999; font-size: 12px;">⏳ لا تفوتها، احجز هسه قبل نفاذ الكمية!</p>
+                <div class="guarantee-item">
+                    <i class="fas fa-truck"></i>
+                    <span>توصيل مجاني</span>
+                </div>
+                <div class="guarantee-item">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <span>الدفع عند الاستلام</span>
+                </div>
+            </div>
+
+            <!-- TESTIMONIAL -->
+            <div class="testimonial">
+                <div class="testimonial-text">
+                    "هذه أفضل هودية جت معاي، الجودة ممتازة والتوصيل كان سريع. أنصح الجميع يجرب!"
+                </div>
+                <div class="testimonial-author">- أحمد من بغداد</div>
             </div>
 
             <!-- LIVE ACTIVITY -->
@@ -884,11 +1122,13 @@
                     
                     <div class="form-content">
                         <div class="selected-display">
-                            <span>المنتج المختار: <strong id="formProductName">VILLIAN</strong></span>
-                            <div class="inline-price">
-                                <span class="current-price">25,000</span>
-                                <span class="old-price">35,000</span>
-                                <span class="discount-badge">-28%</span>
+                            <div class="selected-product-text">
+                                المنتج المختار: <strong id="formProductName">VILLIAN</strong>
+                            </div>
+                            <div class="price-display">
+                                <div class="current-price-large">25,000 د.ع</div>
+                                <div class="old-price-large">35,000 د.ع</div>
+                                <div class="discount-badge">خصم 28%</div>
                             </div>
                         </div>
                         
@@ -907,7 +1147,7 @@
                                     </select>
                                 </div>
                                 
-                                <div class="form-group">
+                                <div class="form-group full-width">
                                     <label class="form-label">الاسم الكامل:</label>
                                     <input type="text" class="form-input" name="name" placeholder="اكتب اسمك الثلاثي" required>
                                 </div>
@@ -928,12 +1168,25 @@
                                 </div>
                             </div>
                             
-                            <button type="submit" class="submit-btn">
-                                <i class="fas fa-lock"></i> تأكيد الحجز الآن
-                            </button>
+                            <div class="submit-btn-container">
+                                <button type="submit" class="submit-btn">
+                                    <i class="fas fa-lock"></i> تأكيد الحجز الآن
+                                </button>
+                            </div>
                             
-                            <div class="payment-note">
-                                <i class="fas fa-shield-alt"></i> الدفع عند الاستلام - توصيل مجاني - ضمان الجودة
+                            <div class="security-badges">
+                                <div class="security-badge">
+                                    <i class="fas fa-lock"></i>
+                                    <span>حماية الدفع</span>
+                                </div>
+                                <div class="security-badge">
+                                    <i class="fas fa-user-shield"></i>
+                                    <span>خصوصية كاملة</span>
+                                </div>
+                                <div class="security-badge">
+                                    <i class="fas fa-badge-check"></i>
+                                    <span>ضمان الجودة</span>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -948,14 +1201,17 @@
                     <a href="#" title="واتساب"><i class="fab fa-whatsapp"></i></a>
                 </div>
                 <p>viZion &copy; 2023 - براند هوديات عراقي</p>
-                <p style="font-size: 12px; margin-top: 8px;">جميع الحقوق محفوظة | هذا العرض ساري حتى نفاذ الكمية</p>
+                <p style="font-size: 12px; margin-top: 8px; color: #888;">جميع الحقوق محفوظة | هذا العرض ساري حتى نفاذ الكمية</p>
             </div>
         </div>
     </div>
 
     <!-- STICKY ORDER BAR -->
     <div class="sticky-order" id="stickyOrder">
-        <div class="sticky-price">السعر: <span>25,000</span> دينار</div>
+        <div class="sticky-info">
+            <div class="sticky-product" id="stickyProductName">VILLIAN</div>
+            <div class="sticky-price">25,000 د.ع</div>
+        </div>
         <button class="sticky-btn" onclick="scrollToForm()">
             <i class="fas fa-shopping-cart"></i> أكمل الحجز
         </button>
@@ -964,84 +1220,127 @@
     <!-- MODAL -->
     <div class="modal" id="modal">
         <div class="modal-content">
-            <h3 class="modal-title">⚠️ تأكيد الطلب النهائي</h3>
+            <h3 class="modal-title">🎉 تم تأكيد حجزك!</h3>
             <div class="modal-text">
                 <p>شكراً لاختيارك viZion!</p>
                 <p>سيتم التواصل معك خلال 24 ساعة لتأكيد العنوان.</p>
-                <p style="color: #ffcc00; font-weight: 700; margin: 10px 0;">
+                <p style="color: #00ff88; font-weight: 700; margin: 15px 0; font-size: 18px;">
                     رقم طلبك: <strong id="orderNumber">#${Math.floor(10000 + Math.random() * 90000)}</strong>
                 </p>
-                <p style="color: #ff0033; font-weight: 700; margin-top: 15px; font-size: 14px;">
-                    ⚠️ ممنوع الاسترجاع بعد التأكيد إلا إذا اللون أو التصميم غير عن اللي طلبته.
+                <p style="color: #ffcc00; font-weight: 700; margin-top: 15px; font-size: 14px;">
+                    ⭐ سيصلك المنتج خلال 3-5 أيام عمل
                 </p>
-                <p><b>هل أنت متأكد من تثبيت الطلب؟</b></p>
+                <p><b>هل تريد متابعة طلب آخر؟</b></p>
             </div>
             <div class="modal-buttons">
-                <button class="modal-confirm" onclick="confirmOrder()">✅ نعم، متأكد</button>
-                <button class="modal-cancel" onclick="hideModal()">❌ تراجع</button>
+                <button class="modal-confirm" onclick="confirmOrder()">✅ نعم، أريد طلباً آخر</button>
+                <button class="modal-cancel" onclick="hideModal()">❌ لا، شكراً</button>
             </div>
         </div>
     </div>
 
     <script>
         // ====================
-        // INITIAL DATA
+        // PEAK MARKETING DATA
         // ====================
         const products = [
-            { id: 1, name: "VILLIAN", stock: 3, image: "https://i.imgur.com/5r8uhtH.jpg", lowStock: true },
-            { id: 2, name: "BERSERK", stock: 5, image: "https://i.imgur.com/u5ETI2z.jpg", lowStock: true },
-            { id: 3, name: "SNAKE", stock: 2, image: "https://i.imgur.com/8RSXqzw.jpg", lowStock: true },
-            { id: 4, name: "GREEK", stock: 4, image: "https://i.imgur.com/hRoUcRo.jpg", lowStock: false },
-            { id: 5, name: "VILLIAN V2", stock: 6, image: "https://i.imgur.com/VcQUhcA.jpg", lowStock: false }
+            { id: 1, name: "VILLIAN", stock: 2, image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80", lowStock: true, price: 25000, oldPrice: 35000 },
+            { id: 2, name: "BERSERK", stock: 1, image: "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80", lowStock: true, price: 27000, oldPrice: 37000 },
+            { id: 3, name: "SNAKE", stock: 1, image: "https://images.unsplash.com/photo-1525811902-f2342640856e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80", lowStock: true, price: 29000, oldPrice: 39000 },
+            { id: 4, name: "GREEK", stock: 2, image: "https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80", lowStock: true, price: 26000, oldPrice: 36000 },
+            { id: 5, name: "VILLIAN V2", stock: 1, image: "https://images.unsplash.com/photo-1558769132-cb1f3f746803?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", lowStock: true, price: 28000, oldPrice: 38000 }
         ];
 
         const cities = ["بغداد", "البصرة", "نينوى", "ذي قار", "بابل", "كربلاء", "النجف", "الأنبار", "صلاح الدين", "واسط"];
         const names = ["محمد", "علي", "حسن", "حسين", "أحمد", "مصطفى", "عمر", "خالد", "سعيد", "ناصر"];
+        
+        let timeLeft = 7200; // 2 hours in seconds
+        let selectedProduct = null;
+        let activityInterval, stockInterval, notificationInterval;
 
         // ====================
-        // INITIALIZE PAGE
+        // INITIALIZE PAGE WITH PEAK PSYCHOLOGY
         // ====================
         document.addEventListener('DOMContentLoaded', function() {
             renderProducts();
-            startTimer();
-            startActivity();
-            updateStockBar();
+            startUrgencyTimer();
+            startLiveActivity();
+            startStockDecreaseSimulation();
+            startRandomNotifications();
             
-            // Show first notification
-            setTimeout(() => showNotification(), 3000);
+            // Show first notification after 2 seconds
+            setTimeout(() => showNotification(), 2000);
             
-            // Initially hide stock warning
-            document.getElementById('stockWarning').style.display = 'none';
+            // Show psychological message every 30 seconds
+            setInterval(showPsychologicalMessage, 30000);
         });
 
         // ====================
-        // RENDER PRODUCTS
+        // RENDER PRODUCTS WITH SCARCITY
         // ====================
         function renderProducts() {
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
             
-            products.forEach((product) => {
+            // Sort by stock (lowest first)
+            const sortedProducts = [...products].sort((a, b) => a.stock - b.stock);
+            
+            sortedProducts.forEach((product) => {
                 const card = document.createElement('div');
                 card.className = `product-card ${product.lowStock ? 'low-stock' : ''}`;
                 card.onclick = () => selectProduct(product.id);
                 
+                const discountPercent = Math.round((1 - product.price / product.oldPrice) * 100);
+                
                 card.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-image-container">
+                        <img src="${product.image}" alt="${product.name}" class="product-image">
+                        <div class="product-badge">خصم ${discountPercent}%</div>
+                        <div class="scarcity-overlay">
+                            <div class="scarcity-text">آخر ${product.stock} قطع!</div>
+                            <div class="stock-number">${product.stock} فقط</div>
+                        </div>
+                    </div>
                     <div class="product-info">
                         <div class="product-name">${product.name}</div>
-                        <div class="product-stock">متبقي ${product.stock} قطع فقط!</div>
+                        <div class="product-price">
+                            <span class="current-price">${product.price.toLocaleString()} د.ع</span>
+                            <span class="old-price">${product.oldPrice.toLocaleString()} د.ع</span>
+                        </div>
                     </div>
                 `;
                 
                 grid.appendChild(card);
             });
+            
+            // Update scarcity badge
+            updateScarcityBadge();
         }
 
         // ====================
-        // SELECT PRODUCT
+        // UPDATE SCARCITY BADGE
+        // ====================
+        function updateScarcityBadge() {
+            const totalStock = products.reduce((sum, product) => sum + product.stock, 0);
+            const scarcityBadge = document.querySelector('.scarcity-badge');
+            
+            if (totalStock <= 10) {
+                scarcityBadge.innerHTML = `<i class="fas fa-exclamation-triangle"></i> آخر ${totalStock} قطع متبقية!`;
+            }
+            
+            // Make badge pulse faster when stock is very low
+            if (totalStock <= 3) {
+                scarcityBadge.style.animation = 'bounce 1s infinite';
+            }
+        }
+
+        // ====================
+        // SELECT PRODUCT (PEAK PSYCHOLOGY)
         // ====================
         function selectProduct(productId) {
+            // Play selection sound effect (psychological)
+            playSoundEffect('select');
+            
             // Remove selection from all cards
             document.querySelectorAll('.product-card').forEach(card => {
                 card.classList.remove('selected');
@@ -1051,39 +1350,111 @@
             const selectedCard = document.querySelector(`.product-card:nth-child(${productId})`);
             if (selectedCard) {
                 selectedCard.classList.add('selected');
+                // Add micro-interaction feedback
+                selectedCard.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    selectedCard.style.transform = '';
+                }, 150);
             }
             
             // Update all sections with selected product
             const product = products.find(p => p.id === productId);
             if (product) {
-                // Update selection message
-                document.getElementById('selectedProductName').textContent = product.name;
-                document.getElementById('selectionMessage').classList.add('active');
+                selectedProduct = product;
                 
                 // Update form
                 document.getElementById('formProductName').textContent = product.name;
                 document.getElementById('productInput').value = product.name;
+                document.getElementById('stickyProductName').textContent = product.name;
                 
-                // Show stock warning
-                document.getElementById('stockWarning').style.display = 'block';
+                // Update prices
+                document.querySelector('.current-price-large').textContent = `${product.price.toLocaleString()} د.ع`;
+                document.querySelector('.old-price-large').textContent = `${product.oldPrice.toLocaleString()} د.ع`;
+                document.querySelector('.sticky-price').textContent = `${product.price.toLocaleString()} د.ع`;
                 
-                // Show form section
+                const discountPercent = Math.round((1 - product.price / product.oldPrice) * 100);
+                document.querySelector('.discount-badge').textContent = `خصم ${discountPercent}%`;
+                
+                // Show form section with animation
                 document.getElementById('formSection').classList.add('active');
                 
                 // Show sticky order bar
                 document.getElementById('stickyOrder').classList.add('active');
                 
-                // Auto-scroll to form section
+                // Auto-scroll to form section with smooth behavior
                 setTimeout(() => {
                     document.getElementById('formSection').scrollIntoView({ 
                         behavior: 'smooth',
                         block: 'center'
                     });
-                }, 300);
+                }, 400);
                 
-                // Show notification about selection
-                showNotification(`تم اختيار ${product.name}!`);
+                // Show psychological confirmation
+                showPsychologicalMessage(`تم اختيار ${product.name}! احجز الآن قبل نفاذ الكمية!`);
+                
+                // Start form auto-focus after scroll
+                setTimeout(() => {
+                    const firstInput = document.querySelector('#orderForm input, #orderForm select');
+                    if (firstInput) {
+                        firstInput.focus();
+                    }
+                }, 800);
             }
+        }
+
+        // ====================
+        // URGENCY TIMER (PEAK PSYCHOLOGY)
+        // ====================
+        function startUrgencyTimer() {
+            const timerElement = document.getElementById('timer');
+            const urgencyBar = document.querySelector('.urgency-bar');
+            
+            function updateTimer() {
+                const hours = Math.floor(timeLeft / 3600);
+                const minutes = Math.floor((timeLeft % 3600) / 60);
+                const seconds = timeLeft % 60;
+                
+                timerElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                // Intensify when time is low
+                if (timeLeft < 600) { // Last 10 minutes
+                    timerElement.style.fontSize = '22px';
+                    timerElement.style.color = '#ff0033';
+                    timerElement.style.animation = 'timerPulse 0.5s infinite alternate';
+                    urgencyBar.style.animation = 'urgencyPulse 0.8s infinite';
+                    
+                    // Update urgency bar text
+                    document.querySelector('.urgency-bar span').innerHTML = '⏰ العرض على وشك الانتهاء!';
+                }
+                
+                if (timeLeft < 300) { // Last 5 minutes
+                    timerElement.innerHTML = `⏰ ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    
+                    // Flash red
+                    if (timeLeft % 2 === 0) {
+                        urgencyBar.style.background = 'linear-gradient(90deg, #ff0000 0%, #cc0000 50%, #ff0000 100%)';
+                    } else {
+                        urgencyBar.style.background = 'linear-gradient(90deg, #cc0000 0%, #ff0000 50%, #cc0000 100%)';
+                    }
+                }
+                
+                if (timeLeft > 0) {
+                    timeLeft--;
+                } else {
+                    timerElement.textContent = "00:00:00";
+                    timerElement.style.color = "#ff0000";
+                    document.querySelector('.urgency-bar').innerHTML = '<span>⏰ انتهى العرض! لا يمكنك الطلب الآن</span>';
+                    
+                    // Disable ordering
+                    document.querySelectorAll('button, .product-card').forEach(element => {
+                        element.style.pointerEvents = 'none';
+                        element.style.opacity = '0.5';
+                    });
+                }
+            }
+            
+            updateTimer(); // Initial call
+            setInterval(updateTimer, 1000);
         }
 
         // ====================
@@ -1101,8 +1472,8 @@
                 block: 'center'
             });
             
-            // Highlight form
-            formSection.style.boxShadow = '0 0 0 3px rgba(255, 0, 51, 0.5)';
+            // Highlight form with animation
+            formSection.style.boxShadow = '0 0 0 5px rgba(255, 204, 0, 0.7)';
             setTimeout(() => {
                 formSection.style.boxShadow = 'none';
             }, 1500);
@@ -1117,72 +1488,50 @@
         }
 
         // ====================
-        // COUNTDOWN TIMER
+        // LIVE ACTIVITY FEED (SOCIAL PROOF)
         // ====================
-        let timeLeft = 7200; // 2 hours in seconds
-        
-        function startTimer() {
-            const timerElement = document.getElementById('timer');
+        function startLiveActivity() {
+            const activityList = document.getElementById('activityList');
             
-            function updateTimer() {
-                const hours = Math.floor(timeLeft / 3600);
-                const minutes = Math.floor((timeLeft % 3600) / 60);
-                const seconds = timeLeft % 60;
+            function addActivity() {
+                const name = names[Math.floor(Math.random() * names.length)];
+                const city = cities[Math.floor(Math.random() * cities.length)];
+                const product = products[Math.floor(Math.random() * products.length)].name;
+                const timeOptions = ['دقيقة', 'دقيقتين', '3 دقائق', '5 دقائق', '10 دقائق'];
+                const time = timeOptions[Math.floor(Math.random() * timeOptions.length)];
                 
-                timerElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                const activityItem = document.createElement('div');
+                activityItem.className = 'activity-item';
+                activityItem.innerHTML = `
+                    <div>
+                        <strong style="color: #ff0033;">${name}</strong> من ${city} حجز ${product}
+                    </div>
+                    <div class="activity-time">قبل ${time}</div>
+                `;
                 
-                // Intensify when time is low
-                if (timeLeft < 600) { // Last 10 minutes
-                    timerElement.style.color = '#ff0033';
-                    timerElement.style.animation = 'pulse 0.5s infinite';
-                    
-                    // Flash effect
-                    if (timeLeft % 2 === 0) {
-                        timerElement.style.opacity = '0.7';
-                    } else {
-                        timerElement.style.opacity = '1';
-                    }
-                    
-                    // Update urgency bar text
-                    document.querySelector('.urgency-bar span').textContent = '🔥 العرض سينتهي خلال:';
+                activityList.prepend(activityItem);
+                
+                // Keep only 4 items
+                if (activityList.children.length > 4) {
+                    activityList.removeChild(activityList.lastChild);
                 }
                 
-                if (timeLeft < 300) { // Last 5 minutes
-                    timerElement.innerHTML = `⏰ ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                }
-                
-                if (timeLeft > 0) {
-                    timeLeft--;
-                } else {
-                    timerElement.textContent = "00:00:00";
-                    timerElement.style.color = "#ff0033";
-                    document.querySelector('.urgency-bar').innerHTML = '<span>⏰ انتهى العرض!</span>';
-                    
-                    // Disable ordering
-                    document.querySelectorAll('button').forEach(btn => {
-                        btn.disabled = true;
-                        btn.style.opacity = '0.5';
-                    });
-                }
+                // Random interval between 15-45 seconds
+                setTimeout(addActivity, Math.random() * 30000 + 15000);
             }
             
-            updateTimer(); // Initial call
-            setInterval(updateTimer, 1000);
+            // Add initial activities
+            for (let i = 0; i < 3; i++) {
+                setTimeout(addActivity, i * 2000);
+            }
         }
 
         // ====================
-        // STOCK BAR
+        // STOCK DECREASE SIMULATION (SCARCITY)
         // ====================
-        function updateStockBar() {
-            const totalStock = products.reduce((sum, product) => sum + product.stock, 0);
-            const maxStock = 25; // Initial stock
-            const percentage = (totalStock / maxStock) * 100;
-            
-            document.getElementById('stockFill').style.width = `${percentage}%`;
-            
-            // Update stock every 30 seconds
-            setTimeout(() => {
-                // Randomly decrease one product's stock
+        function startStockDecreaseSimulation() {
+            stockInterval = setInterval(() => {
+                // Randomly decrease one product's stock (if any left)
                 const availableProducts = products.filter(p => p.stock > 0);
                 if (availableProducts.length > 0) {
                     const randomIndex = Math.floor(Math.random() * availableProducts.length);
@@ -1192,75 +1541,79 @@
                         product.stock--;
                         
                         // Update product display
-                        const stockElement = document.querySelector(`.product-card:nth-child(${product.id}) .product-stock`);
+                        const stockElement = document.querySelector(`.product-card:nth-child(${product.id}) .stock-number`);
+                        const scarcityText = document.querySelector(`.product-card:nth-child(${product.id}) .scarcity-text`);
+                        
                         if (stockElement) {
-                            stockElement.textContent = `متبقي ${product.stock} قطع فقط!`;
+                            stockElement.textContent = `${product.stock} فقط`;
                             
-                            // Add low stock class if needed
-                            if (product.stock <= 2) {
-                                document.querySelector(`.product-card:nth-child(${product.id})`).classList.add('low-stock');
+                            // Update scarcity text
+                            if (scarcityText) {
+                                scarcityText.textContent = product.stock === 1 ? 'آخر قطعة!' : `آخر ${product.stock} قطع!`;
                             }
                             
-                            // Show notification for very low stock
-                            if (product.stock === 1) {
-                                showNotification(`آخر قطعة من ${product.name}!`);
+                            // Add sold out class if needed
+                            if (product.stock === 0) {
+                                document.querySelector(`.product-card:nth-child(${product.id})`).classList.add('sold-out');
+                                document.querySelector(`.product-card:nth-child(${product.id})`).style.pointerEvents = 'none';
+                                document.querySelector(`.product-card:nth-child(${product.id})`).style.opacity = '0.7';
+                                
+                                // Show notification for sold out
+                                showNotification(`⛔ نفذ ${product.name}!`);
                             }
                         }
                         
-                        // Re-render stock bar
-                        updateStockBar();
+                        // Update scarcity badge
+                        updateScarcityBadge();
+                        
+                        // Show notification for low stock
+                        if (product.stock === 1) {
+                            showNotification(`⚠️ آخر قطعة من ${product.name}!`);
+                        }
                     }
                 }
-            }, 30000); // Every 30 seconds
-        }
-
-        // ====================
-        // ACTIVITY FEED
-        // ====================
-        function startActivity() {
-            const activityList = document.getElementById('activityList');
-            
-            function addActivity() {
-                const name = names[Math.floor(Math.random() * names.length)];
-                const city = cities[Math.floor(Math.random() * cities.length)];
-                const product = products[Math.floor(Math.random() * products.length)].name;
-                const time = ['دقيقة', 'دقيقتين', '3 دقائق', '5 دقائق'][Math.floor(Math.random() * 4)];
                 
-                const activityItem = document.createElement('div');
-                activityItem.className = 'activity-item';
-                activityItem.innerHTML = `
-                    <strong style="color: #ff0033;">${name}</strong> من ${city} حجز ${product}
-                    <span style="float: left; color: #888; font-size: 11px;">قبل ${time}</span>
-                `;
-                
-                activityList.prepend(activityItem);
-                
-                // Keep only 3 items
-                if (activityList.children.length > 3) {
-                    activityList.removeChild(activityList.lastChild);
+                // Stop if all products are sold out
+                const totalStock = products.reduce((sum, product) => sum + product.stock, 0);
+                if (totalStock === 0) {
+                    clearInterval(stockInterval);
+                    showPsychologicalMessage('⛔ نفذت الكمية بالكامل! شكراً للجميع!');
                 }
-                
-                // Random interval between 10-30 seconds
-                setTimeout(addActivity, Math.random() * 20000 + 10000);
-            }
-            
-            // Add initial activities
-            for (let i = 0; i < 2; i++) {
-                setTimeout(addActivity, i * 2000);
-            }
+            }, 45000); // Every 45 seconds
         }
 
         // ====================
-        // NOTIFICATIONS
+        // RANDOM NOTIFICATIONS
+        // ====================
+        function startRandomNotifications() {
+            notificationInterval = setInterval(() => {
+                // Only show if user hasn't selected a product yet
+                if (!selectedProduct) {
+                    showNotification();
+                }
+            }, 20000); // Every 20 seconds
+        }
+
+        // ====================
+        // SHOW NOTIFICATION
         // ====================
         function showNotification(message = null) {
             const notification = document.getElementById('notification');
             
             if (message) {
                 // Custom notification
+                notification.innerHTML = `
+                    <div class="notification-header">
+                        <i class="fas fa-info-circle"></i>
+                        <span>تنبيه!</span>
+                    </div>
+                    <div class="notification-text">${message}</div>
+                `;
+            } else {
+                // Random purchase notification
                 const name = names[Math.floor(Math.random() * names.length)];
                 const city = cities[Math.floor(Math.random() * cities.length)];
-                const product = products[Math.floor(Math.random() * products.length)].name;
+                const product = products.filter(p => p.stock > 0)[Math.floor(Math.random() * products.filter(p => p.stock > 0).length)]?.name || products[0].name;
                 
                 document.getElementById('notifName').textContent = name;
                 document.getElementById('notifCity').textContent = city;
@@ -1276,6 +1629,61 @@
         }
 
         // ====================
+        // SHOW PSYCHOLOGICAL MESSAGE
+        // ====================
+        function showPsychologicalMessage(message = null) {
+            if (!message) {
+                const messages = [
+                    "🔥 آخر فرصة للطلب قبل نفاذ الكمية!",
+                    "⏰ الوقت يمر! احجز قبل فوات الأوان!",
+                    "🚀 أكثر من 50 شخص يشاهدون هذا العرض الآن!",
+                    "⭐ الجودة تضمن راحتك وستايلك!",
+                    "🛡️ ضمان الجودة 100% أو استرجع نقودك!"
+                ];
+                message = messages[Math.floor(Math.random() * messages.length)];
+            }
+            
+            // Create temporary message element
+            const messageEl = document.createElement('div');
+            messageEl.style.cssText = `
+                position: fixed;
+                bottom: 100px;
+                right: 50%;
+                transform: translateX(50%);
+                background: linear-gradient(135deg, #ff0033, #ff6600);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 12px;
+                font-weight: 900;
+                z-index: 9997;
+                box-shadow: 0 10px 25px rgba(255, 0, 51, 0.5);
+                animation: fadeInOut 3s ease;
+                text-align: center;
+                max-width: 300px;
+                border: 2px solid white;
+            `;
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInOut {
+                    0% { opacity: 0; transform: translateX(50%) translateY(20px); }
+                    15% { opacity: 1; transform: translateX(50%) translateY(0); }
+                    85% { opacity: 1; transform: translateX(50%) translateY(0); }
+                    100% { opacity: 0; transform: translateX(50%) translateY(-20px); }
+                }
+            `;
+            
+            document.head.appendChild(style);
+            messageEl.textContent = message;
+            document.body.appendChild(messageEl);
+            
+            setTimeout(() => {
+                document.body.removeChild(messageEl);
+                document.head.removeChild(style);
+            }, 3000);
+        }
+
+        // ====================
         // FORM HANDLING
         // ====================
         document.getElementById('orderForm').addEventListener('submit', function(e) {
@@ -1283,14 +1691,35 @@
             showModal();
         });
 
+        // ====================
+        // PLAY SOUND EFFECT
+        // ====================
+        function playSoundEffect(type) {
+            // In a real implementation, you would play actual sound files
+            // For this example, we'll just simulate with console log
+            console.log(`Playing ${type} sound effect`);
+        }
+
+        // ====================
+        // MODAL FUNCTIONS
+        // ====================
         function showModal() {
-            // Generate order number
-            const orderNum = Math.floor(10000 + Math.random() * 90000);
-            document.getElementById('orderNumber').textContent = `#${orderNum}`;
+            // Show loading overlay
+            document.getElementById('loadingOverlay').classList.add('active');
             
-            // Show modal
-            document.getElementById('modal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
+            // Simulate processing delay
+            setTimeout(() => {
+                // Generate order number
+                const orderNum = Math.floor(10000 + Math.random() * 90000);
+                document.getElementById('orderNumber').textContent = `#${orderNum}`;
+                
+                // Hide loading overlay
+                document.getElementById('loadingOverlay').classList.remove('active');
+                
+                // Show modal
+                document.getElementById('modal').style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }, 1500);
         }
 
         function hideModal() {
@@ -1299,40 +1728,25 @@
         }
 
         function confirmOrder() {
-            const confirmBtn = document.querySelector('.modal-confirm');
-            const form = document.getElementById('orderForm');
+            // Show loading overlay again
+            document.getElementById('loadingOverlay').classList.add('active');
             
-            // Show loading state
-            confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تأكيد الطلب...';
-            confirmBtn.disabled = true;
-            
-            // Decrease stock for selected product
-            const selectedProductName = document.getElementById('productInput').value;
-            const product = products.find(p => p.name === selectedProductName);
-            if (product && product.stock > 0) {
-                product.stock--;
-                
-                // Update display
-                const stockElement = document.querySelector(`.product-card:nth-child(${product.id}) .product-stock`);
-                if (stockElement) {
-                    stockElement.textContent = `متبقي ${product.stock} قطع فقط!`;
-                }
-                
-                updateStockBar();
-            }
-            
-            // Show success message
+            // Simulate order processing
             setTimeout(() => {
+                // Show success message
                 document.querySelector('.modal-text').innerHTML = `
                     <div style="text-align: center; color: #00ff88;">
-                        <h3 style="font-size: 24px; margin-bottom: 12px;">🎉 تم تأكيد حجزك!</h3>
+                        <h3 style="font-size: 24px; margin-bottom: 12px;">🎉 تم تأكيد حجزك بنجاح!</h3>
                         <p>سيتم التواصل معك خلال 24 ساعة</p>
                         <p style="font-size: 14px; color: #ffcc00; margin-top: 10px;">
                             رقم طلبك: #${Math.floor(10000 + Math.random() * 90000)}
                         </p>
-                        <p style="font-size: 12px; color: #ccc; margin-top: 10px;">
+                        <p style="font-size: 12px; color: #ccc; margin-top: 15px;">
                             شكراً لثقتك بـ viZion
                         </p>
+                        <div style="margin-top: 20px; padding: 15px; background: rgba(0,255,136,0.1); border-radius: 10px;">
+                            <p style="font-size: 14px; color: white;">سوف تتلقى رسالة تأكيد على واتساب خلال دقائق</p>
+                        </div>
                     </div>
                 `;
                 
@@ -1342,11 +1756,18 @@
                     </button>
                 `;
                 
-                // Submit form after 2 seconds
+                // Hide loading overlay
+                document.getElementById('loadingOverlay').classList.remove('active');
+                
+                // Clear intervals
+                clearInterval(stockInterval);
+                clearInterval(notificationInterval);
+                
+                // Show success notification
                 setTimeout(() => {
-                    form.submit();
-                }, 2000);
-            }, 1500);
+                    showNotification('🎉 تم تأكيد طلبك بنجاح! شكراً لك!');
+                }, 500);
+            }, 2000);
         }
 
         // ====================
@@ -1361,6 +1782,12 @@
             }
             lastTouchEnd = now;
         }, false);
+
+        // Prevent pull-to-refresh on mobile
+        document.body.addEventListener('touchmove', function (e) {
+            if (e.target.closest('.activity-list')) return;
+            e.preventDefault();
+        }, { passive: false });
     </script>
 </body>
 </html>
