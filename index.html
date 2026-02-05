@@ -2,11 +2,11 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="description" content="🔥 العرض الأخير! viZion براند ملابس - إحجز تصميمك المفضل الآن!">
     <title>🔥 viZion | براند الملابس الحصري</title>
     
-    <!-- Fonts - محدود للسرعة -->
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -19,7 +19,9 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        html {
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
@@ -28,8 +30,8 @@
             color: #ffffff;
             font-family: 'Cairo', sans-serif;
             line-height: 1.5;
-            overflow-x: hidden;
             font-size: 16px;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* ===== URGENCY BARS ===== */
@@ -61,11 +63,10 @@
             font-weight: 900;
         }
 
-        /* ===== MAIN CONTAINER ===== */
+        /* ===== MAIN CONTENT ===== */
         .container {
             padding: 15px;
-            max-width: 500px;
-            margin: 0 auto;
+            max-width: 100%;
         }
 
         /* ===== HEADER ===== */
@@ -108,7 +109,7 @@
             overflow: hidden;
         }
 
-        .price-row {
+        .price-main {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -142,6 +143,9 @@
         }
 
         .benefits {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
             margin-top: 20px;
         }
 
@@ -149,13 +153,51 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 10px;
             color: #ccc;
             font-size: 14px;
+            padding: 8px 0;
         }
 
         .benefit i {
             color: #00ff88;
+            min-width: 20px;
+        }
+
+        /* ===== QUICK ORDER BAR ===== */
+        .quick-order-bar {
+            background: rgba(255, 0, 51, 0.1);
+            border: 2px solid #ff0033;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .quick-order-bar h3 {
+            color: #ff0033;
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .quick-order-btn {
+            background: linear-gradient(135deg, #ff0033, #ff3300);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 900;
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
         }
 
         /* ===== STOCK WARNING ===== */
@@ -192,14 +234,29 @@
             background: linear-gradient(90deg, #ff0033, #ff6600);
             width: 20%;
             border-radius: 5px;
+            transition: width 0.5s ease;
         }
 
         /* ===== PRODUCTS ===== */
         .section-title {
-            font-size: 20px;
+            font-size: 22px;
             text-align: center;
             margin: 25px 0 15px;
             color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff0033, #ff6600);
+            border-radius: 3px;
         }
 
         .products-grid {
@@ -207,6 +264,12 @@
             grid-template-columns: 1fr;
             gap: 15px;
             margin-bottom: 25px;
+        }
+
+        @media (min-width: 500px) {
+            .products-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         .product-card {
@@ -218,9 +281,16 @@
             position: relative;
         }
 
+        .product-card:hover, .product-card:active {
+            transform: translateY(-5px);
+            border-color: #ff0033;
+            box-shadow: 0 10px 20px rgba(255, 0, 51, 0.2);
+        }
+
         .product-card.selected {
             border-color: #ff0033;
-            box-shadow: 0 0 20px rgba(255, 0, 51, 0.3);
+            box-shadow: 0 0 25px rgba(255, 0, 51, 0.4);
+            transform: translateY(-3px);
         }
 
         .product-card.low-stock::after {
@@ -246,12 +316,12 @@
 
         .product-info {
             padding: 15px;
+            text-align: center;
         }
 
         .product-name {
             font-size: 18px;
             font-weight: 700;
-            text-align: center;
             margin-bottom: 10px;
         }
 
@@ -272,6 +342,17 @@
             border-radius: 15px;
             padding: 25px 20px;
             margin-top: 30px;
+            display: none;
+        }
+
+        .order-form.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .form-title {
@@ -324,6 +405,7 @@
         .form-input:focus, .form-select:focus {
             outline: none;
             border-color: #ff0033;
+            box-shadow: 0 0 0 2px rgba(255, 0, 51, 0.2);
         }
 
         .submit-btn {
@@ -342,6 +424,12 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover, .submit-btn:active {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 0, 51, 0.3);
         }
 
         .payment-note {
@@ -369,6 +457,12 @@
             z-index: 1000;
             border-top: 2px solid #ff0033;
             backdrop-filter: blur(10px);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .sticky-order.hidden {
+            transform: translateY(100%);
         }
 
         .sticky-price {
@@ -390,6 +484,12 @@
             font-weight: 900;
             font-size: 16px;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sticky-btn:hover, .sticky-btn:active {
+            background: #ff3300;
+            transform: translateY(-2px);
         }
 
         /* ===== MODAL ===== */
@@ -415,6 +515,12 @@
             width: 100%;
             max-width: 400px;
             text-align: center;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .modal-title {
@@ -462,13 +568,13 @@
         /* ===== NOTIFICATION ===== */
         .notification {
             position: fixed;
-            top: 70px;
+            top: 60px;
             right: 15px;
             background: #111;
             border: 2px solid #ff0033;
             border-radius: 10px;
             padding: 15px;
-            width: 90%;
+            width: calc(100% - 30px);
             max-width: 350px;
             z-index: 999;
             display: none;
@@ -476,8 +582,8 @@
         }
 
         @keyframes slideIn {
-            from { transform: translateX(100%); }
-            to { transform: translateX(0); }
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
         .notification-header {
@@ -543,38 +649,80 @@
             color: #ff0033;
         }
 
+        /* ===== LOADER ===== */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+            transition: opacity 0.5s;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #333;
+            border-top: 3px solid #ff0033;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ===== SELECTED PRODUCT INDICATOR ===== */
+        .selected-indicator {
+            position: fixed;
+            top: 60px;
+            right: 15px;
+            background: #ff0033;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+            display: none;
+            z-index: 999;
+            animation: fadeInUp 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 0, 51, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* ===== RESPONSIVE ===== */
-        @media (min-width: 375px) {
-            .container {
-                padding: 20px;
-            }
-            
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (min-width: 425px) {
-            .logo {
-                font-size: 48px;
-            }
-            
-            .new-price {
-                font-size: 40px;
-            }
-            
-            .new-price span {
-                font-size: 44px;
-            }
-        }
-
         @media (min-width: 768px) {
             .container {
                 max-width: 700px;
+                margin: 0 auto;
+            }
+            
+            .benefits {
+                grid-template-columns: 1fr 1fr;
             }
             
             .products-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(3, 1fr);
             }
             
             .form-grid {
@@ -585,19 +733,9 @@
         }
 
         @media (min-width: 1024px) {
-            .container {
-                max-width: 1000px;
-            }
-            
             .products-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(5, 1fr);
             }
-        }
-
-        /* ===== LOADING STATES ===== */
-        .loading {
-            opacity: 0.7;
-            pointer-events: none;
         }
 
         /* ===== UTILITIES ===== */
@@ -622,11 +760,32 @@
         }
         
         .hidden {
-            display: none;
+            display: none !important;
+        }
+
+        /* ===== FORM GRID ===== */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        @media (min-width: 500px) {
+            .form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- LOADER -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <p style="color: white; margin-top: 20px;">جاري تحميل العرض...</p>
+        </div>
+    </div>
+
     <!-- URGENCY BAR -->
     <div class="urgency-bar">
         <i class="fas fa-fire"></i>
@@ -645,24 +804,29 @@
         </div>
     </div>
 
+    <!-- SELECTED PRODUCT INDICATOR -->
+    <div class="selected-indicator" id="selectedIndicator">
+        <i class="fas fa-check"></i> تم اختيار المنتج - إحجز الآن!
+    </div>
+
     <div class="container">
         <!-- HEADER -->
         <div class="header">
             <h1 class="logo">viZion</h1>
             <div class="badge">Drop 01 - إصدار محدود</div>
-            <p style="color: #888; margin-top: 10px;">براند ملابس عراقي حصري</p>
+            <p style="color: #888; margin-top: 10px; font-size: 14px;">براند ملابس عراقي حصري - هوديات تصميمات فريدة</p>
         </div>
 
         <!-- PRICE CARD -->
         <div class="price-card">
-            <div class="price-row">
+            <div class="price-main">
                 <div>
                     <div class="new-price"><span>25,000</span> دينار</div>
                     <div style="color: #00ff88; font-size: 14px; margin-top: 5px;">
-                        <i class="fas fa-truck"></i> التوصيل مجاني
+                        <i class="fas fa-truck"></i> التوصيل مجاني لجميع المحافظات
                     </div>
                 </div>
-                <div>
+                <div style="text-align: left;">
                     <div class="old-price">35,000 دينار</div>
                     <div class="discount">وفر 28%</div>
                 </div>
@@ -681,7 +845,27 @@
                     <i class="fas fa-check-circle"></i>
                     <span>الدفع عند الاستلام فقط</span>
                 </div>
+                <div class="benefit">
+                    <i class="fas fa-check-circle"></i>
+                    <span>ضمان استبدال إذا اختلف المنتج</span>
+                </div>
             </div>
+        </div>
+
+        <!-- QUICK ORDER BAR -->
+        <div class="quick-order-bar">
+            <h3>
+                <i class="fas fa-bolt"></i>
+                طريقة الطلب السريع
+            </h3>
+            <p style="color: #ccc; font-size: 14px; margin-bottom: 10px;">
+                1. اختر التصميم المفضل ↓<br>
+                2. املأ بياناتك ↓<br>
+                3. تأكيد الطلب
+            </p>
+            <button class="quick-order-btn" onclick="scrollToForm()">
+                <i class="fas fa-rocket"></i> إبدأ الطلب الآن
+            </button>
         </div>
 
         <!-- STOCK ALERT -->
@@ -694,14 +878,14 @@
             <div class="stock-bar">
                 <div class="stock-fill" id="stockFill"></div>
             </div>
-            <p style="color: #ff9999; font-size: 12px;">⏳ المخزون يتناقص بسرعة - إحجز الآن!</p>
+            <p style="color: #ff9999; font-size: 12px;">⏳ المخزون يتناقص بسرعة - إحجز الآن قبل نفاذ الكمية!</p>
         </div>
 
         <!-- ACTIVITY -->
         <div class="activity">
             <div class="activity-title">
                 <i class="fas fa-bolt"></i>
-                <span>طلبات حجز حية الآن:</span>
+                <span>🔥 طلبات حجز حية الآن:</span>
             </div>
             <div id="activityList">
                 <!-- سيتم إضافته بواسطة JavaScript -->
@@ -719,7 +903,7 @@
         <form class="order-form" id="orderForm">
             <div class="form-title">
                 <i class="fas fa-clipboard-check"></i>
-                تأكيد الحجز
+                تأكيد الحجز - خطوة أخيرة!
             </div>
             
             <div class="selected-product-display">
@@ -729,11 +913,11 @@
             <input type="hidden" name="product" id="productInput" value="VILLIAN">
             
             <div class="form-group">
-                <label class="form-label">اختر القياس:</label>
+                <label class="form-label">اختر القياس المناسب:</label>
                 <select class="form-select" name="size" required>
                     <option value="" disabled>-- اختر القياس --</option>
-                    <option value="S" selected>S (صغير)</option>
-                    <option value="M">M (متوسط)</option>
+                    <option value="S">S (صغير)</option>
+                    <option value="M" selected>M (متوسط)</option>
                     <option value="L">L (كبير)</option>
                     <option value="XL">XL (كبير جداً)</option>
                 </select>
@@ -741,8 +925,8 @@
             
             <div class="form-grid">
                 <div class="form-group">
-                    <label class="form-label">الاسم الثلاثي</label>
-                    <input type="text" class="form-input" name="name" placeholder="اكتب اسمك" required>
+                    <label class="form-label">الاسم الثلاثي الكامل</label>
+                    <input type="text" class="form-input" name="name" placeholder="اكتب اسمك الثلاثي" required>
                 </div>
                 
                 <div class="form-group">
@@ -751,17 +935,17 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">المنطقة</label>
-                    <input type="text" class="form-input" name="area" placeholder="اسم المنطقة" required>
+                    <label class="form-label">المنطقة / الحي</label>
+                    <input type="text" class="form-input" name="area" placeholder="اسم المنطقة أو الحي" required>
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">نقطة دالة</label>
-                    <input type="text" class="form-input" name="landmark" placeholder="أقرب نقطة دالة" required>
+                    <label class="form-label">أقرب نقطة دالة</label>
+                    <input type="text" class="form-input" name="landmark" placeholder="مثال: جامع، مدرسة، محل" required>
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">رقم الهاتف</label>
+                    <label class="form-label">رقم الهاتف للتواصل</label>
                     <input type="tel" class="form-input" name="phone" placeholder="رقم الهاتف" required>
                 </div>
             </div>
@@ -771,7 +955,7 @@
             </button>
             
             <div class="payment-note">
-                <i class="fas fa-shield-alt"></i> الدفع عند الاستلام فقط - شحن مجاني
+                <i class="fas fa-shield-alt"></i> الدفع عند الاستلام فقط - شحن مجاني - ضمان الجودة
             </div>
         </form>
 
@@ -783,13 +967,13 @@
                 <a href="#"><i class="fab fa-whatsapp"></i></a>
             </div>
             <p>viZion &copy; 2023 - براند ملابس عراقي</p>
-            <p style="font-size: 12px; margin-top: 10px;">جميع الحقوق محفوظة</p>
+            <p style="font-size: 12px; margin-top: 10px;">جميع الحقوق محفوظة | هذا العرض ساري حتى نفاذ الكمية</p>
         </div>
     </div>
 
     <!-- STICKY ORDER BAR -->
-    <div class="sticky-order">
-        <div class="sticky-price">السعر: <span>25,000</span> دينار</div>
+    <div class="sticky-order" id="stickyOrder">
+        <div class="sticky-price">السعر النهائي: <span>25,000</span> دينار</div>
         <button class="sticky-btn" onclick="scrollToForm()">
             <i class="fas fa-shopping-cart"></i> إحجز الآن
         </button>
@@ -798,18 +982,19 @@
     <!-- MODAL -->
     <div class="modal" id="modal">
         <div class="modal-content">
-            <h3 class="modal-title">⚠️ تأكيد الطلب</h3>
+            <h3 class="modal-title">⚠️ تأكيد الطلب النهائي</h3>
             <div class="modal-text">
                 <p>شكراً لاختيارك viZion!</p>
-                <p>سيتم التواصل معك خلال 24 ساعة لتأكيد العنوان.</p>
+                <p>سيتم التواصل معك خلال 24 ساعة لتأكيد العنوان وتحديد موعد التسليم.</p>
+                <p>رقم طلبك: <strong style="color: #ffcc00;">#${Math.floor(10000 + Math.random() * 90000)}</strong></p>
                 <p style="color: #ff0033; font-weight: 700; margin-top: 15px;">
-                    ممنوع الاسترجاع بعد التأكيد.
+                    ممنوع الاسترجاع بعد التأكيد إلا في حال اختلاف المنتج.
                 </p>
                 <p><b>هل أنت متأكد من تثبيت الطلب؟</b></p>
             </div>
             <div class="modal-buttons">
-                <button class="modal-confirm" onclick="confirmOrder()">نعم، متأكد</button>
-                <button class="modal-cancel" onclick="hideModal()">تراجع</button>
+                <button class="modal-confirm" onclick="confirmOrder()">✅ نعم، متأكد</button>
+                <button class="modal-cancel" onclick="hideModal()">❌ تراجع</button>
             </div>
         </div>
     </div>
@@ -826,13 +1011,19 @@
             { id: 5, name: "VILLIAN V2", stock: 6, image: "https://i.imgur.com/VcQUhcA.jpg", lowStock: false }
         ];
 
-        const cities = ["بغداد", "البصرة", "نينوى", "ذي قار", "بابل", "كربلاء", "النجف"];
-        const names = ["محمد", "علي", "حسن", "حسين", "أحمد", "مصطفى", "عمر"];
+        const cities = ["بغداد", "البصرة", "نينوى", "ذي قار", "بابل", "كربلاء", "النجف", "الأنبار", "صلاح الدين", "واسط"];
+        const names = ["محمد", "علي", "حسن", "حسين", "أحمد", "مصطفى", "عمر", "خالد", "سعيد", "ناصر"];
 
         // ====================
         // INITIALIZE PAGE
         // ====================
         document.addEventListener('DOMContentLoaded', function() {
+            // Hide loader after 1 second
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1000);
+            
+            // Initialize all components
             renderProducts();
             startTimer();
             startActivity();
@@ -841,6 +1032,14 @@
             // Set initial selected product
             document.getElementById('selectedProduct').textContent = products[0].name;
             document.getElementById('productInput').value = products[0].name;
+            
+            // Hide sticky bar initially on mobile
+            if (window.innerWidth < 768) {
+                document.getElementById('stickyOrder').classList.add('hidden');
+            }
+            
+            // Show first notification after 3 seconds
+            setTimeout(() => showNotification(), 3000);
         });
 
         // ====================
@@ -887,17 +1086,56 @@
             if (product) {
                 document.getElementById('selectedProduct').textContent = product.name;
                 document.getElementById('productInput').value = product.name;
+                
+                // Show selected indicator
+                const indicator = document.getElementById('selectedIndicator');
+                indicator.style.display = 'block';
+                indicator.innerHTML = `<i class="fas fa-check"></i> تم اختيار ${product.name} - إحجز الآن!`;
+                
+                // Hide indicator after 3 seconds
+                setTimeout(() => {
+                    indicator.style.display = 'none';
+                }, 3000);
             }
             
-            // Scroll to form on mobile
-            if (window.innerWidth < 768) {
-                setTimeout(() => {
-                    document.getElementById('orderForm').scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }, 300);
-            }
+            // Show form if hidden
+            document.getElementById('orderForm').classList.add('active');
+            
+            // Show sticky bar on mobile
+            document.getElementById('stickyOrder').classList.remove('hidden');
+            
+            // Show notification about selection
+            showNotification(`تم اختيار ${product.name}!`);
+        }
+
+        // ====================
+        // SCROLL TO FORM
+        // ====================
+        function scrollToForm() {
+            const form = document.getElementById('orderForm');
+            
+            // Show form if hidden
+            form.classList.add('active');
+            
+            // Scroll to form
+            form.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            // Highlight form
+            form.style.boxShadow = '0 0 0 3px rgba(255, 0, 51, 0.5)';
+            setTimeout(() => {
+                form.style.boxShadow = 'none';
+            }, 2000);
+            
+            // Focus on first input field
+            setTimeout(() => {
+                const firstInput = form.querySelector('input, select');
+                if (firstInput) {
+                    firstInput.focus();
+                }
+            }, 800);
         }
 
         // ====================
@@ -926,6 +1164,13 @@
                     } else {
                         timerElement.style.opacity = '1';
                     }
+                    
+                    // Update urgency bar text
+                    document.querySelector('.urgency-bar span').textContent = '🔥 العرض سينتهي خلال:';
+                }
+                
+                if (timeLeft < 300) { // Last 5 minutes
+                    timerElement.innerHTML = `⏰ ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
                 }
                 
                 if (timeLeft > 0) {
@@ -934,6 +1179,12 @@
                     timerElement.textContent = "00:00:00";
                     timerElement.style.color = "#ff0033";
                     document.querySelector('.urgency-bar').innerHTML = '<span>⏰ انتهى العرض!</span>';
+                    
+                    // Disable ordering
+                    document.querySelectorAll('button').forEach(btn => {
+                        btn.disabled = true;
+                        btn.style.opacity = '0.5';
+                    });
                 }
             }
             
@@ -995,12 +1246,12 @@
                 const name = names[Math.floor(Math.random() * names.length)];
                 const city = cities[Math.floor(Math.random() * cities.length)];
                 const product = products[Math.floor(Math.random() * products.length)].name;
-                const time = ['دقيقة', 'دقيقتين', '3 دقائق'][Math.floor(Math.random() * 3)];
+                const time = ['دقيقة', 'دقيقتين', '3 دقائق', '5 دقائق'][Math.floor(Math.random() * 4)];
                 
                 const activityItem = document.createElement('div');
                 activityItem.className = 'activity-item';
                 activityItem.innerHTML = `
-                    <strong>${name}</strong> من ${city} حجز ${product}
+                    <strong style="color: #ff0033;">${name}</strong> من ${city} حجز ${product}
                     <span style="float: left; color: #888; font-size: 12px;">قبل ${time}</span>
                 `;
                 
@@ -1016,8 +1267,8 @@
             }
             
             // Add initial activities
-            for (let i = 0; i < 2; i++) {
-                setTimeout(addActivity, i * 2000);
+            for (let i = 0; i < 3; i++) {
+                setTimeout(addActivity, i * 1500);
             }
         }
 
@@ -1029,8 +1280,11 @@
             
             if (message) {
                 // Custom notification
-                document.getElementById('notifName').textContent = names[Math.floor(Math.random() * names.length)];
-                document.getElementById('notifProduct').textContent = products[Math.floor(Math.random() * products.length)].name;
+                const name = names[Math.floor(Math.random() * names.length)];
+                const product = products[Math.floor(Math.random() * products.length)].name;
+                
+                document.getElementById('notifName').textContent = name;
+                document.getElementById('notifProduct').textContent = product;
             }
             
             notification.style.display = 'block';
@@ -1067,7 +1321,7 @@
             const form = document.getElementById('orderForm');
             
             // Show loading state
-            confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التأكيد...';
+            confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تأكيد الطلب...';
             confirmBtn.disabled = true;
             
             // Decrease stock for selected product
@@ -1089,19 +1343,24 @@
             setTimeout(() => {
                 document.querySelector('.modal-text').innerHTML = `
                     <div style="text-align: center; color: #00ff88;">
-                        <h3>🎉 تم تأكيد حجزك!</h3>
-                        <p>سيتم التواصل معك خلال 24 ساعة</p>
-                        <p style="font-size: 14px; color: #ffcc00;">رقم طلبك: #${Math.floor(10000 + Math.random() * 90000)}</p>
+                        <h3 style="font-size: 24px; margin-bottom: 15px;">🎉 تم تأكيد حجزك بنجاح!</h3>
+                        <p>سيتم التواصل معك خلال 24 ساعة لتأكيد العنوان</p>
+                        <p style="font-size: 14px; color: #ffcc00; margin-top: 10px;">
+                            رقم طلبك: #${Math.floor(10000 + Math.random() * 90000)}
+                        </p>
+                        <p style="font-size: 12px; color: #ccc; margin-top: 10px;">
+                            شكراً لثقتك بـ viZion
+                        </p>
                     </div>
                 `;
                 
                 document.querySelector('.modal-buttons').innerHTML = `
-                    <button class="modal-confirm" onclick="location.reload()" style="width: 100%;">
-                        تم بنجاح
+                    <button class="modal-confirm" onclick="location.reload()" style="width: 100%; background: #00ff88; color: #000;">
+                        ✅ تم بنجاح - إغلاق
                     </button>
                 `;
                 
-                // Actually submit form after 2 seconds
+                // Submit form after 2 seconds
                 setTimeout(() => {
                     form.submit();
                 }, 2000);
@@ -1109,24 +1368,7 @@
         }
 
         // ====================
-        // SCROLL TO FORM
-        // ====================
-        function scrollToForm() {
-            const form = document.getElementById('orderForm');
-            form.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-            
-            // Highlight form briefly
-            form.style.boxShadow = '0 0 0 3px rgba(255, 0, 51, 0.5)';
-            setTimeout(() => {
-                form.style.boxShadow = 'none';
-            }, 1000);
-        }
-
-        // ====================
-        // TOUCH OPTIMIZATIONS
+        // MOBILE OPTIMIZATIONS
         // ====================
         // Prevent zoom on double-tap
         let lastTouchEnd = 0;
@@ -1138,34 +1380,44 @@
             lastTouchEnd = now;
         }, false);
 
-        // Prevent pull-to-refresh on iOS
-        document.addEventListener('touchmove', function(e) {
-            if (e.scale !== 1) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-
-        // ====================
-        // PERFORMANCE OPTIMIZATIONS
-        // ====================
-        // Lazy load images
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        imageObserver.unobserve(img);
-                    }
-                });
-            });
+        // Hide sticky bar when scrolling up on mobile
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const stickyBar = document.getElementById('stickyOrder');
             
-            document.querySelectorAll('img').forEach(img => {
-                if (img.dataset.src) {
-                    imageObserver.observe(img);
+            if (window.innerWidth < 768) {
+                if (scrollTop > lastScrollTop) {
+                    // Scrolling down - show bar
+                    stickyBar.classList.remove('hidden');
+                } else {
+                    // Scrolling up - hide bar if at top
+                    if (scrollTop < 100) {
+                        stickyBar.classList.add('hidden');
+                    }
                 }
-            });
-        }
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768) {
+                document.getElementById('stickyOrder').classList.remove('hidden');
+            }
+        });
+
+        // Show form when scrolling near it
+        window.addEventListener('scroll', function() {
+            const form = document.getElementById('orderForm');
+            const productsGrid = document.getElementById('productsGrid');
+            const scrollPosition = window.scrollY + window.innerHeight;
+            
+            if (productsGrid && scrollPosition > productsGrid.offsetTop + productsGrid.offsetHeight - 100) {
+                form.classList.add('active');
+            }
+        });
     </script>
 </body>
 </html>
