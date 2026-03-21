@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>عجلة الحظ | Vizion.iq</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300..900&display=swap" rel="stylesheet">
@@ -18,102 +18,128 @@
         background-size: 20px 20px;
         color: #2D3748;
         font-family: "Cairo", sans-serif;
+        -webkit-tap-highlight-color: transparent;
       }
       .sticker-shadow { box-shadow: 6px 6px 0px 0px rgba(0,0,0,0.15); }
       .sticker-border { border: 4px solid #000; background-color: #fff; }
-      .wheel-container { transition: transform 5s cubic-bezier(0.15, 0, 0.15, 1); }
+      .wheel-container { transition: transform 6s cubic-bezier(0.2, 0, 0.1, 1); }
+      .wheel-glow { box-shadow: 0 0 40px rgba(255, 107, 107, 0.2), 0 0 80px rgba(255, 107, 107, 0.1); }
+      
       @keyframes pointer-bounce {
         0%, 100% { transform: translateX(-50%) scale(1); }
         50% { transform: translateX(-50%) scale(1.2) translateY(-5px); }
       }
-      .pointer-hit { animation: pointer-bounce 0.1s ease-in-out; }
+      .pointer-hit { animation: pointer-bounce 0.15s ease-in-out infinite; }
+      
       .floating { animation: float 4s ease-in-out infinite; }
       @keyframes float {
         0%, 100% { transform: translateY(0) rotate(-2deg); }
         50% { transform: translateY(-10px) rotate(1deg); }
       }
+
+      @media (max-width: 640px) {
+        .sticker-border { border-width: 3px; }
+        .sticker-shadow { box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.15); }
+      }
     </style>
   </head>
-  <body class="selection:bg-pink-200">
-    <div id="app" class="min-h-screen flex flex-col items-center px-4 py-8 md:py-16">
+  <body class="selection:bg-pink-200 overflow-x-hidden">
+    <div id="app" class="min-h-screen flex flex-col items-center px-4 py-6 md:py-16 relative">
       
-      <div class="w-full max-w-4xl flex justify-between items-center mb-8">
-        <div class="bg-white sticker-border px-4 py-1 rounded-full text-sm font-bold sticker-shadow rotate-[1deg]">
+      <div class="absolute top-20 left-10 opacity-10 rotate-12 hidden lg:block pointer-events-none">
+        <i data-lucide="sparkles" class="w-32 h-32 text-pink-500"></i>
+      </div>
+      <div class="absolute bottom-20 right-10 opacity-10 -rotate-12 hidden lg:block pointer-events-none">
+        <i data-lucide="star" class="w-40 h-40 text-yellow-500"></i>
+      </div>
+
+      <div class="w-full max-w-4xl flex justify-between items-center mb-6 md:mb-8 z-10">
+        <div class="bg-white sticker-border px-3 py-1 md:px-4 md:py-1 rounded-full text-xs md:text-sm font-bold sticker-shadow rotate-[1deg]">
           <span class="w-2 h-2 bg-green-500 inline-block rounded-full animate-ping mr-1"></span>
           المتجر مفتوح!
         </div>
-        <div id="activePrizeBadge" class="hidden flex items-center gap-2 bg-yellow-400 sticker-border px-4 py-1 rounded-full text-sm font-bold sticker-shadow rotate-[-2deg]">
-          <i data-lucide="gift" class="w-4 h-4"></i>
+        <div id="activePrizeBadge" class="hidden flex items-center gap-2 bg-yellow-400 sticker-border px-3 py-1 md:px-4 md:py-1 rounded-full text-xs md:text-sm font-bold sticker-shadow rotate-[-2deg]">
+          <i data-lucide="gift" class="w-3 h-3 md:w-4 md:h-4"></i>
           الجائزة نشطة
         </div>
       </div>
 
-      <header class="text-center mb-12">
-        <div class="inline-block bg-white sticker-border sticker-shadow px-8 py-3 rounded-full mb-6 rotate-[3deg] floating">
-          <h2 class="text-pink-500 font-bold text-2xl flex items-center gap-3">
-            <i data-lucide="sparkles" class="w-6 h-6"></i>
-            عجلة علاوي
+      <header class="text-center mb-8 md:mb-12 z-10">
+        <div class="inline-block bg-white sticker-border sticker-shadow px-6 py-2 md:px-8 md:py-3 rounded-full mb-4 md:mb-6 rotate-[3deg] floating">
+          <h2 class="text-pink-500 font-bold text-lg md:text-2xl flex items-center gap-2 md:gap-3">
+            <i data-lucide="sparkles" class="w-5 h-5 md:w-6 md:h-6"></i>
+            عجلة الحظ
           </h2>
         </div>
-        <h1 class="text-6xl md:text-8xl font-black text-gray-800 tracking-tighter mb-6">
-           <span class="text-pink-500 underline decoration-8 decoration-yellow-300">هداية مثيرة لسارة</span>
+        <h1 class="text-5xl md:text-8xl font-black text-gray-800 tracking-tighter mb-4 md:mb-6">
+           <span class="text-pink-500 underline decoration-4 md:decoration-8 decoration-yellow-300">Vizion.iq</span>
         </h1>
       </header>
 
-      <div class="flex flex-col lg:flex-row items-center justify-center gap-12 mb-20 w-full max-w-6xl">
+      <div class="flex flex-col lg:flex-row items-center justify-center gap-8 md:gap-12 mb-12 md:mb-20 w-full max-w-6xl z-10">
         
         <div id="currentPrizeSection" class="hidden w-full lg:w-1/3 order-2 lg:order-1">
-          <div class="bg-white sticker-border sticker-shadow p-8 rounded-[2rem] rotate-[1deg]">
-            <h3 class="font-black text-2xl mb-4 text-gray-800 flex items-center gap-2">
+          <div class="bg-white sticker-border sticker-shadow p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] rotate-[1deg]">
+            <h3 class="font-black text-xl md:text-2xl mb-4 text-gray-800 flex items-center gap-2">
               <i data-lucide="award" class="text-yellow-500"></i>
               جائزتك الحالية
             </h3>
-            <div class="p-6 rounded-2xl mb-6 text-center border-4 border-dashed border-pink-500">
-              <span id="activePrizeText" class="text-3xl font-black text-pink-500"></span>
+            <div class="p-4 md:p-6 rounded-2xl mb-4 md:mb-6 text-center border-4 border-dashed border-pink-500">
+              <span id="activePrizeText" class="text-2xl md:text-3xl font-black text-pink-500"></span>
             </div>
             <div class="flex items-center gap-3 text-gray-600 bg-gray-50 p-3 rounded-xl" dir="ltr">
               <i data-lucide="copy" class="w-5 h-5 cursor-pointer hover:text-pink-500" onclick="copyCode()"></i>
-              <code id="prizeCode" class="font-mono font-bold text-lg w-full text-center">---</code>
+              <code id="prizeCode" class="font-mono font-bold text-base md:text-lg w-full text-center">---</code>
             </div>
           </div>
         </div>
 
-        <div class="relative order-1 lg:order-2">
-          <div class="absolute top-[-30px] left-1/2 -translate-x-1/2 z-30">
-            <div class="w-10 h-14 bg-gray-900 sticker-border rounded-b-full shadow-2xl flex items-end justify-center pb-2">
-              <div class="w-2 h-2 bg-white rounded-full"></div>
+        <div class="relative order-1 lg:order-2 w-full max-w-[340px] md:max-w-none flex flex-col items-center">
+          <div id="pointer" class="absolute top-[-30px] md:top-[-40px] left-1/2 -translate-x-1/2 z-30">
+            <div class="relative w-10 h-14 md:w-12 md:h-16 flex flex-col items-center">
+              <div class="w-8 h-8 md:w-10 md:h-10 bg-gray-900 border-4 border-black rounded-full shadow-xl flex items-center justify-center">
+                 <div class="w-2 h-2 md:w-3 md:h-3 bg-white rounded-full animate-pulse"></div>
+              </div>
+              <div class="w-0 h-0 border-l-[10px] md:border-l-[12px] border-l-transparent border-r-[10px] md:border-r-[12px] border-r-transparent border-t-[16px] md:border-t-[20px] border-t-black -mt-1"></div>
             </div>
           </div>
 
-          <div class="relative w-[320px] h-[320px] md:w-[500px] md:h-[500px] rounded-full sticker-border sticker-shadow bg-white p-2 overflow-hidden">
-            <canvas id="wheelCanvas" width="1000" height="1000" class="w-full h-full wheel-container"></canvas>
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-24 md:h-24 bg-white sticker-border rounded-full z-20 flex items-center justify-center shadow-2xl">
-              <div class="w-8 h-8 md:w-12 md:h-12 bg-pink-500 rounded-full flex items-center justify-center">
-                <i data-lucide="star" class="text-white w-4 h-4 md:w-6 md:h-6 fill-current"></i>
+          <div class="relative p-2 md:p-4 bg-white/50 rounded-full backdrop-blur-sm border-2 border-dashed border-pink-200 wheel-glow">
+            <div class="relative w-[300px] h-[300px] xs:w-[320px] xs:h-[320px] md:w-[540px] md:h-[540px] rounded-full sticker-border sticker-shadow bg-white p-2 md:p-3 overflow-hidden">
+              <canvas id="wheelCanvas" width="1000" height="1000" class="w-full h-full wheel-container"></canvas>
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70px] h-[70px] md:w-[124px] md:h-[124px] border-4 border-black/10 rounded-full pointer-events-none"></div>
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-28 md:h-28 bg-white sticker-border rounded-full z-20 flex items-center justify-center shadow-2xl">
+                <div class="w-10 h-10 md:w-16 md:h-16 bg-pink-500 rounded-full flex items-center justify-center border-4 border-black shadow-inner">
+                  <i data-lucide="star" class="text-white w-5 h-5 md:w-8 md:h-8 fill-current drop-shadow-md"></i>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="mt-8 flex flex-col items-center gap-4">
-            <button id="spinButton" class="group relative px-16 py-6 rounded-3xl font-black text-3xl sticker-border sticker-shadow transition-all bg-yellow-400 text-gray-800 hover:bg-yellow-300 hover:-translate-y-1 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed">
+          <div class="mt-6 md:mt-8 flex flex-col items-center gap-4 w-full">
+            <button id="spinButton" class="group relative w-full md:w-auto px-12 md:px-16 py-4 md:py-6 rounded-2xl md:rounded-3xl font-black text-2xl md:text-3xl sticker-border sticker-shadow transition-all bg-yellow-400 text-gray-800 hover:bg-yellow-300 hover:-translate-y-1 active:translate-y-0">
               <span id="spinButtonText">دور الآن!</span>
             </button>
           </div>
         </div>
 
         <div class="w-full lg:w-1/3 order-3">
-          <div class="bg-white sticker-border sticker-shadow p-8 rounded-[2rem] rotate-[-1deg]">
-            <h3 class="font-black text-2xl mb-6 text-pink-500 flex items-center gap-2">
+          <div class="bg-white sticker-border sticker-shadow p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] rotate-[-1deg]">
+            <h3 class="font-black text-xl md:text-2xl mb-4 md:mb-6 text-pink-500 flex items-center gap-2">
               <i data-lucide="info"></i>
               القواعد
             </h3>
-            <ul class="space-y-4 text-gray-600 font-medium">
-              <li class="flex gap-2"><span>•</span> يمكن تدوير العجلة في أي وقت.</li>
-              <li class="flex gap-2"><span>•</span> الجوائز صالحة للاستخدام المباشر.</li>
+            <ul class="space-y-3 md:space-y-4 text-gray-600 font-medium text-sm md:text-base">
+              <li class="flex gap-2"><span>•</span> يمكن تدوير العجلة في أي وقت للحصول على عرض.</li>
+              <li class="flex gap-2"><span>•</span> الجوائز صالحة لطلب 4 مجموعات ستيكرات أو أكثر.</li>
             </ul>
           </div>
         </div>
       </div>
+
+      <footer class="mt-auto py-8 text-gray-400 font-bold text-sm z-10">
+        © <span id="year"></span> Vizion.iq - جميع الحقوق محفوظة
+      </footer>
 
       <div id="prizeModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
         <div class="bg-white sticker-border sticker-shadow p-10 rounded-[3rem] max-w-md w-full text-center scale-75 opacity-0 transition-all duration-500" id="modalContent">
@@ -129,10 +155,10 @@
 
     <script>
       const PRIZES = [
-        { id: 1, label: 'بوسه', color: '#FF6B6B', code: 'KISS-01', weight: 5 }, 
-        { id: 2, label: 'بوسه مع حضن', color: '#4ECDC4', code: 'HUG-KISS', weight: 40 },
-        { id: 3, label: 'بوسات من اختيار سارة', color: '#FFE66D', code: 'SARA-CHOICE', weight: 25 },
-        { id: 4, label: 'بوسات من اختيار علي', color: '#FF9F1C', code: 'ALI-CHOICE', weight: 30 },
+        { id: 1, label: 'توصيل مجاني', sublabel: 'لكل العراق', color: '#FF6B6B', textColor: '#FFFFFF', code: 'MAGIC-FREE', weight: 5, icon: '🚚' },
+        { id: 2, label: 'توصيل 3الف', sublabel: 'عرض خاص', color: '#4ECDC4', textColor: '#1A202C', code: 'MAGIC-3K', weight: 40, icon: '💰' },
+        { id: 3, label: 'خصم 30%', sublabel: 'على طلبك', color: '#FFE66D', textColor: '#1A202C', code: 'MAGIC-30', weight: 25, icon: '🏷️' },
+        { id: 4, label: 'مجموعة مجانية', sublabel: 'ستيكرات هدية', color: '#FF9F1C', textColor: '#FFFFFF', code: 'MAGIC-FREE-SET', weight: 30, icon: '🎁' },
       ];
 
       let isSpinning = false;
@@ -150,8 +176,10 @@
       const activePrizeText = document.getElementById('activePrizeText');
       const activePrizeBadge = document.getElementById('activePrizeBadge');
       const prizeCodeDisplay = document.getElementById('prizeCode');
+      const pointer = document.getElementById('pointer');
 
       function init() {
+        document.getElementById('year').innerText = new Date().getFullYear();
         lucide.createIcons();
         drawWheel();
       }
@@ -160,10 +188,6 @@
 
       function playTick() {
         if (!audioCtx) return;
-        const pointer = document.querySelector('.absolute.top-\\[-30px\\]');
-        pointer.classList.remove('pointer-hit');
-        void pointer.offsetWidth;
-        pointer.classList.add('pointer-hit');
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.frequency.setValueAtTime(800, audioCtx.currentTime);
@@ -182,24 +206,51 @@
         const centerX = rect.width / 2, centerY = rect.height / 2, radius = rect.width / 2 - 10;
         const angleStep = (2 * Math.PI) / PRIZES.length;
 
+        ctx.clearRect(0, 0, rect.width, rect.height);
+
+        // Outer Rim
+        ctx.beginPath(); ctx.arc(centerX, centerY, radius + 8, 0, 2 * Math.PI);
+        ctx.fillStyle = '#1A202C'; ctx.fill();
+        ctx.strokeStyle = '#000'; ctx.lineWidth = 3; ctx.stroke();
+
         PRIZES.forEach((prize, i) => {
           const startAngle = i * angleStep - Math.PI/2, endAngle = (i + 1) * angleStep - Math.PI/2;
           ctx.beginPath(); ctx.moveTo(centerX, centerY);
           ctx.arc(centerX, centerY, radius, startAngle, endAngle);
           ctx.fillStyle = prize.color; ctx.fill();
-          ctx.strokeStyle = '#000'; ctx.lineWidth = 6; ctx.stroke();
+          ctx.strokeStyle = '#000'; ctx.lineWidth = 3; ctx.stroke();
+          
           ctx.save(); ctx.translate(centerX, centerY); ctx.rotate(startAngle + angleStep / 2);
-          ctx.textAlign = 'right'; ctx.fillStyle = '#000'; ctx.font = '900 24px Cairo';
-          ctx.strokeStyle = '#fff'; ctx.lineWidth = 4;
-          ctx.strokeText(prize.label, radius - 30, 8); ctx.fillText(prize.label, radius - 30, 8);
+          
+          // Smaller Font Sizes
+          const mainFontSize = Math.max(12, Math.floor(radius * 0.10));
+          const subFontSize = Math.max(9, Math.floor(radius * 0.06));
+          const iconSize = Math.max(20, Math.floor(radius * 0.18));
+
+          // Icon
+          ctx.font = `${iconSize}px serif`; ctx.textAlign = 'center';
+          ctx.fillText(prize.icon, radius * 0.65, 8);
+
+          // Labels
+          ctx.fillStyle = prize.textColor; ctx.textAlign = 'right';
+          ctx.font = `900 ${mainFontSize}px Cairo`;
+          ctx.fillText(prize.label, radius * 0.82, 0);
+          
+          ctx.font = `700 ${subFontSize}px Cairo`; ctx.globalAlpha = 0.8;
+          ctx.fillText(prize.sublabel, radius * 0.82, mainFontSize * 0.8 + 4);
+          
           ctx.restore();
         });
+
+        ctx.beginPath(); ctx.arc(centerX, centerY, rect.width < 500 ? 30 : 40, 0, 2 * Math.PI);
+        ctx.strokeStyle = '#000'; ctx.lineWidth = 6; ctx.stroke();
       }
 
       spinButton.addEventListener('click', () => {
         if (isSpinning) return;
         initAudio();
         isSpinning = true;
+        pointer.classList.add('pointer-hit');
 
         const totalWeight = PRIZES.reduce((sum, p) => sum + p.weight, 0);
         let randomRoll = Math.random() * totalWeight, selectedIndex = 0;
@@ -211,7 +262,7 @@
         const sliceSize = 360 / PRIZES.length;
         const jitter = (Math.random() * (sliceSize * 0.6)) - (sliceSize * 0.3);
         const targetDegree = (360 - (selectedIndex * sliceSize)) - (sliceSize / 2) + jitter;
-        currentRotation += (8 * 360) + (targetDegree - (currentRotation % 360) + 360) % 360;
+        currentRotation += (10 * 360) + (targetDegree - (currentRotation % 360) + 360) % 360;
 
         canvas.style.transform = `rotate(${currentRotation}deg)`;
 
@@ -227,6 +278,7 @@
 
         setTimeout(() => {
           isSpinning = false;
+          pointer.classList.remove('pointer-hit');
           const wonPrize = PRIZES[selectedIndex];
           
           prizeLabel.innerText = wonPrize.label;
@@ -236,7 +288,7 @@
           
           displayActivePrize(wonPrize);
           confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-        }, 5000);
+        }, 6000);
       });
 
       function displayActivePrize(prize) {
