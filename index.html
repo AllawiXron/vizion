@@ -117,9 +117,16 @@
           </div>
 
           <div class="mt-6 md:mt-8 flex flex-col items-center gap-4 w-full">
-            <button id="spinButton" class="group relative w-full md:w-auto px-12 md:px-16 py-4 md:py-6 rounded-2xl md:rounded-3xl font-black text-2xl md:text-3xl sticker-border sticker-shadow transition-all bg-yellow-400 text-gray-800 hover:bg-yellow-300 hover:-translate-y-1 active:translate-y-0">
+            <button id="spinButton" class="group relative w-full md:w-auto px-12 md:px-16 py-4 md:py-6 rounded-2xl md:rounded-3xl font-black text-2xl md:text-3xl sticker-border sticker-shadow transition-all bg-yellow-400 text-gray-800 hover:bg-yellow-300 hover:-translate-y-1 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed">
               <span id="spinButtonText">دور الآن!</span>
             </button>
+            
+            <div id="timerContainer" class="hidden flex flex-col items-center gap-1">
+              <div class="flex items-center gap-2 text-gray-500 font-bold bg-white px-4 py-2 rounded-full border-2 border-gray-100 shadow-sm text-sm">
+                <i data-lucide="clock" class="w-4 h-4"></i>
+                متاح خلال: <span id="countdownText" class="text-pink-500 font-mono">00:00:00</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -130,7 +137,7 @@
               القواعد
             </h3>
             <ul class="space-y-3 md:space-y-4 text-gray-600 font-medium text-sm md:text-base">
-              <li class="flex gap-2"><span>•</span> يمكن تدوير العجلة في أي وقت للحصول على عرض.</li>
+              <li class="flex gap-2"><span>•</span> مسموح بتدوير العجلة مرة واحدة كل 24 ساعة.</li>
               <li class="flex gap-2"><span>•</span> الجوائز صالحة لطلب 4 مجموعات ستيكرات أو أكثر.</li>
             </ul>
           </div>
@@ -161,6 +168,7 @@
         { id: 4, label: 'مجموعة مجانية', sublabel: 'ستيكرات هدية', color: '#FF9F1C', textColor: '#FFFFFF', code: 'MAGIC-FREE-SET', weight: 30, icon: '🎁' },
       ];
 
+      const COOLDOWN_MS = 24 * 60 * 60 * 1000;
       let isSpinning = false;
       let currentRotation = 0;
       let audioCtx = null;
@@ -168,6 +176,9 @@
       const canvas = document.getElementById('wheelCanvas');
       const ctx = canvas.getContext('2d');
       const spinButton = document.getElementById('spinButton');
+      const spinButtonText = document.getElementById('spinButtonText');
+      const timerContainer = document.getElementById('timerContainer');
+      const countdownText = document.getElementById('countdownText');
       const prizeModal = document.getElementById('prizeModal');
       const modalContent = document.getElementById('modalContent');
       const prizeLabel = document.getElementById('prizeLabel');
@@ -182,6 +193,36 @@
         document.getElementById('year').innerText = new Date().getFullYear();
         lucide.createIcons();
         drawWheel();
+        checkCooldown();
+        setInterval(checkCooldown, 1000);
+      }
+
+      function checkCooldown() {
+        const lastSpin = localStorage.getItem('vizion_last_spin');
+        const savedPrize = localStorage.getItem('vizion_saved_prize');
+        
+        if (lastSpin) {
+          const remaining = COOLDOWN_MS - (Date.now() - parseInt(lastSpin));
+          if (remaining > 0) {
+            spinButton.disabled = true;
+            spinButton.classList.add('bg-gray-200', 'text-gray-400', 'hover:bg-gray-200', 'hover:translate-y-0');
+            spinButtonText.innerText = 'تم التدوير';
+            timerContainer.classList.remove('hidden');
+            
+            const h = Math.floor(remaining / 3600000);
+            const m = Math.floor((remaining % 3600000) / 60000);
+            const s = Math.floor((remaining % 60000) / 1000);
+            countdownText.innerText = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+            
+            if (savedPrize) displayActivePrize(JSON.parse(savedPrize));
+            return;
+          }
+        }
+        
+        spinButton.disabled = false;
+        spinButton.classList.remove('bg-gray-200', 'text-gray-400', 'hover:bg-gray-200', 'hover:translate-y-0');
+        spinButtonText.innerText = 'دور الآن!';
+        timerContainer.classList.add('hidden');
       }
 
       function initAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
@@ -208,7 +249,6 @@
 
         ctx.clearRect(0, 0, rect.width, rect.height);
 
-        // Outer Rim
         ctx.beginPath(); ctx.arc(centerX, centerY, radius + 8, 0, 2 * Math.PI);
         ctx.fillStyle = '#1A202C'; ctx.fill();
         ctx.strokeStyle = '#000'; ctx.lineWidth = 3; ctx.stroke();
@@ -222,16 +262,13 @@
           
           ctx.save(); ctx.translate(centerX, centerY); ctx.rotate(startAngle + angleStep / 2);
           
-          // Smaller Font Sizes
           const mainFontSize = Math.max(12, Math.floor(radius * 0.10));
           const subFontSize = Math.max(9, Math.floor(radius * 0.06));
           const iconSize = Math.max(20, Math.floor(radius * 0.18));
 
-          // Icon
           ctx.font = `${iconSize}px serif`; ctx.textAlign = 'center';
           ctx.fillText(prize.icon, radius * 0.65, 8);
 
-          // Labels
           ctx.fillStyle = prize.textColor; ctx.textAlign = 'right';
           ctx.font = `900 ${mainFontSize}px Cairo`;
           ctx.fillText(prize.label, radius * 0.82, 0);
@@ -247,7 +284,7 @@
       }
 
       spinButton.addEventListener('click', () => {
-        if (isSpinning) return;
+        if (isSpinning || spinButton.disabled) return;
         initAudio();
         isSpinning = true;
         pointer.classList.add('pointer-hit');
@@ -281,6 +318,9 @@
           pointer.classList.remove('pointer-hit');
           const wonPrize = PRIZES[selectedIndex];
           
+          localStorage.setItem('vizion_last_spin', Date.now().toString());
+          localStorage.setItem('vizion_saved_prize', JSON.stringify(wonPrize));
+          
           prizeLabel.innerText = wonPrize.label;
           prizeLabel.style.color = wonPrize.color;
           prizeModal.classList.remove('hidden');
@@ -288,6 +328,7 @@
           
           displayActivePrize(wonPrize);
           confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+          checkCooldown();
         }, 6000);
       });
 
