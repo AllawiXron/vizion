@@ -1,390 +1,313 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>viZion | Limited Drop</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Orbitron:wght@600;700;900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>عجلة الحظ | Vizion.iq</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300..900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <style>
+      @theme {
+        --font-sans: "Cairo", ui-sans-serif, system-ui, sans-serif;
+      }
+      body {
+        background-color: #FFF5F5;
+        background-image: radial-gradient(#FFDADA 1px, transparent 1px);
+        background-size: 20px 20px;
+        color: #2D3748;
+        font-family: "Cairo", sans-serif;
+      }
+      .sticker-shadow { box-shadow: 6px 6px 0px 0px rgba(0,0,0,0.15); }
+      .sticker-border { border: 4px solid #000; background-color: #fff; }
+      .wheel-container { transition: transform 5s cubic-bezier(0.15, 0, 0.15, 1); }
+      @keyframes pointer-bounce {
+        0%, 100% { transform: translateX(-50%) scale(1); }
+        50% { transform: translateX(-50%) scale(1.2) translateY(-5px); }
+      }
+      .pointer-hit { animation: pointer-bounce 0.1s ease-in-out; }
+      .floating { animation: float 4s ease-in-out infinite; }
+      @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(-2deg); }
+        50% { transform: translateY(-10px) rotate(1deg); }
+      }
+    </style>
+  </head>
+  <body class="selection:bg-pink-200">
+    <div id="app" class="min-h-screen flex flex-col items-center px-4 py-8 md:py-16">
+      
+      <div class="w-full max-w-4xl flex justify-between items-center mb-8">
+        <div class="bg-white sticker-border px-4 py-1 rounded-full text-sm font-bold sticker-shadow rotate-[1deg]">
+          <span class="w-2 h-2 bg-green-500 inline-block rounded-full animate-ping mr-1"></span>
+          المتجر مفتوح!
+        </div>
+        <div id="activePrizeBadge" class="hidden flex items-center gap-2 bg-yellow-400 sticker-border px-4 py-1 rounded-full text-sm font-bold sticker-shadow rotate-[-2deg]">
+          <i data-lucide="gift" class="w-4 h-4"></i>
+          الجائزة نشطة
+        </div>
+      </div>
+
+      <header class="text-center mb-12">
+        <div class="inline-block bg-white sticker-border sticker-shadow px-8 py-3 rounded-full mb-6 rotate-[3deg] floating">
+          <h2 class="text-pink-500 font-bold text-2xl flex items-center gap-3">
+            <i data-lucide="sparkles" class="w-6 h-6"></i>
+            عجلة الحظ
+          </h2>
+        </div>
+        <h1 class="text-6xl md:text-8xl font-black text-gray-800 tracking-tighter mb-6">
+           <span class="text-pink-500 underline decoration-8 decoration-yellow-300">Vizion.iq</span>
+        </h1>
+      </header>
+
+      <div class="flex flex-col lg:flex-row items-center justify-center gap-12 mb-20 w-full max-w-6xl">
+        
+        <div id="currentPrizeSection" class="hidden w-full lg:w-1/3 order-2 lg:order-1">
+          <div class="bg-white sticker-border sticker-shadow p-8 rounded-[2rem] rotate-[1deg]">
+            <h3 class="font-black text-2xl mb-4 text-gray-800 flex items-center gap-2">
+              <i data-lucide="award" class="text-yellow-500"></i>
+              جائزتك الحالية
+            </h3>
+            <div class="p-6 rounded-2xl mb-6 text-center border-4 border-dashed border-pink-500">
+              <span id="activePrizeText" class="text-3xl font-black text-pink-500"></span>
+            </div>
+            <div class="flex items-center gap-3 text-gray-600 bg-gray-50 p-3 rounded-xl" dir="ltr">
+              <i data-lucide="copy" class="w-5 h-5 cursor-pointer hover:text-pink-500" onclick="copyCode()"></i>
+              <code id="prizeCode" class="font-mono font-bold text-lg w-full text-center">---</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative order-1 lg:order-2">
+          <div class="absolute top-[-30px] left-1/2 -translate-x-1/2 z-30">
+            <div class="w-10 h-14 bg-gray-900 sticker-border rounded-b-full shadow-2xl flex items-end justify-center pb-2">
+              <div class="w-2 h-2 bg-white rounded-full"></div>
+            </div>
+          </div>
+
+          <div class="relative w-[320px] h-[320px] md:w-[500px] md:h-[500px] rounded-full sticker-border sticker-shadow bg-white p-2 overflow-hidden">
+            <canvas id="wheelCanvas" width="1000" height="1000" class="w-full h-full wheel-container"></canvas>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-24 md:h-24 bg-white sticker-border rounded-full z-20 flex items-center justify-center shadow-2xl">
+              <div class="w-8 h-8 md:w-12 md:h-12 bg-pink-500 rounded-full flex items-center justify-center">
+                <i data-lucide="star" class="text-white w-4 h-4 md:w-6 md:h-6 fill-current"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 flex flex-col items-center gap-4">
+            <button id="spinButton" class="group relative px-16 py-6 rounded-3xl font-black text-3xl sticker-border sticker-shadow transition-all bg-yellow-400 text-gray-800 hover:bg-yellow-300 hover:-translate-y-1 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed">
+              <span id="spinButtonText">دور الآن!</span>
+            </button>
+            
+            <div id="timerContainer" class="hidden flex flex-col items-center gap-1">
+              <div class="flex items-center gap-2 text-gray-500 font-bold bg-white px-4 py-2 rounded-full border-2 border-gray-100 shadow-sm">
+                <i data-lucide="clock" class="w-4 h-4"></i>
+                متاح خلال: <span id="countdownText" class="text-pink-500 font-mono">00:00:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-1/3 order-3">
+          <div class="bg-white sticker-border sticker-shadow p-8 rounded-[2rem] rotate-[-1deg]">
+            <h3 class="font-black text-2xl mb-6 text-pink-500 flex items-center gap-2">
+              <i data-lucide="info"></i>
+              القواعد
+            </h3>
+            <ul class="space-y-4 text-gray-600 font-medium">
+              <li class="flex gap-2"><span>•</span> مسموح بتدوير العجلة مرة واحدة كل 24 ساعة.</li>
+              <li class="flex gap-2"><span>•</span> الجوائز صالحة لطلب 4 مجموعات ستيكرات أو أكثر.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="prizeModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div class="bg-white sticker-border sticker-shadow p-10 rounded-[3rem] max-w-md w-full text-center scale-75 opacity-0 transition-all duration-500" id="modalContent">
+          <h2 class="text-4xl font-black text-gray-800 mb-4">مبروك!</h2>
+          <p class="text-gray-500 font-bold mb-6">لقد ربحت:</p>
+          <div id="prizeLabel" class="text-4xl font-black mb-8 py-6 px-4 rounded-3xl sticker-border bg-gray-50 shadow-inner"></div>
+          <button id="closeModal" class="w-full py-5 bg-gray-900 text-white font-black text-xl rounded-2xl hover:bg-gray-800 sticker-shadow">
+            استلام الجائزة
+          </button>
+        </div>
+      </div>
+    </div>
 
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              cairo: ['Cairo', 'sans-serif'],
-              orbitron: ['Orbitron', 'sans-serif'],
-            },
-            colors: {
-              brand: {
-                black: '#050505',
-                dark: '#111111',
-                accent: '#00f2ff', // Cyan
-                purple: '#a855f7',
-                danger: '#ff0055',
-                success: '#00ff88',
-              }
-            },
-            animation: {
-              'pulse-fast': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-              'pop-in': 'popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards', // New non-bouncing entry
-              'float': 'float 3s ease-in-out infinite',
-            },
-            keyframes: {
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-10px)' },
-              },
-              popIn: {
-                '0%': { opacity: '0', transform: 'scale(0.8)' },
-                '100%': { opacity: '1', transform: 'scale(1)' }
-              }
-            }
+      const PRIZES = [
+        { id: 1, label: 'توصيل مجاني', color: '#FF6B6B', code: 'MAGIC-FREE', weight: 5 }, 
+        { id: 2, label: 'توصيل 3الف فقط', color: '#4ECDC4', code: 'MAGIC-3K', weight: 40 },
+        { id: 3, label: 'خصم 30%', color: '#FFE66D', code: 'MAGIC-30', weight: 25 },
+        { id: 4, label: 'مجموعة مجانية', color: '#FF9F1C', code: 'MAGIC-FREE-SET', weight: 30 },
+      ];
+
+      const COOLDOWN_MS = 24 * 60 * 60 * 1000;
+      let isSpinning = false;
+      let currentRotation = 0;
+      let audioCtx = null;
+
+      const canvas = document.getElementById('wheelCanvas');
+      const ctx = canvas.getContext('2d');
+      const spinButton = document.getElementById('spinButton');
+      const spinButtonText = document.getElementById('spinButtonText');
+      const timerContainer = document.getElementById('timerContainer');
+      const countdownText = document.getElementById('countdownText');
+      const prizeModal = document.getElementById('prizeModal');
+      const modalContent = document.getElementById('modalContent');
+      const prizeLabel = document.getElementById('prizeLabel');
+      const closeModal = document.getElementById('closeModal');
+      const currentPrizeSection = document.getElementById('currentPrizeSection');
+      const activePrizeText = document.getElementById('activePrizeText');
+      const activePrizeBadge = document.getElementById('activePrizeBadge');
+      const prizeCodeDisplay = document.getElementById('prizeCode');
+
+      function init() {
+        lucide.createIcons();
+        drawWheel();
+        checkCooldown();
+        setInterval(checkCooldown, 1000);
+      }
+
+      function checkCooldown() {
+        const lastSpin = localStorage.getItem('vizion_last_spin');
+        const savedPrize = localStorage.getItem('vizion_saved_prize');
+        
+        if (lastSpin) {
+          const remaining = COOLDOWN_MS - (Date.now() - parseInt(lastSpin));
+          if (remaining > 0) {
+            spinButton.disabled = true;
+            spinButton.classList.add('bg-gray-200', 'text-gray-400');
+            spinButtonText.innerText = 'تم التدوير';
+            timerContainer.classList.remove('hidden');
+            
+            const h = Math.floor(remaining / 3600000);
+            const m = Math.floor((remaining % 3600000) / 60000);
+            const s = Math.floor((remaining % 60000) / 1000);
+            countdownText.innerText = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+            
+            if (savedPrize) displayActivePrize(JSON.parse(savedPrize));
+            return;
           }
         }
+        
+        // If no cooldown or cooldown expired
+        spinButton.disabled = false;
+        spinButton.classList.remove('bg-gray-200', 'text-gray-400');
+        spinButtonText.innerText = 'دور الآن!';
+        timerContainer.classList.add('hidden');
       }
-    </script>
-    <style>
-        body { background-color: #050505; color: white; -webkit-tap-highlight-color: transparent; }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: #111; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-        
-        /* Smooth Scrolling */
-        html { scroll-behavior: smooth; }
-        
-        /* Highlighting Logic */
-        .selected-card img {
-            transform: scale(1.1);
-        }
-        .selected-card .card-border {
-            border-color: #00f2ff;
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
-        }
-        .selected-card .name-plate {
-            background-color: #00f2ff !important;
-            color: black !important;
-        }
 
-        /* Stock Pulse Animation */
-        @keyframes stockPulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0.5; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        .dot-pulse { animation: stockPulse 2s infinite; }
-    </style>
-</head>
-<body class="font-cairo antialiased pb-24 overflow-x-hidden bg-[#050505]">
+      function initAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
 
-    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
-        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-brand-purple/10 blur-[100px] rounded-full"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-brand-accent/10 blur-[100px] rounded-full"></div>
-    </div>
+      function playTick() {
+        if (!audioCtx) return;
+        const pointer = document.querySelector('.absolute.top-\\[-30px\\]');
+        pointer.classList.remove('pointer-hit');
+        void pointer.offsetWidth;
+        pointer.classList.add('pointer-hit');
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.1);
+        gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+      }
 
-    <div class="sticky top-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-lg">
-        <div class="max-w-md mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-2 text-xs font-bold text-white">
-                <i class="fas fa-truck-fast text-brand-success"></i>
-                <span>توصيل مجاني</span>
-            </div>
-            <div class="flex items-center gap-2 font-orbitron font-black text-brand-danger animate-pulse">
-                <span id="timer" class="text-sm tracking-widest">15:00</span>
-                <i class="far fa-clock"></i>
-            </div>
-        </div>
-        <div class="w-full h-0.5 bg-gray-800">
-            <div id="progress-bar" class="h-full bg-gradient-to-r from-brand-danger via-brand-purple to-brand-accent transition-all duration-1000 shadow-[0_0_10px_rgba(255,0,85,0.5)]" style="width: 100%"></div>
-        </div>
-    </div>
+      function drawWheel() {
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * dpr; canvas.height = rect.height * dpr;
+        ctx.scale(dpr, dpr);
+        const centerX = rect.width / 2, centerY = rect.height / 2, radius = rect.width / 2 - 10;
+        const angleStep = (2 * Math.PI) / PRIZES.length;
 
-    <main class="max-w-md mx-auto px-4 pt-6 relative">
-        
-        <div class="text-center mb-8 relative">
-            <h1 class="font-orbitron text-5xl font-black tracking-[0.2em] text-white mb-2 inline-block relative drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
-                viZion
-                <div class="absolute -top-2 -right-4 w-3 h-3 bg-brand-accent rounded-full animate-ping"></div>
-            </h1>
-            <p class="text-gray-400 text-[10px] tracking-[0.3em] uppercase opacity-70">Future Wear // Limited Edition</p>
-        </div>
-
-        <div class="relative rounded-3xl overflow-hidden mb-8 p-[1px] bg-gradient-to-br from-brand-danger via-brand-purple to-brand-accent shadow-2xl shadow-brand-purple/20">
-            <div class="bg-brand-dark rounded-[23px] p-6 text-center relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-brand-purple/20 blur-[50px] rounded-full pointer-events-none"></div>
-                <div class="absolute bottom-0 left-0 w-32 h-32 bg-brand-accent/20 blur-[50px] rounded-full pointer-events-none"></div>
-                
-                <h2 class="text-2xl font-black text-white mb-2 relative z-10">الخصم الأقوى للموسم 🔥</h2>
-                <p class="text-gray-300 text-xs font-bold relative z-10 leading-relaxed">
-                    احصل على هودي viZion بخصم <span class="text-brand-accent text-base mx-1">10,000 دينار</span> ولفترة محدودة
-                </p>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-2 gap-4 mb-12" id="product-grid">
-            </div>
-
-        <div id="checkout-section" class="bg-white text-black rounded-[2rem] p-1 shadow-2xl relative overflow-hidden transform transition-all duration-500 translate-y-10 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 hover:translate-y-0">
-            
-            <div class="bg-white rounded-[1.8rem] p-5 h-full relative z-10">
-                
-                <div class="text-center mb-6 bg-gray-50 border border-gray-200 rounded-2xl p-4 shadow-inner">
-                    <div class="flex flex-col items-center">
-                        <span class="text-gray-400 font-bold line-through text-lg font-orbitron">35,000 IQD</span>
-                        <div class="flex items-center gap-2">
-                            <span class="text-4xl font-black font-orbitron text-brand-dark tracking-tighter">25,000</span>
-                            <span class="text-xs font-bold">د.ع</span>
-                        </div>
-                        <span class="mt-1 text-[10px] font-bold bg-green-100 text-green-700 px-2 py-1 rounded-full border border-green-200">وفرت 10,000 دينار اليوم</span>
-                    </div>
-                </div>
-
-                <h3 class="font-black text-2xl mb-4 text-center">معلومات الحجز</h3>
-                
-                <form id="orderForm" action="https://formspree.io/f/mjgonzyw" method="POST" class="space-y-3">
-                    <input type="hidden" name="الموديل" id="hidden-model">
-                    
-                    <div id="model-preview" class="hidden bg-brand-dark text-white p-3 rounded-xl border border-gray-200 flex items-center gap-3 shadow-lg transform transition-all">
-                        <img id="preview-img" src="" class="w-12 h-12 rounded-lg object-cover border border-white/20">
-                        <div>
-                            <div class="text-[9px] text-brand-accent font-bold uppercase tracking-widest">Selected Model</div>
-                            <div id="preview-name" class="font-orbitron font-black text-lg leading-none"></div>
-                        </div>
-                        <div class="mr-auto text-green-400 text-xl">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold mb-1.5 text-gray-700 mr-1">اختر القياس</label>
-                        <div class="relative">
-                            <select name="القياس" class="w-full bg-gray-50 border-2 border-gray-200 focus:border-brand-accent focus:bg-white focus:ring-4 focus:ring-brand-accent/20 rounded-xl p-3 font-orbitron font-bold outline-none appearance-none transition-all" required>
-                                <option value="" disabled selected>-- اختر القياس --</option>
-                                <option value="S">S (سمول)</option>
-                                <option value="M">M (مديم)</option>
-                                <option value="L">L (لارج)</option>
-                                <option value="XL">XL (اكس لارج)</option>
-                                <option value="XXL">XXL (2X لارج)</option>
-                                <option value="XXXL">XXXL (3X لارج)</option>
-                            </select>
-                            <i class="fas fa-chevron-down absolute left-4 top-4 text-gray-400 pointer-events-none"></i>
-                        </div>
-                    </div>
-
-                    <div class="space-y-3">
-                        <input type="text" name="الاسم" placeholder="الاسم الثلاثي" class="w-full bg-gray-50 border-2 border-gray-200 focus:border-brand-accent focus:bg-white focus:ring-4 focus:ring-brand-accent/20 rounded-xl p-3 font-bold outline-none transition-all placeholder-gray-400" required>
-                        
-                        <input type="tel" name="الهاتف" placeholder="رقم الهاتف (07...)" class="w-full bg-gray-50 border-2 border-gray-200 focus:border-brand-accent focus:bg-white focus:ring-4 focus:ring-brand-accent/20 rounded-xl p-3 font-bold outline-none transition-all placeholder-gray-400 dir-ltr text-right" style="direction: ltr;" required>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-3">
-                        <input type="text" name="المحافظة" placeholder="المحافظة" class="bg-gray-50 border-2 border-gray-200 focus:border-brand-accent focus:bg-white focus:ring-4 focus:ring-brand-accent/20 rounded-xl p-3 font-bold outline-none transition-all" required>
-                        <input type="text" name="المنطقة + اقرب نقطة" placeholder="المنطقة + اقرب نقطة" class="bg-gray-50 border-2 border-gray-200 focus:border-brand-accent focus:bg-white focus:ring-4 focus:ring-brand-accent/20 rounded-xl p-0.001 font-bold outline-none transition-all" required>
-                    </div>
-                    
-                    <button type="submit" class="w-full bg-gradient-to-r from-gray-900 to-black text-white border border-gray-800 font-black text-lg py-4 rounded-xl shadow-xl hover:shadow-2xl hover:scale-[1.02] transform transition-all flex items-center justify-center gap-2 mt-2 group">
-                        <span class="group-hover:text-brand-accent transition-colors">تثبيت الطلب الآن</span>
-                        <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform text-brand-accent"></i>
-                    </button>
-                    
-                    <p class="text-center text-[10px] text-gray-500 font-bold flex items-center justify-center gap-1 mt-2">
-                        <i class="fas fa-shield-alt text-brand-success"></i>
-                        الدفع عند الاستلام - ضمان الجودة 100%
-                    </p>
-                </form>
-            </div>
-            
-            <div class="absolute inset-0 bg-gradient-to-tr from-brand-danger via-brand-purple to-brand-accent opacity-20 z-0"></div>
-        </div>
-    </main>
-
-    <div id="modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-        <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center relative overflow-hidden animate-pop-in shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-            <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-brand-success to-emerald-600"></div>
-            
-            <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-3xl shadow-lg shadow-green-200">
-               <i class="fas fa-check"></i>
-            </div>
-
-            <h3 class="font-black text-2xl text-black mb-1">تأكيد أخير!</h3>
-            <p class="text-gray-500 font-bold mb-5 text-sm">التوصيل مجاني. هل القياس صحيح؟</p>
-
-            <div class="bg-red-50 border border-red-100 rounded-xl p-3 mb-6 text-right">
-                <div class="flex items-start gap-2">
-                    <i class="fas fa-info-circle text-red-500 mt-0.5 text-sm"></i>
-                    <p class="text-red-700 text-[11px] font-bold leading-relaxed">
-                        تنبيه: لا يوجد استرجاع بعد تثبيت الطلب إلا في حال وصلك اللون او التصميم غير عن الي طلبته.
-                    </p>
-                </div>
-            </div>
-
-            <div class="space-y-2">
-                <button onclick="finalSubmit()" class="w-full bg-black text-white font-black py-3.5 rounded-xl text-lg shadow-lg hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
-                    <span>نعم، اعتمد الطلب</span>
-                    <i class="fas fa-check-double text-brand-success"></i>
-                </button>
-                <button onclick="closeModal()" class="w-full bg-transparent text-gray-400 font-bold py-2 text-xs hover:text-black transition-colors">
-                    مراجعة البيانات
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <div id="toast" class="fixed bottom-4 left-4 z-40 transform translate-y-24 opacity-0 transition-all duration-500 pointer-events-none">
-        <div class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 max-w-[280px]">
-            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-brand-success to-emerald-600 flex items-center justify-center text-white font-bold text-xs shrink-0 shadow-lg">
-                <i class="fas fa-shopping-bag"></i>
-            </div>
-            <div class="text-[10px] text-right">
-                <p class="font-bold">طلب جديد من <span class="text-brand-accent" id="toast-name"></span></p>
-                <p class="text-gray-400">من <span id="toast-city"></span> قبل دقيقة</p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // --- DATA & CONFIG ---
-        const products = [
-            { id: 'VILLIAN', name: 'VILLIAN', img: 'https://i.imgur.com/5r8uhtH.jpg', stock: 3 },
-            { id: 'BERSERK', name: 'BERSERK', img: 'https://i.imgur.com/u5ETI2z.jpg', stock: 7 },
-            { id: 'SNAKE', name: 'SNAKE', img: 'https://i.imgur.com/8RSXqzw.jpg', stock: 2 },
-            { id: 'GREEK', name: 'GREEK', img: 'https://i.imgur.com/hRoUcRo.jpg', stock: 5 },
-            { id: 'VILLIAN_V2', name: 'VILLIAN V2', img: 'https://i.imgur.com/VcQUhcA.jpg', stock: 4 },
-        ];
-
-        // --- RENDER PRODUCTS ---
-        const grid = document.getElementById('product-grid');
-        products.forEach(p => {
-            const el = document.createElement('div');
-            el.className = `product-card group cursor-pointer relative`;
-            el.onclick = () => selectProduct(p, el);
-            el.innerHTML = `
-                <div class="card-border rounded-2xl overflow-hidden border border-white/10 bg-brand-dark transition-all duration-300 relative">
-                    <div class="absolute top-2 right-2 z-20 bg-brand-success text-black text-[9px] font-black px-2 py-1 rounded-full shadow-lg">SAVE 10K</div>
-                    <div class="aspect-square w-full relative overflow-hidden">
-                        <img src="${p.img}" class="w-full h-full object-cover transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                        <div class="absolute bottom-2 left-2 right-2">
-                            <div class="backdrop-blur-md bg-black/60 border border-white/10 rounded-lg p-1.5 flex items-center justify-between">
-                                <div class="flex items-center gap-1.5">
-                                    <span class="block w-1.5 h-1.5 rounded-full bg-green-500 dot-pulse"></span>
-                                    <span class="text-[9px] font-bold text-gray-200">متبقي:</span>
-                                </div>
-                                <span class="text-[10px] font-orbitron font-bold text-white stock-counter" id="stock-${p.id}">${p.stock}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center py-2.5 font-orbitron font-bold text-xs bg-neutral-900 text-white transition-colors name-plate border-t border-white/5">${p.name}</div>
-                </div>
-            `;
-            grid.appendChild(el);
+        PRIZES.forEach((prize, i) => {
+          const startAngle = i * angleStep - Math.PI/2, endAngle = (i + 1) * angleStep - Math.PI/2;
+          ctx.beginPath(); ctx.moveTo(centerX, centerY);
+          ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+          ctx.fillStyle = prize.color; ctx.fill();
+          ctx.strokeStyle = '#000'; ctx.lineWidth = 6; ctx.stroke();
+          ctx.save(); ctx.translate(centerX, centerY); ctx.rotate(startAngle + angleStep / 2);
+          ctx.textAlign = 'right'; ctx.fillStyle = '#000'; ctx.font = '900 24px Cairo';
+          ctx.strokeStyle = '#fff'; ctx.lineWidth = 4;
+          ctx.strokeText(prize.label, radius - 30, 8); ctx.fillText(prize.label, radius - 30, 8);
+          ctx.restore();
         });
+      }
 
-        // --- LOGIC: SELECTION ---
-        function selectProduct(product, element) {
-            // Remove active state from all
-            document.querySelectorAll('.product-card').forEach(c => {
-                c.classList.remove('selected-card');
-            });
+      spinButton.addEventListener('click', () => {
+        if (isSpinning || spinButton.disabled) return;
+        initAudio();
+        isSpinning = true;
 
-            // Add active state
-            element.classList.add('selected-card');
-
-            // Update Form
-            const formSection = document.getElementById('checkout-section');
-            formSection.classList.remove('opacity-50', 'grayscale', 'translate-y-10');
-            formSection.classList.add('opacity-100', 'grayscale-0', 'translate-y-0');
-            
-            document.getElementById('hidden-model').value = product.name;
-            document.getElementById('preview-img').src = product.img;
-            document.getElementById('preview-name').innerText = product.name;
-            document.getElementById('model-preview').classList.remove('hidden');
-
-            // Smooth Scroll to form (offset for sticky header)
-            const y = formSection.getBoundingClientRect().top + window.scrollY - 80;
-            window.scrollTo({top: y, behavior: 'smooth'});
+        const totalWeight = PRIZES.reduce((sum, p) => sum + p.weight, 0);
+        let randomRoll = Math.random() * totalWeight, selectedIndex = 0;
+        for (let i = 0; i < PRIZES.length; i++) {
+          if (randomRoll < PRIZES[i].weight) { selectedIndex = i; break; }
+          randomRoll -= PRIZES[i].weight;
         }
 
-        // --- LOGIC: TIMER ---
-        let time = 900; // 15 mins
-        setInterval(() => {
-            if (time > 0) {
-                time--;
-                const m = Math.floor(time / 60);
-                const s = time % 60;
-                document.getElementById('timer').innerText = `${m}:${s < 10 ? '0'+s : s}`;
-                document.getElementById('progress-bar').style.width = `${(time/900)*100}%`;
-            }
-        }, 1000);
+        const sliceSize = 360 / PRIZES.length;
+        const jitter = (Math.random() * (sliceSize * 0.6)) - (sliceSize * 0.3);
+        const targetDegree = (360 - (selectedIndex * sliceSize)) - (sliceSize / 2) + jitter;
+        currentRotation += (8 * 360) + (targetDegree - (currentRotation % 360) + 360) % 360;
 
-        // --- LOGIC: FAKE STOCK DEPLETION ---
-        setInterval(() => {
-            const randomIdx = Math.floor(Math.random() * products.length);
-            const p = products[randomIdx];
-            const el = document.getElementById(`stock-${p.id}`);
-            let current = parseInt(el.innerText);
-            if (current > 1) {
-                el.innerText = current - 1;
-                el.classList.add('text-brand-danger', 'scale-150');
-                setTimeout(() => el.classList.remove('text-brand-danger', 'scale-150'), 500);
-            }
-        }, 8000);
+        canvas.style.transform = `rotate(${currentRotation}deg)`;
 
-        // --- LOGIC: TOAST ---
-        const cities = ['بغداد', 'البصرة', 'اربيل', 'النجف', 'كربلاء', 'الموصل', 'الأنبار'];
-        const names = ['علي', 'محمد', 'أحمد', 'حسين', 'عباس', 'حسن', 'عبدالله', 'علاوي'];
-        
-        function showToast() {
-            const t = document.getElementById('toast');
-            document.getElementById('toast-name').innerText = names[Math.floor(Math.random() * names.length)];
-            document.getElementById('toast-city').innerText = cities[Math.floor(Math.random() * cities.length)];
-            
-            t.classList.remove('translate-y-24', 'opacity-0');
-            setTimeout(() => {
-                t.classList.add('translate-y-24', 'opacity-0');
-            }, 4000);
-            
-            setTimeout(showToast, Math.random() * 10000 + 10000);
-        }
-        setTimeout(showToast, 3000);
+        let lastTickAngle = 0;
+        const tickInterval = setInterval(() => {
+          const style = window.getComputedStyle(canvas);
+          const matrix = new WebKitCSSMatrix(style.transform);
+          const angle = (Math.atan2(matrix.b, matrix.a) * (180 / Math.PI) + 360) % 360;
+          if (Math.floor(angle / sliceSize) !== Math.floor(lastTickAngle / sliceSize)) playTick();
+          lastTickAngle = angle;
+          if (!isSpinning) clearInterval(tickInterval);
+        }, 30);
 
-        // --- LOGIC: MODAL & SUBMIT ---
-        const form = document.getElementById('orderForm');
-        const modal = document.getElementById('modal');
-        
-        form.onsubmit = (e) => {
-            e.preventDefault();
-            if(!document.getElementById('hidden-model').value) {
-                alert('الرجاء اختيار موديل أولاً');
-                return;
-            }
-            modal.style.display = 'flex';
-        };
+        setTimeout(() => {
+          isSpinning = false;
+          const wonPrize = PRIZES[selectedIndex];
+          
+          // Lock the user out immediately
+          localStorage.setItem('vizion_last_spin', Date.now().toString());
+          localStorage.setItem('vizion_saved_prize', JSON.stringify(wonPrize));
+          
+          prizeLabel.innerText = wonPrize.label;
+          prizeLabel.style.color = wonPrize.color;
+          prizeModal.classList.remove('hidden');
+          setTimeout(() => modalContent.classList.remove('scale-75', 'opacity-0'), 10);
+          
+          displayActivePrize(wonPrize);
+          confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+          checkCooldown();
+        }, 5000);
+      });
 
-        function closeModal() {
-            modal.style.display = 'none';
-        }
+      function displayActivePrize(prize) {
+        currentPrizeSection.classList.remove('hidden');
+        activePrizeBadge.classList.remove('hidden');
+        activePrizeText.innerText = prize.label;
+        prizeCodeDisplay.innerText = prize.code;
+      }
 
-        function finalSubmit() {
-            const btn = document.querySelector('#modal button');
-            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> جاري التثبيت...';
-            btn.disabled = true;
-            btn.classList.add('opacity-75');
-            form.submit();
-        }
-
-        // Close modal on outside click
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
+      function copyCode() {
+        navigator.clipboard.writeText(prizeCodeDisplay.innerText).then(() => {
+          const original = prizeCodeDisplay.innerText;
+          prizeCodeDisplay.innerText = 'تم النسخ!';
+          setTimeout(() => prizeCodeDisplay.innerText = original, 2000);
         });
+      }
+
+      closeModal.addEventListener('click', () => {
+        modalContent.classList.add('scale-75', 'opacity-0');
+        setTimeout(() => prizeModal.classList.add('hidden'), 500);
+      });
+
+      window.addEventListener('resize', drawWheel);
+      init();
     </script>
-</body>
+  </body>
 </html>
-
-
-
