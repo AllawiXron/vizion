@@ -52,11 +52,11 @@
         <div class="inline-block bg-white sticker-border sticker-shadow px-8 py-3 rounded-full mb-6 rotate-[3deg] floating">
           <h2 class="text-pink-500 font-bold text-2xl flex items-center gap-3">
             <i data-lucide="sparkles" class="w-6 h-6"></i>
-            عجلة الحظ
+            عجلة علاوي
           </h2>
         </div>
         <h1 class="text-6xl md:text-8xl font-black text-gray-800 tracking-tighter mb-6">
-           <span class="text-pink-500 underline decoration-8 decoration-yellow-300">Vizion.iq</span>
+           <span class="text-pink-500 underline decoration-8 decoration-yellow-300">هداية مثيرة لسارة</span>
         </h1>
       </header>
 
@@ -98,13 +98,6 @@
             <button id="spinButton" class="group relative px-16 py-6 rounded-3xl font-black text-3xl sticker-border sticker-shadow transition-all bg-yellow-400 text-gray-800 hover:bg-yellow-300 hover:-translate-y-1 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed">
               <span id="spinButtonText">دور الآن!</span>
             </button>
-            
-            <div id="timerContainer" class="hidden flex flex-col items-center gap-1">
-              <div class="flex items-center gap-2 text-gray-500 font-bold bg-white px-4 py-2 rounded-full border-2 border-gray-100 shadow-sm">
-                <i data-lucide="clock" class="w-4 h-4"></i>
-                متاح خلال: <span id="countdownText" class="text-pink-500 font-mono">00:00:00</span>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -115,8 +108,8 @@
               القواعد
             </h3>
             <ul class="space-y-4 text-gray-600 font-medium">
-              <li class="flex gap-2"><span>•</span> مسموح بتدوير العجلة مرة واحدة كل 24 ساعة.</li>
-              <li class="flex gap-2"><span>•</span> الجوائز صالحة لطلب 4 مجموعات ستيكرات أو أكثر.</li>
+              <li class="flex gap-2"><span>•</span> يمكن تدوير العجلة في أي وقت.</li>
+              <li class="flex gap-2"><span>•</span> الجوائز صالحة للاستخدام المباشر.</li>
             </ul>
           </div>
         </div>
@@ -136,13 +129,12 @@
 
     <script>
       const PRIZES = [
-        { id: 1, label: 'توصيل مجاني', color: '#FF6B6B', code: 'MAGIC-FREE', weight: 5 }, 
-        { id: 2, label: 'توصيل 3الف فقط', color: '#4ECDC4', code: 'MAGIC-3K', weight: 40 },
-        { id: 3, label: 'خصم 30%', color: '#FFE66D', code: 'MAGIC-30', weight: 25 },
-        { id: 4, label: 'مجموعة مجانية', color: '#FF9F1C', code: 'MAGIC-FREE-SET', weight: 30 },
+        { id: 1, label: 'بوسه', color: '#FF6B6B', code: 'KISS-01', weight: 5 }, 
+        { id: 2, label: 'بوسه مع حضن', color: '#4ECDC4', code: 'HUG-KISS', weight: 40 },
+        { id: 3, label: 'بوسات من اختيار سارة', color: '#FFE66D', code: 'SARA-CHOICE', weight: 25 },
+        { id: 4, label: 'بوسات من اختيار علي', color: '#FF9F1C', code: 'ALI-CHOICE', weight: 30 },
       ];
 
-      const COOLDOWN_MS = 24 * 60 * 60 * 1000;
       let isSpinning = false;
       let currentRotation = 0;
       let audioCtx = null;
@@ -150,9 +142,6 @@
       const canvas = document.getElementById('wheelCanvas');
       const ctx = canvas.getContext('2d');
       const spinButton = document.getElementById('spinButton');
-      const spinButtonText = document.getElementById('spinButtonText');
-      const timerContainer = document.getElementById('timerContainer');
-      const countdownText = document.getElementById('countdownText');
       const prizeModal = document.getElementById('prizeModal');
       const modalContent = document.getElementById('modalContent');
       const prizeLabel = document.getElementById('prizeLabel');
@@ -165,37 +154,6 @@
       function init() {
         lucide.createIcons();
         drawWheel();
-        checkCooldown();
-        setInterval(checkCooldown, 1000);
-      }
-
-      function checkCooldown() {
-        const lastSpin = localStorage.getItem('vizion_last_spin');
-        const savedPrize = localStorage.getItem('vizion_saved_prize');
-        
-        if (lastSpin) {
-          const remaining = COOLDOWN_MS - (Date.now() - parseInt(lastSpin));
-          if (remaining > 0) {
-            spinButton.disabled = true;
-            spinButton.classList.add('bg-gray-200', 'text-gray-400');
-            spinButtonText.innerText = 'تم التدوير';
-            timerContainer.classList.remove('hidden');
-            
-            const h = Math.floor(remaining / 3600000);
-            const m = Math.floor((remaining % 3600000) / 60000);
-            const s = Math.floor((remaining % 60000) / 1000);
-            countdownText.innerText = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-            
-            if (savedPrize) displayActivePrize(JSON.parse(savedPrize));
-            return;
-          }
-        }
-        
-        // If no cooldown or cooldown expired
-        spinButton.disabled = false;
-        spinButton.classList.remove('bg-gray-200', 'text-gray-400');
-        spinButtonText.innerText = 'دور الآن!';
-        timerContainer.classList.add('hidden');
       }
 
       function initAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
@@ -239,7 +197,7 @@
       }
 
       spinButton.addEventListener('click', () => {
-        if (isSpinning || spinButton.disabled) return;
+        if (isSpinning) return;
         initAudio();
         isSpinning = true;
 
@@ -271,10 +229,6 @@
           isSpinning = false;
           const wonPrize = PRIZES[selectedIndex];
           
-          // Lock the user out immediately
-          localStorage.setItem('vizion_last_spin', Date.now().toString());
-          localStorage.setItem('vizion_saved_prize', JSON.stringify(wonPrize));
-          
           prizeLabel.innerText = wonPrize.label;
           prizeLabel.style.color = wonPrize.color;
           prizeModal.classList.remove('hidden');
@@ -282,7 +236,6 @@
           
           displayActivePrize(wonPrize);
           confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-          checkCooldown();
         }, 5000);
       });
 
