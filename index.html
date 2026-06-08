@@ -990,7 +990,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
   const LS_CODES   = 'iqg_codes_v1';     // قائمة الرموز
   const LS_DEVICE  = 'iqg_device_v1';    // معرّف هذا الجهاز
   const LS_SESSION = 'iqg_session_v1';   // جلسة الدخول لهذا الجهاز
-  const LS_ADMINPW = 'iqg_adminpw_v1';   // كلمة مرور المدير (مُجزّأة)
 
   // ===== أدوات التجزئة (SHA-256) لعدم تخزين النص الصريح =====
   async function sha(txt){
@@ -1065,13 +1064,15 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
   document.getElementById('gateInput').addEventListener('keydown', e=>{ if(e.key==='Enter') tryUnlock(); });
 
   /* ================= ADMIN ================= */
+  // كلمة مرور المدير الثابتة (مُجزّأة) — لا يمكن لأحد تغييرها من المتصفح
+  const ADMIN_PW_HASH = '4c343b2a4102d1514b07cb2d878a09e467d42ec132470f9a3fe2543f318df85e';
+
   window.openAdmin = function(){
     document.getElementById('admin').classList.add('open');
-    const hasPw = !!localStorage.getItem(LS_ADMINPW);
     document.getElementById('adminLogin').style.display='block';
     document.getElementById('adminManage').style.display='none';
     document.getElementById('adminPw').value='';
-    document.getElementById('adminPw').placeholder = hasPw ? 'كلمة مرور المدير' : 'أنشئ كلمة مرور المدير (أول مرة)';
+    document.getElementById('adminPw').placeholder = 'كلمة مرور المدير';
     document.getElementById('adminLoginErr').classList.remove('show');
     setTimeout(()=>document.getElementById('adminPw').focus(),100);
   };
@@ -1082,14 +1083,10 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     const err = document.getElementById('adminLoginErr');
     const pw = pwEl.value;
     err.classList.remove('show');
-    if(!pw || pw.length < 4){ showErr(err,'كلمة المرور يجب أن تكون 4 أحرف على الأقل'); return; }
+    if(!pw){ showErr(err,'الرجاء إدخال كلمة المرور'); return; }
 
-    const stored = localStorage.getItem(LS_ADMINPW);
     const h = await sha(pw);
-    if(!stored){ // أول مرة: تعيين كلمة المرور
-      localStorage.setItem(LS_ADMINPW, h);
-      enterManage();
-    } else if(stored === h){
+    if(h === ADMIN_PW_HASH){
       enterManage();
     } else {
       showErr(err,'كلمة مرور خاطئة');
