@@ -2,33 +2,20 @@
 <html dir="rtl" lang="ar">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="theme-color" content="#040B24">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>دليل المبيعات العراقي ٢٠٢٥</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:        #040B24;
-  --navy:      #0D1B56;
-  --navy2:     #1A2B73;
-  --gold:      #D4A017;
-  --gold2:     #F0C040;
-  --glass:     rgba(255,255,255,0.04);
-  --border:    rgba(255,255,255,0.08);
-  --border-g:  rgba(212,160,23,0.25);
-  --tw:        #F0F4FF;
-  --td:        rgba(240,244,255,0.72);
-  --tm:        rgba(240,244,255,0.42);
-  --green:     #27AE60;
-  --red:       #E74C3C;
-  --blue:      #2980B9;
-  --orange:    #F39C12;
-  --r:         16px;
-  --r-s:       8px;
-  --shadow:    0 20px 60px rgba(0,0,0,.45);
-}
+:root{--bg:#040B24;--navy:#0D1B56;--navy2:#1A2B73;--gold:#D4A017;--gold2:#F0C040;--glass:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);--border-g:rgba(212,160,23,0.25);--tw:#F0F4FF;--td:rgba(240,244,255,0.72);--tm:rgba(240,244,255,0.42);--green:#27AE60;--red:#E74C3C;--blue:#2980B9;--orange:#F39C12;--r:16px;--r-s:8px;--shadow:0 20px 60px rgba(0,0,0,.45)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{direction:rtl;font-family:'Cairo',sans-serif;font-size:15px;color:var(--tw);background:var(--bg);line-height:1.8;overflow-x:hidden}
+body.gate-active{overflow:hidden}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
 /* PROGRESS */
 #prog{position:fixed;top:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:9999;width:0;box-shadow:0 0 12px var(--gold);transition:width .1s}
@@ -41,10 +28,32 @@ nav{position:fixed;top:3px;inset-inline:0;z-index:9000;height:58px;display:flex;
 .nl{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:20px;font-size:11.5px;font-weight:700;color:var(--tm);text-decoration:none;white-space:nowrap;transition:all .25s;border:1px solid transparent;cursor:pointer}
 .nl:hover,.nl.on{color:var(--gold);border-color:rgba(212,160,23,.3);background:rgba(212,160,23,.07)}
 
+/* HAMBURGER */
+.ham{display:none;flex-direction:column;justify-content:center;gap:5px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;cursor:pointer;padding:7px 8px;width:38px;height:38px;transition:all .2s;flex-shrink:0}
+.ham span{display:block;width:18px;height:1.5px;background:var(--gold);border-radius:2px;transition:all .3s;margin:0 auto}
+.ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.ham:hover{background:rgba(212,160,23,.08);border-color:rgba(212,160,23,.25)}
+
+/* MOBILE MENU */
+.mobile-menu{display:none;position:fixed;inset:0;z-index:9400;background:rgba(4,11,36,.98);backdrop-filter:blur(24px);flex-direction:column;align-items:center;justify-content:center;padding:80px 24px 40px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.mobile-menu.open{display:flex}
+.mm-close{position:absolute;top:18px;left:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:17px;color:var(--tm);transition:all .2s}
+.mm-close:hover{background:rgba(231,76,60,.15);color:var(--red)}
+.mm-logo{font-size:16px;font-weight:900;color:var(--gold);margin-bottom:24px;letter-spacing:.3px}
+.mm-links{display:flex;flex-direction:column;gap:5px;width:100%;max-width:300px}
+.mm-link{display:flex;align-items:center;padding:13px 18px;border-radius:13px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);color:var(--td);font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;text-align:right;gap:8px}
+.mm-link:hover,.mm-link:active{background:rgba(212,160,23,.1);border-color:rgba(212,160,23,.28);color:var(--gold)}
+
 /* BACK TOP */
-#bt{position:fixed;bottom:28px;left:28px;width:42px;height:42px;background:var(--navy);border:1px solid var(--border-g);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:var(--gold);z-index:9000;transition:all .3s;opacity:0;transform:translateY(20px);box-shadow:0 5px 20px rgba(0,0,0,.3)}
+#bt{position:fixed;bottom:72px;left:28px;width:42px;height:42px;background:var(--navy);border:1px solid var(--border-g);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:var(--gold);z-index:8800;transition:all .3s;opacity:0;transform:translateY(20px);box-shadow:0 5px 20px rgba(0,0,0,.3)}
 #bt.vis{opacity:1;transform:translateY(0)}
 #bt:hover{background:var(--gold);color:var(--navy);transform:translateY(-4px)}
+
+/* LOGOUT BTN */
+#logout-btn{display:none;position:fixed;bottom:20px;right:20px;z-index:8800;background:rgba(13,27,86,.88);border:1px solid rgba(255,255,255,.09);border-radius:50%;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;font-size:17px;transition:all .3s;backdrop-filter:blur(10px);color:var(--tm)}
+#logout-btn:hover{background:rgba(231,76,60,.18);border-color:rgba(231,76,60,.25);color:var(--red);transform:scale(1.12)}
 
 /* ===== HERO ===== */
 #hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:80px 20px 80px}
@@ -55,43 +64,37 @@ nav{position:fixed;top:3px;inset-inline:0;z-index:9000;height:58px;display:flex;
 .o3{width:400px;height:400px;background:radial-gradient(circle,rgba(26,43,115,.4),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);animation:op 7s ease-in-out infinite}
 @keyframes of{0%,100%{transform:translate(0,0)}33%{transform:translate(-25px,25px)}66%{transform:translate(18px,-18px)}}
 @keyframes op{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.3}50%{transform:translate(-50%,-50%) scale(1.25);opacity:.5}}
-
 .hc{position:relative;z-index:2;max-width:820px;margin:0 auto}
 .hbadge{display:inline-flex;align-items:center;gap:8px;background:rgba(212,160,23,.08);border:1px solid rgba(212,160,23,.35);color:var(--gold);padding:8px 22px;border-radius:30px;font-size:12.5px;font-weight:700;margin-bottom:28px;animation:fa 1s ease .3s both;letter-spacing:.8px}
 @keyframes fa{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-
 .htitle{font-size:clamp(30px,6vw,62px);font-weight:900;line-height:1.25;margin-bottom:20px;animation:fa 1s ease .6s both}
 .htitle span{display:block}
 .hgold{color:transparent;background:linear-gradient(120deg,var(--gold),var(--gold2),#fff8d0,var(--gold));-webkit-background-clip:text;background-clip:text;background-size:300% auto;animation:shim 4s linear infinite}
 @keyframes shim{to{background-position:300% center}}
-
 .hdiv{width:110px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:22px auto;animation:diva 1.2s ease .9s both}
 @keyframes diva{from{opacity:0;width:0}to{opacity:1;width:110px}}
-
 .hsub{font-size:15.5px;color:var(--td);max-width:560px;margin:0 auto 36px;line-height:2;animation:fa 1s ease 1.1s both}
-
 .hfeats{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:50px;animation:fa 1s ease 1.3s both}
 .hfeat{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px 18px;min-width:120px;text-align:center;transition:all .3s}
 .hfeat:hover{background:rgba(212,160,23,.07);border-color:rgba(212,160,23,.3);transform:translateY(-5px);box-shadow:0 12px 30px rgba(212,160,23,.1)}
 .hfeat-i{font-size:24px;display:block;margin-bottom:5px}
 .hfeat-t{font-size:11.5px;color:var(--td);font-weight:700}
-
 .scroll-ind{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2;animation:fa 1s ease 2s both;cursor:pointer}
 .si-txt{font-size:10px;color:var(--tm);letter-spacing:2px;text-transform:uppercase}
 .si-mouse{width:22px;height:36px;border:1.5px solid rgba(255,255,255,.25);border-radius:11px;position:relative}
 .si-mouse::after{content:'';position:absolute;top:5px;left:50%;transform:translateX(-50%);width:2.5px;height:7px;background:var(--gold);border-radius:3px;animation:sdot 2s ease-in-out infinite}
 @keyframes sdot{0%,100%{top:5px;opacity:1}50%{top:17px;opacity:0}}
 
-/* ===== MAIN WRAPPER ===== */
+/* MAIN WRAPPER */
 .wrap{max-width:1020px;margin:0 auto;padding:0 20px}
 
-/* ===== SECTION COMMON ===== */
+/* SECTION COMMON */
 .slabel{display:inline-flex;align-items:center;gap:7px;background:rgba(212,160,23,.07);border:1px solid rgba(212,160,23,.2);color:var(--gold);padding:5px 14px;border-radius:20px;font-size:11px;font-weight:800;margin-bottom:16px;letter-spacing:1px}
 .stitle{font-size:clamp(22px,4vw,38px);font-weight:900;color:var(--tw);margin-bottom:10px;line-height:1.3}
 .stitle span{color:var(--gold)}
 .sdesc{font-size:14px;color:var(--td);margin-bottom:40px;max-width:640px;line-height:1.9}
 
-/* ===== TOC ===== */
+/* TOC */
 .toc-sec{padding:100px 0}
 .toc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;margin-top:10px}
 .tcard{background:var(--glass);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;display:flex;align-items:center;gap:15px;text-decoration:none;color:inherit;transition:all .3s;cursor:pointer}
@@ -100,7 +103,7 @@ nav{position:fixed;top:3px;inset-inline:0;z-index:9000;height:58px;display:flex;
 .tinfo h3{font-size:13.5px;font-weight:800;color:var(--tw);margin-bottom:3px}
 .tinfo p{font-size:11.5px;color:var(--tm);line-height:1.5}
 
-/* ===== CHAPTER ===== */
+/* CHAPTER */
 .chapter{padding:0 0 90px}
 .chero{position:relative;margin:60px 0 45px;padding:44px 48px;border-radius:22px;overflow:hidden;background:linear-gradient(135deg,var(--navy),var(--navy2));border:1px solid rgba(212,160,23,.18)}
 .chero::before{content:'';position:absolute;top:0;right:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--gold),var(--gold2),var(--gold))}
@@ -108,16 +111,12 @@ nav{position:fixed;top:3px;inset-inline:0;z-index:9000;height:58px;display:flex;
 .clabel{font-size:10px;font-weight:800;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;opacity:.8}
 .ctitle{font-size:clamp(20px,3.5vw,33px);font-weight:900;color:var(--tw);margin-bottom:8px;line-height:1.3}
 .csub{font-size:13.5px;color:var(--td)}
-
-/* section heading */
 .sh{display:flex;align-items:center;gap:12px;margin:36px 0 18px;padding-bottom:10px;border-bottom:1px solid rgba(212,160,23,.12)}
 .sh h2{font-size:17px;font-weight:800;color:var(--tw)}
 .sh-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(212,160,23,.25),transparent)}
-
-/* body text */
 p{font-size:14px;color:var(--td);line-height:1.95;margin-bottom:14px}
 
-/* ===== STATS GRID ===== */
+/* STATS GRID */
 .sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:14px;margin:24px 0}
 .scard{background:linear-gradient(135deg,rgba(13,27,86,.55),rgba(26,43,115,.35));border:1px solid rgba(212,160,23,.18);border-radius:var(--r);padding:22px 18px;text-align:center;transition:all .4s;position:relative;overflow:hidden}
 .scard::before{content:'';position:absolute;top:0;inset-inline:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
@@ -126,7 +125,7 @@ p{font-size:14px;color:var(--td);line-height:1.95;margin-bottom:14px}
 .sn{font-size:26px;font-weight:900;color:var(--gold);display:block;margin-bottom:4px;line-height:1}
 .sl{font-size:11.5px;color:var(--td);line-height:1.4}
 
-/* ===== CALLOUT ===== */
+/* CALLOUT */
 .callout{border-radius:var(--r-s);padding:18px 20px;margin:18px 0;border-right:4px solid;transition:all .3s}
 .callout:hover{transform:translateX(-4px)}
 .ct{background:rgba(39,174,96,.06);border-color:var(--green)}
@@ -138,7 +137,7 @@ p{font-size:14px;color:var(--td);line-height:1.95;margin-bottom:14px}
 .ct .clb{color:#2ECC71}.cw .clb{color:var(--orange)}.cd .clb{color:var(--red)}.ci .clb{color:#3498DB}.cg .clb{color:var(--gold)}
 .cbody{font-size:13px;color:var(--td);line-height:1.85}
 
-/* ===== ERROR CARDS ===== */
+/* ERROR CARDS */
 .ecard{background:rgba(231,76,60,.04);border:1px solid rgba(231,76,60,.13);border-radius:var(--r);padding:22px;margin-bottom:14px;position:relative;overflow:hidden;transition:all .3s}
 .ecard::before{content:'';position:absolute;top:0;right:0;bottom:0;width:4px;background:var(--red);border-radius:0 var(--r) var(--r) 0}
 .ecard:hover{border-color:rgba(231,76,60,.28);transform:translateX(-5px);box-shadow:0 10px 30px rgba(0,0,0,.2)}
@@ -146,7 +145,7 @@ p{font-size:14px;color:var(--td);line-height:1.95;margin-bottom:14px}
 .edesc{font-size:13px;color:var(--td);line-height:1.85;margin-bottom:10px}
 .efix{font-size:13px;color:#2ECC71;font-weight:600;background:rgba(39,174,96,.06);border:1px solid rgba(39,174,96,.15);border-radius:7px;padding:10px 13px}
 
-/* ===== STEPS ===== */
+/* STEPS */
 .steps{margin:26px 0}
 .step{display:flex;gap:18px;margin-bottom:22px;align-items:flex-start}
 .stnum{width:40px;height:40px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:var(--navy);flex-shrink:0;box-shadow:0 4px 18px rgba(212,160,23,.28)}
@@ -154,7 +153,7 @@ p{font-size:14px;color:var(--td);line-height:1.95;margin-bottom:14px}
 .sttitle{font-size:14.5px;font-weight:800;color:var(--tw);margin-bottom:5px}
 .stdesc{font-size:13px;color:var(--td);line-height:1.85}
 
-/* ===== SETTINGS ===== */
+/* SETTINGS */
 .setblock{background:rgba(13,27,86,.3);border:1px solid rgba(255,255,255,.065);border-radius:var(--r);padding:22px;margin-bottom:18px;transition:all .3s}
 .setblock:hover{border-color:rgba(212,160,23,.18);background:rgba(13,27,86,.5)}
 .settitle{font-size:14.5px;font-weight:800;color:var(--gold);padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,.055);display:flex;align-items:center;gap:9px}
@@ -168,7 +167,7 @@ p{font-size:14px;color:var(--td);line-height:1.95;margin-bottom:14px}
 .bo{background:rgba(212,160,23,.12);color:var(--gold);border:1px solid rgba(212,160,23,.28)}
 .br{background:rgba(231,76,60,.12);color:var(--red);border:1px solid rgba(231,76,60,.28)}
 
-/* ===== PLATFORM GRID ===== */
+/* PLATFORM GRID */
 .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin:22px 0}
 .pcard{background:var(--glass);border:1px solid var(--border);border-radius:var(--r);padding:18px;text-align:center;transition:all .3s}
 .pcard.feat{border-color:var(--border-g);background:rgba(212,160,23,.04)}
@@ -178,8 +177,8 @@ p{font-size:14px;color:var(--td);line-height:1.95;margin-bottom:14px}
 .pd{font-size:11px;color:var(--tm);margin-bottom:9px;line-height:1.5}
 .pu{font-size:17px;font-weight:900;color:var(--gold)}
 
-/* ===== TABLE ===== */
-.twrap{overflow-x:auto;margin:22px 0;border-radius:var(--r);border:1px solid var(--border)}
+/* TABLE */
+.twrap{overflow-x:auto;margin:22px 0;border-radius:var(--r);border:1px solid var(--border);-webkit-overflow-scrolling:touch}
 table{width:100%;border-collapse:collapse;font-size:13px}
 thead tr{background:linear-gradient(135deg,var(--navy),var(--navy2))}
 thead th{padding:13px 17px;text-align:right;font-weight:700;color:var(--gold);font-size:12.5px;white-space:nowrap}
@@ -188,7 +187,7 @@ tbody tr:hover{background:rgba(212,160,23,.03)}
 tbody tr:last-child{border-bottom:none}
 tbody td{padding:11px 17px;color:var(--td);line-height:1.65;vertical-align:top}
 
-/* ===== KPI GRID ===== */
+/* KPI GRID */
 .kgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:13px;margin:22px 0}
 .kcard{background:var(--glass);border:1px solid var(--border);border-radius:var(--r-s);padding:17px;transition:all .3s}
 .kcard:hover{transform:translateY(-4px)}
@@ -197,13 +196,13 @@ tbody td{padding:11px 17px;color:var(--td);line-height:1.65;vertical-align:top}
 .kv{font-size:19px;font-weight:900;color:var(--tw)}
 .kd{font-size:11px;color:var(--tm);margin-top:3px}
 
-/* ===== CHECKLIST ===== */
+/* CHECKLIST */
 .chklist{margin:18px 0}
 .chi{display:flex;align-items:flex-start;gap:11px;margin-bottom:12px;padding:11px 15px;border-radius:var(--r-s);background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);transition:all .3s;font-size:13px;color:var(--td);line-height:1.7}
 .chi:hover{background:rgba(39,174,96,.04);border-color:rgba(39,174,96,.14);transform:translateX(-4px)}
 .chi-i{font-size:15px;flex-shrink:0;margin-top:1px}
 
-/* ===== 30-DAY PLAN ===== */
+/* 30-DAY PLAN */
 .week{border-radius:var(--r);overflow:hidden;margin-bottom:22px;border:1px solid var(--border)}
 .wh{padding:16px 22px;font-size:15px;font-weight:800;color:#fff;display:flex;align-items:center;gap:10px}
 .w1{background:linear-gradient(135deg,#1565C0,#1976D2)}
@@ -216,7 +215,7 @@ tbody td{padding:11px 17px;color:var(--td);line-height:1.65;vertical-align:top}
 .dlabel{background:var(--navy2);color:var(--gold);font-size:10.5px;font-weight:700;padding:4px 9px;border-radius:5px;flex-shrink:0;white-space:nowrap;border:1px solid rgba(212,160,23,.18)}
 .dtxt{font-size:12.5px;color:var(--td);line-height:1.7}
 
-/* ===== GOLDEN RULES ===== */
+/* GOLDEN RULES */
 .grules{margin:28px 0}
 .ri{display:flex;gap:16px;align-items:flex-start;margin-bottom:14px;padding:18px 20px;background:linear-gradient(135deg,rgba(212,160,23,.05),rgba(240,192,64,.025));border:1px solid rgba(212,160,23,.13);border-radius:var(--r);transition:all .3s;cursor:default}
 .ri:hover{background:linear-gradient(135deg,rgba(212,160,23,.09),rgba(240,192,64,.05));border-color:rgba(212,160,23,.28);transform:translateX(-6px);box-shadow:0 10px 30px rgba(212,160,23,.09)}
@@ -224,192 +223,326 @@ tbody td{padding:11px 17px;color:var(--td);line-height:1.65;vertical-align:top}
 .rtext{font-size:13px;color:var(--td);line-height:1.85}
 .rtext strong{display:block;font-size:13.5px;color:var(--tw);font-weight:800;margin-bottom:3px}
 
-/* ===== 2 COL ===== */
+/* 2 COL */
 .tcol{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:20px 0}
 
-/* ===== BULLET LIST ===== */
+/* BULLET LIST */
 .blist{margin:14px 0}
 .blist li{list-style:none;padding-right:20px;position:relative;font-size:13px;color:var(--td);margin-bottom:9px;line-height:1.7}
 .blist li::before{content:"◆";color:var(--gold);position:absolute;right:0;font-size:8px;top:5px}
 
-/* ===== TEXT UTILS ===== */
+/* TEXT UTILS */
 .tgold{color:var(--gold);font-weight:700}
 .tred{color:var(--red);font-weight:700}
 .tgreen{color:#2ECC71;font-weight:700}
 .hi{background:rgba(212,160,23,.14);color:var(--gold);padding:2px 6px;border-radius:4px;font-weight:600}
 
-/* ===== CONCLUSION HERO ===== */
+/* CONCLUSION HERO */
 .conhero{background:linear-gradient(135deg,var(--navy),var(--navy2));border:1px solid rgba(212,160,23,.2);border-radius:22px;padding:50px 48px;margin-bottom:36px;text-align:center;position:relative;overflow:hidden}
 .conhero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(212,160,23,.08),transparent 70%);pointer-events:none}
 .conhero h1{font-size:clamp(22px,4vw,36px);color:var(--gold);font-weight:900;margin-bottom:12px}
 .conhero p{font-size:14px;color:var(--td);max-width:560px;margin:0 auto}
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1px solid rgba(212,160,23,.18);padding:60px 20px 40px;text-align:center;margin-top:60px}
 .flogo{font-size:26px;font-weight:900;color:var(--gold);margin-bottom:10px}
 .fdesc{font-size:13.5px;color:var(--td);margin-bottom:24px}
 .fdiv{width:90px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:20px auto}
 .fcopy{font-size:11.5px;color:var(--tm)}
 
-/* ===== SCROLL REVEAL ===== */
+/* SCROLL REVEAL */
 .rv{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
 .rv.in{opacity:1;transform:none}
 .rv-l{opacity:0;transform:translateX(28px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
 .rv-l.in{opacity:1;transform:none}
 
-/* ===== SCROLLBAR ===== */
+/* SCROLLBAR */
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--navy2);border-radius:3px}
 ::-webkit-scrollbar-thumb:hover{background:var(--gold)}
 
-/* ===== RESPONSIVE ===== */
+/* =============================================
+   ACCESS GATE STYLES
+============================================= */
+#gate{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:16px;background-image:radial-gradient(circle at 18% 18%,rgba(13,27,86,.65),transparent 55%),radial-gradient(circle at 82% 82%,rgba(212,160,23,.07),transparent 55%)}
+.gate-card{background:linear-gradient(145deg,rgba(13,27,86,.88),rgba(26,43,115,.6));border:1px solid rgba(212,160,23,.2);border-radius:24px;padding:38px 32px;max-width:400px;width:100%;text-align:center;backdrop-filter:blur(28px);box-shadow:0 40px 100px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.04) inset;position:relative;overflow:hidden;animation:gateIn .65s cubic-bezier(.16,1,.3,1) both}
+.gate-card::after{content:'';position:absolute;top:-60%;left:-60%;width:220%;height:220%;background:radial-gradient(circle at 55% 40%,rgba(212,160,23,.04),transparent 50%);pointer-events:none}
+@keyframes gateIn{from{opacity:0;transform:translateY(30px) scale(.97)}to{opacity:1;transform:none}}
+.gate-logo{font-size:42px;display:block;margin-bottom:10px}
+.gate-title{font-size:19px;font-weight:900;color:var(--gold);margin-bottom:4px;letter-spacing:.3px}
+.gate-sub{font-size:11.5px;color:var(--tm);margin-bottom:22px;letter-spacing:.5px}
+.gate-div{width:55px;height:1.5px;background:linear-gradient(90deg,transparent,rgba(212,160,23,.5),transparent);margin:0 auto 22px}
+.gate-label{font-size:12px;font-weight:700;color:var(--td);text-align:right;margin-bottom:8px;display:block}
+.gate-error{font-size:12px;color:var(--red);min-height:20px;margin-bottom:8px;text-align:center;transition:color .2s}
+.gate-error.shk{animation:gshake .4s cubic-bezier(.36,.07,.19,.97) both}
+@keyframes gshake{10%,90%{transform:translateX(-3px)}20%,80%{transform:translateX(5px)}30%,50%,70%{transform:translateX(-5px)}40%,60%{transform:translateX(5px)}}
+.gate-input{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;color:var(--tw);font-family:'Cairo',sans-serif;font-size:15px;font-weight:600;text-align:center;letter-spacing:2px;transition:border-color .3s,background .3s;direction:ltr;margin-bottom:12px}
+.gate-input:focus{outline:none;border-color:rgba(212,160,23,.55);background:rgba(255,255,255,.07)}
+.gate-input::placeholder{color:var(--tm);letter-spacing:0;font-size:13px;direction:rtl}
+.gate-input:disabled{opacity:.5}
+.gate-remember{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:var(--tm);cursor:pointer;margin-bottom:16px;user-select:none}
+.gate-remember input[type=checkbox]{accent-color:var(--gold);cursor:pointer;width:14px;height:14px}
+.gate-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;border-radius:12px;color:var(--navy);font-family:'Cairo',sans-serif;font-size:15px;font-weight:900;cursor:pointer;transition:all .3s;box-shadow:0 8px 24px rgba(212,160,23,.22);letter-spacing:.3px}
+.gate-btn:hover{transform:translateY(-2px);box-shadow:0 13px 32px rgba(212,160,23,.35)}
+.gate-btn:active{transform:translateY(0)}
+.gate-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+.gate-footer{font-size:11.5px;color:var(--tm);margin-top:22px;line-height:1.8}
+.gate-badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;color:var(--tm);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:4px 11px;margin-top:10px}
+.gate-admin-section{display:none}
+.gate-back-btn{width:100%;margin-top:8px;padding:11px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;color:var(--tm);cursor:pointer;font-family:'Cairo',sans-serif;font-size:13px;transition:all .2s}
+.gate-back-btn:hover{background:rgba(255,255,255,.08);color:var(--tw)}
+@keyframes gateOut{to{opacity:0;transform:scale(.96)}}
+.gate-out{animation:gateOut .4s ease forwards}
+
+/* =============================================
+   ADMIN PANEL STYLES
+============================================= */
+#admin-overlay{display:none;position:fixed;inset:0;z-index:99998;background:rgba(4,11,36,.96);backdrop-filter:blur(14px);align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+#admin-overlay.open{display:flex}
+.admin-card{background:linear-gradient(150deg,rgba(13,27,86,.92),rgba(4,11,36,.88));border:1px solid rgba(212,160,23,.2);border-radius:20px;width:100%;max-width:520px;margin:16px auto;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.6);animation:gateIn .4s cubic-bezier(.16,1,.3,1) both}
+.admin-hdr{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:17px 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(212,160,23,.14)}
+.admin-hdr h2{font-size:15px;font-weight:900;color:var(--gold);letter-spacing:.3px}
+.admin-close{background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.18);color:var(--red);border-radius:8px;padding:6px 13px;cursor:pointer;font-size:12px;font-weight:700;transition:all .2s;font-family:'Cairo',sans-serif}
+.admin-close:hover{background:rgba(231,76,60,.22)}
+.admin-body{padding:20px}
+.admin-sec{margin-bottom:22px}
+.admin-sec-ttl{font-size:10.5px;font-weight:800;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:11px;display:flex;align-items:center;gap:6px;opacity:.8}
+.a-input{background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 13px;color:var(--tw);font-family:'Cairo',sans-serif;font-size:13px;direction:ltr;width:100%;transition:border-color .3s}
+.a-input:focus{outline:none;border-color:rgba(212,160,23,.5)}
+.a-row{display:flex;gap:8px;align-items:stretch}
+.a-row .a-input{flex:1}
+.abtn{padding:10px 15px;border:none;border-radius:10px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:12.5px;font-weight:700;transition:all .2s;white-space:nowrap;line-height:1}
+.ab-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy)}
+.ab-gold:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(212,160,23,.3)}
+.ab-red{background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.18);color:var(--red)}
+.ab-red:hover{background:rgba(231,76,60,.22)}
+.ab-blue{background:rgba(41,128,185,.1);border:1px solid rgba(41,128,185,.18);color:#3498db}
+.ab-blue:hover{background:rgba(41,128,185,.22)}
+.ab-green{background:rgba(39,174,96,.1);border:1px solid rgba(39,174,96,.18);color:#2ECC71}
+.ab-green:hover{background:rgba(39,174,96,.22)}
+.ab-gray{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);color:var(--tm)}
+.ab-gray:hover{background:rgba(255,255,255,.09);color:var(--tw)}
+.codes-list{display:flex;flex-direction:column;gap:6px;max-height:230px;overflow-y:auto;padding-left:2px}
+.codes-list::-webkit-scrollbar{width:4px}
+.codes-list::-webkit-scrollbar-thumb{background:var(--navy2);border-radius:4px}
+.code-item{display:flex;align-items:center;gap:10px;padding:10px 13px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:9px;transition:all .2s}
+.code-item:hover{background:rgba(212,160,23,.05);border-color:rgba(212,160,23,.14)}
+.code-name{flex:1;font-size:13px;font-weight:600;color:var(--tw);direction:ltr;letter-spacing:.5px;word-break:break-all}
+.code-acts{display:flex;gap:5px;flex-shrink:0}
+.codes-empty{text-align:center;color:var(--tm);font-size:13px;padding:22px;background:rgba(255,255,255,.02);border:1px dashed rgba(255,255,255,.07);border-radius:10px;line-height:1.7}
+.a-msg{font-size:12px;padding:9px 13px;border-radius:8px;margin-top:10px;display:none}
+.a-msg.ok{display:block;background:rgba(39,174,96,.1);color:#2ECC71;border:1px solid rgba(39,174,96,.2)}
+.a-msg.err{display:block;background:rgba(231,76,60,.1);color:var(--red);border:1px solid rgba(231,76,60,.2)}
+.a-warn{background:rgba(243,156,18,.07);border:1px solid rgba(243,156,18,.18);border-radius:10px;padding:11px 14px;font-size:12px;color:var(--orange);margin-bottom:16px;line-height:1.7;display:flex;gap:7px}
+.a-cnt{background:rgba(212,160,23,.14);color:var(--gold);border-radius:20px;padding:1px 9px;font-size:11px;margin-right:4px}
+.a-sep{height:1px;background:rgba(255,255,255,.06);margin:20px 0}
+.a-note{font-size:11px;color:var(--tm);margin-top:8px;line-height:1.7;text-align:center}
+
+/* =============================================
+   ENHANCED MOBILE RESPONSIVE
+============================================= */
 @media(max-width:768px){
-  .tcol{grid-template-columns:1fr}
-  .nav-links{display:none}
-  .chero{padding:26px 20px}
-  .conhero{padding:30px 20px}
-  body{font-size:14.5px}
+  .ham{display:flex}
+  .nav-links{display:none!important}
   nav{padding:0 14px;height:54px}
   .nav-logo{font-size:13px}
   .wrap{padding:0 14px}
-  #hero{padding:90px 16px 70px;min-height:auto}
-  .hfeats{gap:8px}
-  .hfeat{min-width:calc(50% - 4px);padding:12px 10px}
-  .toc-sec{padding:60px 0}
-  .toc-grid{grid-template-columns:1fr}
+  #hero{min-height:100svh;padding:68px 14px 68px}
+  .hbadge{font-size:11px;padding:6px 14px;margin-bottom:18px}
+  .hfeat{min-width:calc(50% - 5px);padding:11px 12px}
+  .hfeat-i{font-size:20px}
+  .hfeat-t{font-size:10.5px}
+  .hfeats{gap:8px;margin-bottom:36px}
+  .hdiv{margin:16px auto}
+  .hsub{font-size:13.5px;margin-bottom:26px}
+  .toc-sec{padding:70px 0}
+  .toc-grid{grid-template-columns:1fr;gap:8px}
+  .tcard{padding:15px 16px;gap:12px}
+  .tnum{width:38px;height:38px;font-size:14px}
+  .tinfo h3{font-size:13px}
+  .tinfo p{font-size:11px}
   .chapter{padding:0 0 60px}
-  .chero{margin:40px 0 32px}
-  .sgrid{grid-template-columns:repeat(2,1fr)}
-  .pgrid{grid-template-columns:repeat(2,1fr)}
-  .kgrid{grid-template-columns:repeat(2,1fr)}
-  .setkey{min-width:110px}
-  .step{gap:12px}
-  #bt{bottom:18px;left:18px;width:38px;height:38px}
-  table{font-size:12px}
-  thead th,tbody td{padding:9px 11px}
+  .chero{margin:38px 0 26px;padding:20px 16px}
+  .chero-ghost{display:none}
+  .ctitle{font-size:clamp(17px,3.5vw,24px)}
+  .csub{font-size:12.5px}
+  .sgrid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .scard{padding:16px 12px}
+  .sn{font-size:21px}
+  .si{font-size:22px}
+  .sl{font-size:11px}
+  .pgrid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .kgrid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .step{gap:12px;margin-bottom:18px}
+  .stnum{width:34px;height:34px;font-size:13px;flex-shrink:0}
+  .sttitle{font-size:13.5px}
+  .stdesc{font-size:12.5px}
+  .setblock{padding:16px 14px}
+  .settitle{font-size:13px}
+  .setrow{flex-direction:column;gap:2px;margin-bottom:12px}
+  .setkey{min-width:auto;font-size:12px}
+  .setval{font-size:12px}
+  thead th{font-size:11px;padding:9px 10px}
+  tbody td{font-size:11.5px;padding:8px 10px}
+  .callout{padding:13px 14px}
+  .cbody{font-size:12.5px}
+  .clb{font-size:12px}
+  .ecard{padding:14px 13px}
+  .etitle{font-size:13px}
+  .edesc,.efix{font-size:12px}
+  .di{gap:8px;padding:8px 11px}
+  .dlabel{font-size:10px;padding:3px 7px;min-width:52px;text-align:center}
+  .dtxt{font-size:12px}
+  .wh{font-size:13.5px;padding:13px 16px}
+  .wb{padding:13px 16px}
+  .ri{padding:13px 15px;gap:11px}
+  .rtext{font-size:12.5px}
+  .rtext strong{font-size:13px}
+  .rnum{width:30px;height:30px;font-size:12px;border-radius:7px}
+  .conhero{padding:26px 16px}
+  .conhero h1{font-size:clamp(18px,4vw,26px)}
+  .conhero p{font-size:13px}
+  footer{padding:38px 16px 28px}
+  .flogo{font-size:20px}
+  .fdesc{font-size:12.5px}
+  .sh h2{font-size:14.5px}
+  .slabel{font-size:10px}
+  .stitle{font-size:clamp(19px,4vw,30px)}
+  .sdesc{font-size:13px;margin-bottom:28px}
+  p{font-size:13px}
+  .blist li{font-size:12.5px}
+  .chi{font-size:12.5px;padding:10px 12px}
+  .chi-i{font-size:14px}
+  .badge{font-size:10px;padding:2px 7px}
+  .tcol{grid-template-columns:1fr}
+  #bt{bottom:72px;left:14px;width:38px;height:38px}
+  #logout-btn{right:14px;bottom:18px;width:40px;height:40px}
 }
 @media(max-width:420px){
-  .sgrid,.pgrid,.kgrid{grid-template-columns:1fr}
-  .hfeat{min-width:100%}
-  .setrow{flex-direction:column;gap:4px}
-  .setkey{min-width:0}
+  .hfeat{min-width:calc(50% - 4px)}
+  .gate-card{padding:28px 18px}
+  .a-row{flex-direction:column}
+  .sgrid{gap:8px}
 }
-
-/* ===== ACCESS GATE ===== */
-#gate{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px;overflow-y:auto}
-#gate .g-orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none}
-#gate .go1{width:520px;height:520px;background:radial-gradient(circle,rgba(212,160,23,.14),transparent 70%);top:-160px;right:-140px}
-#gate .go2{width:560px;height:560px;background:radial-gradient(circle,rgba(13,27,86,.6),transparent 70%);bottom:-180px;left:-140px}
-.g-card{position:relative;z-index:2;width:100%;max-width:420px;background:linear-gradient(135deg,rgba(13,27,86,.7),rgba(26,43,115,.45));border:1px solid var(--border-g);border-radius:22px;padding:40px 32px;text-align:center;box-shadow:var(--shadow);animation:fa .8s ease both}
-.g-lock{width:64px;height:64px;margin:0 auto 20px;border-radius:18px;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-size:30px;color:var(--navy);box-shadow:0 10px 30px rgba(212,160,23,.3)}
-.g-card h1{font-size:24px;font-weight:900;color:var(--tw);margin-bottom:8px}
-.g-card p{font-size:13.5px;color:var(--td);margin-bottom:26px;line-height:1.8}
-.g-input{width:100%;background:rgba(4,11,36,.6);border:1.5px solid var(--border);border-radius:12px;padding:15px 18px;font-family:'Cairo',sans-serif;font-size:16px;font-weight:700;color:var(--tw);text-align:center;margin-bottom:14px;transition:all .25s;direction:ltr}
-.g-input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,160,23,.12)}
-.g-input::placeholder{color:var(--tm);font-weight:400}
-.g-btn{width:100%;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;border-radius:12px;padding:15px;font-family:'Cairo',sans-serif;font-size:15.5px;font-weight:800;color:var(--navy);cursor:pointer;transition:all .25s;box-shadow:0 8px 24px rgba(212,160,23,.25)}
-.g-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(212,160,23,.35)}
-.g-btn:active{transform:translateY(0)}
-.g-err{font-size:13px;color:var(--red);font-weight:700;margin-top:14px;min-height:18px;opacity:0;transition:opacity .2s}
-.g-err.show{opacity:1}
-.g-foot{margin-top:24px;font-size:11.5px;color:var(--tm);line-height:1.7}
-.g-admin-link{margin-top:18px;font-size:11px;color:var(--tm);cursor:pointer;display:inline-block;opacity:.5;transition:opacity .2s}
-.g-admin-link:hover{opacity:1;color:var(--gold)}
-@media(max-width:480px){.g-card{padding:32px 22px}.g-card h1{font-size:21px}}
-
-/* ===== ADMIN PANEL ===== */
-#admin{position:fixed;inset:0;z-index:100000;background:rgba(4,11,36,.97);backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto}
-#admin.open{display:flex}
-.a-card{width:100%;max-width:640px;background:linear-gradient(135deg,rgba(13,27,86,.6),rgba(26,43,115,.35));border:1px solid var(--border-g);border-radius:20px;padding:32px 28px;box-shadow:var(--shadow)}
-.a-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;gap:12px}
-.a-head h2{font-size:20px;font-weight:900;color:var(--gold)}
-.a-close{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--td);font-size:18px;cursor:pointer;flex-shrink:0;transition:all .2s}
-.a-close:hover{background:rgba(231,76,60,.15);color:var(--red);border-color:rgba(231,76,60,.3)}
-.a-sub{font-size:13px;color:var(--td);margin-bottom:24px;line-height:1.8}
-.a-add{display:flex;gap:10px;margin-bottom:10px}
-.a-add input{flex:1;background:rgba(4,11,36,.6);border:1.5px solid var(--border);border-radius:10px;padding:12px 15px;font-family:'Cairo',sans-serif;font-size:14px;font-weight:700;color:var(--tw);direction:ltr;text-align:left}
-.a-add input:focus{outline:none;border-color:var(--gold)}
-.a-add button{background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;border-radius:10px;padding:0 22px;font-family:'Cairo',sans-serif;font-size:14px;font-weight:800;color:var(--navy);cursor:pointer;white-space:nowrap;transition:all .2s}
-.a-add button:hover{transform:translateY(-2px)}
-.a-hint{font-size:11.5px;color:var(--tm);margin-bottom:22px}
-.a-count{font-size:12.5px;font-weight:800;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.a-list{display:flex;flex-direction:column;gap:8px;max-height:300px;overflow-y:auto;margin-bottom:8px}
-.a-item{display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:11px 15px;transition:all .2s}
-.a-item:hover{border-color:var(--border-g)}
-.a-code{font-size:14px;font-weight:800;color:var(--tw);direction:ltr}
-.a-meta{font-size:10.5px;color:var(--tm);margin-top:2px}
-.a-item-r{display:flex;align-items:center;gap:8px}
-.a-tag{font-size:9.5px;font-weight:700;padding:3px 8px;border-radius:20px}
-.a-tag.used{background:rgba(231,76,60,.12);color:var(--red);border:1px solid rgba(231,76,60,.25)}
-.a-tag.free{background:rgba(39,174,96,.12);color:#2ECC71;border:1px solid rgba(39,174,96,.25)}
-.a-unlock,.a-del{width:30px;height:30px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.04);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.a-unlock{color:var(--blue)}
-.a-unlock:hover{background:rgba(41,128,185,.15);border-color:rgba(41,128,185,.35)}
-.a-del{color:var(--red)}
-.a-del:hover{background:rgba(231,76,60,.15);border-color:rgba(231,76,60,.35)}
-.a-empty{text-align:center;padding:30px;color:var(--tm);font-size:13px}
-.a-pwwrap{display:flex;gap:10px;margin-top:8px}
-.a-logout{margin-top:22px;width:100%;background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.25);color:var(--red);border-radius:10px;padding:11px;font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
-.a-logout:hover{background:rgba(231,76,60,.18)}
-.body-locked{overflow:hidden;height:100vh}
-
+@supports(padding:env(safe-area-inset-top)){
+  nav{padding-top:max(0px,env(safe-area-inset-top))}
+  .mobile-menu{padding-top:max(80px,calc(80px + env(safe-area-inset-top)))}
+}
+/* Original 700px breakpoint preserved */
+@media(max-width:700px){
+  .tcol{grid-template-columns:1fr}
+  .chero{padding:20px 16px}
+  .conhero{padding:26px 16px}
+}
 </style>
 </head>
 <body>
 
-<div id="prog"></div>
-
 <!-- ======================== ACCESS GATE ======================== -->
 <div id="gate">
-  <div class="g-orb go1"></div>
-  <div class="g-orb go2"></div>
-  <div class="g-card">
-    <div class="g-lock">🔒</div>
-    <h1>محتوى حصري</h1>
-    <p>هذا الدليل متاح فقط للمشتركين. الرجاء إدخال رمز الدخول الخاص بك للمتابعة.</p>
-    <input id="gateInput" class="g-input" type="text" placeholder="رمز الدخول" autocomplete="off" spellcheck="false" />
-    <button class="g-btn" onclick="tryUnlock()">دخول</button>
-    <div id="gateErr" class="g-err"></div>
-    <div class="g-foot">إذا لم يكن لديك رمز، يمكنك الحصول عليه بعد شراء الدورة.</div>
-    <span class="g-admin-link" onclick="openAdmin()">إدارة</span>
+  <div class="gate-card">
+    <!-- Normal login -->
+    <div id="gate-main">
+      <span class="gate-logo">📈</span>
+      <div class="gate-title">دليل المبيعات العراقي</div>
+      <div class="gate-sub">الدليل الاحترافي الشامل · ٢٠٢٥</div>
+      <div class="gate-div"></div>
+      <div id="gate-error" class="gate-error"></div>
+      <input id="gate-input" class="gate-input" type="text" placeholder="أدخل كود الوصول..." autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off">
+      <label class="gate-remember">
+        <input type="checkbox" id="gate-rem">
+        تذكرني لمدة ٣٠ يوماً
+      </label>
+      <button id="gate-btn" class="gate-btn" onclick="handleGateSubmit()">دخول ←</button>
+      <div class="gate-footer">
+        أدخل الكود الذي حصلت عليه بعد شراء الكورس
+        <div><div class="gate-badge">🔒 محتوى محمي · وصول خاص فقط</div></div>
+      </div>
+    </div>
+    <!-- Admin login (hidden by default) -->
+    <div id="gate-admin" class="gate-admin-section">
+      <span class="gate-logo">🔐</span>
+      <div class="gate-title" style="color:var(--orange)">وضع المشرف</div>
+      <div class="gate-sub">أدخل كلمة مرور المشرف</div>
+      <div class="gate-div"></div>
+      <div id="admin-pw-err" class="gate-error"></div>
+      <input id="admin-pw-input" class="gate-input" type="password" placeholder="كلمة مرور المشرف">
+      <button class="gate-btn" onclick="handleAdminLogin()" style="margin-bottom:0">دخول المشرف 🔐</button>
+      <button class="gate-back-btn" onclick="backToMainGate()">← رجوع</button>
+    </div>
   </div>
 </div>
 
 <!-- ======================== ADMIN PANEL ======================== -->
-<div id="admin">
-  <div class="a-card">
-    <div class="a-head">
-      <h2>🛠️ لوحة الإدارة</h2>
-      <button class="a-close" onclick="closeAdmin()">✕</button>
+<div id="admin-overlay">
+  <div class="admin-card">
+    <div class="admin-hdr">
+      <h2>🔐 لوحة تحكم المشرف</h2>
+      <button class="admin-close" onclick="closeAdminPanel()">✕ إغلاق</button>
     </div>
-
-    <!-- login view -->
-    <div id="adminLogin">
-      <div class="a-sub">أدخل كلمة مرور المدير للوصول إلى إدارة رموز الدخول.</div>
-      <div class="a-pwwrap">
-        <input id="adminPw" class="g-input" style="margin-bottom:0" type="password" placeholder="كلمة مرور المدير" autocomplete="off" />
+    <div class="admin-body">
+      <div id="a-default-warn" class="a-warn" style="display:none">
+        <span>⚠️</span>
+        <span>أنت تستخدم كلمة المرور الافتراضية <strong>admin2025</strong> — يُرجى تغييرها لحماية حسابك.</span>
       </div>
-      <div id="adminLoginErr" class="g-err"></div>
-      <button class="g-btn" style="margin-top:16px" onclick="adminAuth()">تسجيل الدخول</button>
-    </div>
+      <div id="a-msg" class="a-msg"></div>
 
-    <!-- manage view -->
-    <div id="adminManage" style="display:none">
-      <div class="a-sub">أضف رمزاً جديداً لكل مشترٍ (مثال: <span class="tgold">ali#1</span>). كل رمز يعمل على جهاز واحد فقط. لإلغاء قفل الجهاز اضغط على زر إعادة التعيين.</div>
-      <div class="a-add">
-        <input id="newCode" type="text" placeholder="رمز جديد مثل ali#1" autocomplete="off" spellcheck="false" onkeydown="if(event.key==='Enter')addCode()" />
-        <button onclick="addCode()">إضافة</button>
+      <!-- Add code -->
+      <div class="admin-sec">
+        <div class="admin-sec-ttl">➕ إضافة كود جديد</div>
+        <div class="a-row">
+          <input id="new-code" class="a-input" type="text" placeholder="مثال: ali#1 أو محمد#5">
+          <button class="abtn ab-gold" onclick="addCode()">إضافة</button>
+        </div>
+        <div style="font-size:11px;color:var(--tm);margin-top:6px">يمكن استخدام أي حروف أو أرقام أو رموز</div>
       </div>
-      <div class="a-hint">حساس لحالة الأحرف. تأكد من كتابة الرمز تماماً كما ستعطيه للمشتري.</div>
-      <div class="a-count">الرموز المضافة: <span id="codeCount">0</span></div>
-      <div id="codeList" class="a-list"></div>
-      <button class="a-logout" onclick="adminLogout()">تسجيل الخروج من الإدارة</button>
+
+      <div class="a-sep"></div>
+
+      <!-- Codes list -->
+      <div class="admin-sec">
+        <div class="admin-sec-ttl">
+          📋 الأكواد النشطة
+          <span id="a-count" class="a-cnt">٠</span>
+        </div>
+        <div id="codes-list" class="codes-list"></div>
+      </div>
+
+      <div class="a-sep"></div>
+
+      <!-- Change password -->
+      <div class="admin-sec">
+        <div class="admin-sec-ttl">🔑 تغيير كلمة مرور المشرف</div>
+        <div class="a-row">
+          <input id="new-pw" class="a-input" type="password" placeholder="كلمة مرور جديدة (٦ أحرف+)">
+          <button class="abtn ab-gold" onclick="changeAdminPw()">تغيير</button>
+        </div>
+      </div>
+
+      <div class="a-sep"></div>
+
+      <!-- Download updated file -->
+      <div class="admin-sec" style="margin-bottom:0">
+        <div class="admin-sec-ttl">💾 تحديث ملف الموقع</div>
+        <button class="abtn ab-green" style="width:100%;padding:13px;font-size:13px" onclick="downloadUpdatedHTML()">
+          ⬇️ تنزيل الملف المحدث
+        </button>
+        <div class="a-note">بعد إضافة أو حذف أي كود، نزّل الملف وارفعه على موقعك ليحل محل النسخة القديمة</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ======================== NAV ======================== -->
+<!-- Hidden config element — codes stored here as base64 JSON -->
+<div id="codes-config" data-codes="" style="display:none"></div>
+
+<!-- ======================== MAIN SITE (hidden until authenticated) ======================== -->
+<div id="site" style="display:none">
+
+<div id="prog"></div>
+
+<!-- NAV -->
 <nav>
   <div class="nav-logo">📈 دليل المبيعات العراقي</div>
   <div class="nav-links">
@@ -424,9 +557,32 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     <a class="nl" onclick="go('ch9')">٩ الخطة</a>
     <a class="nl" onclick="go('conclusion')">✦ الخلاصة</a>
   </div>
+  <button class="ham" id="ham" onclick="toggleMobileMenu()" aria-label="القائمة">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mm-close" onclick="closeMobileMenu()">✕</button>
+  <div class="mm-logo">📈 دليل المبيعات العراقي</div>
+  <div class="mm-links">
+    <div class="mm-link" onclick="go('toc');closeMobileMenu()">📋 فهرس المحتويات</div>
+    <div class="mm-link" onclick="go('ch1');closeMobileMenu()">١ · فهم السوق العراقي</div>
+    <div class="mm-link" onclick="go('ch2');closeMobileMenu()">٢ · لماذا إعلاناتك لا تُحقق مبيعات؟</div>
+    <div class="mm-link" onclick="go('ch3');closeMobileMenu()">٣ · إعدادات Meta Ads الصحيحة</div>
+    <div class="mm-link" onclick="go('ch4');closeMobileMenu()">٤ · إنشاء حملتك خطوة بخطوة</div>
+    <div class="mm-link" onclick="go('ch5');closeMobileMenu()">٥ · تصميم إعلانات تُحقق مبيعات</div>
+    <div class="mm-link" onclick="go('ch6');closeMobileMenu()">٦ · بناء الثقة مع العميل العراقي</div>
+    <div class="mm-link" onclick="go('ch7');closeMobileMenu()">٧ · طرق الدفع والتوصيل</div>
+    <div class="mm-link" onclick="go('ch8');closeMobileMenu()">٨ · قياس الأداء وتحسين النتائج</div>
+    <div class="mm-link" onclick="go('ch9');closeMobileMenu()">٩ · خطة عمل ٣٠ يوماً</div>
+    <div class="mm-link" onclick="go('conclusion');closeMobileMenu()">✦ · القواعد الذهبية العشر</div>
+  </div>
+</div>
+
 <div id="bt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+<button id="logout-btn" onclick="logout()" title="تسجيل الخروج">🚪</button>
 
 <!-- ======================== HERO ======================== -->
 <section id="hero">
@@ -481,7 +637,7 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
   </div>
 </section>
 
-<!-- ======================== CH1 ======================== -->
+<!-- CH1 -->
 <section class="chapter" id="ch1">
   <div class="chero rv">
     <div class="chero-ghost">١</div>
@@ -489,7 +645,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     <div class="ctitle">🇮🇶 فهم السوق العراقي</div>
     <div class="csub">لا يمكنك بيع ما لا تفهم جمهوره — تعرّف على عميلك العراقي أولاً</div>
   </div>
-
   <div class="sh rv"><h2>📊 إحصائيات السوق الرقمي في العراق</h2><div class="sh-line"></div></div>
   <p class="rv">العراق سوق رقمي ضخم ومتنامٍ. فهم هذه الأرقام يساعدك على اتخاذ قرارات إعلانية أذكى:</p>
   <div class="sgrid">
@@ -500,12 +655,10 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     <div class="scard rv"><span class="si">📲</span><span class="sn" data-target="71" data-suffix="٪">٠</span><span class="sl">وصول عبر الهاتف الذكي</span></div>
     <div class="scard rv"><span class="si">🛒</span><span class="sn" data-target="4" data-suffix="م+">٠</span><span class="sl">مستخدم تسوّق إلكترونياً</span></div>
   </div>
-
   <div class="callout cg rv">
     <div class="clb">⭐ الفرصة الذهبية</div>
     <div class="cbody">رغم وجود +٢٢ مليون مستخدم للإنترنت، عدد من يتسوق إلكترونياً لا يزال محدوداً — وهذا يعني <strong>فرصة هائلة غير مستغلة</strong>. الذي يدخل السوق الآن بشكل صحيح يبني ميزة تنافسية طويلة الأمد.</div>
   </div>
-
   <div class="sh rv"><h2>📍 المدن والمحافظات الرئيسية</h2><div class="sh-line"></div></div>
   <div class="twrap rv">
     <table>
@@ -520,7 +673,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
       </tbody>
     </table>
   </div>
-
   <div class="sh rv"><h2>🕐 أوقات الذروة — متى يكون عميلك أكثر نشاطاً؟</h2><div class="sh-line"></div></div>
   <div class="twrap rv">
     <table>
@@ -534,7 +686,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
       </tbody>
     </table>
   </div>
-
   <div class="sh rv"><h2>🎯 طبيعة المستهلك العراقي</h2><div class="sh-line"></div></div>
   <div class="tcol rv">
     <div class="callout ct">
@@ -546,7 +697,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
       <div class="cbody">◆ غياب السعر ("راسلنا للسعر")<br>◆ الدفع المسبق فقط<br>◆ لا رقم هاتف أو واتساب<br>◆ لا مراجعات أو حساب جديد<br>◆ معلومات التوصيل غير واضحة<br>◆ موقع بطيء أو معطّل<br>◆ الرد البطيء على الاستفسارات</div>
     </div>
   </div>
-
   <div class="sh rv"><h2>📅 المواسم التجارية الذهبية</h2><div class="sh-line"></div></div>
   <div class="twrap rv">
     <table>
@@ -563,7 +713,7 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
   </div>
 </section>
 
-<!-- ======================== CH2 ======================== -->
+<!-- CH2 -->
 <section class="chapter" id="ch2">
   <div class="chero rv">
     <div class="chero-ghost">٢</div>
@@ -572,38 +722,25 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     <div class="csub">تشخيص ١٢ خطأً قاتلاً يرتكبها معظم التجار في العراق</div>
   </div>
   <p class="rv">تُنفق مئات الآلاف من الدنانير على الإعلانات ولا ترى مبيعات؟ هذا الفصل سيساعدك على تحديد المشكلة الحقيقية بدقة:</p>
-
   <div class="ecard rv"><div class="etitle">❌ الخطأ الأول: هدف الحملة الخاطئ — Traffic بدلاً من Sales</div><div class="edesc">كثيرون يختارون هدف "الزيارات" أو "التفاعل" ظناً أنه يحقق مبيعات. فيسبوك يُحسّن الحملة لمن يُحقق الهدف المحدد — إذا اخترت Traffic فسيبحث عن ناقرين فقط، وليس مشترين.</div><div class="efix">✅ الحل: استخدم دائماً هدف "Sales" أو "Conversions" مع تثبيت Facebook Pixel وإعداد حدث Purchase.</div></div>
-
   <div class="ecard rv"><div class="etitle">❌ الخطأ الثاني: الاستهداف عشوائي أو واسع جداً</div><div class="edesc">استهداف "كل العراق، ١٨-٦٥ سنة، جميع الاهتمامات" يُضيع ميزانيتك على أشخاص لا يريدون منتجك. جمهور واسع جداً = تكلفة عالية ومبيعات منخفضة.</div><div class="efix">✅ الحل: حدّد جمهورك بدقة: المدن المناسبة + العمر الصحيح + اهتمامات مرتبطة مباشرة بمنتجك.</div></div>
-
   <div class="ecard rv"><div class="etitle">❌ الخطأ الثالث: الإعلان لا يعرض السعر</div><div class="edesc">المستهلك العراقي حساسٌ جداً للسعر. عندما لا يرى السعر في الإعلان، يتجاهله فوراً. عبارات مثل "راسلنا للسعر" تقتل معدلات التحويل.</div><div class="efix">✅ الحل: اعرض السعر بوضوح بالدينار العراقي. إذا كان لديك عرض اعرضه مقارناً: "كان ٢٥,٠٠٠ — الآن ١٨,٠٠٠ دينار فقط".</div></div>
-
   <div class="ecard rv"><div class="etitle">❌ الخطأ الرابع: لا دليل اجتماعي (Social Proof)</div><div class="edesc">العراقي لا يشتري من بائع مجهول. إذا لم يجد تعليقات عملاء أو مراجعات، سيتجنب الشراء خوفاً من النصب.</div><div class="efix">✅ الحل: اجمع شهادات العملاء وانشرها. استخدم صور قبل وبعد. شارك قصص عملاء حقيقيين.</div></div>
-
   <div class="ecard rv"><div class="etitle">❌ الخطأ الخامس: الميزانية أقل من حد التعلم</div><div class="edesc">فيسبوك يحتاج ٥٠ حدثاً (Conversion Events) في أسبوع لإنهاء مرحلة التعلم. بميزانية ٥٠٠٠ دينار يومياً ستبقى في مرحلة التعلم للأبد.</div><div class="efix">✅ الحل: الحد الأدنى الموصى به ١٠-١٥ دولار يومياً لكل مجموعة إعلانية.</div></div>
-
   <div class="ecard rv"><div class="etitle">❌ الخطأ السادس: الإعلان لا يتحدث بلغة العراقي</div><div class="edesc">إعلانات باللغة الإنجليزية أو اللهجات الخليجية لا تعكس ثقافة المستهلك العراقي — تؤدي لتجاهل الإعلان وارتفاع تكلفة التحويل.</div><div class="efix">✅ الحل: استخدم اللهجة العراقية المحكية: "يا عزيزي"، "والله خيار صح"، "دليفري لباب بيتك".</div></div>
-
   <div class="ecard rv"><div class="etitle">❌ الخطأ السابع: عدم تثبيت Facebook Pixel بشكل صحيح</div><div class="edesc">بدون Pixel، فيسبوك يعمل أعمى. لا يعرف من اشترى، من أضاف للسلة، من زار صفحة المنتج. لا بيانات = لا تحسين = مبيعات منخفضة.</div><div class="efix">✅ الحل: ثبّت Pixel على موقعك فوراً وأعدّ أحداث: ViewContent، AddToCart، InitiateCheckout، Purchase.</div></div>
-
   <div class="ecard rv"><div class="etitle">❌ الخطأ الثامن: لا توجد إعادة استهداف (Retargeting)</div><div class="edesc">٩٥٪ من الزوار لا يشترون في الزيارة الأولى. إذا لم تُعد استهدافهم، فأنت تخسر أكثر من ٩ من كل ١٠ عملاء محتملين.</div><div class="efix">✅ الحل: أنشئ جمهور مخصص من زوار موقعك، من أضافوا للسلة، من تفاعلوا مع صفحتك.</div></div>
-
   <div class="ecard rv"><div class="etitle">❌ الخطأ التاسع: صفحة الهبوط بطيئة أو ضعيفة</div><div class="edesc">يضغط العميل على الإعلان بحماس ثم يجد صفحة بطيئة أو معقدة — فيغلقها ويذهب. الإعلان ليس المشكلة، المشكلة ما بعده.</div><div class="efix">✅ الحل: تأكد أن الصفحة تُحمّل في أقل من ٣ ثوانٍ. اجعلها واضحة: اسم المنتج، الصور، السعر، زر الشراء.</div></div>
-
   <div class="ecard rv"><div class="etitle">❌ الخطأ العاشر: إيقاف الإعلانات وإعادة تشغيلها باستمرار</div><div class="edesc">كلما أوقفت إعلاناً وأعدت تشغيله، يعود لمرحلة التعلم من الصفر. خسارة في البيانات والنتائج.</div><div class="efix">✅ الحل: اترك الإعلان يعمل ٣-٧ أيام على الأقل دون تدخل.</div></div>
-
   <div class="ecard rv"><div class="etitle">❌ الخطأ الحادي عشر: المنتج نفسه هو المشكلة</div><div class="edesc">أحياناً الإعلانات ممتازة والإعدادات صحيحة، لكن المنتج لا يُناسب السوق العراقي من حيث السعر أو الجودة أو الطلب.</div><div class="efix">✅ الحل: ابحث في السوق قبل الإعلان. هل يبحث الناس عن هذا المنتج؟ هل السعر تنافسي؟</div></div>
-
   <div class="ecard rv"><div class="etitle">❌ الخطأ الثاني عشر: تجاهل تعليقات الإعلان</div><div class="edesc">التعليقات السلبية على إعلانك تقتل نتائجه. فيسبوك يُقلّل توزيع الإعلانات ذات التعليقات السيئة.</div><div class="efix">✅ الحل: راقب تعليقات إعلاناتك يومياً. ردّ على كل تعليق. احذف التعليقات السلبية الغير مبررة.</div></div>
-
   <div class="callout cw rv">
     <div class="clb">⚠️ تشخيص سريع</div>
     <div class="cbody">افتح Meta Ads Manager الآن وراجع: <strong>هدف الحملة ← إعداد الجمهور ← تصميم الإعلان ← الـ Pixel ← صفحة الهبوط</strong>. في معظم الحالات، الإصلاح يستغرق ساعة واحدة ويُضاعف نتائجك خلال أسبوع.</div>
   </div>
 </section>
 
-<!-- ======================== CH3 ======================== -->
+<!-- CH3 -->
 <section class="chapter" id="ch3">
   <div class="chero rv">
     <div class="chero-ghost">٣</div>
@@ -611,7 +748,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     <div class="ctitle">⚙️ إعدادات Meta Ads Manager الصحيحة</div>
     <div class="csub">الإعدادات المثلى للسوق العراقي — Campaign · Ad Set · Ad</div>
   </div>
-
   <div class="sh rv"><h2>🏗️ المستوى الأول: إعدادات الحملة (Campaign Level)</h2><div class="sh-line"></div></div>
   <div class="setblock rv">
     <div class="settitle"><span class="seti">🎯</span> هدف الحملة (Campaign Objective)</div>
@@ -619,14 +755,12 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     <div class="setrow"><span class="setkey">لجمع بيانات عملاء:</span><span class="setval"><span class="badge bb">Lead Generation</span></span></div>
     <div class="setrow"><span class="setkey">❌ تجنّب تماماً:</span><span class="setval"><span class="badge br">Traffic</span> <span class="badge br">Engagement</span> <span class="badge br">Video Views</span> لأهداف المبيعات</span></div>
   </div>
-
   <div class="setblock rv">
     <div class="settitle"><span class="seti">💡</span> نوع الحملة (Campaign Type)</div>
     <div class="setrow"><span class="setkey">للمتاجر الجديدة:</span><span class="setval"><span class="badge bg">Advantage+ Shopping Campaign</span> — يدير فيسبوك كل شيء تلقائياً</span></div>
     <div class="setrow"><span class="setkey">للمتاجر المتمرسة:</span><span class="setval"><span class="badge bb">Manual Sales Campaign</span> — تحكم كامل</span></div>
     <div class="setrow"><span class="setkey">ميزانية الحملة:</span><span class="setval"><span class="badge bg">CBO (Campaign Budget Optimization)</span> موصى به — فيسبوك يوزع الميزانية على أفضل Ad Sets</span></div>
   </div>
-
   <div class="sh rv"><h2>👥 المستوى الثاني: إعدادات مجموعة الإعلانات (Ad Set)</h2><div class="sh-line"></div></div>
   <div class="setblock rv">
     <div class="settitle"><span class="seti">📍</span> الاستهداف الجغرافي (Location)</div>
@@ -635,7 +769,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     <div class="setrow"><span class="setkey">نوع الموقع:</span><span class="setval">اختر <strong>"People living in this location"</strong> — لا تختر "People recently in"</span></div>
     <div class="setrow"><span class="setkey">نصيحة متقدمة:</span><span class="setval">افصل بغداد عن باقي العراق في Ad Sets مختلفة — ميزانية مستقلة لكل منطقة</span></div>
   </div>
-
   <div class="setblock rv">
     <div class="settitle"><span class="seti">🎂</span> العمر والجنس</div>
     <div class="setrow"><span class="setkey">الفئة العمرية العامة:</span><span class="setval"><span class="badge bg">١٨ – ٤٥ سنة</span> — الشريحة الأكثر شراءً إلكترونياً</span></div>
@@ -643,21 +776,18 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     <div class="setrow"><span class="setkey">منتجات العائلة:</span><span class="setval"><span class="badge bb">٢٥ – ٥٠ سنة</span></span></div>
     <div class="setrow"><span class="setkey">الجنس:</span><span class="setval">اترك "All Genders" في البداية. بعد جمع بيانات كافية، خصّص حسب من يشتري فعلاً.</span></div>
   </div>
-
   <div class="setblock rv">
     <div class="settitle"><span class="seti">👑</span> الجماهير المخصصة والمشابهة</div>
     <div class="setrow"><span class="setkey">Custom Audiences:</span><span class="setval"><span class="badge bg">زوار موقعك (آخر ٣٠ يوم)</span> <span class="badge bg">من أضافوا للسلة</span> <span class="badge bg">قائمة عملائك</span></span></div>
     <div class="setrow"><span class="setkey">Lookalike Audiences:</span><span class="setval">١٪ – ٣٪ في العراق. ابدأ بـ ١٪ (الأكثر تشابهاً مع عملائك الحاليين)</span></div>
     <div class="setrow"><span class="setkey">أفضل Retargeting:</span><span class="setval">استهدف من زار صفحة المنتج ولم يشترِ خلال آخر ٧ أيام — هؤلاء الأسهل تحويلاً</span></div>
   </div>
-
   <div class="setblock rv">
     <div class="settitle"><span class="seti">📺</span> المواضع الإعلانية (Placements)</div>
     <div class="setrow"><span class="setkey">الأفضل للعراق:</span><span class="setval"><span class="badge bg">Facebook Feed</span> <span class="badge bg">Instagram Feed</span> <span class="badge bg">Instagram Reels</span> <span class="badge bg">Facebook Stories</span></span></div>
     <div class="setrow"><span class="setkey">تجنّب في البداية:</span><span class="setval"><span class="badge br">Audience Network</span> — جودة منخفضة وكليكات وهمية في العراق</span></div>
     <div class="setrow"><span class="setkey">التوصية:</span><span class="setval">استخدم <strong>Manual Placements</strong> وحدد المواضع بنفسك</span></div>
   </div>
-
   <div class="setblock rv">
     <div class="settitle"><span class="seti">💰</span> الميزانية واستراتيجية المزايدة</div>
     <div class="setrow"><span class="setkey">الحد الأدنى اليومي:</span><span class="setval"><span class="badge bg">١٠-١٥ دولار/يوم</span> لكل مجموعة إعلانية (حوالي ١٥,٠٠٠-٢٠,٠٠٠ دينار)</span></div>
@@ -667,7 +797,7 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
   </div>
 </section>
 
-<!-- ======================== CH4 ======================== -->
+<!-- CH4 -->
 <section class="chapter" id="ch4">
   <div class="chero rv">
     <div class="chero-ghost">٤</div>
@@ -675,7 +805,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     <div class="ctitle">🚀 إنشاء حملتك الإعلانية خطوة بخطوة</div>
     <div class="csub">من تثبيت البيكسل إلى إطلاق الإعلان الأول</div>
   </div>
-
   <div class="steps rv">
     <div class="step"><div class="stnum">١</div><div class="stcon"><div class="sttitle">إنشاء Business Manager</div><div class="stdesc">اذهب إلى business.facebook.com وأنشئ حساباً. أضف: صفحة الفيسبوك الخاصة بمتجرك، حساب الإعلانات، Pixel، الموقع الإلكتروني. تفعيل المصادقة الثنائية (2FA) أمر ضروري لحماية حسابك.</div></div></div>
     <div class="step"><div class="stnum">٢</div><div class="stcon"><div class="sttitle">تثبيت Facebook Pixel على موقعك</div><div class="stdesc">في Business Manager: Events Manager ← Connect Data Sources ← Web ← Facebook Pixel. انسخ كود الـ Pixel وأضفه لرأس موقعك. إذا كنت تستخدم Shopify أو WooCommerce فهناك إضافة مخصصة.</div></div></div>
@@ -686,7 +815,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     <div class="step"><div class="stnum">٧</div><div class="stcon"><div class="sttitle">تصميم الإعلان (Ad)</div><div class="stdesc">اختر: صور أو فيديو المنتج ← اكتب النص الإعلاني بالعربية ← أضف العنوان والوصف ← اختر Call to Action: "تسوّق الآن" أو "اطلب الآن". أضف رابط صفحة المنتج.</div></div></div>
     <div class="step"><div class="stnum">٨</div><div class="stcon"><div class="sttitle">المراجعة النهائية قبل النشر</div><div class="stdesc">تحقق: هل الـ Pixel يعمل؟ هل الرابط صحيح؟ هل السعر مذكور؟ هل النص بالعربية؟ هل Conversion Event = Purchase؟ انشر الإعلان واصبر ٢٤-٤٨ ساعة قبل تقييم النتائج.</div></div></div>
   </div>
-
   <div class="sh rv"><h2>🧪 استراتيجية الاختبار A/B</h2><div class="sh-line"></div></div>
   <div class="callout ci rv">
     <div class="clb">📌 القاعدة الذهبية للاختبار</div>
@@ -706,7 +834,7 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
   </div>
 </section>
 
-<!-- ======================== CH5 ======================== -->
+<!-- CH5 -->
 <section class="chapter" id="ch5">
   <div class="chero rv">
     <div class="chero-ghost">٥</div>
@@ -714,7 +842,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     <div class="ctitle">🎨 تصميم إعلانات تُحقق مبيعات في العراق</div>
     <div class="csub">الإعلان الصحيح = تصميم + نص + استهداف + توقيت</div>
   </div>
-
   <div class="sh rv"><h2>📌 العناصر الإلزامية في كل إعلان ناجح</h2><div class="sh-line"></div></div>
   <div class="chklist rv">
     <div class="chi"><span class="chi-i">✅</span><span><strong>السعر بالدينار العراقي بوضوح</strong> — لا تخفِ السعر أبداً. العراقي يريد أن يرى السعر قبل أي شيء آخر.</span></div>
@@ -725,7 +852,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     <div class="chi"><span class="chi-i">✅</span><span><strong>عرض خاص أو ندرة</strong> — "عرض محدود لهذا الأسبوع"، "آخر ٣٠ قطعة متبقية". يُحرّك العميل للشراء الفوري.</span></div>
     <div class="chi"><span class="chi-i">✅</span><span><strong>دعوة واضحة للتصرف (CTA)</strong> — "اطلب الآن"، "تسوّق اليوم"، "واتساب لأمر الآن".</span></div>
   </div>
-
   <div class="sh rv"><h2>📝 هيكل النص الإعلاني المُثبت</h2><div class="sh-line"></div></div>
   <div class="setblock rv">
     <div class="settitle"><span class="seti">✍️</span> صياغة النص الإعلاني المثالي</div>
@@ -736,7 +862,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     <div class="setrow"><span class="setkey">الدليل الاجتماعي:</span><span class="setval"><em>"انضم لأكثر من ٥٠٠ عميلة عراقية راضية ⭐⭐⭐⭐⭐"</em></span></div>
     <div class="setrow"><span class="setkey">الـ CTA النهائي:</span><span class="setval"><em>"اضغط اطلب الآن أو راسلنا على واتساب 📱"</em></span></div>
   </div>
-
   <div class="sh rv"><h2>🎬 الفيديو مقابل الصورة</h2><div class="sh-line"></div></div>
   <div class="tcol rv">
     <div class="callout ct">
@@ -748,14 +873,13 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
       <div class="cbody">◆ منتجات بصرية جميلة<br>◆ عروض سريعة وواضحة<br>◆ Retargeting والتذكير<br>◆ منتجات الموضة والطعام<br><br><strong>المقاس المثالي:</strong> ١:١ مربع أو ٤:٥ رأسي<br><strong>مهم:</strong> نص لا يتجاوز ٢٠٪ من المساحة</div>
     </div>
   </div>
-
   <div class="callout cg rv">
     <div class="clb">🔑 سر نجاح الإعلانات في العراق</div>
     <div class="cbody">العراقيون <strong>يثقون بالصورة الحقيقية</strong> أكثر من الصورة المصممة بالحاسوب. أفضل إعلان هو <strong>فيديو شخص حقيقي</strong> يشرح المنتج باللهجة العراقية. هذا النوع يُحقق تحويلات أضعاف الإعلانات الاحترافية.</div>
   </div>
 </section>
 
-<!-- ======================== CH6 ======================== -->
+<!-- CH6 -->
 <section class="chapter" id="ch6">
   <div class="chero rv">
     <div class="chero-ghost">٦</div>
@@ -764,7 +888,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     <div class="csub">الثقة هي العملة الحقيقية في التجارة الإلكترونية بالعراق</div>
   </div>
   <p class="rv">التحدي الأكبر في التجارة الإلكترونية العراقية هو <strong>النقص الشديد في الثقة</strong>. كل خطوة لبناء الثقة ستُضاعف مبيعاتك:</p>
-
   <div class="steps rv">
     <div class="step"><div class="stnum">١</div><div class="stcon"><div class="sttitle">رقم هاتف / واتساب ظاهر في كل مكان</div><div class="stdesc">ضعه في الإعلان، بيو الصفحة، الموقع، في كل مكان. الرقم الظاهر يُقول للعميل: "هناك شخص حقيقي خلف هذا المنتج". استجب بسرعة — الرد خلال ساعة يُضاعف احتمال البيع.</div></div></div>
     <div class="step"><div class="stnum">٢</div><div class="stcon"><div class="sttitle">شهادات العملاء الحقيقية (Social Proof)</div><div class="stdesc">اطلب من عملائك الراضين إرسال تعليق أو فيديو قصير. عبارة "اشتريت المنتج وهو تمام جداً" من شخص حقيقي تُساوي ألف إعلان احترافي.</div></div></div>
@@ -773,7 +896,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     <div class="step"><div class="stnum">٥</div><div class="stcon"><div class="sttitle">تتبع الطلب وإشعارات التوصيل</div><div class="stdesc">أبلغ العميل برسالة واتساب فور استلام طلبه، ثم عند الشحن، ثم قبل التوصيل. هذا يُحسّن التجربة ويُزيد المراجعات الإيجابية والتكرار.</div></div></div>
     <div class="step"><div class="stnum">٦</div><div class="stcon"><div class="sttitle">صفحة نشطة ومنتظمة</div><div class="stdesc">صفحة بآخر منشور منذ ٣ أشهر تُخبر العميل أن المتجر ميت. انشر محتوى منتظم: منتجات جديدة، تقييمات، خلف الكواليس. النشاط يبني الثقة.</div></div></div>
   </div>
-
   <div class="sh rv"><h2>📱 ردود واتساب الاحترافية</h2><div class="sh-line"></div></div>
   <div class="callout ct rv">
     <div class="clb">💡 استخدم واتساب بيزنس</div>
@@ -792,7 +914,7 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
   </div>
 </section>
 
-<!-- ======================== CH7 ======================== -->
+<!-- CH7 -->
 <section class="chapter" id="ch7">
   <div class="chero rv">
     <div class="chero-ghost">٧</div>
@@ -800,7 +922,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     <div class="ctitle">💳 طرق الدفع والتوصيل في العراق</div>
     <div class="csub">الخيارات الصحيحة تُعظّم مبيعاتك وتُقلّل خسائر التوصيل</div>
   </div>
-
   <div class="sh rv"><h2>💰 طرق الدفع المتاحة في العراق</h2><div class="sh-line"></div></div>
   <div class="twrap rv">
     <table>
@@ -815,12 +936,10 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
       </tbody>
     </table>
   </div>
-
   <div class="callout cw rv">
     <div class="clb">⚠️ تحذير: إدارة مخاطر COD</div>
     <div class="cbody">أكبر تحدي مع COD هو <strong>رفض الاستلام</strong>. لتقليل هذه الخسائر:<br>• تأكّد من الطلب بمكالمة هاتفية قبل الشحن<br>• اطلب تفاصيل الموقع الدقيقة<br>• حدّد موعداً للتوصيل مع العميل<br>• في أول طلب من عميل جديد، تواصل معه قبل الشحن</div>
   </div>
-
   <div class="sh rv"><h2>🚚 شركات التوصيل في العراق</h2><div class="sh-line"></div></div>
   <div class="twrap rv">
     <table>
@@ -834,14 +953,13 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
       </tbody>
     </table>
   </div>
-
   <div class="callout ct rv">
     <div class="clb">💡 نصيحة التوصيل المجاني</div>
     <div class="cbody"><strong>التوصيل المجاني يُضاعف معدل الشراء</strong>. أضف تكلفة التوصيل في سعر المنتج واعلن "توصيل مجاني". بدلاً من "السعر ١٨,٠٠٠ + توصيل ٣,٠٠٠"، اجعلها "السعر ٢٠,٠٠٠ شامل التوصيل المجاني". النفسية مختلفة تماماً.</div>
   </div>
 </section>
 
-<!-- ======================== CH8 ======================== -->
+<!-- CH8 -->
 <section class="chapter" id="ch8">
   <div class="chero rv">
     <div class="chero-ghost">٨</div>
@@ -849,7 +967,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     <div class="ctitle">📊 قياس الأداء وتحسين النتائج</div>
     <div class="csub">البيانات لا تكذب — تعلّم قراءة الأرقام واتخاذ القرار الصحيح</div>
   </div>
-
   <div class="sh rv"><h2>📈 المؤشرات الرئيسية (KPIs)</h2><div class="sh-line"></div></div>
   <div class="twrap rv">
     <table>
@@ -864,7 +981,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
       </tbody>
     </table>
   </div>
-
   <div class="sh rv"><h2>⚖️ متى توقف الإعلان؟ ومتى تُضاعف ميزانيته؟</h2><div class="sh-line"></div></div>
   <div class="tcol rv">
     <div class="callout cd">
@@ -876,21 +992,19 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
       <div class="cbody">◆ ROAS أعلى من 3x باستمرار<br>◆ تكلفة التحويل مقبولة ومستقرة<br>◆ الحملة تجاوزت مرحلة التعلم<br>◆ Frequency لا تزال بين ٢-٤<br>◆ زيادة الميزانية: لا تزد أكثر من ٣٠٪ كل مرة<br>◆ انتظر ٣-٥ أيام بعد كل زيادة</div>
     </div>
   </div>
-
   <div class="sh rv"><h2>🔄 استراتيجية التوسع (Scaling)</h2><div class="sh-line"></div></div>
   <div class="steps rv">
     <div class="step"><div class="stnum">١</div><div class="stcon"><div class="sttitle">التوسع الرأسي (Vertical Scaling)</div><div class="stdesc">زيادة ميزانية الإعلانات الناجحة تدريجياً. القاعدة: ابدأ بزيادة ٢٠-٣٠٪ كل ٣-٥ أيام. لا تُضاعف الميزانية دفعة واحدة.</div></div></div>
     <div class="step"><div class="stnum">٢</div><div class="stcon"><div class="sttitle">التوسع الأفقي (Horizontal Scaling)</div><div class="stdesc">نسخ الإعلان الناجح لجماهير جديدة: محافظات أخرى، فئات عمرية مختلفة، Lookalike audiences من قوائم مختلفة.</div></div></div>
     <div class="step"><div class="stnum">٣</div><div class="stcon"><div class="sttitle">تجديد الإعلانات (Creative Refresh)</div><div class="stdesc">عندما تنخفض النتائج، لا تُوقف الحملة. جدّد التصميم والنص مع إبقاء الاستهداف الناجح. هذا يُجدّد اهتمام الجمهور.</div></div></div>
   </div>
-
   <div class="callout cg rv">
     <div class="clb">🏆 قاعدة الـ ٨٠/٢٠ في الإعلانات</div>
     <div class="cbody">عادةً ٢٠٪ من إعلاناتك تُحقق ٨٠٪ من مبيعاتك. ركّز على تحديد هذه الإعلانات الرابحة وأوقف الباقي. لا تتعلق بإعلان خاسر — البيانات هي القاضي، ليس رأيك الشخصي.</div>
   </div>
 </section>
 
-<!-- ======================== CH9 ======================== -->
+<!-- CH9 -->
 <section class="chapter" id="ch9">
   <div class="chero rv">
     <div class="chero-ghost">٩</div>
@@ -899,7 +1013,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     <div class="csub">من الصفر إلى أول ١٠٠ مبيعة — خطوة بخطوة</div>
   </div>
   <p class="rv">هذه الخطة مصمّمة للمبتدئين أو من يعيد بناء استراتيجيته. اتبعها بالترتيب:</p>
-
   <div class="week rv">
     <div class="wh w1"><span>🏗️</span> الأسبوع الأول (الأيام ١-٧): الأساسات والإعداد</div>
     <div class="wb">
@@ -911,7 +1024,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
       <div class="di"><span class="dlabel">اليوم ٧</span><span class="dtxt">راجع النتائج الأولية: CTR، CPM، أي مدينة تُعطي أفضل نتيجة. أول تحليل بدون إجراءات عمل.</span></div>
     </div>
   </div>
-
   <div class="week rv">
     <div class="wh w2"><span>🔬</span> الأسبوع الثاني (الأيام ٨-١٤): التحليل والاختبار</div>
     <div class="wb">
@@ -922,7 +1034,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
       <div class="di"><span class="dlabel">الأيام ١٣-١٤</span><span class="dtxt">حلّل: أي إعلان أفضل أداءً؟ أي مدينة تُعطي أرخص تحويل؟ أي فئة عمرية؟ احفظ هذه البيانات.</span></div>
     </div>
   </div>
-
   <div class="week rv">
     <div class="wh w3"><span>⚡</span> الأسبوع الثالث (الأيام ١٥-٢١): التحسين والتوسع</div>
     <div class="wb">
@@ -933,7 +1044,6 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
       <div class="di"><span class="dlabel">الأيام ٢٠-٢١</span><span class="dtxt">حلّل ROAS الإجمالي. هل الحملة مربحة؟ كيف تُحسّن صفحة المنتج لرفع معدل التحويل؟</span></div>
     </div>
   </div>
-
   <div class="week rv">
     <div class="wh w4"><span>🏆</span> الأسبوع الرابع (الأيام ٢٢-٣٠): التوسع والنظام</div>
     <div class="wb">
@@ -946,13 +1056,12 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
   </div>
 </section>
 
-<!-- ======================== CONCLUSION ======================== -->
+<!-- CONCLUSION -->
 <section class="chapter" id="conclusion">
   <div class="conhero rv">
     <h1>✨ القواعد الذهبية العشر للنجاح</h1>
     <p>هذه الخلاصة المُكثّفة لكل ما تعلمته. احتفظ بها أمامك دائماً</p>
   </div>
-
   <div class="grules">
     <div class="ri rv"><div class="rnum">١</div><div class="rtext"><strong>هدف الحملة = Sales/Conversions دائماً</strong>لا تنفق ريالاً واحداً على حملات Traffic أو Engagement وتتوقع مبيعات. الهدف يُحدد من يُشاهد إعلانك.</div></div>
     <div class="ri rv"><div class="rnum">٢</div><div class="rtext"><strong>Facebook Pixel + Purchase Event = أساس كل شيء</strong>بدون Pixel وحدث الشراء، فيسبوك أعمى ولا يمكنه تحسين حملاتك. هذا ليس خياراً — هذا ضرورة.</div></div>
@@ -965,16 +1074,13 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
     <div class="ri rv"><div class="rnum">٩</div><div class="rtext"><strong>الثقة تُبنى بالتفاصيل الصغيرة</strong>رد سريع، صورة واضحة، رقم هاتف ظاهر، تتبع شحن، كلمة شكر — كل هذه تجمعاً تُحوّل العميل الخائف لمشتري وفي.</div></div>
     <div class="ri rv"><div class="rnum">١٠</div><div class="rtext"><strong>البيانات هي قاضيك — ليس رأيك</strong>لا تتعلق بإعلان لأنك تحبه. إذا قالت الأرقام أنه خاسر — أوقفه. إذا قالت أنه رابح — ضاعفه.</div></div>
   </div>
-
   <div class="callout cg rv">
     <div class="clb">🎯 رسالة أخيرة</div>
     <div class="cbody">السوق العراقي في مرحلة نمو رقمي استثنائية. التجار الذين يدخلون الآن بشكل صحيح سيبنون ميزة تنافسية يصعب على الآخرين اللحاق بها.<br><br>النجاح في الإعلانات الرقمية ليس حظاً — هو <strong>علم + تجربة + صبر</strong>. ابدأ بخطوة واحدة اليوم. ثبّت الـ Pixel. أطلق أول حملة. تعلّم من البيانات. كرّر. <strong>هذا هو الطريق.</strong></div>
   </div>
 </section>
-
 </div><!-- end wrap -->
 
-<!-- ======================== FOOTER ======================== -->
 <footer>
   <div class="flogo">📈 دليل المبيعات العراقي</div>
   <div class="fdesc">دليل احترافي شامل لزيادة المبيعات في العراق باستخدام إعلانات Meta</div>
@@ -982,333 +1088,656 @@ footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1p
   <div class="fcopy">جميع الحقوق محفوظة · ٢٠٢٥ · دليل تجاري احترافي</div>
 </footer>
 
+</div><!-- end #site -->
+
 <script>
 /* ======================================================
-   ACCESS GATE + ADMIN PANEL  (نظام الحماية والرموز)
-   ====================================================== */
-(function(){
-  const LS_CODES   = 'iqg_codes_v1';     // قائمة الرموز
-  const LS_DEVICE  = 'iqg_device_v1';    // معرّف هذا الجهاز
-  const LS_SESSION = 'iqg_session_v1';   // جلسة الدخول لهذا الجهاز
-
-  // ===== أدوات التجزئة (SHA-256) لعدم تخزين النص الصريح =====
-  async function sha(txt){
-    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('iqg::'+txt));
-    return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
+   UTILITIES
+====================================================== */
+async function sha256(str) {
+  const norm = str.trim().toLowerCase();
+  if (window.crypto && window.crypto.subtle) {
+    const buf = await window.crypto.subtle.digest('SHA-256', new TextEncoder().encode(norm));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
   }
-
-  // ===== معرّف ثابت لهذا الجهاز =====
-  function deviceId(){
-    let d = localStorage.getItem(LS_DEVICE);
-    if(!d){ d = (crypto.randomUUID ? crypto.randomUUID() : 'd_'+Date.now()+'_'+Math.random().toString(36).slice(2)); localStorage.setItem(LS_DEVICE, d); }
-    return d;
-  }
-
-  // ===== تخزين/قراءة الرموز =====
-  function loadCodes(){ try{ return JSON.parse(localStorage.getItem(LS_CODES))||[]; }catch(e){ return []; } }
-  function saveCodes(arr){ localStorage.setItem(LS_CODES, JSON.stringify(arr)); }
-
-  // ===== فتح المحتوى =====
-  function revealSite(){
-    const g = document.getElementById('gate');
-    g.style.opacity='0';
-    g.style.transition='opacity .4s';
-    document.body.classList.remove('body-locked');
-    setTimeout(()=>{ g.style.display='none'; }, 400);
-  }
-
-  // ===== التحقق من جلسة سابقة على نفس الجهاز =====
-  async function checkExistingSession(){
-    const sess = localStorage.getItem(LS_SESSION);
-    if(!sess) return false;
-    const codes = loadCodes();
-    const dev = deviceId();
-    // الجلسة صالحة فقط إذا كان الرمز لا يزال موجوداً ومقفلاً على هذا الجهاز
-    const match = codes.find(c => c.h === sess && c.device === dev);
-    return !!match;
-  }
-
-  // ===== محاولة الدخول برمز =====
-  window.tryUnlock = async function(){
-    const inp = document.getElementById('gateInput');
-    const err = document.getElementById('gateErr');
-    const val = inp.value.trim();
-    err.classList.remove('show'); err.textContent='';
-    if(!val){ showErr(err,'الرجاء إدخال رمز الدخول'); return; }
-
-    const h = await sha(val);
-    const codes = loadCodes();
-    const dev = deviceId();
-    const entry = codes.find(c => c.h === h);
-
-    if(!entry){ showErr(err,'رمز غير صحيح. تأكد من الرمز وحاول مجدداً.'); shake(); return; }
-
-    if(entry.device && entry.device !== dev){
-      showErr(err,'هذا الرمز مُستخدم بالفعل على جهاز آخر.');
-      shake(); return;
-    }
-
-    // قفل الرمز على هذا الجهاز عند أول استخدام
-    if(!entry.device){ entry.device = dev; entry.usedAt = Date.now(); saveCodes(codes); }
-
-    localStorage.setItem(LS_SESSION, h);
-    revealSite();
-  };
-
-  function showErr(el,msg){ el.textContent=msg; el.classList.add('show'); }
-  function shake(){
-    const c = document.querySelector('.g-card');
-    c.animate([{transform:'translateX(0)'},{transform:'translateX(-9px)'},{transform:'translateX(9px)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:380});
-  }
-
-  document.getElementById('gateInput').addEventListener('keydown', e=>{ if(e.key==='Enter') tryUnlock(); });
-
-  /* ================= ADMIN ================= */
-  // كلمة مرور المدير الثابتة (مُجزّأة) — لا يمكن لأحد تغييرها من المتصفح
-  const ADMIN_PW_HASH = '4c343b2a4102d1514b07cb2d878a09e467d42ec132470f9a3fe2543f318df85e';
-
-  window.openAdmin = function(){
-    document.getElementById('admin').classList.add('open');
-    document.getElementById('adminLogin').style.display='block';
-    document.getElementById('adminManage').style.display='none';
-    document.getElementById('adminPw').value='';
-    document.getElementById('adminPw').placeholder = 'كلمة مرور المدير';
-    document.getElementById('adminLoginErr').classList.remove('show');
-    setTimeout(()=>document.getElementById('adminPw').focus(),100);
-  };
-  window.closeAdmin = function(){ document.getElementById('admin').classList.remove('open'); };
-
-  window.adminAuth = async function(){
-    const pwEl = document.getElementById('adminPw');
-    const err = document.getElementById('adminLoginErr');
-    const pw = pwEl.value;
-    err.classList.remove('show');
-    if(!pw){ showErr(err,'الرجاء إدخال كلمة المرور'); return; }
-
-    const h = await sha(pw);
-    if(h === ADMIN_PW_HASH){
-      enterManage();
-    } else {
-      showErr(err,'كلمة مرور خاطئة');
-    }
-  };
-  document.getElementById('adminPw').addEventListener('keydown', e=>{ if(e.key==='Enter') adminAuth(); });
-
-  function enterManage(){
-    document.getElementById('adminLogin').style.display='none';
-    document.getElementById('adminManage').style.display='block';
-    renderCodes();
-  }
-  window.adminLogout = function(){ closeAdmin(); };
-
-  window.addCode = async function(){
-    const inp = document.getElementById('newCode');
-    const val = inp.value.trim();
-    if(!val) return;
-    const codes = loadCodes();
-    const h = await sha(val);
-    if(codes.some(c=>c.h===h)){ inp.value=''; flashInput(inp,'#E74C3C'); return; }
-    codes.push({ h, label: val, device:null, createdAt:Date.now(), usedAt:null });
-    saveCodes(codes);
-    inp.value='';
-    flashInput(inp,'#27AE60');
-    renderCodes();
-  };
-
-  function flashInput(inp,color){
-    inp.style.borderColor=color;
-    setTimeout(()=>inp.style.borderColor='',600);
-  }
-
-  window.delCode = function(h){
-    let codes = loadCodes();
-    codes = codes.filter(c=>c.h!==h);
-    saveCodes(codes);
-    // إذا كان الرمز المحذوف هو جلسة هذا الجهاز، أبطلها
-    if(localStorage.getItem(LS_SESSION)===h) localStorage.removeItem(LS_SESSION);
-    renderCodes();
-  };
-
-  window.unlockDevice = function(h){
-    const codes = loadCodes();
-    const c = codes.find(x=>x.h===h);
-    if(c){ c.device=null; c.usedAt=null; saveCodes(codes); renderCodes(); }
-  };
-
-  function fmtDate(ts){
-    if(!ts) return '';
-    const d = new Date(ts);
-    return d.toLocaleDateString('ar-IQ') + ' ' + d.toLocaleTimeString('ar-IQ',{hour:'2-digit',minute:'2-digit'});
-  }
-
-  function renderCodes(){
-    const codes = loadCodes();
-    document.getElementById('codeCount').textContent = codes.length;
-    const list = document.getElementById('codeList');
-    if(!codes.length){ list.innerHTML = '<div class="a-empty">لا توجد رموز بعد. أضف أول رمز للمشتري في الأعلى.</div>'; return; }
-    list.innerHTML = codes.slice().reverse().map(c=>{
-      const used = !!c.device;
-      const safe = c.label.replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-      return `<div class="a-item">
-        <div>
-          <div class="a-code">${safe}</div>
-          <div class="a-meta">${used ? 'مقفل على جهاز · '+fmtDate(c.usedAt) : 'أُضيف · '+fmtDate(c.createdAt)}</div>
-        </div>
-        <div class="a-item-r">
-          <span class="a-tag ${used?'used':'free'}">${used?'مُستخدم':'متاح'}</span>
-          ${used ? `<button class="a-unlock" title="إلغاء قفل الجهاز" onclick="unlockDevice('${c.h}')">↺</button>` : ''}
-          <button class="a-del" title="حذف الرمز" onclick="delCode('${c.h}')">🗑</button>
-        </div>
-      </div>`;
-    }).join('');
-  }
-
-  /* ================= INIT ================= */
-  document.body.classList.add('body-locked');
-  deviceId();
-  checkExistingSession().then(ok=>{ if(ok) revealSite(); });
-})();
-
-/* ====== CANVAS PARTICLES ====== */
-const canvas = document.getElementById('cnv');
-const ctx = canvas.getContext('2d');
-let W, H, particles = [], mouse = {x:null,y:null};
-
-function resize() {
-  W = canvas.width = canvas.offsetWidth;
-  H = canvas.height = canvas.offsetHeight;
-}
-resize();
-window.addEventListener('resize', resize);
-
-function Particle() {
-  this.reset = function() {
-    this.x = Math.random() * W;
-    this.y = Math.random() * H;
-    this.vx = (Math.random()-.5) * 0.5;
-    this.vy = (Math.random()-.5) * 0.5;
-    this.r = Math.random() * 1.8 + 0.4;
-    this.a = Math.random() * 0.5 + 0.1;
-    this.gold = Math.random() > 0.7;
-  };
-  this.reset();
+  // Fallback for non-HTTPS (less secure)
+  return btoa(norm).replace(/[^a-zA-Z0-9]/g,'').substring(0,32);
 }
 
-for (let i=0; i<130; i++) particles.push(new Particle());
-
-canvas.addEventListener('mousemove', e => {
-  const r = canvas.getBoundingClientRect();
-  mouse.x = e.clientX - r.left;
-  mouse.y = e.clientY - r.top;
-});
-canvas.addEventListener('mouseleave', () => { mouse.x=null; mouse.y=null; });
-
-function drawParticles() {
-  ctx.clearRect(0, 0, W, H);
-  const goldColor = 'rgba(212,160,23,';
-  const whiteColor = 'rgba(180,200,255,';
-
-  for (let i=0; i<particles.length; i++) {
-    const p = particles[i];
-    p.x += p.vx;
-    p.y += p.vy;
-    if (p.x<0||p.x>W||p.y<0||p.y>H) p.reset();
-
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-    ctx.fillStyle = (p.gold ? goldColor : whiteColor) + p.a + ')';
-    ctx.fill();
-
-    // connect near particles
-    for (let j=i+1; j<particles.length; j++) {
-      const q = particles[j];
-      const dx = p.x-q.x, dy = p.y-q.y;
-      const dist = Math.sqrt(dx*dx+dy*dy);
-      if (dist < 110) {
-        const op = (1 - dist/110) * 0.12;
-        ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        ctx.lineTo(q.x, q.y);
-        ctx.strokeStyle = 'rgba(212,160,23,' + op + ')';
-        ctx.lineWidth = 0.5;
-        ctx.stroke();
-      }
-    }
-  }
-  requestAnimationFrame(drawParticles);
-}
-drawParticles();
-
-/* ====== READING PROGRESS ====== */
-const prog = document.getElementById('prog');
-const bt = document.getElementById('bt');
-window.addEventListener('scroll', () => {
-  const scrolled = window.scrollY;
-  const maxH = document.body.scrollHeight - window.innerHeight;
-  prog.style.width = (scrolled/maxH*100) + '%';
-  if (scrolled > 400) bt.classList.add('vis'); else bt.classList.remove('vis');
-});
-
-/* ====== SCROLL REVEAL ====== */
-const revObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('in'), 0);
-      // trigger counter if stat card
-      e.target.querySelectorAll('.sn[data-target]').forEach(el => countUp(el));
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-// Staggered reveal for grid children
-document.querySelectorAll('.toc-grid, .sgrid, .grules, .steps').forEach(grid => {
-  const kids = grid.querySelectorAll('.rv, .tcard, .scard, .ri, .step');
-  kids.forEach((k, i) => { k.style.transitionDelay = (i * 0.07) + 's'; });
-});
-
-document.querySelectorAll('.rv, .rv-l').forEach(el => revObs.observe(el));
-
-/* ====== COUNTER ANIMATION ====== */
-function countUp(el) {
-  if (el.dataset.counted) return;
-  el.dataset.counted = true;
-  const target = parseInt(el.dataset.target);
-  const suffix = el.dataset.suffix || '';
-  const dur = 1500;
-  const step = dur / 60;
-  let current = 0;
-  const inc = target / (dur / (1000/60));
-  const timer = setInterval(() => {
-    current += inc;
-    if (current >= target) {
-      current = target;
-      clearInterval(timer);
-    }
-    el.textContent = '+' + Math.floor(current) + suffix;
-  }, 1000/60);
+function encodeConfig(cfg) {
+  const json = JSON.stringify(cfg);
+  const bytes = new TextEncoder().encode(json);
+  let bin = '';
+  bytes.forEach(b => { bin += String.fromCharCode(b); });
+  return btoa(bin);
 }
 
-/* ====== NAV ACTIVE STATE ====== */
-const sections = document.querySelectorAll('[id^="ch"], #conclusion, #toc');
-const links = document.querySelectorAll('.nl');
-const navObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const id = e.target.id;
-      links.forEach(l => {
-        l.classList.remove('on');
-        if (l.getAttribute('onclick')?.includes(id)) l.classList.add('on');
-      });
-    }
-  });
-}, { threshold: 0.3 });
-sections.forEach(s => navObs.observe(s));
+function decodeConfig(b64) {
+  try {
+    if (!b64) return { codes: [], adminHash: '' };
+    const bin = atob(b64);
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return JSON.parse(new TextDecoder().decode(bytes));
+  } catch(e) { return { codes: [], adminHash: '' }; }
+}
 
-/* ====== SMOOTH SCROLL ====== */
 function go(id) {
   const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+
+/* ======================================================
+   CONFIG MANAGEMENT
+====================================================== */
+let _cfg = null;
+
+function loadConfig() {
+  const el = document.getElementById('codes-config');
+  const raw = el ? (el.dataset.codes || '') : '';
+  _cfg = decodeConfig(raw);
+  return _cfg;
+}
+
+function saveConfig(cfg) {
+  _cfg = cfg;
+  const el = document.getElementById('codes-config');
+  if (el) el.dataset.codes = encodeConfig(cfg);
+}
+
+/* ======================================================
+   SESSION MANAGEMENT
+====================================================== */
+const SESSION_KEY = 'iq_sales_guide_v1';
+const RL_KEY = 'iq_sales_rl_v1';
+
+function getSession() {
+  try {
+    const s = JSON.parse(localStorage.getItem(SESSION_KEY) || 'null');
+    if (!s || s.expires < Date.now()) {
+      if (s) localStorage.removeItem(SESSION_KEY);
+      return null;
+    }
+    return s;
+  } catch(e) { return null; }
+}
+
+function saveSession(hash, remember) {
+  const s = {
+    h: hash,
+    created: Date.now(),
+    expires: Date.now() + (remember ? 30*24*60*60*1000 : 24*60*60*1000)
+  };
+  localStorage.setItem(SESSION_KEY, JSON.stringify(s));
+}
+
+function clearSession() {
+  localStorage.removeItem(SESSION_KEY);
+}
+
+function isSessionValid(s, cfg) {
+  if (!s || s.expires < Date.now()) return false;
+  const codes = cfg.codes || [];
+  return codes.some(c => c.hash === s.h);
+}
+
+/* ======================================================
+   RATE LIMITING
+====================================================== */
+function checkRL() {
+  try {
+    const rl = JSON.parse(localStorage.getItem(RL_KEY) || '{}');
+    if (rl.until && rl.until > Date.now()) {
+      return { locked: true, mins: Math.ceil((rl.until - Date.now()) / 60000), until: rl.until };
+    }
+    return { locked: false, attempts: rl.attempts || 0 };
+  } catch(e) { return { locked: false, attempts: 0 }; }
+}
+
+function recordFail() {
+  const rl = checkRL();
+  const att = (rl.attempts || 0) + 1;
+  if (att >= 5) {
+    const until = Date.now() + 60*60*1000;
+    localStorage.setItem(RL_KEY, JSON.stringify({ attempts: att, until }));
+    return { locked: true, mins: 60 };
+  }
+  localStorage.setItem(RL_KEY, JSON.stringify({ attempts: att }));
+  return { locked: false, attempts: att, remaining: 5 - att };
+}
+
+function clearRL() {
+  localStorage.removeItem(RL_KEY);
+}
+
+/* ======================================================
+   GATE
+====================================================== */
+function showGate() {
+  document.body.classList.add('gate-active');
+  document.getElementById('gate').style.display = 'flex';
+  document.getElementById('site').style.display = 'none';
+  // Check if currently locked out
+  const rl = checkRL();
+  if (rl.locked) {
+    setGateError('الوصول مقيّد · ' + rl.mins + ' دقيقة متبقية');
+    disableGateInput(true);
+    // Auto-unlock when timer expires
+    setTimeout(() => {
+      const rl2 = checkRL();
+      if (!rl2.locked) {
+        disableGateInput(false);
+        setGateError('');
+      }
+    }, rl.until - Date.now() + 500);
+  }
+}
+
+function disableGateInput(d) {
+  const i = document.getElementById('gate-input');
+  const b = document.getElementById('gate-btn');
+  if (i) i.disabled = d;
+  if (b) b.disabled = d;
+}
+
+function hideGateAndShowSite() {
+  document.getElementById('gate').classList.add('gate-out');
+  setTimeout(() => {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('gate').classList.remove('gate-out');
+    document.getElementById('site').style.display = 'block';
+    document.getElementById('logout-btn').style.display = 'flex';
+    document.body.classList.remove('gate-active');
+    setTimeout(initSiteScripts, 60);
+  }, 420);
+}
+
+function setGateError(msg) {
+  const el = document.getElementById('gate-error');
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.remove('shk');
+  if (msg) { void el.offsetWidth; el.classList.add('shk'); }
+}
+
+async function handleGateSubmit() {
+  const inp = document.getElementById('gate-input');
+  const code = (inp.value || '').trim();
+  if (!code) { setGateError('أدخل الكود الخاص بك'); return; }
+
+  // Admin mode trigger
+  if (code.toLowerCase() === 'admin') {
+    showAdminGate();
+    return;
+  }
+
+  const rl = checkRL();
+  if (rl.locked) {
+    setGateError('الوصول مقيّد · ' + rl.mins + ' دقيقة متبقية');
+    return;
+  }
+
+  const btn = document.getElementById('gate-btn');
+  btn.disabled = true;
+  btn.textContent = '⏳ جاري التحقق...';
+
+  try {
+    const hash = await sha256(code);
+    const cfg = _cfg || loadConfig();
+    const valid = (cfg.codes || []).some(c => c.hash === hash);
+
+    if (valid) {
+      clearRL();
+      const rem = document.getElementById('gate-rem').checked;
+      saveSession(hash, rem);
+      setGateError('');
+      hideGateAndShowSite();
+    } else {
+      const res = recordFail();
+      if (res.locked) {
+        setGateError('كود خاطئ — تم قفل الوصول لساعة كاملة');
+        disableGateInput(true);
+      } else {
+        setGateError('كود غير صحيح · ' + res.remaining + ' محاولة متبقية');
+        inp.value = '';
+        inp.focus();
+        btn.disabled = false;
+        btn.textContent = 'دخول ←';
+      }
+    }
+  } catch(e) {
+    setGateError('حدث خطأ، حاول مرة أخرى');
+    btn.disabled = false;
+    btn.textContent = 'دخول ←';
+  }
+}
+
+function showAdminGate() {
+  document.getElementById('gate-main').style.display = 'none';
+  document.getElementById('gate-admin').style.display = 'block';
+  document.getElementById('gate-input').value = '';
+  setTimeout(() => { const i = document.getElementById('admin-pw-input'); if(i) i.focus(); }, 100);
+}
+
+function backToMainGate() {
+  document.getElementById('gate-admin').style.display = 'none';
+  document.getElementById('gate-main').style.display = 'block';
+  document.getElementById('admin-pw-input').value = '';
+  document.getElementById('admin-pw-err').textContent = '';
+}
+
+/* ======================================================
+   ADMIN SYSTEM
+====================================================== */
+let _adminCfg = null;
+
+async function handleAdminLogin() {
+  const pw = (document.getElementById('admin-pw-input').value || '').trim();
+  if (!pw) return;
+  const cfg = _cfg || loadConfig();
+  const inputHash = await sha256(pw);
+  const defaultHash = await sha256('admin2025');
+  const expected = cfg.adminHash || defaultHash;
+  if (inputHash === expected) {
+    _adminCfg = JSON.parse(JSON.stringify(cfg)); // deep copy
+    backToMainGate();
+    openAdminPanel();
+  } else {
+    document.getElementById('admin-pw-err').textContent = 'كلمة المرور غير صحيحة';
+    document.getElementById('admin-pw-input').value = '';
+  }
+}
+
+function openAdminPanel() {
+  document.getElementById('admin-overlay').classList.add('open');
+  renderAdminPanel();
+}
+
+function closeAdminPanel() {
+  document.getElementById('admin-overlay').classList.remove('open');
+}
+
+async function renderAdminPanel() {
+  if (!_adminCfg) return;
+  const codes = _adminCfg.codes || [];
+  const isDefault = !_adminCfg.adminHash;
+  const defHash = await sha256('admin2025');
+  const stillDefault = !_adminCfg.adminHash || _adminCfg.adminHash === defHash;
+
+  // Warning
+  const warn = document.getElementById('a-default-warn');
+  if (warn) warn.style.display = stillDefault ? 'flex' : 'none';
+
+  // Count
+  const cnt = document.getElementById('a-count');
+  if (cnt) cnt.textContent = codes.length;
+
+  // List
+  const list = document.getElementById('codes-list');
+  if (!list) return;
+  if (codes.length === 0) {
+    list.innerHTML = '<div class="codes-empty">لا توجد أكواد مضافة بعد<br><span style="font-size:11px;opacity:.6">أضف الأكواد من الحقل أعلاه</span></div>';
+    return;
+  }
+  list.innerHTML = codes.map(c => `
+    <div class="code-item" id="ci-${c.hash.slice(0,8)}">
+      <span class="code-name">${c.name}</span>
+      <div class="code-acts">
+        <button class="abtn ab-blue" style="padding:5px 9px;font-size:11px" onclick="copyCode('${c.name}')">📋 نسخ</button>
+        <button class="abtn ab-red" style="padding:5px 9px;font-size:11px" onclick="confirmDel('${c.hash.slice(0,8)}','${c.hash}')">🗑 حذف</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function addCode() {
+  const inp = document.getElementById('new-code');
+  const name = (inp.value || '').trim();
+  if (!name) { showAMsg('أدخل الكود أولاً', 'err'); return; }
+  if (!_adminCfg) return;
+  const codes = _adminCfg.codes || [];
+  if (codes.some(c => c.name.toLowerCase() === name.toLowerCase())) {
+    showAMsg('هذا الكود موجود بالفعل', 'err'); return;
+  }
+  const hash = await sha256(name);
+  codes.push({ name, hash });
+  _adminCfg.codes = codes;
+  saveConfig(_adminCfg);
+  inp.value = '';
+  renderAdminPanel();
+  showAMsg('تمت إضافة "' + name + '" بنجاح ✓', 'ok');
+}
+
+function confirmDel(shortId, hash) {
+  const item = document.getElementById('ci-' + shortId);
+  if (!item) return;
+  const acts = item.querySelector('.code-acts');
+  acts.innerHTML = `
+    <button class="abtn ab-red" style="padding:5px 9px;font-size:11px" onclick="removeCode('${hash}')">تأكيد</button>
+    <button class="abtn ab-gray" style="padding:5px 9px;font-size:11px" onclick="renderAdminPanel()">إلغاء</button>
+  `;
+}
+
+async function removeCode(hash) {
+  if (!_adminCfg) return;
+  _adminCfg.codes = (_adminCfg.codes || []).filter(c => c.hash !== hash);
+  saveConfig(_adminCfg);
+  renderAdminPanel();
+  showAMsg('تم حذف الكود بنجاح', 'ok');
+}
+
+function copyCode(name) {
+  const copy = (t) => {
+    try { navigator.clipboard.writeText(t); } catch(e) {
+      const ta = document.createElement('textarea');
+      ta.value = t; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+    }
+  };
+  copy(name);
+  showAMsg('تم نسخ "' + name + '" ✓', 'ok');
+}
+
+async function changeAdminPw() {
+  const pw = (document.getElementById('new-pw').value || '').trim();
+  if (pw.length < 6) { showAMsg('يجب أن تكون ٦ أحرف على الأقل', 'err'); return; }
+  if (!_adminCfg) return;
+  _adminCfg.adminHash = await sha256(pw);
+  saveConfig(_adminCfg);
+  document.getElementById('new-pw').value = '';
+  showAMsg('تم تغيير كلمة المرور بنجاح ✓', 'ok');
+  renderAdminPanel();
+}
+
+let _aMsgTimer = null;
+function showAMsg(msg, type) {
+  const el = document.getElementById('a-msg');
+  if (!el) return;
+  el.textContent = msg;
+  el.className = 'a-msg ' + type;
+  clearTimeout(_aMsgTimer);
+  _aMsgTimer = setTimeout(() => { el.className = 'a-msg'; }, 3500);
+}
+
+function downloadUpdatedHTML() {
+  if (!_adminCfg) return;
+  const clone = document.documentElement.cloneNode(true);
+
+  // Reset visibility states
+  const gEl = clone.querySelector('#gate');
+  const sEl = clone.querySelector('#site');
+  const aEl = clone.querySelector('#admin-overlay');
+  const logEl = clone.querySelector('#logout-btn');
+  const mmEl = clone.querySelector('#mobile-menu');
+  const hamEl = clone.querySelector('#ham');
+  const bodyEl = clone.querySelector('body');
+  const dtEl = clone.querySelector('#devtools-warning');
+
+  if (gEl) gEl.style.display = '';
+  if (sEl) sEl.style.display = 'none';
+  if (aEl) aEl.classList.remove('open');
+  if (logEl) logEl.style.display = 'none';
+  if (mmEl) mmEl.classList.remove('open');
+  if (hamEl) hamEl.classList.remove('open');
+  if (bodyEl) bodyEl.classList.remove('gate-active');
+  if (dtEl) dtEl.remove();
+
+  // Reset gate views
+  const gMain = clone.querySelector('#gate-main');
+  const gAdm = clone.querySelector('#gate-admin');
+  if (gMain) gMain.style.display = '';
+  if (gAdm) gAdm.style.display = 'none';
+
+  // Clear input values in clone
+  clone.querySelectorAll('input').forEach(i => { i.value = ''; });
+
+  // Update codes config
+  const cfgEl = clone.querySelector('#codes-config');
+  if (cfgEl) cfgEl.dataset.codes = encodeConfig(_adminCfg);
+
+  // Remove "in" classes (reset scroll animations)
+  clone.querySelectorAll('.rv.in,.rv-l.in').forEach(e => { e.classList.remove('in'); });
+
+  const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'دليل-المبيعات-العراقي-2025.html';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+  showAMsg('تم تنزيل الملف المحدث بنجاح ✓', 'ok');
+}
+
+/* ======================================================
+   MOBILE MENU
+====================================================== */
+function toggleMobileMenu() {
+  const m = document.getElementById('mobile-menu');
+  const h = document.getElementById('ham');
+  const open = m.classList.toggle('open');
+  h.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.getElementById('ham').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ======================================================
+   LOGOUT
+====================================================== */
+function logout() {
+  clearSession();
+  location.reload();
+}
+
+/* ======================================================
+   SECURITY MEASURES
+====================================================== */
+// Disable right-click
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// Block inspect shortcuts
+document.addEventListener('keydown', e => {
+  const blocked =
+    e.key === 'F12' ||
+    (e.ctrlKey && e.shiftKey && 'IJCijc'.includes(e.key)) ||
+    (e.ctrlKey && 'uUsS'.includes(e.key));
+  if (blocked) { e.preventDefault(); e.stopPropagation(); return false; }
+}, true);
+
+// DevTools size detection
+let _dtOpen = false;
+setInterval(() => {
+  const open = (window.outerWidth - window.innerWidth > 200) || (window.outerHeight - window.innerHeight > 200);
+  if (open !== _dtOpen) {
+    _dtOpen = open;
+    let w = document.getElementById('devtools-warning');
+    if (open) {
+      if (!w) {
+        w = document.createElement('div');
+        w.id = 'devtools-warning';
+        w.style.cssText = 'position:fixed;inset:0;background:rgba(4,11,36,.97);z-index:9999999;display:flex;align-items:center;justify-content:center;text-align:center;font-family:Cairo,sans-serif;direction:rtl;color:var(--tw)';
+        w.innerHTML = '<div><div style="font-size:52px;margin-bottom:16px">🔒</div><div style="font-size:20px;font-weight:900;color:#D4A017;margin-bottom:8px">محتوى محمي</div><div style="font-size:13px;color:rgba(240,244,255,.6);line-height:1.8">هذا المحتوى محمي بحقوق الملكية الفكرية<br>أغلق أدوات المطور للمتابعة</div></div>';
+        document.body.appendChild(w);
+      }
+    } else if (w) {
+      w.remove();
+    }
+  }
+}, 900);
+
+// Console warning
+setTimeout(() => {
+  console.clear();
+  console.log('%c🔒 محتوى محمي', 'font-size:24px;color:#D4A017;font-weight:bold');
+  console.log('%cهذا الملف محمي بحقوق الملكية الفكرية. أي محاولة للتلاعب محظورة.', 'font-size:14px;color:#E74C3C');
+}, 1000);
+
+/* ======================================================
+   SITE INITIALIZATION (called after authentication)
+====================================================== */
+function initSiteScripts() {
+
+  /* --- CANVAS PARTICLES --- */
+  const canvas = document.getElementById('cnv');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [], mouse = { x: null, y: null };
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function Particle() {
+    this.reset = function() {
+      this.x = Math.random() * W;
+      this.y = Math.random() * H;
+      this.vx = (Math.random() - .5) * 0.5;
+      this.vy = (Math.random() - .5) * 0.5;
+      this.r = Math.random() * 1.8 + 0.4;
+      this.a = Math.random() * 0.5 + 0.1;
+      this.gold = Math.random() > 0.7;
+    };
+    this.reset();
+  }
+
+  const pCount = window.innerWidth < 768 ? 60 : 130;
+  for (let i = 0; i < pCount; i++) particles.push(new Particle());
+
+  canvas.addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - r.left;
+    mouse.y = e.clientY - r.top;
+  });
+  canvas.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+  canvas.addEventListener('touchmove', e => {
+    const r = canvas.getBoundingClientRect();
+    mouse.x = e.touches[0].clientX - r.left;
+    mouse.y = e.touches[0].clientY - r.top;
+  }, { passive: true });
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, W, H);
+    const gC = 'rgba(212,160,23,', wC = 'rgba(180,200,255,';
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W || p.y < 0 || p.y > H) p.reset();
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = (p.gold ? gC : wC) + p.a + ')';
+      ctx.fill();
+      const connDist = window.innerWidth < 768 ? 80 : 110;
+      for (let j = i + 1; j < particles.length; j++) {
+        const q = particles[j];
+        const dx = p.x - q.x, dy = p.y - q.y;
+        const d = Math.sqrt(dx*dx + dy*dy);
+        if (d < connDist) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.strokeStyle = 'rgba(212,160,23,' + ((1 - d/connDist) * 0.12) + ')';
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
+
+  /* --- READING PROGRESS --- */
+  const prog = document.getElementById('prog');
+  const bt = document.getElementById('bt');
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const maxH = document.body.scrollHeight - window.innerHeight;
+    if (prog) prog.style.width = (maxH > 0 ? (scrolled / maxH * 100) : 0) + '%';
+    if (bt) { scrolled > 400 ? bt.classList.add('vis') : bt.classList.remove('vis'); }
+  });
+
+  /* --- SCROLL REVEAL --- */
+  const revObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('in'), 0);
+        e.target.querySelectorAll('.sn[data-target]').forEach(el => countUp(el));
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  // Staggered reveal
+  document.querySelectorAll('.toc-grid, .sgrid, .grules, .steps').forEach(grid => {
+    const kids = grid.querySelectorAll('.rv, .tcard, .scard, .ri, .step');
+    kids.forEach((k, i) => { k.style.transitionDelay = (i * 0.07) + 's'; });
+  });
+  document.querySelectorAll('.rv, .rv-l').forEach(el => revObs.observe(el));
+
+  /* --- COUNTER ANIMATION --- */
+  function countUp(el) {
+    if (el.dataset.counted) return;
+    el.dataset.counted = true;
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    let current = 0;
+    const inc = target / (1500 / (1000 / 60));
+    const timer = setInterval(() => {
+      current += inc;
+      if (current >= target) { current = target; clearInterval(timer); }
+      el.textContent = '+' + Math.floor(current) + suffix;
+    }, 1000 / 60);
+  }
+
+  /* --- NAV ACTIVE STATE --- */
+  const sections = document.querySelectorAll('[id^="ch"], #conclusion, #toc');
+  const links = document.querySelectorAll('.nl');
+  const navObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        links.forEach(l => {
+          l.classList.remove('on');
+          if (l.getAttribute('onclick')?.includes(id)) l.classList.add('on');
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => navObs.observe(s));
+
+} // end initSiteScripts
+
+/* ======================================================
+   KEYBOARD ENTER HANDLERS
+====================================================== */
+document.getElementById('gate-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') handleGateSubmit();
+});
+document.getElementById('admin-pw-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') handleAdminLogin();
+});
+
+/* ======================================================
+   MAIN INIT
+====================================================== */
+document.addEventListener('DOMContentLoaded', async function() {
+  document.body.classList.add('gate-active');
+  const cfg = loadConfig();
+  const session = getSession();
+  if (isSessionValid(session, cfg)) {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('site').style.display = 'block';
+    document.getElementById('logout-btn').style.display = 'flex';
+    document.body.classList.remove('gate-active');
+    setTimeout(initSiteScripts, 60);
+  } else {
+    showGate();
+  }
+});
 </script>
 </body>
 </html>
