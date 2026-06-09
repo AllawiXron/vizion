@@ -2,1742 +2,1432 @@
 <html dir="rtl" lang="ar">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-<meta name="theme-color" content="#040B24">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
 <title>دليل المبيعات العراقي ٢٠٢٥</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#040B24;--navy:#0D1B56;--navy2:#1A2B73;--gold:#D4A017;--gold2:#F0C040;--glass:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);--border-g:rgba(212,160,23,0.25);--tw:#F0F4FF;--td:rgba(240,244,255,0.72);--tm:rgba(240,244,255,0.42);--green:#27AE60;--red:#E74C3C;--blue:#2980B9;--orange:#F39C12;--r:16px;--r-s:8px;--shadow:0 20px 60px rgba(0,0,0,.45)}
+/* ── ROOT ─────────────────────────────────────────── */
+:root{
+  --bg:#040B24;--navy:#0D1B56;--navy2:#1A2B73;
+  --gold:#D4A017;--gold2:#F0C040;
+  --glass:rgba(255,255,255,.04);--border:rgba(255,255,255,.08);
+  --border-g:rgba(212,160,23,.25);
+  --tw:#F0F4FF;--td:rgba(240,244,255,.72);--tm:rgba(240,244,255,.42);
+  --green:#27AE60;--red:#E74C3C;--blue:#2980B9;--orange:#F39C12;
+  --r:16px;--rs:8px;
+}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{direction:rtl;font-family:'Cairo',sans-serif;font-size:15px;color:var(--tw);background:var(--bg);line-height:1.8;overflow-x:hidden}
-body.gate-active{overflow:hidden}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+body{direction:rtl;font-family:'Cairo',sans-serif;font-size:15px;color:var(--tw);
+     background:var(--bg);line-height:1.8;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
 
-/* PROGRESS */
-#prog{position:fixed;top:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:9999;width:0;box-shadow:0 0 12px var(--gold);transition:width .1s}
+/* ── WATERMARK ────────────────────────────────────── */
+#wm{position:fixed;inset:0;pointer-events:none;z-index:7500;overflow:hidden;display:none}
+.wmt{position:absolute;font-family:'Cairo',sans-serif;font-size:14px;font-weight:800;
+     color:rgba(212,160,23,.055);white-space:nowrap;transform:rotate(-38deg);
+     user-select:none;-webkit-user-select:none;letter-spacing:2px}
 
-/* NAV */
-nav{position:fixed;top:3px;inset-inline:0;z-index:9000;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(4,11,36,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
-.nav-logo{font-size:15px;font-weight:900;color:var(--gold);white-space:nowrap;letter-spacing:.3px}
-.nav-links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1;padding:0 18px;justify-content:center}
+/* ── LOCK SCREEN ─────────────────────────────────── */
+#ls{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;
+    justify-content:center;background:var(--bg);overflow:hidden}
+#ls-cnv{position:absolute;inset:0;width:100%;height:100%}
+.ls-orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none}
+.lo1{width:500px;height:500px;background:radial-gradient(circle,rgba(212,160,23,.12),transparent 70%);
+     top:-120px;right:-120px;animation:orb 9s ease-in-out infinite}
+.lo2{width:600px;height:600px;background:radial-gradient(circle,rgba(13,27,86,.55),transparent 70%);
+     bottom:-180px;left:-120px;animation:orb 11s ease-in-out infinite reverse}
+@keyframes orb{0%,100%{transform:translate(0,0)}33%{transform:translate(-20px,20px)}66%{transform:translate(15px,-15px)}}
+
+.ls-box{position:relative;z-index:2;background:rgba(13,27,86,.45);
+        border:1px solid rgba(212,160,23,.2);border-radius:24px;
+        padding:clamp(28px,5vw,52px) clamp(22px,5vw,48px);
+        width:min(440px,92vw);text-align:center;
+        backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+        box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 40px rgba(212,160,23,.06);
+        animation:lsIn .8s cubic-bezier(.16,1,.3,1) both}
+@keyframes lsIn{from{opacity:0;transform:translateY(30px) scale(.97)}to{opacity:1;transform:none}}
+
+.ls-icon{font-size:clamp(36px,8vw,52px);display:block;margin-bottom:14px;
+         animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
+.ls-title{font-size:clamp(18px,4vw,26px);font-weight:900;color:var(--gold);
+          margin-bottom:6px;line-height:1.3}
+.ls-sub{font-size:clamp(12px,2.5vw,14px);color:var(--td);margin-bottom:28px;line-height:1.7}
+
+.ls-field{position:relative;margin-bottom:14px}
+.ls-field input{width:100%;padding:14px 18px 14px 48px;background:rgba(255,255,255,.06);
+                border:1.5px solid rgba(255,255,255,.1);border-radius:12px;
+                font-family:'Cairo',sans-serif;font-size:15px;color:var(--tw);
+                direction:ltr;text-align:center;letter-spacing:2px;
+                transition:border-color .25s,box-shadow .25s;outline:none}
+.ls-field input:focus{border-color:rgba(212,160,23,.5);
+                       box-shadow:0 0 0 3px rgba(212,160,23,.08)}
+.ls-field input::placeholder{color:var(--tm);letter-spacing:0;font-size:13px}
+.ls-eye{position:absolute;left:14px;top:50%;transform:translateY(-50%);
+        background:none;border:none;color:var(--tm);cursor:pointer;
+        font-size:18px;padding:4px 6px;transition:color .2s;line-height:1}
+.ls-eye:hover{color:var(--gold)}
+
+.ls-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--gold),var(--gold2));
+        border:none;border-radius:12px;font-family:'Cairo',sans-serif;
+        font-size:16px;font-weight:800;color:var(--navy);cursor:pointer;
+        transition:all .25s;box-shadow:0 6px 20px rgba(212,160,23,.3);
+        display:flex;align-items:center;justify-content:center;gap:8px}
+.ls-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(212,160,23,.4)}
+.ls-btn:active{transform:translateY(0)}
+.ls-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+
+.ls-msg{margin-top:14px;padding:11px 15px;border-radius:10px;
+        font-size:13px;font-weight:600;display:none}
+.ls-msg.err{background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.25);color:#ff6b6b}
+.ls-msg.ok{background:rgba(39,174,96,.1);border:1px solid rgba(39,174,96,.25);color:#2ECC71}
+.ls-msg.warn{background:rgba(243,156,18,.1);border:1px solid rgba(243,156,18,.25);color:var(--orange)}
+.ls-msg.show{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+.ls-lockout{display:none;margin-top:12px;text-align:center}
+.ls-lockout.show{display:block}
+.ls-count{font-size:28px;font-weight:900;color:var(--red);display:block;line-height:1}
+.ls-lock-txt{font-size:12px;color:var(--tm)}
+.ls-att{font-size:12px;color:var(--tm);margin-top:12px}
+.ls-contact{font-size:12px;color:var(--tm);margin-top:18px}
+.ls-contact a{color:var(--gold);text-decoration:none}
+.ls-divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--border-g),transparent);
+            margin:20px auto}
+
+/* ── ADMIN PANEL ─────────────────────────────────── */
+#ap{position:fixed;inset:0;z-index:90000;display:none;
+    align-items:flex-start;justify-content:center;overflow-y:auto;
+    background:rgba(0,0,0,.7);backdrop-filter:blur(8px);padding:20px}
+.ap-box{background:linear-gradient(135deg,#07112e,#0d1b56);
+        border:1px solid rgba(212,160,23,.3);border-radius:22px;
+        width:min(700px,96vw);margin:auto;overflow:hidden;
+        box-shadow:0 30px 80px rgba(0,0,0,.7);animation:lsIn .4s ease both;
+        position:relative}
+.ap-head{background:linear-gradient(135deg,rgba(212,160,23,.12),rgba(212,160,23,.05));
+         border-bottom:1px solid rgba(212,160,23,.2);
+         padding:20px 24px;display:flex;align-items:center;justify-content:space-between}
+.ap-head h2{font-size:18px;font-weight:900;color:var(--gold);display:flex;align-items:center;gap:10px}
+.ap-close{background:rgba(231,76,60,.12);border:1px solid rgba(231,76,60,.25);
+          color:var(--red);font-size:18px;width:36px;height:36px;
+          border-radius:8px;cursor:pointer;transition:all .2s;
+          display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ap-close:hover{background:rgba(231,76,60,.25)}
+.ap-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:20px 24px}
+.ap-stat{background:rgba(255,255,255,.04);border:1px solid var(--border);
+         border-radius:12px;padding:14px;text-align:center}
+.ap-stat-n{font-size:24px;font-weight:900;color:var(--gold);display:block}
+.ap-stat-l{font-size:11px;color:var(--tm);margin-top:3px}
+.ap-tabs{display:flex;gap:6px;padding:0 24px 16px;border-bottom:1px solid var(--border)}
+.ap-tab{flex:1;padding:10px 6px;border:1px solid var(--border);border-radius:10px;
+        background:transparent;font-family:'Cairo',sans-serif;font-size:12px;
+        font-weight:700;color:var(--tm);cursor:pointer;transition:all .25s}
+.ap-tab.on{background:rgba(212,160,23,.1);border-color:var(--border-g);color:var(--gold)}
+.ap-body{padding:20px 24px}
+.ap-tc{display:none}.ap-tc.on{display:block;animation:fadeIn .3s ease}
+
+.ap-list{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px}
+.ap-row{display:flex;align-items:center;gap:10px;padding:12px 16px;
+        border-bottom:1px solid rgba(255,255,255,.04);transition:background .2s;font-size:13px}
+.ap-row:last-child{border-bottom:none}
+.ap-row:hover{background:rgba(255,255,255,.03)}
+.ap-row-code{flex:1;font-family:monospace;font-size:13.5px;color:var(--tw);letter-spacing:.5px;
+             direction:ltr;text-align:left}
+.ap-row-note{font-size:11.5px;color:var(--tm);flex:1;text-align:right}
+.badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:20px;
+       font-size:10px;font-weight:700;margin:1px}
+.bg{background:rgba(39,174,96,.12);color:#2ECC71;border:1px solid rgba(39,174,96,.25)}
+.br{background:rgba(231,76,60,.12);color:var(--red);border:1px solid rgba(231,76,60,.25)}
+.bb{background:rgba(41,128,185,.12);color:#3498DB;border:1px solid rgba(41,128,185,.25)}
+.bo{background:rgba(212,160,23,.12);color:var(--gold);border:1px solid rgba(212,160,23,.25)}
+
+.ap-revoke-btn{background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.2);
+               color:var(--red);font-size:11px;padding:4px 10px;border-radius:6px;
+               cursor:pointer;font-family:'Cairo',sans-serif;font-weight:700;
+               transition:all .2s;white-space:nowrap}
+.ap-revoke-btn:hover{background:rgba(231,76,60,.2)}
+.ap-restore-btn{background:rgba(39,174,96,.08);border:1px solid rgba(39,174,96,.2);
+                color:#2ECC71;font-size:11px;padding:4px 10px;border-radius:6px;
+                cursor:pointer;font-family:'Cairo',sans-serif;font-weight:700;transition:all .2s}
+
+.ap-form-row{display:flex;gap:10px;margin-bottom:14px}
+.ap-inp{flex:1;padding:12px 16px;background:rgba(255,255,255,.05);
+        border:1.5px solid var(--border);border-radius:10px;
+        font-family:'Cairo',sans-serif;font-size:14px;color:var(--tw);
+        direction:rtl;transition:border-color .25s;outline:none}
+.ap-inp:focus{border-color:rgba(212,160,23,.4)}
+.ap-inp::placeholder{color:var(--tm)}
+.ap-btn{padding:12px 20px;background:linear-gradient(135deg,var(--gold),var(--gold2));
+        border:none;border-radius:10px;font-family:'Cairo',sans-serif;
+        font-size:13px;font-weight:800;color:var(--navy);cursor:pointer;
+        transition:all .25s;white-space:nowrap}
+.ap-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(212,160,23,.3)}
+.ap-btn-dl{width:100%;padding:14px;background:linear-gradient(135deg,#27AE60,#2ECC71);
+           border:none;border-radius:12px;font-family:'Cairo',sans-serif;
+           font-size:14px;font-weight:800;color:#fff;cursor:pointer;
+           transition:all .25s;margin-top:12px}
+.ap-btn-dl:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(39,174,96,.35)}
+.ap-result-box{background:rgba(39,174,96,.06);border:1px solid rgba(39,174,96,.2);
+               border-radius:12px;padding:16px;margin-top:12px}
+.ap-result-code{font-family:monospace;font-size:20px;font-weight:900;color:#2ECC71;
+                direction:ltr;text-align:center;display:block;letter-spacing:2px;
+                background:rgba(0,0,0,.2);padding:10px;border-radius:8px;margin:10px 0}
+.ap-result-txt{font-size:12.5px;color:var(--td);text-align:center}
+.ap-note{font-size:12.5px;color:var(--td);line-height:1.8;
+         background:rgba(212,160,23,.05);border:1px solid rgba(212,160,23,.12);
+         border-radius:10px;padding:14px;margin-bottom:16px}
+.ap-note strong{color:var(--gold)}
+
+/* ── PROGRESS BAR ─────────────────────────────────── */
+#prog{position:fixed;top:0;right:0;height:3px;
+      background:linear-gradient(90deg,var(--gold),var(--gold2));
+      z-index:9999;width:0;box-shadow:0 0 10px var(--gold);transition:width .1s}
+
+/* ── NAV ─────────────────────────────────────────── */
+nav{position:fixed;top:3px;inset-inline:0;z-index:9000;height:58px;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 16px;background:rgba(4,11,36,.9);
+    backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+    border-bottom:1px solid var(--border)}
+.nav-logo{font-size:14px;font-weight:900;color:var(--gold);
+          white-space:nowrap;flex-shrink:0;letter-spacing:.3px}
+.nav-links{display:flex;gap:3px;overflow-x:auto;scrollbar-width:none;
+           flex:1;padding:0 12px;justify-content:center}
 .nav-links::-webkit-scrollbar{display:none}
-.nl{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:20px;font-size:11.5px;font-weight:700;color:var(--tm);text-decoration:none;white-space:nowrap;transition:all .25s;border:1px solid transparent;cursor:pointer}
-.nl:hover,.nl.on{color:var(--gold);border-color:rgba(212,160,23,.3);background:rgba(212,160,23,.07)}
+.nl{display:inline-flex;align-items:center;padding:5px 10px;border-radius:20px;
+    font-size:11px;font-weight:700;color:var(--tm);text-decoration:none;
+    white-space:nowrap;transition:all .25s;border:1px solid transparent;cursor:pointer}
+.nl:hover,.nl.on{color:var(--gold);border-color:rgba(212,160,23,.3);
+                  background:rgba(212,160,23,.07)}
+/* Hamburger */
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;
+     background:none;border:none;padding:8px;flex-shrink:0}
+.ham span{display:block;width:22px;height:2px;background:var(--gold);
+          border-radius:2px;transition:all .3s}
+.ham.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.ham.open span:nth-child(2){opacity:0;transform:translateX(8px)}
+.ham.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 
-/* HAMBURGER */
-.ham{display:none;flex-direction:column;justify-content:center;gap:5px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;cursor:pointer;padding:7px 8px;width:38px;height:38px;transition:all .2s;flex-shrink:0}
-.ham span{display:block;width:18px;height:1.5px;background:var(--gold);border-radius:2px;transition:all .3s;margin:0 auto}
-.ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
-.ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
-.ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
-.ham:hover{background:rgba(212,160,23,.08);border-color:rgba(212,160,23,.25)}
+/* Mobile nav drawer */
+#mob-nav{position:fixed;top:61px;inset-inline:0;z-index:8800;
+         background:rgba(4,11,36,.97);backdrop-filter:blur(20px);
+         border-bottom:1px solid var(--border);padding:16px;
+         display:none;flex-direction:column;gap:6px;max-height:80vh;overflow-y:auto}
+#mob-nav.open{display:flex}
+.mob-nl{padding:13px 18px;border-radius:12px;font-size:14px;font-weight:700;
+        color:var(--td);border:1px solid var(--border);cursor:pointer;
+        transition:all .25s;background:var(--glass)}
+.mob-nl:hover,.mob-nl.on{background:rgba(212,160,23,.08);
+                          border-color:var(--border-g);color:var(--gold)}
 
-/* MOBILE MENU */
-.mobile-menu{display:none;position:fixed;inset:0;z-index:9400;background:rgba(4,11,36,.98);backdrop-filter:blur(24px);flex-direction:column;align-items:center;justify-content:center;padding:80px 24px 40px;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.mobile-menu.open{display:flex}
-.mm-close{position:absolute;top:18px;left:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:17px;color:var(--tm);transition:all .2s}
-.mm-close:hover{background:rgba(231,76,60,.15);color:var(--red)}
-.mm-logo{font-size:16px;font-weight:900;color:var(--gold);margin-bottom:24px;letter-spacing:.3px}
-.mm-links{display:flex;flex-direction:column;gap:5px;width:100%;max-width:300px}
-.mm-link{display:flex;align-items:center;padding:13px 18px;border-radius:13px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);color:var(--td);font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;text-align:right;gap:8px}
-.mm-link:hover,.mm-link:active{background:rgba(212,160,23,.1);border-color:rgba(212,160,23,.28);color:var(--gold)}
-
-/* BACK TOP */
-#bt{position:fixed;bottom:72px;left:28px;width:42px;height:42px;background:var(--navy);border:1px solid var(--border-g);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:var(--gold);z-index:8800;transition:all .3s;opacity:0;transform:translateY(20px);box-shadow:0 5px 20px rgba(0,0,0,.3)}
+/* ── BACK TOP ─────────────────────────────────────── */
+#bt{position:fixed;bottom:24px;left:20px;width:44px;height:44px;
+    background:var(--navy);border:1px solid var(--border-g);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    font-size:18px;color:var(--gold);z-index:9000;transition:all .3s;
+    opacity:0;transform:translateY(20px);box-shadow:0 5px 20px rgba(0,0,0,.3)}
 #bt.vis{opacity:1;transform:translateY(0)}
 #bt:hover{background:var(--gold);color:var(--navy);transform:translateY(-4px)}
 
-/* LOGOUT BTN */
-#logout-btn{display:none;position:fixed;bottom:20px;right:20px;z-index:8800;background:rgba(13,27,86,.88);border:1px solid rgba(255,255,255,.09);border-radius:50%;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;font-size:17px;transition:all .3s;backdrop-filter:blur(10px);color:var(--tm)}
-#logout-btn:hover{background:rgba(231,76,60,.18);border-color:rgba(231,76,60,.25);color:var(--red);transform:scale(1.12)}
-
-/* ===== HERO ===== */
-#hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:80px 20px 80px}
+/* ── HERO ─────────────────────────────────────────── */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;
+      justify-content:center;text-align:center;overflow:hidden;
+      padding:80px 16px 80px}
 #cnv{position:absolute;inset:0;width:100%;height:100%}
-.orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none}
-.o1{width:600px;height:600px;background:radial-gradient(circle,rgba(212,160,23,.12),transparent 70%);top:-150px;right:-150px;animation:of 9s ease-in-out infinite}
-.o2{width:700px;height:700px;background:radial-gradient(circle,rgba(13,27,86,.55),transparent 70%);bottom:-200px;left:-150px;animation:of 11s ease-in-out infinite reverse}
-.o3{width:400px;height:400px;background:radial-gradient(circle,rgba(26,43,115,.4),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);animation:op 7s ease-in-out infinite}
-@keyframes of{0%,100%{transform:translate(0,0)}33%{transform:translate(-25px,25px)}66%{transform:translate(18px,-18px)}}
-@keyframes op{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.3}50%{transform:translate(-50%,-50%) scale(1.25);opacity:.5}}
-.hc{position:relative;z-index:2;max-width:820px;margin:0 auto}
-.hbadge{display:inline-flex;align-items:center;gap:8px;background:rgba(212,160,23,.08);border:1px solid rgba(212,160,23,.35);color:var(--gold);padding:8px 22px;border-radius:30px;font-size:12.5px;font-weight:700;margin-bottom:28px;animation:fa 1s ease .3s both;letter-spacing:.8px}
-@keyframes fa{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.htitle{font-size:clamp(30px,6vw,62px);font-weight:900;line-height:1.25;margin-bottom:20px;animation:fa 1s ease .6s both}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.o1{width:min(600px,100vw);height:min(600px,100vw);
+    background:radial-gradient(circle,rgba(212,160,23,.12),transparent 70%);
+    top:-150px;right:-150px;animation:orb 9s ease-in-out infinite}
+.o2{width:min(700px,120vw);height:min(700px,120vw);
+    background:radial-gradient(circle,rgba(13,27,86,.55),transparent 70%);
+    bottom:-200px;left:-150px;animation:orb 11s ease-in-out infinite reverse}
+.hc{position:relative;z-index:2;max-width:820px;margin:0 auto;width:100%}
+.hbadge{display:inline-flex;align-items:center;gap:7px;
+        background:rgba(212,160,23,.08);border:1px solid rgba(212,160,23,.35);
+        color:var(--gold);padding:7px 18px;border-radius:30px;
+        font-size:clamp(11px,2.5vw,13px);font-weight:700;margin-bottom:24px;
+        animation:fa 1s ease .3s both;letter-spacing:.6px}
+@keyframes fa{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.htitle{font-size:clamp(26px,6vw,60px);font-weight:900;line-height:1.25;
+        margin-bottom:16px;animation:fa 1s ease .6s both}
 .htitle span{display:block}
-.hgold{color:transparent;background:linear-gradient(120deg,var(--gold),var(--gold2),#fff8d0,var(--gold));-webkit-background-clip:text;background-clip:text;background-size:300% auto;animation:shim 4s linear infinite}
+.hgold{color:transparent;background:linear-gradient(120deg,var(--gold),var(--gold2),#fff8d0,var(--gold));
+       -webkit-background-clip:text;background-clip:text;background-size:300% auto;
+       animation:shim 4s linear infinite}
 @keyframes shim{to{background-position:300% center}}
-.hdiv{width:110px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:22px auto;animation:diva 1.2s ease .9s both}
-@keyframes diva{from{opacity:0;width:0}to{opacity:1;width:110px}}
-.hsub{font-size:15.5px;color:var(--td);max-width:560px;margin:0 auto 36px;line-height:2;animation:fa 1s ease 1.1s both}
-.hfeats{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:50px;animation:fa 1s ease 1.3s both}
-.hfeat{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px 18px;min-width:120px;text-align:center;transition:all .3s}
-.hfeat:hover{background:rgba(212,160,23,.07);border-color:rgba(212,160,23,.3);transform:translateY(-5px);box-shadow:0 12px 30px rgba(212,160,23,.1)}
-.hfeat-i{font-size:24px;display:block;margin-bottom:5px}
-.hfeat-t{font-size:11.5px;color:var(--td);font-weight:700}
-.scroll-ind{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2;animation:fa 1s ease 2s both;cursor:pointer}
-.si-txt{font-size:10px;color:var(--tm);letter-spacing:2px;text-transform:uppercase}
-.si-mouse{width:22px;height:36px;border:1.5px solid rgba(255,255,255,.25);border-radius:11px;position:relative}
-.si-mouse::after{content:'';position:absolute;top:5px;left:50%;transform:translateX(-50%);width:2.5px;height:7px;background:var(--gold);border-radius:3px;animation:sdot 2s ease-in-out infinite}
+.hdiv{width:100px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);
+      margin:18px auto;animation:diva 1.2s ease .9s both}
+@keyframes diva{from{opacity:0;width:0}to{opacity:1;width:100px}}
+.hsub{font-size:clamp(13px,2.5vw,15px);color:var(--td);max-width:560px;
+      margin:0 auto 32px;line-height:2;animation:fa 1s ease 1.1s both}
+.hfeats{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;
+        margin-bottom:40px;animation:fa 1s ease 1.3s both}
+.hfeat{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);
+       border-radius:12px;padding:12px 16px;min-width:100px;text-align:center;
+       transition:all .3s;flex:0 0 auto}
+.hfeat:hover{background:rgba(212,160,23,.07);border-color:rgba(212,160,23,.3);
+             transform:translateY(-4px)}
+.hfeat-i{font-size:22px;display:block;margin-bottom:4px}
+.hfeat-t{font-size:11px;color:var(--td);font-weight:700}
+.scroll-ind{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+            display:flex;flex-direction:column;align-items:center;gap:7px;z-index:2;
+            animation:fa 1s ease 2s both;cursor:pointer}
+.si-txt{font-size:9px;color:var(--tm);letter-spacing:2px;text-transform:uppercase}
+.si-mouse{width:20px;height:34px;border:1.5px solid rgba(255,255,255,.22);border-radius:10px;position:relative}
+.si-mouse::after{content:'';position:absolute;top:5px;left:50%;transform:translateX(-50%);
+                 width:2px;height:6px;background:var(--gold);border-radius:2px;
+                 animation:sdot 2s ease-in-out infinite}
 @keyframes sdot{0%,100%{top:5px;opacity:1}50%{top:17px;opacity:0}}
 
-/* MAIN WRAPPER */
-.wrap{max-width:1020px;margin:0 auto;padding:0 20px}
-
-/* SECTION COMMON */
-.slabel{display:inline-flex;align-items:center;gap:7px;background:rgba(212,160,23,.07);border:1px solid rgba(212,160,23,.2);color:var(--gold);padding:5px 14px;border-radius:20px;font-size:11px;font-weight:800;margin-bottom:16px;letter-spacing:1px}
-.stitle{font-size:clamp(22px,4vw,38px);font-weight:900;color:var(--tw);margin-bottom:10px;line-height:1.3}
+/* ── WRAP & LAYOUT ────────────────────────────────── */
+.wrap{max-width:1020px;margin:0 auto;padding:0 16px}
+.slabel{display:inline-flex;align-items:center;gap:6px;
+        background:rgba(212,160,23,.07);border:1px solid rgba(212,160,23,.2);
+        color:var(--gold);padding:4px 12px;border-radius:20px;
+        font-size:10.5px;font-weight:800;margin-bottom:14px;letter-spacing:1px}
+.stitle{font-size:clamp(20px,4vw,36px);font-weight:900;color:var(--tw);
+        margin-bottom:8px;line-height:1.3}
 .stitle span{color:var(--gold)}
-.sdesc{font-size:14px;color:var(--td);margin-bottom:40px;max-width:640px;line-height:1.9}
+.sdesc{font-size:13.5px;color:var(--td);margin-bottom:36px;
+       max-width:640px;line-height:1.9}
+.toc-sec{padding:80px 0}
+.toc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}
+.tcard{background:var(--glass);border:1px solid var(--border);border-radius:var(--r);
+       padding:18px 20px;display:flex;align-items:center;gap:14px;
+       text-decoration:none;color:inherit;transition:all .3s;cursor:pointer;
+       -webkit-tap-highlight-color:transparent}
+.tcard:hover,.tcard:active{background:rgba(212,160,23,.06);border-color:var(--border-g);
+  transform:translateY(-4px);box-shadow:0 16px 36px rgba(0,0,0,.28)}
+.tnum{width:40px;height:40px;background:linear-gradient(135deg,var(--navy),var(--navy2));
+      border:1px solid var(--border-g);border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:15px;font-weight:900;color:var(--gold);flex-shrink:0}
+.tinfo h3{font-size:13px;font-weight:800;color:var(--tw);margin-bottom:3px}
+.tinfo p{font-size:11px;color:var(--tm);line-height:1.5}
 
-/* TOC */
-.toc-sec{padding:100px 0}
-.toc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;margin-top:10px}
-.tcard{background:var(--glass);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;display:flex;align-items:center;gap:15px;text-decoration:none;color:inherit;transition:all .3s;cursor:pointer}
-.tcard:hover{background:rgba(212,160,23,.06);border-color:var(--border-g);transform:translateY(-4px) translateX(-4px);box-shadow:0 18px 40px rgba(0,0,0,.3),0 0 20px rgba(212,160,23,.08)}
-.tnum{width:42px;height:42px;background:linear-gradient(135deg,var(--navy),var(--navy2));border:1px solid var(--border-g);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:var(--gold);flex-shrink:0}
-.tinfo h3{font-size:13.5px;font-weight:800;color:var(--tw);margin-bottom:3px}
-.tinfo p{font-size:11.5px;color:var(--tm);line-height:1.5}
+/* ── CHAPTERS ─────────────────────────────────────── */
+.chapter{padding:0 0 80px}
+.chero{position:relative;margin:50px 0 40px;padding:36px clamp(20px,4vw,46px);
+       border-radius:20px;overflow:hidden;
+       background:linear-gradient(135deg,var(--navy),var(--navy2));
+       border:1px solid rgba(212,160,23,.18)}
+.chero::before{content:'';position:absolute;top:0;right:0;bottom:0;
+               width:4px;background:linear-gradient(180deg,var(--gold),var(--gold2),var(--gold))}
+.chero-ghost{position:absolute;left:20px;bottom:-14px;font-size:clamp(60px,10vw,110px);
+             font-weight:900;color:rgba(255,255,255,.025);line-height:1;pointer-events:none}
+.clabel{font-size:9.5px;font-weight:800;color:var(--gold);letter-spacing:3px;
+        text-transform:uppercase;margin-bottom:8px;opacity:.8}
+.ctitle{font-size:clamp(18px,3.5vw,31px);font-weight:900;color:var(--tw);
+        margin-bottom:6px;line-height:1.3}
+.csub{font-size:13px;color:var(--td)}
+.sh{display:flex;align-items:center;gap:10px;margin:32px 0 16px;
+    padding-bottom:9px;border-bottom:1px solid rgba(212,160,23,.12)}
+.sh h2{font-size:clamp(14px,2.5vw,17px);font-weight:800;color:var(--tw);flex-shrink:0}
+.sh-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(212,160,23,.22),transparent)}
+p{font-size:13.5px;color:var(--td);line-height:1.95;margin-bottom:12px}
 
-/* CHAPTER */
-.chapter{padding:0 0 90px}
-.chero{position:relative;margin:60px 0 45px;padding:44px 48px;border-radius:22px;overflow:hidden;background:linear-gradient(135deg,var(--navy),var(--navy2));border:1px solid rgba(212,160,23,.18)}
-.chero::before{content:'';position:absolute;top:0;right:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--gold),var(--gold2),var(--gold))}
-.chero-ghost{position:absolute;left:28px;bottom:-16px;font-size:110px;font-weight:900;color:rgba(255,255,255,.025);line-height:1;pointer-events:none;font-family:'Cairo',sans-serif}
-.clabel{font-size:10px;font-weight:800;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;opacity:.8}
-.ctitle{font-size:clamp(20px,3.5vw,33px);font-weight:900;color:var(--tw);margin-bottom:8px;line-height:1.3}
-.csub{font-size:13.5px;color:var(--td)}
-.sh{display:flex;align-items:center;gap:12px;margin:36px 0 18px;padding-bottom:10px;border-bottom:1px solid rgba(212,160,23,.12)}
-.sh h2{font-size:17px;font-weight:800;color:var(--tw)}
-.sh-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(212,160,23,.25),transparent)}
-p{font-size:14px;color:var(--td);line-height:1.95;margin-bottom:14px}
+/* ── STAT CARDS ───────────────────────────────────── */
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:20px 0}
+.scard{background:linear-gradient(135deg,rgba(13,27,86,.55),rgba(26,43,115,.35));
+       border:1px solid rgba(212,160,23,.18);border-radius:var(--r);
+       padding:20px 16px;text-align:center;transition:all .4s;position:relative;overflow:hidden}
+.scard::before{content:'';position:absolute;top:0;inset-inline:0;height:2px;
+               background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.scard:hover{transform:translateY(-5px);box-shadow:0 0 28px rgba(212,160,23,.16)}
+.si{font-size:24px;margin-bottom:7px;display:block}
+.sn{font-size:24px;font-weight:900;color:var(--gold);display:block;margin-bottom:3px;line-height:1}
+.sl{font-size:11px;color:var(--td);line-height:1.4}
 
-/* STATS GRID */
-.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:14px;margin:24px 0}
-.scard{background:linear-gradient(135deg,rgba(13,27,86,.55),rgba(26,43,115,.35));border:1px solid rgba(212,160,23,.18);border-radius:var(--r);padding:22px 18px;text-align:center;transition:all .4s;position:relative;overflow:hidden}
-.scard::before{content:'';position:absolute;top:0;inset-inline:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.scard:hover{transform:translateY(-6px);box-shadow:0 0 30px rgba(212,160,23,.18);border-color:rgba(212,160,23,.4)}
-.si{font-size:26px;margin-bottom:8px;display:block}
-.sn{font-size:26px;font-weight:900;color:var(--gold);display:block;margin-bottom:4px;line-height:1}
-.sl{font-size:11.5px;color:var(--td);line-height:1.4}
-
-/* CALLOUT */
-.callout{border-radius:var(--r-s);padding:18px 20px;margin:18px 0;border-right:4px solid;transition:all .3s}
-.callout:hover{transform:translateX(-4px)}
+/* ── CALLOUTS ─────────────────────────────────────── */
+.callout{border-radius:var(--rs);padding:16px 18px;margin:16px 0;
+         border-right:4px solid;transition:all .3s}
+.callout:hover{transform:translateX(-3px)}
 .ct{background:rgba(39,174,96,.06);border-color:var(--green)}
 .cw{background:rgba(243,156,18,.06);border-color:var(--orange)}
 .cd{background:rgba(231,76,60,.06);border-color:var(--red)}
 .ci{background:rgba(41,128,185,.06);border-color:var(--blue)}
 .cg{background:rgba(212,160,23,.06);border-color:var(--gold)}
-.clb{font-size:12.5px;font-weight:800;margin-bottom:7px}
-.ct .clb{color:#2ECC71}.cw .clb{color:var(--orange)}.cd .clb{color:var(--red)}.ci .clb{color:#3498DB}.cg .clb{color:var(--gold)}
-.cbody{font-size:13px;color:var(--td);line-height:1.85}
+.clb{font-size:12px;font-weight:800;margin-bottom:6px}
+.ct .clb{color:#2ECC71}.cw .clb{color:var(--orange)}.cd .clb{color:var(--red)}
+.ci .clb{color:#3498DB}.cg .clb{color:var(--gold)}
+.cbody{font-size:12.5px;color:var(--td);line-height:1.85}
 
-/* ERROR CARDS */
-.ecard{background:rgba(231,76,60,.04);border:1px solid rgba(231,76,60,.13);border-radius:var(--r);padding:22px;margin-bottom:14px;position:relative;overflow:hidden;transition:all .3s}
-.ecard::before{content:'';position:absolute;top:0;right:0;bottom:0;width:4px;background:var(--red);border-radius:0 var(--r) var(--r) 0}
-.ecard:hover{border-color:rgba(231,76,60,.28);transform:translateX(-5px);box-shadow:0 10px 30px rgba(0,0,0,.2)}
-.etitle{font-size:14px;font-weight:800;color:var(--red);margin-bottom:9px}
-.edesc{font-size:13px;color:var(--td);line-height:1.85;margin-bottom:10px}
-.efix{font-size:13px;color:#2ECC71;font-weight:600;background:rgba(39,174,96,.06);border:1px solid rgba(39,174,96,.15);border-radius:7px;padding:10px 13px}
+/* ── ERROR CARDS ──────────────────────────────────── */
+.ecard{background:rgba(231,76,60,.04);border:1px solid rgba(231,76,60,.13);
+       border-radius:var(--r);padding:20px;margin-bottom:12px;
+       position:relative;overflow:hidden;transition:all .3s}
+.ecard::before{content:'';position:absolute;top:0;right:0;bottom:0;
+               width:4px;background:var(--red)}
+.ecard:hover{border-color:rgba(231,76,60,.28);transform:translateX(-4px)}
+.etitle{font-size:13.5px;font-weight:800;color:var(--red);margin-bottom:8px}
+.edesc{font-size:12.5px;color:var(--td);line-height:1.85;margin-bottom:10px}
+.efix{font-size:12.5px;color:#2ECC71;font-weight:600;
+      background:rgba(39,174,96,.06);border:1px solid rgba(39,174,96,.15);
+      border-radius:7px;padding:9px 12px}
 
-/* STEPS */
-.steps{margin:26px 0}
-.step{display:flex;gap:18px;margin-bottom:22px;align-items:flex-start}
-.stnum{width:40px;height:40px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:var(--navy);flex-shrink:0;box-shadow:0 4px 18px rgba(212,160,23,.28)}
-.stcon{flex:1;padding-top:7px}
-.sttitle{font-size:14.5px;font-weight:800;color:var(--tw);margin-bottom:5px}
-.stdesc{font-size:13px;color:var(--td);line-height:1.85}
+/* ── STEPS ────────────────────────────────────────── */
+.steps{margin:22px 0}
+.step{display:flex;gap:16px;margin-bottom:20px;align-items:flex-start}
+.stnum{width:38px;height:38px;background:linear-gradient(135deg,var(--gold),var(--gold2));
+       border-radius:50%;display:flex;align-items:center;justify-content:center;
+       font-size:14px;font-weight:900;color:var(--navy);flex-shrink:0;
+       box-shadow:0 4px 16px rgba(212,160,23,.28)}
+.stcon{flex:1;padding-top:6px}
+.sttitle{font-size:14px;font-weight:800;color:var(--tw);margin-bottom:4px}
+.stdesc{font-size:12.5px;color:var(--td);line-height:1.85}
 
-/* SETTINGS */
-.setblock{background:rgba(13,27,86,.3);border:1px solid rgba(255,255,255,.065);border-radius:var(--r);padding:22px;margin-bottom:18px;transition:all .3s}
+/* ── SETTINGS BLOCKS ──────────────────────────────── */
+.setblock{background:rgba(13,27,86,.3);border:1px solid rgba(255,255,255,.065);
+          border-radius:var(--r);padding:20px;margin-bottom:16px;transition:all .3s}
 .setblock:hover{border-color:rgba(212,160,23,.18);background:rgba(13,27,86,.5)}
-.settitle{font-size:14.5px;font-weight:800;color:var(--gold);padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,.055);display:flex;align-items:center;gap:9px}
-.seti{font-size:18px}
-.setrow{display:flex;align-items:flex-start;gap:14px;margin-bottom:11px;font-size:13px}
-.setkey{font-weight:700;color:var(--tw);min-width:155px;flex-shrink:0;line-height:1.6}
+.settitle{font-size:14px;font-weight:800;color:var(--gold);padding-bottom:11px;
+          margin-bottom:12px;border-bottom:1px solid rgba(255,255,255,.05);
+          display:flex;align-items:center;gap:8px}
+.setrow{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;font-size:12.5px}
+.setkey{font-weight:700;color:var(--tw);min-width:140px;flex-shrink:0;line-height:1.6}
 .setval{color:var(--td);flex:1;line-height:1.6}
-.badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:20px;font-size:10.5px;font-weight:700;margin:2px 2px}
-.bg{background:rgba(39,174,96,.12);color:#2ECC71;border:1px solid rgba(39,174,96,.28)}
-.bb{background:rgba(41,128,185,.12);color:#3498DB;border:1px solid rgba(41,128,185,.28)}
-.bo{background:rgba(212,160,23,.12);color:var(--gold);border:1px solid rgba(212,160,23,.28)}
-.br{background:rgba(231,76,60,.12);color:var(--red);border:1px solid rgba(231,76,60,.28)}
 
-/* PLATFORM GRID */
-.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin:22px 0}
-.pcard{background:var(--glass);border:1px solid var(--border);border-radius:var(--r);padding:18px;text-align:center;transition:all .3s}
+/* ── PLATFORM GRID ────────────────────────────────── */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+       gap:12px;margin:20px 0}
+.pcard{background:var(--glass);border:1px solid var(--border);border-radius:var(--r);
+       padding:16px;text-align:center;transition:all .3s}
 .pcard.feat{border-color:var(--border-g);background:rgba(212,160,23,.04)}
-.pcard:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.28)}
-.pi{font-size:34px;display:block;margin-bottom:9px}
-.pn{font-size:13.5px;font-weight:700;color:var(--tw);margin-bottom:5px}
-.pd{font-size:11px;color:var(--tm);margin-bottom:9px;line-height:1.5}
+.pcard:hover{transform:translateY(-5px);box-shadow:0 18px 36px rgba(0,0,0,.25)}
+.pi{font-size:32px;display:block;margin-bottom:8px}
+.pn{font-size:13px;font-weight:700;color:var(--tw);margin-bottom:4px}
+.pd{font-size:10.5px;color:var(--tm);margin-bottom:8px;line-height:1.5}
 .pu{font-size:17px;font-weight:900;color:var(--gold)}
 
-/* TABLE */
-.twrap{overflow-x:auto;margin:22px 0;border-radius:var(--r);border:1px solid var(--border);-webkit-overflow-scrolling:touch}
-table{width:100%;border-collapse:collapse;font-size:13px}
+/* ── TABLES ───────────────────────────────────────── */
+.twrap{overflow-x:auto;margin:20px 0;border-radius:var(--r);
+       border:1px solid var(--border);-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:500px}
 thead tr{background:linear-gradient(135deg,var(--navy),var(--navy2))}
-thead th{padding:13px 17px;text-align:right;font-weight:700;color:var(--gold);font-size:12.5px;white-space:nowrap}
+thead th{padding:12px 15px;text-align:right;font-weight:700;color:var(--gold);
+         font-size:12px;white-space:nowrap}
 tbody tr{border-bottom:1px solid rgba(255,255,255,.04);transition:background .2s}
 tbody tr:hover{background:rgba(212,160,23,.03)}
 tbody tr:last-child{border-bottom:none}
-tbody td{padding:11px 17px;color:var(--td);line-height:1.65;vertical-align:top}
+tbody td{padding:10px 15px;color:var(--td);line-height:1.65;vertical-align:top}
 
-/* KPI GRID */
-.kgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:13px;margin:22px 0}
-.kcard{background:var(--glass);border:1px solid var(--border);border-radius:var(--r-s);padding:17px;transition:all .3s}
-.kcard:hover{transform:translateY(-4px)}
-.kg{border-top:3px solid var(--green)}.kw{border-top:3px solid var(--orange)}.kb{border-top:3px solid var(--red)}
-.km{font-size:11.5px;color:var(--tm);margin-bottom:5px}
-.kv{font-size:19px;font-weight:900;color:var(--tw)}
-.kd{font-size:11px;color:var(--tm);margin-top:3px}
+/* ── CHECKLIST ────────────────────────────────────── */
+.chklist{margin:16px 0}
+.chi{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;
+     padding:10px 14px;border-radius:var(--rs);background:rgba(255,255,255,.02);
+     border:1px solid rgba(255,255,255,.04);transition:all .3s;
+     font-size:12.5px;color:var(--td);line-height:1.7}
+.chi:hover{background:rgba(39,174,96,.04);border-color:rgba(39,174,96,.13);
+           transform:translateX(-3px)}
+.chi-i{font-size:14px;flex-shrink:0;margin-top:1px}
 
-/* CHECKLIST */
-.chklist{margin:18px 0}
-.chi{display:flex;align-items:flex-start;gap:11px;margin-bottom:12px;padding:11px 15px;border-radius:var(--r-s);background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);transition:all .3s;font-size:13px;color:var(--td);line-height:1.7}
-.chi:hover{background:rgba(39,174,96,.04);border-color:rgba(39,174,96,.14);transform:translateX(-4px)}
-.chi-i{font-size:15px;flex-shrink:0;margin-top:1px}
-
-/* 30-DAY PLAN */
-.week{border-radius:var(--r);overflow:hidden;margin-bottom:22px;border:1px solid var(--border)}
-.wh{padding:16px 22px;font-size:15px;font-weight:800;color:#fff;display:flex;align-items:center;gap:10px}
+/* ── 30-DAY PLAN ──────────────────────────────────── */
+.week{border-radius:var(--r);overflow:hidden;margin-bottom:18px;border:1px solid var(--border)}
+.wh{padding:14px 20px;font-size:14px;font-weight:800;color:#fff;display:flex;align-items:center;gap:9px}
 .w1{background:linear-gradient(135deg,#1565C0,#1976D2)}
 .w2{background:linear-gradient(135deg,#0277BD,#0288D1)}
 .w3{background:linear-gradient(135deg,#00695C,#00897B)}
 .w4{background:linear-gradient(135deg,#2E7D32,#388E3C)}
-.wb{padding:18px 22px;background:rgba(255,255,255,.02)}
-.di{display:flex;align-items:flex-start;gap:13px;margin-bottom:12px;padding:9px 13px;border-radius:7px;background:rgba(255,255,255,.02);transition:all .3s}
-.di:hover{background:rgba(212,160,23,.04);transform:translateX(-4px)}
-.dlabel{background:var(--navy2);color:var(--gold);font-size:10.5px;font-weight:700;padding:4px 9px;border-radius:5px;flex-shrink:0;white-space:nowrap;border:1px solid rgba(212,160,23,.18)}
-.dtxt{font-size:12.5px;color:var(--td);line-height:1.7}
+.wb{padding:16px 20px;background:rgba(255,255,255,.02)}
+.di{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;
+    padding:8px 12px;border-radius:7px;background:rgba(255,255,255,.02);transition:all .3s}
+.di:hover{background:rgba(212,160,23,.04);transform:translateX(-3px)}
+.dlabel{background:var(--navy2);color:var(--gold);font-size:10px;font-weight:700;
+        padding:3px 8px;border-radius:5px;flex-shrink:0;white-space:nowrap;
+        border:1px solid rgba(212,160,23,.18);margin-top:1px}
+.dtxt{font-size:12px;color:var(--td);line-height:1.7}
 
-/* GOLDEN RULES */
-.grules{margin:28px 0}
-.ri{display:flex;gap:16px;align-items:flex-start;margin-bottom:14px;padding:18px 20px;background:linear-gradient(135deg,rgba(212,160,23,.05),rgba(240,192,64,.025));border:1px solid rgba(212,160,23,.13);border-radius:var(--r);transition:all .3s;cursor:default}
-.ri:hover{background:linear-gradient(135deg,rgba(212,160,23,.09),rgba(240,192,64,.05));border-color:rgba(212,160,23,.28);transform:translateX(-6px);box-shadow:0 10px 30px rgba(212,160,23,.09)}
-.rnum{width:34px;height:34px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:var(--navy);flex-shrink:0;box-shadow:0 4px 14px rgba(212,160,23,.28)}
-.rtext{font-size:13px;color:var(--td);line-height:1.85}
-.rtext strong{display:block;font-size:13.5px;color:var(--tw);font-weight:800;margin-bottom:3px}
+/* ── GOLDEN RULES ─────────────────────────────────── */
+.grules{margin:24px 0}
+.ri{display:flex;gap:15px;align-items:flex-start;margin-bottom:12px;
+    padding:16px 18px;background:linear-gradient(135deg,rgba(212,160,23,.05),rgba(240,192,64,.025));
+    border:1px solid rgba(212,160,23,.13);border-radius:var(--r);transition:all .3s;cursor:default}
+.ri:hover{background:linear-gradient(135deg,rgba(212,160,23,.09),rgba(240,192,64,.05));
+          border-color:rgba(212,160,23,.26);transform:translateX(-5px);
+          box-shadow:0 10px 28px rgba(212,160,23,.08)}
+.rnum{width:32px;height:32px;background:linear-gradient(135deg,var(--gold),var(--gold2));
+      border-radius:8px;display:flex;align-items:center;justify-content:center;
+      font-size:13px;font-weight:900;color:var(--navy);flex-shrink:0;
+      box-shadow:0 4px 12px rgba(212,160,23,.28)}
+.rtext{font-size:12.5px;color:var(--td);line-height:1.85}
+.rtext strong{display:block;font-size:13px;color:var(--tw);font-weight:800;margin-bottom:2px}
 
-/* 2 COL */
-.tcol{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:20px 0}
+/* ── 2-COL ────────────────────────────────────────── */
+.tcol{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
 
-/* BULLET LIST */
-.blist{margin:14px 0}
-.blist li{list-style:none;padding-right:20px;position:relative;font-size:13px;color:var(--td);margin-bottom:9px;line-height:1.7}
+/* ── BULLET LIST ──────────────────────────────────── */
+.blist{margin:12px 0}
+.blist li{list-style:none;padding-right:18px;position:relative;
+          font-size:12.5px;color:var(--td);margin-bottom:8px;line-height:1.7}
 .blist li::before{content:"◆";color:var(--gold);position:absolute;right:0;font-size:8px;top:5px}
 
-/* TEXT UTILS */
+/* ── TEXT UTILS ───────────────────────────────────── */
 .tgold{color:var(--gold);font-weight:700}
 .tred{color:var(--red);font-weight:700}
 .tgreen{color:#2ECC71;font-weight:700}
-.hi{background:rgba(212,160,23,.14);color:var(--gold);padding:2px 6px;border-radius:4px;font-weight:600}
+.hi{background:rgba(212,160,23,.13);color:var(--gold);padding:1px 5px;
+    border-radius:4px;font-weight:600}
 
-/* CONCLUSION HERO */
-.conhero{background:linear-gradient(135deg,var(--navy),var(--navy2));border:1px solid rgba(212,160,23,.2);border-radius:22px;padding:50px 48px;margin-bottom:36px;text-align:center;position:relative;overflow:hidden}
-.conhero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(212,160,23,.08),transparent 70%);pointer-events:none}
-.conhero h1{font-size:clamp(22px,4vw,36px);color:var(--gold);font-weight:900;margin-bottom:12px}
-.conhero p{font-size:14px;color:var(--td);max-width:560px;margin:0 auto}
+/* ── CONCLUSION HERO ──────────────────────────────── */
+.conhero{background:linear-gradient(135deg,var(--navy),var(--navy2));
+         border:1px solid rgba(212,160,23,.2);border-radius:20px;
+         padding:clamp(30px,5vw,50px) clamp(20px,5vw,46px);margin-bottom:30px;
+         text-align:center;position:relative;overflow:hidden}
+.conhero::before{content:'';position:absolute;inset:0;
+                  background:radial-gradient(circle at 50% 50%,rgba(212,160,23,.07),transparent 70%)}
+.conhero h1{font-size:clamp(20px,4vw,34px);color:var(--gold);font-weight:900;margin-bottom:10px}
+.conhero p{font-size:13.5px;color:var(--td);max-width:540px;margin:0 auto}
 
-/* FOOTER */
-footer{background:linear-gradient(135deg,var(--navy),var(--navy2));border-top:1px solid rgba(212,160,23,.18);padding:60px 20px 40px;text-align:center;margin-top:60px}
-.flogo{font-size:26px;font-weight:900;color:var(--gold);margin-bottom:10px}
-.fdesc{font-size:13.5px;color:var(--td);margin-bottom:24px}
-.fdiv{width:90px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:20px auto}
-.fcopy{font-size:11.5px;color:var(--tm)}
+/* ── FOOTER ───────────────────────────────────────── */
+footer{background:linear-gradient(135deg,var(--navy),var(--navy2));
+       border-top:1px solid rgba(212,160,23,.18);padding:50px 20px 36px;
+       text-align:center;margin-top:60px}
+.flogo{font-size:24px;font-weight:900;color:var(--gold);margin-bottom:9px}
+.fdesc{font-size:13px;color:var(--td);margin-bottom:22px}
+.fdiv{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);
+      margin:18px auto}
+.fcopy{font-size:11px;color:var(--tm)}
 
-/* SCROLL REVEAL */
-.rv{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
+/* ── SCROLL REVEAL ────────────────────────────────── */
+.rv{opacity:0;transform:translateY(24px);
+    transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
 .rv.in{opacity:1;transform:none}
-.rv-l{opacity:0;transform:translateX(28px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
-.rv-l.in{opacity:1;transform:none}
 
-/* SCROLLBAR */
+/* ── SCROLLBAR ────────────────────────────────────── */
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--navy2);border-radius:3px}
 ::-webkit-scrollbar-thumb:hover{background:var(--gold)}
 
-/* =============================================
-   ACCESS GATE STYLES
-============================================= */
-#gate{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:16px;background-image:radial-gradient(circle at 18% 18%,rgba(13,27,86,.65),transparent 55%),radial-gradient(circle at 82% 82%,rgba(212,160,23,.07),transparent 55%)}
-.gate-card{background:linear-gradient(145deg,rgba(13,27,86,.88),rgba(26,43,115,.6));border:1px solid rgba(212,160,23,.2);border-radius:24px;padding:38px 32px;max-width:400px;width:100%;text-align:center;backdrop-filter:blur(28px);box-shadow:0 40px 100px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.04) inset;position:relative;overflow:hidden;animation:gateIn .65s cubic-bezier(.16,1,.3,1) both}
-.gate-card::after{content:'';position:absolute;top:-60%;left:-60%;width:220%;height:220%;background:radial-gradient(circle at 55% 40%,rgba(212,160,23,.04),transparent 50%);pointer-events:none}
-@keyframes gateIn{from{opacity:0;transform:translateY(30px) scale(.97)}to{opacity:1;transform:none}}
-.gate-logo{font-size:42px;display:block;margin-bottom:10px}
-.gate-title{font-size:19px;font-weight:900;color:var(--gold);margin-bottom:4px;letter-spacing:.3px}
-.gate-sub{font-size:11.5px;color:var(--tm);margin-bottom:22px;letter-spacing:.5px}
-.gate-div{width:55px;height:1.5px;background:linear-gradient(90deg,transparent,rgba(212,160,23,.5),transparent);margin:0 auto 22px}
-.gate-label{font-size:12px;font-weight:700;color:var(--td);text-align:right;margin-bottom:8px;display:block}
-.gate-error{font-size:12px;color:var(--red);min-height:20px;margin-bottom:8px;text-align:center;transition:color .2s}
-.gate-error.shk{animation:gshake .4s cubic-bezier(.36,.07,.19,.97) both}
-@keyframes gshake{10%,90%{transform:translateX(-3px)}20%,80%{transform:translateX(5px)}30%,50%,70%{transform:translateX(-5px)}40%,60%{transform:translateX(5px)}}
-.gate-input{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;color:var(--tw);font-family:'Cairo',sans-serif;font-size:15px;font-weight:600;text-align:center;letter-spacing:2px;transition:border-color .3s,background .3s;direction:ltr;margin-bottom:12px}
-.gate-input:focus{outline:none;border-color:rgba(212,160,23,.55);background:rgba(255,255,255,.07)}
-.gate-input::placeholder{color:var(--tm);letter-spacing:0;font-size:13px;direction:rtl}
-.gate-input:disabled{opacity:.5}
-.gate-remember{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:var(--tm);cursor:pointer;margin-bottom:16px;user-select:none}
-.gate-remember input[type=checkbox]{accent-color:var(--gold);cursor:pointer;width:14px;height:14px}
-.gate-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;border-radius:12px;color:var(--navy);font-family:'Cairo',sans-serif;font-size:15px;font-weight:900;cursor:pointer;transition:all .3s;box-shadow:0 8px 24px rgba(212,160,23,.22);letter-spacing:.3px}
-.gate-btn:hover{transform:translateY(-2px);box-shadow:0 13px 32px rgba(212,160,23,.35)}
-.gate-btn:active{transform:translateY(0)}
-.gate-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
-.gate-footer{font-size:11.5px;color:var(--tm);margin-top:22px;line-height:1.8}
-.gate-badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;color:var(--tm);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:4px 11px;margin-top:10px}
-.gate-admin-section{display:none}
-.gate-back-btn{width:100%;margin-top:8px;padding:11px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;color:var(--tm);cursor:pointer;font-family:'Cairo',sans-serif;font-size:13px;transition:all .2s}
-.gate-back-btn:hover{background:rgba(255,255,255,.08);color:var(--tw)}
-@keyframes gateOut{to{opacity:0;transform:scale(.96)}}
-.gate-out{animation:gateOut .4s ease forwards}
-
-/* =============================================
-   ADMIN PANEL STYLES
-============================================= */
-#admin-overlay{display:none;position:fixed;inset:0;z-index:99998;background:rgba(4,11,36,.96);backdrop-filter:blur(14px);align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto;-webkit-overflow-scrolling:touch}
-#admin-overlay.open{display:flex}
-.admin-card{background:linear-gradient(150deg,rgba(13,27,86,.92),rgba(4,11,36,.88));border:1px solid rgba(212,160,23,.2);border-radius:20px;width:100%;max-width:520px;margin:16px auto;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.6);animation:gateIn .4s cubic-bezier(.16,1,.3,1) both}
-.admin-hdr{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:17px 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(212,160,23,.14)}
-.admin-hdr h2{font-size:15px;font-weight:900;color:var(--gold);letter-spacing:.3px}
-.admin-close{background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.18);color:var(--red);border-radius:8px;padding:6px 13px;cursor:pointer;font-size:12px;font-weight:700;transition:all .2s;font-family:'Cairo',sans-serif}
-.admin-close:hover{background:rgba(231,76,60,.22)}
-.admin-body{padding:20px}
-.admin-sec{margin-bottom:22px}
-.admin-sec-ttl{font-size:10.5px;font-weight:800;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:11px;display:flex;align-items:center;gap:6px;opacity:.8}
-.a-input{background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 13px;color:var(--tw);font-family:'Cairo',sans-serif;font-size:13px;direction:ltr;width:100%;transition:border-color .3s}
-.a-input:focus{outline:none;border-color:rgba(212,160,23,.5)}
-.a-row{display:flex;gap:8px;align-items:stretch}
-.a-row .a-input{flex:1}
-.abtn{padding:10px 15px;border:none;border-radius:10px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:12.5px;font-weight:700;transition:all .2s;white-space:nowrap;line-height:1}
-.ab-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy)}
-.ab-gold:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(212,160,23,.3)}
-.ab-red{background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.18);color:var(--red)}
-.ab-red:hover{background:rgba(231,76,60,.22)}
-.ab-blue{background:rgba(41,128,185,.1);border:1px solid rgba(41,128,185,.18);color:#3498db}
-.ab-blue:hover{background:rgba(41,128,185,.22)}
-.ab-green{background:rgba(39,174,96,.1);border:1px solid rgba(39,174,96,.18);color:#2ECC71}
-.ab-green:hover{background:rgba(39,174,96,.22)}
-.ab-gray{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);color:var(--tm)}
-.ab-gray:hover{background:rgba(255,255,255,.09);color:var(--tw)}
-.codes-list{display:flex;flex-direction:column;gap:6px;max-height:230px;overflow-y:auto;padding-left:2px}
-.codes-list::-webkit-scrollbar{width:4px}
-.codes-list::-webkit-scrollbar-thumb{background:var(--navy2);border-radius:4px}
-.code-item{display:flex;align-items:center;gap:10px;padding:10px 13px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:9px;transition:all .2s}
-.code-item:hover{background:rgba(212,160,23,.05);border-color:rgba(212,160,23,.14)}
-.code-name{flex:1;font-size:13px;font-weight:600;color:var(--tw);direction:ltr;letter-spacing:.5px;word-break:break-all}
-.code-acts{display:flex;gap:5px;flex-shrink:0}
-.codes-empty{text-align:center;color:var(--tm);font-size:13px;padding:22px;background:rgba(255,255,255,.02);border:1px dashed rgba(255,255,255,.07);border-radius:10px;line-height:1.7}
-.a-msg{font-size:12px;padding:9px 13px;border-radius:8px;margin-top:10px;display:none}
-.a-msg.ok{display:block;background:rgba(39,174,96,.1);color:#2ECC71;border:1px solid rgba(39,174,96,.2)}
-.a-msg.err{display:block;background:rgba(231,76,60,.1);color:var(--red);border:1px solid rgba(231,76,60,.2)}
-.a-warn{background:rgba(243,156,18,.07);border:1px solid rgba(243,156,18,.18);border-radius:10px;padding:11px 14px;font-size:12px;color:var(--orange);margin-bottom:16px;line-height:1.7;display:flex;gap:7px}
-.a-cnt{background:rgba(212,160,23,.14);color:var(--gold);border-radius:20px;padding:1px 9px;font-size:11px;margin-right:4px}
-.a-sep{height:1px;background:rgba(255,255,255,.06);margin:20px 0}
-.a-note{font-size:11px;color:var(--tm);margin-top:8px;line-height:1.7;text-align:center}
-
-/* =============================================
-   ENHANCED MOBILE RESPONSIVE
-============================================= */
+/* ── MOBILE RESPONSIVE ────────────────────────────── */
 @media(max-width:768px){
+  .nav-links{display:none}
   .ham{display:flex}
-  .nav-links{display:none!important}
-  nav{padding:0 14px;height:54px}
-  .nav-logo{font-size:13px}
-  .wrap{padding:0 14px}
-  #hero{min-height:100svh;padding:68px 14px 68px}
-  .hbadge{font-size:11px;padding:6px 14px;margin-bottom:18px}
-  .hfeat{min-width:calc(50% - 5px);padding:11px 12px}
-  .hfeat-i{font-size:20px}
-  .hfeat-t{font-size:10.5px}
-  .hfeats{gap:8px;margin-bottom:36px}
-  .hdiv{margin:16px auto}
-  .hsub{font-size:13.5px;margin-bottom:26px}
-  .toc-sec{padding:70px 0}
-  .toc-grid{grid-template-columns:1fr;gap:8px}
-  .tcard{padding:15px 16px;gap:12px}
-  .tnum{width:38px;height:38px;font-size:14px}
-  .tinfo h3{font-size:13px}
-  .tinfo p{font-size:11px}
-  .chapter{padding:0 0 60px}
-  .chero{margin:38px 0 26px;padding:20px 16px}
+  .tcol{grid-template-columns:1fr}
+  .setrow{flex-direction:column;gap:5px}
+  .setkey{min-width:unset;font-size:12px;color:var(--gold)}
+  .step{gap:12px}
+  .stnum{width:32px;height:32px;font-size:12px}
   .chero-ghost{display:none}
-  .ctitle{font-size:clamp(17px,3.5vw,24px)}
-  .csub{font-size:12.5px}
-  .sgrid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .scard{padding:16px 12px}
-  .sn{font-size:21px}
-  .si{font-size:22px}
-  .sl{font-size:11px}
-  .pgrid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .kgrid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .step{gap:12px;margin-bottom:18px}
-  .stnum{width:34px;height:34px;font-size:13px;flex-shrink:0}
-  .sttitle{font-size:13.5px}
-  .stdesc{font-size:12.5px}
-  .setblock{padding:16px 14px}
-  .settitle{font-size:13px}
-  .setrow{flex-direction:column;gap:2px;margin-bottom:12px}
-  .setkey{min-width:auto;font-size:12px}
-  .setval{font-size:12px}
-  thead th{font-size:11px;padding:9px 10px}
-  tbody td{font-size:11.5px;padding:8px 10px}
-  .callout{padding:13px 14px}
-  .cbody{font-size:12.5px}
-  .clb{font-size:12px}
-  .ecard{padding:14px 13px}
-  .etitle{font-size:13px}
-  .edesc,.efix{font-size:12px}
-  .di{gap:8px;padding:8px 11px}
-  .dlabel{font-size:10px;padding:3px 7px;min-width:52px;text-align:center}
-  .dtxt{font-size:12px}
-  .wh{font-size:13.5px;padding:13px 16px}
-  .wb{padding:13px 16px}
-  .ri{padding:13px 15px;gap:11px}
-  .rtext{font-size:12.5px}
-  .rtext strong{font-size:13px}
-  .rnum{width:30px;height:30px;font-size:12px;border-radius:7px}
-  .conhero{padding:26px 16px}
-  .conhero h1{font-size:clamp(18px,4vw,26px)}
-  .conhero p{font-size:13px}
-  footer{padding:38px 16px 28px}
-  .flogo{font-size:20px}
-  .fdesc{font-size:12.5px}
-  .sh h2{font-size:14.5px}
-  .slabel{font-size:10px}
-  .stitle{font-size:clamp(19px,4vw,30px)}
-  .sdesc{font-size:13px;margin-bottom:28px}
-  p{font-size:13px}
-  .blist li{font-size:12.5px}
-  .chi{font-size:12.5px;padding:10px 12px}
-  .chi-i{font-size:14px}
-  .badge{font-size:10px;padding:2px 7px}
-  .tcol{grid-template-columns:1fr}
-  #bt{bottom:72px;left:14px;width:38px;height:38px}
-  #logout-btn{right:14px;bottom:18px;width:40px;height:40px}
+  .toc-grid{grid-template-columns:1fr}
+  .sgrid{grid-template-columns:repeat(2,1fr)}
+  .pgrid{grid-template-columns:repeat(2,1fr)}
+  .ap-stats{grid-template-columns:repeat(3,1fr)}
+  .ap-tabs{flex-direction:column}
+  .ap-form-row{flex-direction:column}
+  table{min-width:420px;font-size:11.5px}
+  .hfeats{gap:8px}
+  .hfeat{padding:10px 12px;min-width:85px}
+  .week .wb{padding:12px 14px}
 }
-@media(max-width:420px){
-  .hfeat{min-width:calc(50% - 4px)}
-  .gate-card{padding:28px 18px}
-  .a-row{flex-direction:column}
-  .sgrid{gap:8px}
-}
-@supports(padding:env(safe-area-inset-top)){
-  nav{padding-top:max(0px,env(safe-area-inset-top))}
-  .mobile-menu{padding-top:max(80px,calc(80px + env(safe-area-inset-top)))}
-}
-/* Original 700px breakpoint preserved */
-@media(max-width:700px){
-  .tcol{grid-template-columns:1fr}
-  .chero{padding:20px 16px}
-  .conhero{padding:26px 16px}
+@media(max-width:480px){
+  .sgrid{grid-template-columns:repeat(2,1fr)}
+  .pgrid{grid-template-columns:repeat(2,1fr)}
+  .ap-stats{grid-template-columns:1fr 1fr}
+  .ap-head h2{font-size:15px}
 }
 </style>
 </head>
 <body>
 
-<!-- ======================== ACCESS GATE ======================== -->
-<div id="gate">
-  <div class="gate-card">
-    <!-- Normal login -->
-    <div id="gate-main">
-      <span class="gate-logo">📈</span>
-      <div class="gate-title">دليل المبيعات العراقي</div>
-      <div class="gate-sub">الدليل الاحترافي الشامل · ٢٠٢٥</div>
-      <div class="gate-div"></div>
-      <div id="gate-error" class="gate-error"></div>
-      <input id="gate-input" class="gate-input" type="text" placeholder="أدخل كود الوصول..." autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off">
-      <label class="gate-remember">
-        <input type="checkbox" id="gate-rem">
-        تذكرني لمدة ٣٠ يوماً
-      </label>
-      <button id="gate-btn" class="gate-btn" onclick="handleGateSubmit()">دخول ←</button>
-      <div class="gate-footer">
-        أدخل الكود الذي حصلت عليه بعد شراء الكورس
-        <div><div class="gate-badge">🔒 محتوى محمي · وصول خاص فقط</div></div>
-      </div>
+<!-- ══════════ LOCK SCREEN ══════════ -->
+<div id="ls">
+  <canvas id="ls-cnv"></canvas>
+  <div class="ls-orb lo1"></div>
+  <div class="ls-orb lo2"></div>
+  <div class="ls-box">
+    <span class="ls-icon">🔐</span>
+    <div class="ls-title">دليل المبيعات العراقي</div>
+    <div class="ls-sub">محتوى حصري للأعضاء المسجّلين<br>أدخل رمز الوصول الخاص بك للمتابعة</div>
+    <div class="ls-divider"></div>
+    <div class="ls-field">
+      <input id="lc-inp" type="password" placeholder="أدخل رمز الوصول هنا..." autocomplete="off" autocorrect="off" spellcheck="false" onkeydown="if(event.key==='Enter')submitCode()">
+      <button class="ls-eye" id="ls-eye" onclick="togglePass()" title="إظهار/إخفاء">👁</button>
     </div>
-    <!-- Admin login (hidden by default) -->
-    <div id="gate-admin" class="gate-admin-section">
-      <span class="gate-logo">🔐</span>
-      <div class="gate-title" style="color:var(--orange)">وضع المشرف</div>
-      <div class="gate-sub">أدخل كلمة مرور المشرف</div>
-      <div class="gate-div"></div>
-      <div id="admin-pw-err" class="gate-error"></div>
-      <input id="admin-pw-input" class="gate-input" type="password" placeholder="كلمة مرور المشرف">
-      <button class="gate-btn" onclick="handleAdminLogin()" style="margin-bottom:0">دخول المشرف 🔐</button>
-      <button class="gate-back-btn" onclick="backToMainGate()">← رجوع</button>
+    <button class="ls-btn" id="ls-btn" onclick="submitCode()">
+      <span id="ls-btn-txt">دخول</span><span>←</span>
+    </button>
+    <div class="ls-msg" id="ls-msg"></div>
+    <div class="ls-lockout" id="ls-lockout">
+      <span class="ls-count" id="ls-timer">--:--</span>
+      <span class="ls-lock-txt">حسابك مؤقتاً مُغلق. حاول مرة أخرى بعد انتهاء العدّاد</span>
     </div>
+    <div class="ls-att" id="ls-att"></div>
+    <div class="ls-divider"></div>
+    <div class="ls-contact">هل نسيت رمزك؟ <a href="#">تواصل معنا</a></div>
   </div>
 </div>
 
-<!-- ======================== ADMIN PANEL ======================== -->
-<div id="admin-overlay">
-  <div class="admin-card">
-    <div class="admin-hdr">
-      <h2>🔐 لوحة تحكم المشرف</h2>
-      <button class="admin-close" onclick="closeAdminPanel()">✕ إغلاق</button>
+<!-- ══════════ WATERMARK ══════════ -->
+<div id="wm"></div>
+
+<!-- ══════════ ADMIN PANEL ══════════ -->
+<div id="ap">
+  <div class="ap-box">
+    <div class="ap-head">
+      <h2>🛡️ لوحة تحكم المالك</h2>
+      <button class="ap-close" onclick="closeAdmin()">✕</button>
     </div>
-    <div class="admin-body">
-      <div id="a-default-warn" class="a-warn" style="display:none">
-        <span>⚠️</span>
-        <span>أنت تستخدم كلمة المرور الافتراضية <strong>admin2025</strong> — يُرجى تغييرها لحماية حسابك.</span>
+    <div class="ap-stats">
+      <div class="ap-stat"><span class="ap-stat-n" id="ap-n1">0</span><div class="ap-stat-l">إجمالي الأكواد</div></div>
+      <div class="ap-stat"><span class="ap-stat-n" id="ap-n2" style="color:#E74C3C">0</span><div class="ap-stat-l">مُلغاة الوصول</div></div>
+      <div class="ap-stat"><span class="ap-stat-n" id="ap-n3" style="color:#3498DB">0</span><div class="ap-stat-l">مُضافة يدوياً</div></div>
+    </div>
+    <div class="ap-tabs">
+      <button class="ap-tab on" onclick="apSwitch('list')">📋 الأكواد</button>
+      <button class="ap-tab" onclick="apSwitch('add')">➕ إضافة مشتري</button>
+      <button class="ap-tab" onclick="apSwitch('rev')">🚫 إلغاء وصول</button>
+    </div>
+    <div class="ap-body">
+      <!-- LIST TAB -->
+      <div id="ap-list-tab" class="ap-tc on">
+        <div id="ap-codes-list"></div>
+        <button class="ap-btn-dl" onclick="downloadUpdated()">⬇️ تنزيل الموقع مع الأكواد الجديدة</button>
       </div>
-      <div id="a-msg" class="a-msg"></div>
-
-      <!-- Add code -->
-      <div class="admin-sec">
-        <div class="admin-sec-ttl">➕ إضافة كود جديد</div>
-        <div class="a-row">
-          <input id="new-code" class="a-input" type="text" placeholder="مثال: ali#1 أو محمد#5">
-          <button class="abtn ab-gold" onclick="addCode()">إضافة</button>
+      <!-- ADD TAB -->
+      <div id="ap-add-tab" class="ap-tc">
+        <div class="ap-note">
+          <strong>كيف يعمل؟</strong><br>
+          أدخل اسم المشتري الجديد وسيتم توليد رمز وصول تلقائي له (مثال: <strong>ali#5</strong>). أرسل الرمز للمشتري بعد الشراء. عند الضغط على "تنزيل الموقع" ستحصل على نسخة محدّثة تشمل الكود الجديد.
         </div>
-        <div style="font-size:11px;color:var(--tm);margin-top:6px">يمكن استخدام أي حروف أو أرقام أو رموز</div>
-      </div>
-
-      <div class="a-sep"></div>
-
-      <!-- Codes list -->
-      <div class="admin-sec">
-        <div class="admin-sec-ttl">
-          📋 الأكواد النشطة
-          <span id="a-count" class="a-cnt">٠</span>
+        <div class="ap-form-row">
+          <input class="ap-inp" id="ap-new-name" type="text" placeholder="اسم المشتري (مثال: احمد)" maxlength="30">
+          <button class="ap-btn" onclick="addNewBuyer()">⚡ توليد الرمز</button>
         </div>
-        <div id="codes-list" class="codes-list"></div>
+        <div id="ap-new-result"></div>
       </div>
-
-      <div class="a-sep"></div>
-
-      <!-- Change password -->
-      <div class="admin-sec">
-        <div class="admin-sec-ttl">🔑 تغيير كلمة مرور المشرف</div>
-        <div class="a-row">
-          <input id="new-pw" class="a-input" type="password" placeholder="كلمة مرور جديدة (٦ أحرف+)">
-          <button class="abtn ab-gold" onclick="changeAdminPw()">تغيير</button>
+      <!-- REVOKE TAB -->
+      <div id="ap-rev-tab" class="ap-tc">
+        <div class="ap-note">
+          <strong>إلغاء وصول مشتري:</strong><br>
+          أدخل الرمز الذي تريد إلغاؤه. المشتري لن يستطيع الدخول مجدداً حتى لو كانت جلسته نشطة (عند تحديث الصفحة). لاستعادة الوصول استخدم زر "استعادة" في قائمة الأكواد.
         </div>
-      </div>
-
-      <div class="a-sep"></div>
-
-      <!-- Download updated file -->
-      <div class="admin-sec" style="margin-bottom:0">
-        <div class="admin-sec-ttl">💾 تحديث ملف الموقع</div>
-        <button class="abtn ab-green" style="width:100%;padding:13px;font-size:13px" onclick="downloadUpdatedHTML()">
-          ⬇️ تنزيل الملف المحدث
-        </button>
-        <div class="a-note">بعد إضافة أو حذف أي كود، نزّل الملف وارفعه على موقعك ليحل محل النسخة القديمة</div>
+        <div class="ap-form-row">
+          <input class="ap-inp" id="ap-rev-inp" type="text" placeholder="الرمز المراد إلغاؤه (مثال: ali#1)" style="direction:ltr;letter-spacing:1px">
+          <button class="ap-btn" style="background:linear-gradient(135deg,#c0392b,#e74c3c);color:#fff" onclick="revokeCode()">🚫 إلغاء</button>
+        </div>
+        <div id="ap-rev-result"></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Hidden config element — codes stored here as base64 JSON -->
-<div id="codes-config" data-codes="" style="display:none"></div>
-
-<!-- ======================== MAIN SITE (hidden until authenticated) ======================== -->
+<!-- ══════════ MAIN SITE (hidden until login) ══════════ -->
 <div id="site" style="display:none">
+  <div id="prog"></div>
 
-<div id="prog"></div>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">📈 دليل المبيعات العراقي</div>
-  <div class="nav-links">
-    <a class="nl" onclick="go('ch1')">١ السوق</a>
-    <a class="nl" onclick="go('ch2')">٢ المشاكل</a>
-    <a class="nl" onclick="go('ch3')">٣ الإعدادات</a>
-    <a class="nl" onclick="go('ch4')">٤ الحملة</a>
-    <a class="nl" onclick="go('ch5')">٥ التصميم</a>
-    <a class="nl" onclick="go('ch6')">٦ الثقة</a>
-    <a class="nl" onclick="go('ch7')">٧ الدفع</a>
-    <a class="nl" onclick="go('ch8')">٨ الأداء</a>
-    <a class="nl" onclick="go('ch9')">٩ الخطة</a>
-    <a class="nl" onclick="go('conclusion')">✦ الخلاصة</a>
-  </div>
-  <button class="ham" id="ham" onclick="toggleMobileMenu()" aria-label="القائمة">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobile-menu">
-  <button class="mm-close" onclick="closeMobileMenu()">✕</button>
-  <div class="mm-logo">📈 دليل المبيعات العراقي</div>
-  <div class="mm-links">
-    <div class="mm-link" onclick="go('toc');closeMobileMenu()">📋 فهرس المحتويات</div>
-    <div class="mm-link" onclick="go('ch1');closeMobileMenu()">١ · فهم السوق العراقي</div>
-    <div class="mm-link" onclick="go('ch2');closeMobileMenu()">٢ · لماذا إعلاناتك لا تُحقق مبيعات؟</div>
-    <div class="mm-link" onclick="go('ch3');closeMobileMenu()">٣ · إعدادات Meta Ads الصحيحة</div>
-    <div class="mm-link" onclick="go('ch4');closeMobileMenu()">٤ · إنشاء حملتك خطوة بخطوة</div>
-    <div class="mm-link" onclick="go('ch5');closeMobileMenu()">٥ · تصميم إعلانات تُحقق مبيعات</div>
-    <div class="mm-link" onclick="go('ch6');closeMobileMenu()">٦ · بناء الثقة مع العميل العراقي</div>
-    <div class="mm-link" onclick="go('ch7');closeMobileMenu()">٧ · طرق الدفع والتوصيل</div>
-    <div class="mm-link" onclick="go('ch8');closeMobileMenu()">٨ · قياس الأداء وتحسين النتائج</div>
-    <div class="mm-link" onclick="go('ch9');closeMobileMenu()">٩ · خطة عمل ٣٠ يوماً</div>
-    <div class="mm-link" onclick="go('conclusion');closeMobileMenu()">✦ · القواعد الذهبية العشر</div>
-  </div>
-</div>
-
-<div id="bt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
-<button id="logout-btn" onclick="logout()" title="تسجيل الخروج">🚪</button>
-
-<!-- ======================== HERO ======================== -->
-<section id="hero">
-  <canvas id="cnv"></canvas>
-  <div class="orb o1"></div>
-  <div class="orb o2"></div>
-  <div class="orb o3"></div>
-  <div class="hc">
-    <div class="hbadge">✦ الدليل الاحترافي الشامل · ٢٠٢٥</div>
-    <h1 class="htitle">
-      <span>دليلك الشامل لزيادة</span>
-      <span class="hgold">المبيعات في العراق</span>
-    </h1>
-    <div class="hdiv"></div>
-    <p class="hsub">استراتيجيات Meta Ads Manager المتقدمة للمبتدئين وأصحاب المبيعات المنخفضة<br>من الإعلانات إلى المبيعات الحقيقية — الدليل الكامل</p>
-    <div class="hfeats">
-      <div class="hfeat"><span class="hfeat-i">🛠️</span><span class="hfeat-t">إعدادات Meta Ads</span></div>
-      <div class="hfeat"><span class="hfeat-i">🇮🇶</span><span class="hfeat-t">خاص بالعراق</span></div>
-      <div class="hfeat"><span class="hfeat-i">🔍</span><span class="hfeat-t">تشخيص الفشل</span></div>
-      <div class="hfeat"><span class="hfeat-i">📅</span><span class="hfeat-t">خطة ٣٠ يوماً</span></div>
-      <div class="hfeat"><span class="hfeat-i">💰</span><span class="hfeat-t">زيادة المبيعات</span></div>
-      <div class="hfeat"><span class="hfeat-i">🏆</span><span class="hfeat-t">نصائح ذهبية</span></div>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">📈 دليل المبيعات</div>
+    <div class="nav-links">
+      <span class="nl" onclick="go('ch1')">١ السوق</span>
+      <span class="nl" onclick="go('ch2')">٢ المشاكل</span>
+      <span class="nl" onclick="go('ch3')">٣ الإعدادات</span>
+      <span class="nl" onclick="go('ch4')">٤ الحملة</span>
+      <span class="nl" onclick="go('ch5')">٥ التصميم</span>
+      <span class="nl" onclick="go('ch6')">٦ الثقة</span>
+      <span class="nl" onclick="go('ch7')">٧ الدفع</span>
+      <span class="nl" onclick="go('ch8')">٨ الأداء</span>
+      <span class="nl" onclick="go('ch9')">٩ الخطة</span>
+      <span class="nl" onclick="go('con')">✦ الخلاصة</span>
     </div>
-  </div>
-  <div class="scroll-ind" onclick="go('toc')">
-    <span class="si-txt">اكتشف المزيد</span>
-    <div class="si-mouse"></div>
-  </div>
-</section>
+    <button class="ham" id="ham" onclick="toggleMobNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-<!-- ======================== TOC ======================== -->
-<div class="wrap">
-<section class="toc-sec rv" id="toc">
-  <div class="slabel">📋 المحتويات</div>
-  <h2 class="stitle">فهرس <span>المحتويات</span></h2>
-  <p class="sdesc">٩ فصول شاملة تأخذك خطوة بخطوة من الصفر إلى الإتقان الكامل لإعلانات Meta في السوق العراقي</p>
-  <div class="toc-grid">
-    <div class="tcard rv" onclick="go('ch1')"><div class="tnum">١</div><div class="tinfo"><h3>🇮🇶 فهم السوق العراقي</h3><p>إحصائيات، المستهلك، أوقات الذروة، المواسم</p></div></div>
-    <div class="tcard rv" onclick="go('ch2')"><div class="tnum">٢</div><div class="tinfo"><h3>🔍 لماذا إعلاناتك لا تُحقق مبيعات؟</h3><p>تشخيص ١٢ خطأً قاتلاً وكيف تُصلحها</p></div></div>
-    <div class="tcard rv" onclick="go('ch3')"><div class="tnum">٣</div><div class="tinfo"><h3>⚙️ إعدادات Meta Ads الصحيحة</h3><p>Campaign · Ad Set · Bidding · Pixel</p></div></div>
-    <div class="tcard rv" onclick="go('ch4')"><div class="tnum">٤</div><div class="tinfo"><h3>🚀 إنشاء حملتك خطوة بخطوة</h3><p>من تثبيت البيكسل إلى إطلاق الإعلان</p></div></div>
-    <div class="tcard rv" onclick="go('ch5')"><div class="tnum">٥</div><div class="tinfo"><h3>🎨 تصميم إعلانات تُحقق مبيعات</h3><p>النص الإعلاني، التصميم، الفيديو vs الصورة</p></div></div>
-    <div class="tcard rv" onclick="go('ch6')"><div class="tnum">٦</div><div class="tinfo"><h3>🤝 بناء الثقة مع العميل العراقي</h3><p>عوامل الثقة، المراجعات، التواصل</p></div></div>
-    <div class="tcard rv" onclick="go('ch7')"><div class="tnum">٧</div><div class="tinfo"><h3>💳 طرق الدفع والتوصيل</h3><p>COD، المحافظ الإلكترونية، شركات التوصيل</p></div></div>
-    <div class="tcard rv" onclick="go('ch8')"><div class="tnum">٨</div><div class="tinfo"><h3>📊 قياس الأداء وتحسين النتائج</h3><p>KPIs، متى توقف أو تُضاعف الميزانية</p></div></div>
-    <div class="tcard rv" onclick="go('ch9')"><div class="tnum">٩</div><div class="tinfo"><h3>📅 خطة عمل ٣٠ يوماً</h3><p>من الصفر إلى أول ١٠٠ مبيعة</p></div></div>
-    <div class="tcard rv" onclick="go('conclusion')"><div class="tnum">✦</div><div class="tinfo"><h3>🏆 القواعد الذهبية العشر</h3><p>الخلاصة المُكثّفة للنجاح</p></div></div>
+  <!-- Mobile Nav Drawer -->
+  <div id="mob-nav">
+    <div class="mob-nl" onclick="go('ch1');closeMobNav()">١ — فهم السوق العراقي</div>
+    <div class="mob-nl" onclick="go('ch2');closeMobNav()">٢ — لماذا إعلاناتك لا تُحقق مبيعات؟</div>
+    <div class="mob-nl" onclick="go('ch3');closeMobNav()">٣ — إعدادات Meta Ads الصحيحة</div>
+    <div class="mob-nl" onclick="go('ch4');closeMobNav()">٤ — إنشاء الحملة خطوة بخطوة</div>
+    <div class="mob-nl" onclick="go('ch5');closeMobNav()">٥ — تصميم إعلانات تُحقق مبيعات</div>
+    <div class="mob-nl" onclick="go('ch6');closeMobNav()">٦ — بناء الثقة مع العميل العراقي</div>
+    <div class="mob-nl" onclick="go('ch7');closeMobNav()">٧ — طرق الدفع والتوصيل</div>
+    <div class="mob-nl" onclick="go('ch8');closeMobNav()">٨ — قياس الأداء وتحسين النتائج</div>
+    <div class="mob-nl" onclick="go('ch9');closeMobNav()">٩ — خطة عمل ٣٠ يوماً</div>
+    <div class="mob-nl" onclick="go('con');closeMobNav()">✦ القواعد الذهبية العشر</div>
   </div>
-  <div class="callout ci rv" style="margin-top:28px">
-    <div class="clb">💡 كيف تستخدم هذا الدليل؟</div>
-    <div class="cbody">إذا كانت مشكلتك <strong>عدم تحقيق مبيعات</strong> رغم الإعلانات، ابدأ بالفصل الثاني مباشرة. إذا كنت <strong>مبتدئاً</strong>، اقرأ من البداية بالترتيب. إذا أردت <strong>التوسع</strong>، انتقل للفصلين الثامن والتاسع.</div>
-  </div>
-</section>
 
-<!-- CH1 -->
-<section class="chapter" id="ch1">
-  <div class="chero rv">
-    <div class="chero-ghost">١</div>
-    <div class="clabel">الفصل الأول</div>
-    <div class="ctitle">🇮🇶 فهم السوق العراقي</div>
-    <div class="csub">لا يمكنك بيع ما لا تفهم جمهوره — تعرّف على عميلك العراقي أولاً</div>
-  </div>
-  <div class="sh rv"><h2>📊 إحصائيات السوق الرقمي في العراق</h2><div class="sh-line"></div></div>
-  <p class="rv">العراق سوق رقمي ضخم ومتنامٍ. فهم هذه الأرقام يساعدك على اتخاذ قرارات إعلانية أذكى:</p>
-  <div class="sgrid">
-    <div class="scard rv"><span class="si">👥</span><span class="sn" data-target="43" data-suffix="م+">٠</span><span class="sl">إجمالي سكان العراق</span></div>
-    <div class="scard rv"><span class="si">📱</span><span class="sn" data-target="22" data-suffix="م+">٠</span><span class="sl">مستخدمو الإنترنت</span></div>
-    <div class="scard rv"><span class="si">📘</span><span class="sn" data-target="16" data-suffix="م+">٠</span><span class="sl">مستخدمو فيسبوك</span></div>
-    <div class="scard rv"><span class="si">📸</span><span class="sn" data-target="9" data-suffix="م+">٠</span><span class="sl">مستخدمو إنستغرام</span></div>
-    <div class="scard rv"><span class="si">📲</span><span class="sn" data-target="71" data-suffix="٪">٠</span><span class="sl">وصول عبر الهاتف الذكي</span></div>
-    <div class="scard rv"><span class="si">🛒</span><span class="sn" data-target="4" data-suffix="م+">٠</span><span class="sl">مستخدم تسوّق إلكترونياً</span></div>
-  </div>
-  <div class="callout cg rv">
-    <div class="clb">⭐ الفرصة الذهبية</div>
-    <div class="cbody">رغم وجود +٢٢ مليون مستخدم للإنترنت، عدد من يتسوق إلكترونياً لا يزال محدوداً — وهذا يعني <strong>فرصة هائلة غير مستغلة</strong>. الذي يدخل السوق الآن بشكل صحيح يبني ميزة تنافسية طويلة الأمد.</div>
-  </div>
-  <div class="sh rv"><h2>📍 المدن والمحافظات الرئيسية</h2><div class="sh-line"></div></div>
-  <div class="twrap rv">
-    <table>
-      <thead><tr><th>المحافظة</th><th>الميزة التجارية</th><th>أولوية الاستهداف</th></tr></thead>
-      <tbody>
-        <tr><td><strong>بغداد 🏙️</strong></td><td>الأكبر سكانياً (+٨م)، أعلى قوة شرائية، أكثر تقبلاً للشراء الإلكتروني</td><td><span class="badge bg">الأولوية القصوى</span></td></tr>
-        <tr><td><strong>البصرة</strong></td><td>المحافظة الثانية اقتصادياً، دخل مرتفع، تجارة نشطة</td><td><span class="badge bg">أولوية عالية</span></td></tr>
-        <tr><td><strong>أربيل 🌟</strong></td><td>أعلى مستوى معيشي، استقرار اقتصادي، منفتحة على الشراء الرقمي</td><td><span class="badge bo">ممتازة للفئة الراقية</span></td></tr>
-        <tr><td><strong>النجف وكربلاء</strong></td><td>سياحة دينية مكثفة، طلب عالٍ على الهدايا والمنتجات الدينية</td><td><span class="badge bb">متخصصة</span></td></tr>
-        <tr><td><strong>السليمانية ودهوك</strong></td><td>قوة شرائية جيدة، انفتاح على الشراء الإلكتروني</td><td><span class="badge bg">أولوية متوسطة-عالية</span></td></tr>
-        <tr><td><strong>الموصل وكركوك</strong></td><td>سوق كبير يتعافى، فرص للمنتجات الأساسية</td><td><span class="badge bb">منتجات متوسطة السعر</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="sh rv"><h2>🕐 أوقات الذروة — متى يكون عميلك أكثر نشاطاً؟</h2><div class="sh-line"></div></div>
-  <div class="twrap rv">
-    <table>
-      <thead><tr><th>الفترة الزمنية</th><th>مستوى النشاط</th><th>ملاحظات</th></tr></thead>
-      <tbody>
-        <tr><td>١٢ ظهراً – ٢ عصراً</td><td>🔥🔥🔥 <span class="tgold">مرتفع جداً</span></td><td>استراحة الغداء، تصفح مكثف</td></tr>
-        <tr><td>٧ مساءً – ١١ مساءً</td><td>🔥🔥🔥🔥 <span class="tgold">الأعلى على الإطلاق</span></td><td>وقت الذروة — خصص أكبر ميزانية هنا</td></tr>
-        <tr><td>١٠ صباحاً – ١٢ ظهراً</td><td>🔥🔥 متوسط</td><td>نشاط جيد قبل الذروة</td></tr>
-        <tr><td>يوم الجمعة (طوال اليوم)</td><td>🔥🔥🔥🔥 <span class="tgold">استثنائي</span></td><td>الأكثر نشاطاً في الأسبوع</td></tr>
-        <tr><td>رمضان (بعد الإفطار)</td><td>🔥🔥🔥🔥🔥 <span class="tred">ذروة موسمية</span></td><td>أعلى نشاط في السنة — ضاعف ميزانيتك</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="sh rv"><h2>🎯 طبيعة المستهلك العراقي</h2><div class="sh-line"></div></div>
-  <div class="tcol rv">
-    <div class="callout ct">
-      <div class="clb">✅ ما يُقنعه بالشراء</div>
-      <div class="cbody">◆ رأي الأصدقاء والعائلة<br>◆ مراجعات ومصداقية البائع<br>◆ سعر واضح بالدينار<br>◆ الدفع عند الاستلام (COD)<br>◆ التواصل المباشر (واتساب/هاتف)<br>◆ عروض محدودة الوقت<br>◆ شهادات عملاء حقيقيين</div>
+  <div id="bt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <canvas id="cnv"></canvas>
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="hc">
+      <div class="hbadge">✦ الدليل الاحترافي الشامل · ٢٠٢٥</div>
+      <h1 class="htitle">
+        <span>دليلك الشامل لزيادة</span>
+        <span class="hgold">المبيعات في العراق</span>
+      </h1>
+      <div class="hdiv"></div>
+      <p class="hsub">استراتيجيات Meta Ads المتقدمة — من الإعلانات إلى المبيعات الحقيقية</p>
+      <div class="hfeats">
+        <div class="hfeat"><span class="hfeat-i">🛠️</span><span class="hfeat-t">Meta Ads</span></div>
+        <div class="hfeat"><span class="hfeat-i">🇮🇶</span><span class="hfeat-t">السوق العراقي</span></div>
+        <div class="hfeat"><span class="hfeat-i">🔍</span><span class="hfeat-t">تشخيص الفشل</span></div>
+        <div class="hfeat"><span class="hfeat-i">📅</span><span class="hfeat-t">خطة ٣٠ يوماً</span></div>
+        <div class="hfeat"><span class="hfeat-i">💰</span><span class="hfeat-t">زيادة المبيعات</span></div>
+        <div class="hfeat"><span class="hfeat-i">🏆</span><span class="hfeat-t">نصائح ذهبية</span></div>
+      </div>
     </div>
-    <div class="callout cd">
-      <div class="clb">❌ ما يجعله يتردد أو يهرب</div>
-      <div class="cbody">◆ غياب السعر ("راسلنا للسعر")<br>◆ الدفع المسبق فقط<br>◆ لا رقم هاتف أو واتساب<br>◆ لا مراجعات أو حساب جديد<br>◆ معلومات التوصيل غير واضحة<br>◆ موقع بطيء أو معطّل<br>◆ الرد البطيء على الاستفسارات</div>
+    <div class="scroll-ind" onclick="go('toc')">
+      <span class="si-txt">اكتشف</span>
+      <div class="si-mouse"></div>
     </div>
-  </div>
-  <div class="sh rv"><h2>📅 المواسم التجارية الذهبية</h2><div class="sh-line"></div></div>
-  <div class="twrap rv">
-    <table>
-      <thead><tr><th>الموسم</th><th>فرص المنتجات</th><th>التوصية</th></tr></thead>
-      <tbody>
-        <tr><td>🌙 <strong>رمضان الكريم</strong></td><td>ملابس، هدايا، مواد غذائية، فوانيس، عطور</td><td>ابدأ الإعلانات قبل رمضان بأسبوعين</td></tr>
-        <tr><td>🎊 <strong>عيد الفطر</strong></td><td>ملابس عيد، هدايا، حلويات، إكسسوارات</td><td>الأسبوع الأخير من رمضان = ذروة المبيعات</td></tr>
-        <tr><td>🐑 <strong>عيد الأضحى</strong></td><td>مستلزمات المنزل، الملابس، الهدايا</td><td>ابدأ قبل ١٠ أيام من العيد</td></tr>
-        <tr><td>🏫 <strong>العودة للمدارس</strong></td><td>قرطاسية، حقائب، ملابس، لوازم تقنية</td><td>أغسطس وأول سبتمبر</td></tr>
-        <tr><td>🎆 <strong>رأس السنة</strong></td><td>هدايا، ملابس، إلكترونيات، ديكورات</td><td>ديسمبر كامل، ذروة ٢٥-٣١</td></tr>
-        <tr><td>💑 <strong>عيد الأم والحب</strong></td><td>هدايا، ورود، عطور، مجوهرات</td><td>أسبوع قبل العيد</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+  </section>
 
-<!-- CH2 -->
-<section class="chapter" id="ch2">
-  <div class="chero rv">
-    <div class="chero-ghost">٢</div>
-    <div class="clabel">الفصل الثاني</div>
-    <div class="ctitle">🔍 لماذا إعلاناتك لا تُحقق مبيعات؟</div>
-    <div class="csub">تشخيص ١٢ خطأً قاتلاً يرتكبها معظم التجار في العراق</div>
-  </div>
-  <p class="rv">تُنفق مئات الآلاف من الدنانير على الإعلانات ولا ترى مبيعات؟ هذا الفصل سيساعدك على تحديد المشكلة الحقيقية بدقة:</p>
-  <div class="ecard rv"><div class="etitle">❌ الخطأ الأول: هدف الحملة الخاطئ — Traffic بدلاً من Sales</div><div class="edesc">كثيرون يختارون هدف "الزيارات" أو "التفاعل" ظناً أنه يحقق مبيعات. فيسبوك يُحسّن الحملة لمن يُحقق الهدف المحدد — إذا اخترت Traffic فسيبحث عن ناقرين فقط، وليس مشترين.</div><div class="efix">✅ الحل: استخدم دائماً هدف "Sales" أو "Conversions" مع تثبيت Facebook Pixel وإعداد حدث Purchase.</div></div>
-  <div class="ecard rv"><div class="etitle">❌ الخطأ الثاني: الاستهداف عشوائي أو واسع جداً</div><div class="edesc">استهداف "كل العراق، ١٨-٦٥ سنة، جميع الاهتمامات" يُضيع ميزانيتك على أشخاص لا يريدون منتجك. جمهور واسع جداً = تكلفة عالية ومبيعات منخفضة.</div><div class="efix">✅ الحل: حدّد جمهورك بدقة: المدن المناسبة + العمر الصحيح + اهتمامات مرتبطة مباشرة بمنتجك.</div></div>
-  <div class="ecard rv"><div class="etitle">❌ الخطأ الثالث: الإعلان لا يعرض السعر</div><div class="edesc">المستهلك العراقي حساسٌ جداً للسعر. عندما لا يرى السعر في الإعلان، يتجاهله فوراً. عبارات مثل "راسلنا للسعر" تقتل معدلات التحويل.</div><div class="efix">✅ الحل: اعرض السعر بوضوح بالدينار العراقي. إذا كان لديك عرض اعرضه مقارناً: "كان ٢٥,٠٠٠ — الآن ١٨,٠٠٠ دينار فقط".</div></div>
-  <div class="ecard rv"><div class="etitle">❌ الخطأ الرابع: لا دليل اجتماعي (Social Proof)</div><div class="edesc">العراقي لا يشتري من بائع مجهول. إذا لم يجد تعليقات عملاء أو مراجعات، سيتجنب الشراء خوفاً من النصب.</div><div class="efix">✅ الحل: اجمع شهادات العملاء وانشرها. استخدم صور قبل وبعد. شارك قصص عملاء حقيقيين.</div></div>
-  <div class="ecard rv"><div class="etitle">❌ الخطأ الخامس: الميزانية أقل من حد التعلم</div><div class="edesc">فيسبوك يحتاج ٥٠ حدثاً (Conversion Events) في أسبوع لإنهاء مرحلة التعلم. بميزانية ٥٠٠٠ دينار يومياً ستبقى في مرحلة التعلم للأبد.</div><div class="efix">✅ الحل: الحد الأدنى الموصى به ١٠-١٥ دولار يومياً لكل مجموعة إعلانية.</div></div>
-  <div class="ecard rv"><div class="etitle">❌ الخطأ السادس: الإعلان لا يتحدث بلغة العراقي</div><div class="edesc">إعلانات باللغة الإنجليزية أو اللهجات الخليجية لا تعكس ثقافة المستهلك العراقي — تؤدي لتجاهل الإعلان وارتفاع تكلفة التحويل.</div><div class="efix">✅ الحل: استخدم اللهجة العراقية المحكية: "يا عزيزي"، "والله خيار صح"، "دليفري لباب بيتك".</div></div>
-  <div class="ecard rv"><div class="etitle">❌ الخطأ السابع: عدم تثبيت Facebook Pixel بشكل صحيح</div><div class="edesc">بدون Pixel، فيسبوك يعمل أعمى. لا يعرف من اشترى، من أضاف للسلة، من زار صفحة المنتج. لا بيانات = لا تحسين = مبيعات منخفضة.</div><div class="efix">✅ الحل: ثبّت Pixel على موقعك فوراً وأعدّ أحداث: ViewContent، AddToCart، InitiateCheckout، Purchase.</div></div>
-  <div class="ecard rv"><div class="etitle">❌ الخطأ الثامن: لا توجد إعادة استهداف (Retargeting)</div><div class="edesc">٩٥٪ من الزوار لا يشترون في الزيارة الأولى. إذا لم تُعد استهدافهم، فأنت تخسر أكثر من ٩ من كل ١٠ عملاء محتملين.</div><div class="efix">✅ الحل: أنشئ جمهور مخصص من زوار موقعك، من أضافوا للسلة، من تفاعلوا مع صفحتك.</div></div>
-  <div class="ecard rv"><div class="etitle">❌ الخطأ التاسع: صفحة الهبوط بطيئة أو ضعيفة</div><div class="edesc">يضغط العميل على الإعلان بحماس ثم يجد صفحة بطيئة أو معقدة — فيغلقها ويذهب. الإعلان ليس المشكلة، المشكلة ما بعده.</div><div class="efix">✅ الحل: تأكد أن الصفحة تُحمّل في أقل من ٣ ثوانٍ. اجعلها واضحة: اسم المنتج، الصور، السعر، زر الشراء.</div></div>
-  <div class="ecard rv"><div class="etitle">❌ الخطأ العاشر: إيقاف الإعلانات وإعادة تشغيلها باستمرار</div><div class="edesc">كلما أوقفت إعلاناً وأعدت تشغيله، يعود لمرحلة التعلم من الصفر. خسارة في البيانات والنتائج.</div><div class="efix">✅ الحل: اترك الإعلان يعمل ٣-٧ أيام على الأقل دون تدخل.</div></div>
-  <div class="ecard rv"><div class="etitle">❌ الخطأ الحادي عشر: المنتج نفسه هو المشكلة</div><div class="edesc">أحياناً الإعلانات ممتازة والإعدادات صحيحة، لكن المنتج لا يُناسب السوق العراقي من حيث السعر أو الجودة أو الطلب.</div><div class="efix">✅ الحل: ابحث في السوق قبل الإعلان. هل يبحث الناس عن هذا المنتج؟ هل السعر تنافسي؟</div></div>
-  <div class="ecard rv"><div class="etitle">❌ الخطأ الثاني عشر: تجاهل تعليقات الإعلان</div><div class="edesc">التعليقات السلبية على إعلانك تقتل نتائجه. فيسبوك يُقلّل توزيع الإعلانات ذات التعليقات السيئة.</div><div class="efix">✅ الحل: راقب تعليقات إعلاناتك يومياً. ردّ على كل تعليق. احذف التعليقات السلبية الغير مبررة.</div></div>
-  <div class="callout cw rv">
-    <div class="clb">⚠️ تشخيص سريع</div>
-    <div class="cbody">افتح Meta Ads Manager الآن وراجع: <strong>هدف الحملة ← إعداد الجمهور ← تصميم الإعلان ← الـ Pixel ← صفحة الهبوط</strong>. في معظم الحالات، الإصلاح يستغرق ساعة واحدة ويُضاعف نتائجك خلال أسبوع.</div>
-  </div>
-</section>
+  <div class="wrap">
 
-<!-- CH3 -->
-<section class="chapter" id="ch3">
-  <div class="chero rv">
-    <div class="chero-ghost">٣</div>
-    <div class="clabel">الفصل الثالث</div>
-    <div class="ctitle">⚙️ إعدادات Meta Ads Manager الصحيحة</div>
-    <div class="csub">الإعدادات المثلى للسوق العراقي — Campaign · Ad Set · Ad</div>
-  </div>
-  <div class="sh rv"><h2>🏗️ المستوى الأول: إعدادات الحملة (Campaign Level)</h2><div class="sh-line"></div></div>
-  <div class="setblock rv">
-    <div class="settitle"><span class="seti">🎯</span> هدف الحملة (Campaign Objective)</div>
-    <div class="setrow"><span class="setkey">للمبيعات (متجر/موقع):</span><span class="setval"><span class="badge bg">Sales</span> أو <span class="badge bg">Conversions</span> ← اختر دائماً هذا</span></div>
-    <div class="setrow"><span class="setkey">لجمع بيانات عملاء:</span><span class="setval"><span class="badge bb">Lead Generation</span></span></div>
-    <div class="setrow"><span class="setkey">❌ تجنّب تماماً:</span><span class="setval"><span class="badge br">Traffic</span> <span class="badge br">Engagement</span> <span class="badge br">Video Views</span> لأهداف المبيعات</span></div>
-  </div>
-  <div class="setblock rv">
-    <div class="settitle"><span class="seti">💡</span> نوع الحملة (Campaign Type)</div>
-    <div class="setrow"><span class="setkey">للمتاجر الجديدة:</span><span class="setval"><span class="badge bg">Advantage+ Shopping Campaign</span> — يدير فيسبوك كل شيء تلقائياً</span></div>
-    <div class="setrow"><span class="setkey">للمتاجر المتمرسة:</span><span class="setval"><span class="badge bb">Manual Sales Campaign</span> — تحكم كامل</span></div>
-    <div class="setrow"><span class="setkey">ميزانية الحملة:</span><span class="setval"><span class="badge bg">CBO (Campaign Budget Optimization)</span> موصى به — فيسبوك يوزع الميزانية على أفضل Ad Sets</span></div>
-  </div>
-  <div class="sh rv"><h2>👥 المستوى الثاني: إعدادات مجموعة الإعلانات (Ad Set)</h2><div class="sh-line"></div></div>
-  <div class="setblock rv">
-    <div class="settitle"><span class="seti">📍</span> الاستهداف الجغرافي (Location)</div>
-    <div class="setrow"><span class="setkey">البداية الآمنة:</span><span class="setval">العراق كلياً — لرؤية أين تأتي المبيعات</span></div>
-    <div class="setrow"><span class="setkey">للاستهداف المحلي:</span><span class="setval"><span class="badge bg">بغداد</span> <span class="badge bg">البصرة</span> <span class="badge bg">أربيل</span> <span class="badge bg">النجف</span> <span class="badge bg">كربلاء</span> <span class="badge bg">السليمانية</span></span></div>
-    <div class="setrow"><span class="setkey">نوع الموقع:</span><span class="setval">اختر <strong>"People living in this location"</strong> — لا تختر "People recently in"</span></div>
-    <div class="setrow"><span class="setkey">نصيحة متقدمة:</span><span class="setval">افصل بغداد عن باقي العراق في Ad Sets مختلفة — ميزانية مستقلة لكل منطقة</span></div>
-  </div>
-  <div class="setblock rv">
-    <div class="settitle"><span class="seti">🎂</span> العمر والجنس</div>
-    <div class="setrow"><span class="setkey">الفئة العمرية العامة:</span><span class="setval"><span class="badge bg">١٨ – ٤٥ سنة</span> — الشريحة الأكثر شراءً إلكترونياً</span></div>
-    <div class="setrow"><span class="setkey">منتجات الشباب:</span><span class="setval"><span class="badge bb">١٨ – ٣٠ سنة</span></span></div>
-    <div class="setrow"><span class="setkey">منتجات العائلة:</span><span class="setval"><span class="badge bb">٢٥ – ٥٠ سنة</span></span></div>
-    <div class="setrow"><span class="setkey">الجنس:</span><span class="setval">اترك "All Genders" في البداية. بعد جمع بيانات كافية، خصّص حسب من يشتري فعلاً.</span></div>
-  </div>
-  <div class="setblock rv">
-    <div class="settitle"><span class="seti">👑</span> الجماهير المخصصة والمشابهة</div>
-    <div class="setrow"><span class="setkey">Custom Audiences:</span><span class="setval"><span class="badge bg">زوار موقعك (آخر ٣٠ يوم)</span> <span class="badge bg">من أضافوا للسلة</span> <span class="badge bg">قائمة عملائك</span></span></div>
-    <div class="setrow"><span class="setkey">Lookalike Audiences:</span><span class="setval">١٪ – ٣٪ في العراق. ابدأ بـ ١٪ (الأكثر تشابهاً مع عملائك الحاليين)</span></div>
-    <div class="setrow"><span class="setkey">أفضل Retargeting:</span><span class="setval">استهدف من زار صفحة المنتج ولم يشترِ خلال آخر ٧ أيام — هؤلاء الأسهل تحويلاً</span></div>
-  </div>
-  <div class="setblock rv">
-    <div class="settitle"><span class="seti">📺</span> المواضع الإعلانية (Placements)</div>
-    <div class="setrow"><span class="setkey">الأفضل للعراق:</span><span class="setval"><span class="badge bg">Facebook Feed</span> <span class="badge bg">Instagram Feed</span> <span class="badge bg">Instagram Reels</span> <span class="badge bg">Facebook Stories</span></span></div>
-    <div class="setrow"><span class="setkey">تجنّب في البداية:</span><span class="setval"><span class="badge br">Audience Network</span> — جودة منخفضة وكليكات وهمية في العراق</span></div>
-    <div class="setrow"><span class="setkey">التوصية:</span><span class="setval">استخدم <strong>Manual Placements</strong> وحدد المواضع بنفسك</span></div>
-  </div>
-  <div class="setblock rv">
-    <div class="settitle"><span class="seti">💰</span> الميزانية واستراتيجية المزايدة</div>
-    <div class="setrow"><span class="setkey">الحد الأدنى اليومي:</span><span class="setval"><span class="badge bg">١٠-١٥ دولار/يوم</span> لكل مجموعة إعلانية (حوالي ١٥,٠٠٠-٢٠,٠٠٠ دينار)</span></div>
-    <div class="setrow"><span class="setkey">للمبتدئين:</span><span class="setval">ابدأ بـ <span class="badge bb">Daily Budget</span> — أسهل في التحكم</span></div>
-    <div class="setrow"><span class="setkey">استراتيجية المزايدة:</span><span class="setval"><span class="badge bg">Lowest Cost</span> للمبتدئين — فيسبوك يزايد تلقائياً لأقل تكلفة</span></div>
-    <div class="setrow"><span class="setkey">للمتقدمين:</span><span class="setval"><span class="badge bb">Cost Cap</span> أو <span class="badge bb">Bid Cap</span> للتحكم في تكلفة التحويل</span></div>
-  </div>
-</section>
-
-<!-- CH4 -->
-<section class="chapter" id="ch4">
-  <div class="chero rv">
-    <div class="chero-ghost">٤</div>
-    <div class="clabel">الفصل الرابع</div>
-    <div class="ctitle">🚀 إنشاء حملتك الإعلانية خطوة بخطوة</div>
-    <div class="csub">من تثبيت البيكسل إلى إطلاق الإعلان الأول</div>
-  </div>
-  <div class="steps rv">
-    <div class="step"><div class="stnum">١</div><div class="stcon"><div class="sttitle">إنشاء Business Manager</div><div class="stdesc">اذهب إلى business.facebook.com وأنشئ حساباً. أضف: صفحة الفيسبوك الخاصة بمتجرك، حساب الإعلانات، Pixel، الموقع الإلكتروني. تفعيل المصادقة الثنائية (2FA) أمر ضروري لحماية حسابك.</div></div></div>
-    <div class="step"><div class="stnum">٢</div><div class="stcon"><div class="sttitle">تثبيت Facebook Pixel على موقعك</div><div class="stdesc">في Business Manager: Events Manager ← Connect Data Sources ← Web ← Facebook Pixel. انسخ كود الـ Pixel وأضفه لرأس موقعك. إذا كنت تستخدم Shopify أو WooCommerce فهناك إضافة مخصصة.</div></div></div>
-    <div class="step"><div class="stnum">٣</div><div class="stcon"><div class="sttitle">إعداد Conversions API (CAPI)</div><div class="stdesc">بسبب تغييرات الخصوصية (iOS 14+)، كثير من أحداث الـ Pixel لا تُتتبع. Conversions API يُرسل الأحداث مباشرة من سيرفرك لفيسبوك — يُحسّن دقة البيانات بنسبة ٣٠-٥٠٪.</div></div></div>
-    <div class="step"><div class="stnum">٤</div><div class="stcon"><div class="sttitle">إنشاء Product Catalog — اختياري لكن مهم</div><div class="stdesc">إذا كان لديك متجر بعدة منتجات، أنشئ Product Catalog في Commerce Manager. هذا يُمكّنك من Dynamic Ads التي تُظهر للعميل المنتجات التي شاهدها — قوية جداً للـ Retargeting.</div></div></div>
-    <div class="step"><div class="stnum">٥</div><div class="stcon"><div class="sttitle">إنشاء الحملة الإعلانية</div><div class="stdesc">Ads Manager ← Create ← اختر هدف Sales ← حدد اسم الحملة بوضوح (مثلاً: "حملة مبيعات - عطور - بغداد - مايو٢٠٢٥") ← اضبط ميزانية الحملة (CBO).</div></div></div>
-    <div class="step"><div class="stnum">٦</div><div class="stcon"><div class="sttitle">إعداد مجموعة الإعلانات (Ad Set)</div><div class="stdesc">اختر: Conversion Event = Purchase ← الموقع الجغرافي ← الفئة العمرية ← المواضع ← الميزانية. سمّ المجموعة بوضوح (مثلاً: "بغداد - نساء - ٢٥-٤٠").</div></div></div>
-    <div class="step"><div class="stnum">٧</div><div class="stcon"><div class="sttitle">تصميم الإعلان (Ad)</div><div class="stdesc">اختر: صور أو فيديو المنتج ← اكتب النص الإعلاني بالعربية ← أضف العنوان والوصف ← اختر Call to Action: "تسوّق الآن" أو "اطلب الآن". أضف رابط صفحة المنتج.</div></div></div>
-    <div class="step"><div class="stnum">٨</div><div class="stcon"><div class="sttitle">المراجعة النهائية قبل النشر</div><div class="stdesc">تحقق: هل الـ Pixel يعمل؟ هل الرابط صحيح؟ هل السعر مذكور؟ هل النص بالعربية؟ هل Conversion Event = Purchase؟ انشر الإعلان واصبر ٢٤-٤٨ ساعة قبل تقييم النتائج.</div></div></div>
-  </div>
-  <div class="sh rv"><h2>🧪 استراتيجية الاختبار A/B</h2><div class="sh-line"></div></div>
-  <div class="callout ci rv">
-    <div class="clb">📌 القاعدة الذهبية للاختبار</div>
-    <div class="cbody">اختبر عنصراً <strong>واحداً فقط</strong> في كل مرة. ابدأ باختبار: ١) الصورة/الفيديو ٢) عنوان الإعلان ٣) الجمهور المستهدف</div>
-  </div>
-  <div class="twrap rv">
-    <table>
-      <thead><tr><th>ما تختبره</th><th>كيف تختبره</th><th>ماذا تقيس</th></tr></thead>
-      <tbody>
-        <tr><td><strong>الصورة مقابل الفيديو</strong></td><td>إعلانان متطابقان بتصميمين مختلفين</td><td>CTR + معدل التحويل</td></tr>
-        <tr><td><strong>عنوان الإعلان</strong></td><td>نفس الصورة بعنوانين مختلفين</td><td>نسبة النقر (CTR)</td></tr>
-        <tr><td><strong>الجمهور المستهدف</strong></td><td>نفس الإعلان لجمهورين مختلفين</td><td>تكلفة التحويل (CPP)</td></tr>
-        <tr><td><strong>زر الـ CTA</strong></td><td>"اطلب الآن" مقابل "تسوّق الآن"</td><td>معدل الضغط على الزر</td></tr>
-        <tr><td><strong>نص الإعلان</strong></td><td>لغة رسمية مقابل لهجة عراقية</td><td>التفاعل + معدل التحويل</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- CH5 -->
-<section class="chapter" id="ch5">
-  <div class="chero rv">
-    <div class="chero-ghost">٥</div>
-    <div class="clabel">الفصل الخامس</div>
-    <div class="ctitle">🎨 تصميم إعلانات تُحقق مبيعات في العراق</div>
-    <div class="csub">الإعلان الصحيح = تصميم + نص + استهداف + توقيت</div>
-  </div>
-  <div class="sh rv"><h2>📌 العناصر الإلزامية في كل إعلان ناجح</h2><div class="sh-line"></div></div>
-  <div class="chklist rv">
-    <div class="chi"><span class="chi-i">✅</span><span><strong>السعر بالدينار العراقي بوضوح</strong> — لا تخفِ السعر أبداً. العراقي يريد أن يرى السعر قبل أي شيء آخر.</span></div>
-    <div class="chi"><span class="chi-i">✅</span><span><strong>المنتج واضح من الصورة الأولى</strong> — الصورة يجب أن تُظهر المنتج بجودة عالية من زوايا متعددة. لا صور ضبابية.</span></div>
-    <div class="chi"><span class="chi-i">✅</span><span><strong>رقم واتساب أو هاتف</strong> — الكثيرون يريدون السؤال قبل الشراء. وجود رقم يبني الثقة ويُسهّل الشراء.</span></div>
-    <div class="chi"><span class="chi-i">✅</span><span><strong>معلومات التوصيل والدفع</strong> — "توصيل لجميع محافظات العراق"، "الدفع عند الاستلام متاح". هذه العبارات تُزيل أكبر عائق.</span></div>
-    <div class="chi"><span class="chi-i">✅</span><span><strong>دليل اجتماعي</strong> — "١٠٠٠+ عميل راضٍ"، "تقييم ⭐⭐⭐⭐⭐"، أو صور عملاء حقيقيين يستخدمون المنتج.</span></div>
-    <div class="chi"><span class="chi-i">✅</span><span><strong>عرض خاص أو ندرة</strong> — "عرض محدود لهذا الأسبوع"، "آخر ٣٠ قطعة متبقية". يُحرّك العميل للشراء الفوري.</span></div>
-    <div class="chi"><span class="chi-i">✅</span><span><strong>دعوة واضحة للتصرف (CTA)</strong> — "اطلب الآن"، "تسوّق اليوم"، "واتساب لأمر الآن".</span></div>
-  </div>
-  <div class="sh rv"><h2>📝 هيكل النص الإعلاني المُثبت</h2><div class="sh-line"></div></div>
-  <div class="setblock rv">
-    <div class="settitle"><span class="seti">✍️</span> صياغة النص الإعلاني المثالي</div>
-    <div class="setrow"><span class="setkey">السطر الأول (Hook):</span><span class="setval">سؤال أو مشكلة يتعرف عليها العميل. مثال: <em>"تعبت من البشرة الجافة؟"</em></span></div>
-    <div class="setrow"><span class="setkey">الحل / المنتج:</span><span class="setval">قدّم منتجك كحل. مثال: <em>"جلكم المرطّب الطبيعي يُحوّل بشرتك خلال ٧ أيام"</em></span></div>
-    <div class="setrow"><span class="setkey">الفوائد:</span><span class="setval">٣ فوائد واضحة: <em>"✅ طبيعي ١٠٠٪ ✅ بدون كيماويات ✅ نتيجة مضمونة"</em></span></div>
-    <div class="setrow"><span class="setkey">السعر والعرض:</span><span class="setval"><em>"السعر: ٢٥,٠٠٠ دينار فقط — توصيل مجاني لبغداد هذا الأسبوع"</em></span></div>
-    <div class="setrow"><span class="setkey">الدليل الاجتماعي:</span><span class="setval"><em>"انضم لأكثر من ٥٠٠ عميلة عراقية راضية ⭐⭐⭐⭐⭐"</em></span></div>
-    <div class="setrow"><span class="setkey">الـ CTA النهائي:</span><span class="setval"><em>"اضغط اطلب الآن أو راسلنا على واتساب 📱"</em></span></div>
-  </div>
-  <div class="sh rv"><h2>🎬 الفيديو مقابل الصورة</h2><div class="sh-line"></div></div>
-  <div class="tcol rv">
-    <div class="callout ct">
-      <div class="clb">🎬 إعلان الفيديو — أفضل للـ:</div>
-      <div class="cbody">◆ المنتجات التي تحتاج شرحاً<br>◆ إظهار المنتج قبل وبعد<br>◆ بناء الثقة بمراجعة حقيقية<br>◆ منتجات التجميل والأجهزة<br><br><strong>الطول المثالي:</strong> ١٥-٤٥ ثانية<br><strong>مهم:</strong> أضف Captions لمن يُشاهد بدون صوت</div>
+  <!-- TOC -->
+  <section class="toc-sec rv" id="toc">
+    <div class="slabel">📋 المحتويات</div>
+    <h2 class="stitle">فهرس <span>المحتويات</span></h2>
+    <p class="sdesc">٩ فصول شاملة من الصفر إلى الإتقان الكامل لإعلانات Meta في السوق العراقي</p>
+    <div class="toc-grid">
+      <div class="tcard rv" onclick="go('ch1')"><div class="tnum">١</div><div class="tinfo"><h3>🇮🇶 فهم السوق العراقي</h3><p>إحصائيات، أوقات الذروة، المواسم الذهبية</p></div></div>
+      <div class="tcard rv" onclick="go('ch2')"><div class="tnum">٢</div><div class="tinfo"><h3>🔍 لماذا إعلاناتك لا تبيع؟</h3><p>١٢ خطأً قاتلاً وكيف تصلحها الآن</p></div></div>
+      <div class="tcard rv" onclick="go('ch3')"><div class="tnum">٣</div><div class="tinfo"><h3>⚙️ إعدادات Meta Ads الصحيحة</h3><p>Campaign · Ad Set · Bidding · Pixel</p></div></div>
+      <div class="tcard rv" onclick="go('ch4')"><div class="tnum">٤</div><div class="tinfo"><h3>🚀 إنشاء حملتك خطوة بخطوة</h3><p>من تثبيت البيكسل إلى إطلاق الإعلان</p></div></div>
+      <div class="tcard rv" onclick="go('ch5')"><div class="tnum">٥</div><div class="tinfo"><h3>🎨 تصميم إعلانات تُحقق مبيعات</h3><p>النص، التصميم، الفيديو مقابل الصورة</p></div></div>
+      <div class="tcard rv" onclick="go('ch6')"><div class="tnum">٦</div><div class="tinfo"><h3>🤝 بناء الثقة مع العميل العراقي</h3><p>عوامل الثقة، المراجعات، التواصل</p></div></div>
+      <div class="tcard rv" onclick="go('ch7')"><div class="tnum">٧</div><div class="tinfo"><h3>💳 طرق الدفع والتوصيل</h3><p>COD، المحافظ الإلكترونية، شركات التوصيل</p></div></div>
+      <div class="tcard rv" onclick="go('ch8')"><div class="tnum">٨</div><div class="tinfo"><h3>📊 قياس الأداء وتحسين النتائج</h3><p>KPIs، متى توقف أو تضاعف الميزانية</p></div></div>
+      <div class="tcard rv" onclick="go('ch9')"><div class="tnum">٩</div><div class="tinfo"><h3>📅 خطة عمل ٣٠ يوماً</h3><p>من الصفر إلى أول ١٠٠ مبيعة</p></div></div>
+      <div class="tcard rv" onclick="go('con')"><div class="tnum">✦</div><div class="tinfo"><h3>🏆 القواعد الذهبية العشر</h3><p>الخلاصة المُكثّفة للنجاح</p></div></div>
     </div>
-    <div class="callout ci">
-      <div class="clb">📸 إعلان الصورة — أفضل للـ:</div>
-      <div class="cbody">◆ منتجات بصرية جميلة<br>◆ عروض سريعة وواضحة<br>◆ Retargeting والتذكير<br>◆ منتجات الموضة والطعام<br><br><strong>المقاس المثالي:</strong> ١:١ مربع أو ٤:٥ رأسي<br><strong>مهم:</strong> نص لا يتجاوز ٢٠٪ من المساحة</div>
+    <div class="callout ci rv" style="margin-top:24px">
+      <div class="clb">💡 كيف تستخدم هذا الدليل؟</div>
+      <div class="cbody">إذا كانت مشكلتك <strong>عدم تحقيق مبيعات</strong> رغم الإعلانات، ابدأ بالفصل الثاني مباشرة. إذا كنت <strong>مبتدئاً</strong>، اقرأ من البداية. إذا أردت <strong>التوسع</strong>، انتقل للفصلين الثامن والتاسع.</div>
     </div>
-  </div>
-  <div class="callout cg rv">
-    <div class="clb">🔑 سر نجاح الإعلانات في العراق</div>
-    <div class="cbody">العراقيون <strong>يثقون بالصورة الحقيقية</strong> أكثر من الصورة المصممة بالحاسوب. أفضل إعلان هو <strong>فيديو شخص حقيقي</strong> يشرح المنتج باللهجة العراقية. هذا النوع يُحقق تحويلات أضعاف الإعلانات الاحترافية.</div>
-  </div>
-</section>
+  </section>
 
-<!-- CH6 -->
-<section class="chapter" id="ch6">
-  <div class="chero rv">
-    <div class="chero-ghost">٦</div>
-    <div class="clabel">الفصل السادس</div>
-    <div class="ctitle">🤝 بناء الثقة مع العميل العراقي</div>
-    <div class="csub">الثقة هي العملة الحقيقية في التجارة الإلكترونية بالعراق</div>
-  </div>
-  <p class="rv">التحدي الأكبر في التجارة الإلكترونية العراقية هو <strong>النقص الشديد في الثقة</strong>. كل خطوة لبناء الثقة ستُضاعف مبيعاتك:</p>
-  <div class="steps rv">
-    <div class="step"><div class="stnum">١</div><div class="stcon"><div class="sttitle">رقم هاتف / واتساب ظاهر في كل مكان</div><div class="stdesc">ضعه في الإعلان، بيو الصفحة، الموقع، في كل مكان. الرقم الظاهر يُقول للعميل: "هناك شخص حقيقي خلف هذا المنتج". استجب بسرعة — الرد خلال ساعة يُضاعف احتمال البيع.</div></div></div>
-    <div class="step"><div class="stnum">٢</div><div class="stcon"><div class="sttitle">شهادات العملاء الحقيقية (Social Proof)</div><div class="stdesc">اطلب من عملائك الراضين إرسال تعليق أو فيديو قصير. عبارة "اشتريت المنتج وهو تمام جداً" من شخص حقيقي تُساوي ألف إعلان احترافي.</div></div></div>
-    <div class="step"><div class="stnum">٣</div><div class="stcon"><div class="sttitle">الدفع عند الاستلام (COD) — لا تعمل بدونه</div><div class="stdesc">٨٠-٩٠٪ من عمليات الشراء الإلكتروني في العراق تتم بالدفع عند الاستلام. ابدأ معه وأضف طرق دفع إلكترونية لاحقاً.</div></div></div>
-    <div class="step"><div class="stnum">٤</div><div class="stcon"><div class="sttitle">سياسة استبدال وإرجاع واضحة</div><div class="stdesc">أعلن صراحة: "إذا لم يعجبك المنتج، نُرجع لك فلوسك أو نُبدله". في الواقع، نسبة من يطلب الإرجاع صغيرة جداً، لكن وعدك بها يُضاعف قرارات الشراء.</div></div></div>
-    <div class="step"><div class="stnum">٥</div><div class="stcon"><div class="sttitle">تتبع الطلب وإشعارات التوصيل</div><div class="stdesc">أبلغ العميل برسالة واتساب فور استلام طلبه، ثم عند الشحن، ثم قبل التوصيل. هذا يُحسّن التجربة ويُزيد المراجعات الإيجابية والتكرار.</div></div></div>
-    <div class="step"><div class="stnum">٦</div><div class="stcon"><div class="sttitle">صفحة نشطة ومنتظمة</div><div class="stdesc">صفحة بآخر منشور منذ ٣ أشهر تُخبر العميل أن المتجر ميت. انشر محتوى منتظم: منتجات جديدة، تقييمات، خلف الكواليس. النشاط يبني الثقة.</div></div></div>
-  </div>
-  <div class="sh rv"><h2>📱 ردود واتساب الاحترافية</h2><div class="sh-line"></div></div>
-  <div class="callout ct rv">
-    <div class="clb">💡 استخدم واتساب بيزنس</div>
-    <div class="cbody">حوّل رقمك لـ <strong>WhatsApp Business</strong> فوراً: رسالة ترحيب تلقائية، ساعات عمل واضحة، كتالوج منتجات، ردود سريعة جاهزة. كل هذا مجاناً.</div>
-  </div>
-  <div class="twrap rv">
-    <table>
-      <thead><tr><th>الموقف</th><th>الرد المقترح على واتساب</th></tr></thead>
-      <tbody>
-        <tr><td>عميل يستفسر عن منتج</td><td>"مرحبا يعزيزي 🌟 شكراً لتواصلك معنا. [وصف المنتج + السعر + رابط الطلب]"</td></tr>
-        <tr><td>عميل يسأل عن التوصيل</td><td>"نوصّل لجميع محافظات العراق 🇮🇶 خلال ٢-٤ أيام. الدفع عند الاستلام ✅"</td></tr>
-        <tr><td>تأكيد الطلب</td><td>"تم استلام طلبك بنجاح ✅ سيتم التواصل معك خلال ٢٤ ساعة. شكراً لثقتك 🙏"</td></tr>
-        <tr><td>عميل يشكو</td><td>"نعتذر جداً. نحن نضمن رضاك التام. سأتواصل معك فوراً لحل الأمر 🤝"</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+  <!-- CH1 -->
+  <section class="chapter" id="ch1">
+    <div class="chero rv"><div class="chero-ghost">١</div><div class="clabel">الفصل الأول</div><div class="ctitle">🇮🇶 فهم السوق العراقي</div><div class="csub">لا يمكنك بيع ما لا تفهم جمهوره — تعرّف على عميلك أولاً</div></div>
+    <div class="sh rv"><h2>📊 إحصائيات السوق الرقمي</h2><div class="sh-line"></div></div>
+    <div class="sgrid">
+      <div class="scard rv"><span class="si">👥</span><span class="sn" data-t="43" data-s="م+">٠</span><span class="sl">إجمالي السكان</span></div>
+      <div class="scard rv"><span class="si">📱</span><span class="sn" data-t="22" data-s="م+">٠</span><span class="sl">مستخدمو الإنترنت</span></div>
+      <div class="scard rv"><span class="si">📘</span><span class="sn" data-t="16" data-s="م+">٠</span><span class="sl">مستخدمو فيسبوك</span></div>
+      <div class="scard rv"><span class="si">📸</span><span class="sn" data-t="9" data-s="م+">٠</span><span class="sl">مستخدمو إنستغرام</span></div>
+      <div class="scard rv"><span class="si">📲</span><span class="sn" data-t="71" data-s="٪">٠</span><span class="sl">وصول عبر الهاتف</span></div>
+      <div class="scard rv"><span class="si">🛒</span><span class="sn" data-t="4" data-s="م+">٠</span><span class="sl">مستخدم تسوّق إلكترونياً</span></div>
+    </div>
+    <div class="callout cg rv"><div class="clb">⭐ الفرصة الذهبية</div><div class="cbody">رغم +٢٢ مليون مستخدم للإنترنت، عدد من يتسوق إلكترونياً لا يزال محدوداً — وهذا يعني <strong>فرصة هائلة غير مستغلة</strong>. الذي يدخل الآن بشكل صحيح يبني ميزة تنافسية طويلة الأمد.</div></div>
+    <div class="sh rv"><h2>🕐 أوقات الذروة</h2><div class="sh-line"></div></div>
+    <div class="twrap rv"><table><thead><tr><th>الفترة الزمنية</th><th>مستوى النشاط</th><th>ملاحظات</th></tr></thead><tbody>
+      <tr><td>١٢ ظهراً – ٢ عصراً</td><td>🔥🔥🔥 <span class="tgold">مرتفع جداً</span></td><td>استراحة الغداء، تصفح مكثف</td></tr>
+      <tr><td>٧ مساءً – ١١ مساءً</td><td>🔥🔥🔥🔥 <span class="tgold">الأعلى على الإطلاق</span></td><td>وقت الذروة — خصص أكبر ميزانية هنا</td></tr>
+      <tr><td>يوم الجمعة (طوال اليوم)</td><td>🔥🔥🔥🔥 <span class="tgold">استثنائي</span></td><td>الأكثر نشاطاً في الأسبوع</td></tr>
+      <tr><td>رمضان (بعد الإفطار)</td><td>🔥🔥🔥🔥🔥 <span class="tred">ذروة موسمية</span></td><td>أعلى نشاط في السنة — ضاعف ميزانيتك</td></tr>
+    </tbody></table></div>
+    <div class="sh rv"><h2>🎯 طبيعة المستهلك العراقي</h2><div class="sh-line"></div></div>
+    <div class="tcol rv">
+      <div class="callout ct"><div class="clb">✅ ما يُقنعه بالشراء</div><div class="cbody">◆ رأي الأصدقاء والعائلة<br>◆ مراجعات ومصداقية البائع<br>◆ سعر واضح بالدينار<br>◆ الدفع عند الاستلام (COD)<br>◆ تواصل مباشر (واتساب/هاتف)<br>◆ عروض محدودة الوقت<br>◆ شهادات عملاء حقيقيين</div></div>
+      <div class="callout cd"><div class="clb">❌ ما يجعله يتردد</div><div class="cbody">◆ غياب السعر ("راسلنا للسعر")<br>◆ الدفع المسبق فقط<br>◆ لا رقم هاتف أو واتساب<br>◆ لا مراجعات أو حساب جديد<br>◆ معلومات التوصيل غير واضحة<br>◆ موقع بطيء أو معطّل<br>◆ الرد البطيء على الاستفسارات</div></div>
+    </div>
+    <div class="sh rv"><h2>📅 المواسم التجارية الذهبية</h2><div class="sh-line"></div></div>
+    <div class="twrap rv"><table><thead><tr><th>الموسم</th><th>المنتجات الأنسب</th><th>التوصية</th></tr></thead><tbody>
+      <tr><td>🌙 رمضان الكريم</td><td>ملابس، هدايا، مواد غذائية، عطور</td><td>ابدأ الإعلانات قبل رمضان بأسبوعين</td></tr>
+      <tr><td>🎊 عيد الفطر</td><td>ملابس عيد، هدايا، حلويات، إكسسوارات</td><td>الأسبوع الأخير من رمضان = ذروة المبيعات</td></tr>
+      <tr><td>🐑 عيد الأضحى</td><td>مستلزمات المنزل، الملابس، الهدايا</td><td>ابدأ قبل ١٠ أيام من العيد</td></tr>
+      <tr><td>🏫 العودة للمدارس</td><td>قرطاسية، حقائب، ملابس، لوازم تقنية</td><td>أغسطس وأول سبتمبر</td></tr>
+      <tr><td>🎆 رأس السنة</td><td>هدايا، ملابس، إلكترونيات</td><td>ديسمبر كامل</td></tr>
+    </tbody></table></div>
+  </section>
 
-<!-- CH7 -->
-<section class="chapter" id="ch7">
-  <div class="chero rv">
-    <div class="chero-ghost">٧</div>
-    <div class="clabel">الفصل السابع</div>
-    <div class="ctitle">💳 طرق الدفع والتوصيل في العراق</div>
-    <div class="csub">الخيارات الصحيحة تُعظّم مبيعاتك وتُقلّل خسائر التوصيل</div>
-  </div>
-  <div class="sh rv"><h2>💰 طرق الدفع المتاحة في العراق</h2><div class="sh-line"></div></div>
-  <div class="twrap rv">
-    <table>
-      <thead><tr><th>طريقة الدفع</th><th>الانتشار</th><th>الملاحظات</th></tr></thead>
-      <tbody>
-        <tr><td>🥇 <strong>الدفع عند الاستلام (COD)</strong></td><td><span class="badge bg">الأعلى: ٨٥٪+</span></td><td>إلزامي لأي متجر جاد. يُزيل أكبر حاجز للشراء.</td></tr>
-        <tr><td>📱 <strong>زين كاش (Zain Cash)</strong></td><td><span class="badge bb">مرتفع</span></td><td>الأكثر انتشاراً من المحافظ الإلكترونية. متاح في معظم المحافظات.</td></tr>
-        <tr><td>📱 <strong>آسيا حوالة (Asia Hawala)</strong></td><td><span class="badge bb">متوسط-مرتفع</span></td><td>شائع في بغداد والمحافظات الوسطى.</td></tr>
-        <tr><td>💻 <strong>فاست باي (FastPay)</strong></td><td><span class="badge bb">متوسط</span></td><td>قاعدة مستخدمين متنامية.</td></tr>
-        <tr><td>💳 <strong>كيو كارد (QiCard)</strong></td><td><span class="badge bb">متوسط</span></td><td>مرتبط بالرواتب الحكومية — شريحة كبيرة تمتلكه.</td></tr>
-        <tr><td>💳 <strong>فيزا / ماستركارد</strong></td><td><span class="badge bo">محدود</span></td><td>أضفها إن كان منتجك للفئة الراقية.</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="callout cw rv">
-    <div class="clb">⚠️ تحذير: إدارة مخاطر COD</div>
-    <div class="cbody">أكبر تحدي مع COD هو <strong>رفض الاستلام</strong>. لتقليل هذه الخسائر:<br>• تأكّد من الطلب بمكالمة هاتفية قبل الشحن<br>• اطلب تفاصيل الموقع الدقيقة<br>• حدّد موعداً للتوصيل مع العميل<br>• في أول طلب من عميل جديد، تواصل معه قبل الشحن</div>
-  </div>
-  <div class="sh rv"><h2>🚚 شركات التوصيل في العراق</h2><div class="sh-line"></div></div>
-  <div class="twrap rv">
-    <table>
-      <thead><tr><th>الشركة</th><th>التغطية</th><th>المميزات</th></tr></thead>
-      <tbody>
-        <tr><td><strong>مدار للتوصيل</strong></td><td>معظم المحافظات</td><td>تغطية واسعة، سعر تنافسي، COD متاح</td></tr>
-        <tr><td><strong>أرامكس العراق</strong></td><td>المدن الرئيسية</td><td>موثوقية عالية، تتبع الشحنات</td></tr>
-        <tr><td><strong>سوّا (Suwa)</strong></td><td>بغداد والمحافظات</td><td>سعر معقول، خدمة COD</td></tr>
-        <tr><td><strong>شركات محلية</strong></td><td>محلية</td><td>أرخص سعراً، أسرع داخل المدينة</td></tr>
-        <tr><td><strong>التوصيل الذاتي</strong></td><td>مدينتك فقط</td><td>مجاني، بناء ثقة أعلى، مناسب للبداية</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="callout ct rv">
-    <div class="clb">💡 نصيحة التوصيل المجاني</div>
-    <div class="cbody"><strong>التوصيل المجاني يُضاعف معدل الشراء</strong>. أضف تكلفة التوصيل في سعر المنتج واعلن "توصيل مجاني". بدلاً من "السعر ١٨,٠٠٠ + توصيل ٣,٠٠٠"، اجعلها "السعر ٢٠,٠٠٠ شامل التوصيل المجاني". النفسية مختلفة تماماً.</div>
-  </div>
-</section>
+  <!-- CH2 -->
+  <section class="chapter" id="ch2">
+    <div class="chero rv"><div class="chero-ghost">٢</div><div class="clabel">الفصل الثاني</div><div class="ctitle">🔍 لماذا إعلاناتك لا تُحقق مبيعات؟</div><div class="csub">تشخيص ١٢ خطأً قاتلاً يرتكبها معظم التجار في العراق</div></div>
+    <p class="rv">تُنفق مئات الآلاف من الدنانير على الإعلانات ولا ترى مبيعات؟ هذا الفصل يُشخّص مشكلتك بدقة:</p>
+    <div class="ecard rv"><div class="etitle">❌ الخطأ الأول: هدف الحملة الخاطئ — Traffic بدلاً من Sales</div><div class="edesc">كثيرون يختارون هدف "الزيارات" ظناً أنه يحقق مبيعات. فيسبوك يُحسّن الحملة لمن يُحقق الهدف المحدد — إذا اخترت Traffic فسيبحث عن ناقرين، وليس مشترين.</div><div class="efix">✅ الحل: استخدم دائماً هدف "Sales" أو "Conversions" مع تثبيت Facebook Pixel وإعداد حدث Purchase.</div></div>
+    <div class="ecard rv"><div class="etitle">❌ الخطأ الثاني: الاستهداف عشوائي أو واسع جداً</div><div class="edesc">استهداف "كل العراق، ١٨-٦٥ سنة، جميع الاهتمامات" يُضيع ميزانيتك على أشخاص لا يريدون منتجك.</div><div class="efix">✅ الحل: حدّد جمهورك بدقة: المدن المناسبة + العمر الصحيح + اهتمامات مرتبطة مباشرة بمنتجك.</div></div>
+    <div class="ecard rv"><div class="etitle">❌ الخطأ الثالث: الإعلان لا يعرض السعر</div><div class="edesc">المستهلك العراقي حساسٌ جداً للسعر. عبارات مثل "راسلنا للسعر" تقتل معدلات التحويل.</div><div class="efix">✅ الحل: اعرض السعر بوضوح بالدينار. مثال: "كان ٢٥,٠٠٠ — الآن ١٨,٠٠٠ دينار فقط".</div></div>
+    <div class="ecard rv"><div class="etitle">❌ الخطأ الرابع: لا دليل اجتماعي (Social Proof)</div><div class="edesc">العراقي لا يشتري من بائع مجهول. إذا لم يجد تعليقات عملاء أو مراجعات، سيتجنب الشراء.</div><div class="efix">✅ الحل: اجمع شهادات العملاء وانشرها. استخدم صور قبل وبعد. شارك قصص عملاء حقيقيين.</div></div>
+    <div class="ecard rv"><div class="etitle">❌ الخطأ الخامس: الميزانية أقل من حد التعلم</div><div class="edesc">فيسبوك يحتاج ٥٠ حدثاً في أسبوع لإنهاء مرحلة التعلم. بميزانية منخفضة جداً ستبقى في التعلم للأبد.</div><div class="efix">✅ الحل: الحد الأدنى الموصى به ١٠-١٥ دولار يومياً لكل مجموعة إعلانية.</div></div>
+    <div class="ecard rv"><div class="etitle">❌ الخطأ السادس: الإعلان لا يتحدث بلغة العراقي</div><div class="edesc">إعلانات باللغة الإنجليزية أو اللهجات الخليجية لا تعكس ثقافة المستهلك العراقي.</div><div class="efix">✅ الحل: استخدم اللهجة العراقية المحكية: "يا عزيزي"، "والله خيار صح"، "دليفري لباب بيتك".</div></div>
+    <div class="ecard rv"><div class="etitle">❌ الخطأ السابع: عدم تثبيت Facebook Pixel بشكل صحيح</div><div class="edesc">بدون Pixel، فيسبوك يعمل أعمى. لا يعرف من اشترى، من أضاف للسلة. لا بيانات = لا تحسين.</div><div class="efix">✅ الحل: ثبّت Pixel فوراً وأعدّ أحداث: ViewContent، AddToCart، InitiateCheckout، Purchase.</div></div>
+    <div class="ecard rv"><div class="etitle">❌ الخطأ الثامن: لا إعادة استهداف (Retargeting)</div><div class="edesc">٩٥٪ من الزوار لا يشترون في الزيارة الأولى. إذا لم تُعد استهدافهم، فأنت تخسر ٩ من كل ١٠ عملاء.</div><div class="efix">✅ الحل: أنشئ جمهور مخصص من زوار موقعك، من أضافوا للسلة، من تفاعلوا مع صفحتك.</div></div>
+    <div class="ecard rv"><div class="etitle">❌ الخطأ التاسع: صفحة الهبوط بطيئة أو ضعيفة</div><div class="edesc">يضغط العميل على الإعلان بحماس ثم يجد صفحة بطيئة — فيغلقها. الإعلان ليس المشكلة.</div><div class="efix">✅ الحل: تأكد أن الصفحة تُحمّل في أقل من ٣ ثوانٍ. اجعلها واضحة: اسم، صور، سعر، زر الشراء.</div></div>
+    <div class="ecard rv"><div class="etitle">❌ الخطأ العاشر: إيقاف الإعلانات وإعادة تشغيلها باستمرار</div><div class="edesc">كلما أوقفت إعلاناً وأعدت تشغيله، يعود لمرحلة التعلم من الصفر.</div><div class="efix">✅ الحل: اترك الإعلان يعمل ٣-٧ أيام على الأقل دون تدخل.</div></div>
+    <div class="ecard rv"><div class="etitle">❌ الخطأ الحادي عشر: المنتج نفسه هو المشكلة</div><div class="edesc">أحياناً الإعلانات ممتازة والإعدادات صحيحة، لكن المنتج لا يُناسب السوق العراقي.</div><div class="efix">✅ الحل: ابحث في السوق قبل الإعلان. هل يبحث الناس عن هذا المنتج؟ هل السعر تنافسي؟</div></div>
+    <div class="ecard rv"><div class="etitle">❌ الخطأ الثاني عشر: تجاهل تعليقات الإعلان</div><div class="edesc">التعليقات السلبية تقتل نتائج إعلانك. فيسبوك يُقلّل توزيع الإعلانات ذات التعليقات السيئة.</div><div class="efix">✅ الحل: راقب تعليقاتك يومياً. ردّ على كل سؤال. احذف التعليقات السلبية الغير مبررة.</div></div>
+    <div class="callout cw rv"><div class="clb">⚠️ تشخيص سريع</div><div class="cbody">افتح Meta Ads Manager الآن وراجع: <strong>هدف الحملة ← إعداد الجمهور ← تصميم الإعلان ← الـ Pixel ← صفحة الهبوط</strong>. في معظم الحالات، الإصلاح يستغرق ساعة واحدة ويُضاعف نتائجك خلال أسبوع.</div></div>
+  </section>
 
-<!-- CH8 -->
-<section class="chapter" id="ch8">
-  <div class="chero rv">
-    <div class="chero-ghost">٨</div>
-    <div class="clabel">الفصل الثامن</div>
-    <div class="ctitle">📊 قياس الأداء وتحسين النتائج</div>
-    <div class="csub">البيانات لا تكذب — تعلّم قراءة الأرقام واتخاذ القرار الصحيح</div>
-  </div>
-  <div class="sh rv"><h2>📈 المؤشرات الرئيسية (KPIs)</h2><div class="sh-line"></div></div>
-  <div class="twrap rv">
-    <table>
-      <thead><tr><th>المؤشر</th><th>ماذا يعني</th><th>المستوى الجيد</th><th>مشكلة إذا</th></tr></thead>
-      <tbody>
-        <tr><td><strong>CTR</strong></td><td>نسبة من ضغط على إعلانك</td><td>&gt; ١.٥٪</td><td>&lt; ٠.٥٪ → غيّر التصميم أو الجمهور</td></tr>
-        <tr><td><strong>CPM</strong></td><td>تكلفة الوصول لـ ١٠٠٠ شخص</td><td>$٣ – $٨</td><td>&gt; $١٥ → الجمهور منافس جداً</td></tr>
-        <tr><td><strong>CPC</strong></td><td>تكلفة كل نقرة</td><td>$٠.١٥ – $٠.٥٠</td><td>&gt; $١ → إعادة النظر في الاستهداف</td></tr>
-        <tr><td><strong>CVR</strong></td><td>نسبة من اشترى من الزوار</td><td>١٪ – ٣٪</td><td>&lt; ٠.٥٪ → مشكلة في الصفحة</td></tr>
-        <tr><td><strong>ROAS</strong></td><td>عائد كل دولار تُنفقه</td><td>&gt; ٣x (مثالياً ٥x+)</td><td>&lt; ٢x → الحملة خاسرة</td></tr>
-        <tr><td><strong>Frequency</strong></td><td>كم مرة رأى نفس الشخص إعلانك</td><td>٢ – ٤ مرات</td><td>&gt; ٦ → تعب الإعلان، غيّر التصميم</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="sh rv"><h2>⚖️ متى توقف الإعلان؟ ومتى تُضاعف ميزانيته؟</h2><div class="sh-line"></div></div>
-  <div class="tcol rv">
-    <div class="callout cd">
-      <div class="clb">🛑 أوقف الإعلان إذا:</div>
-      <div class="cbody">◆ أنفقت ٢-٣ أضعاف تكلفة المنتج بدون بيع<br>◆ CTR أقل من ٠.٥٪ بعد ٣ أيام<br>◆ Frequency تجاوز ٧-٨ مرات<br>◆ الجمهور نفد (Audience Saturation)<br>◆ تعليقات سلبية كثيرة تضر بالسمعة<br>◆ ROAS أقل من 1x (تخسر أكثر مما تربح)</div>
+  <!-- CH3 -->
+  <section class="chapter" id="ch3">
+    <div class="chero rv"><div class="chero-ghost">٣</div><div class="clabel">الفصل الثالث</div><div class="ctitle">⚙️ إعدادات Meta Ads Manager الصحيحة</div><div class="csub">الإعدادات المثلى للسوق العراقي — Campaign · Ad Set · Ad</div></div>
+    <div class="sh rv"><h2>🏗️ مستوى الحملة (Campaign Level)</h2><div class="sh-line"></div></div>
+    <div class="setblock rv"><div class="settitle"><span>🎯</span> هدف الحملة (Campaign Objective)</div>
+      <div class="setrow"><span class="setkey">للمبيعات (متجر/موقع):</span><span class="setval"><span class="badge bg">Sales</span> أو <span class="badge bg">Conversions</span> ← اختر دائماً هذا</span></div>
+      <div class="setrow"><span class="setkey">لجمع بيانات عملاء:</span><span class="setval"><span class="badge bb">Lead Generation</span></span></div>
+      <div class="setrow"><span class="setkey">❌ تجنّب تماماً:</span><span class="setval"><span class="badge br">Traffic</span> <span class="badge br">Engagement</span> <span class="badge br">Video Views</span> لأهداف المبيعات</span></div>
     </div>
-    <div class="callout ct">
-      <div class="clb">🚀 ضاعف الميزانية إذا:</div>
-      <div class="cbody">◆ ROAS أعلى من 3x باستمرار<br>◆ تكلفة التحويل مقبولة ومستقرة<br>◆ الحملة تجاوزت مرحلة التعلم<br>◆ Frequency لا تزال بين ٢-٤<br>◆ زيادة الميزانية: لا تزد أكثر من ٣٠٪ كل مرة<br>◆ انتظر ٣-٥ أيام بعد كل زيادة</div>
+    <div class="setblock rv"><div class="settitle"><span>💡</span> نوع الحملة</div>
+      <div class="setrow"><span class="setkey">للمتاجر الجديدة:</span><span class="setval"><span class="badge bg">Advantage+ Shopping Campaign</span> — فيسبوك يدير كل شيء تلقائياً</span></div>
+      <div class="setrow"><span class="setkey">للمتاجر المتمرسة:</span><span class="setval"><span class="badge bb">Manual Sales Campaign</span> — تحكم كامل</span></div>
+      <div class="setrow"><span class="setkey">ميزانية الحملة:</span><span class="setval"><span class="badge bg">CBO</span> موصى به — فيسبوك يوزع على أفضل Ad Sets</span></div>
     </div>
-  </div>
-  <div class="sh rv"><h2>🔄 استراتيجية التوسع (Scaling)</h2><div class="sh-line"></div></div>
-  <div class="steps rv">
-    <div class="step"><div class="stnum">١</div><div class="stcon"><div class="sttitle">التوسع الرأسي (Vertical Scaling)</div><div class="stdesc">زيادة ميزانية الإعلانات الناجحة تدريجياً. القاعدة: ابدأ بزيادة ٢٠-٣٠٪ كل ٣-٥ أيام. لا تُضاعف الميزانية دفعة واحدة.</div></div></div>
-    <div class="step"><div class="stnum">٢</div><div class="stcon"><div class="sttitle">التوسع الأفقي (Horizontal Scaling)</div><div class="stdesc">نسخ الإعلان الناجح لجماهير جديدة: محافظات أخرى، فئات عمرية مختلفة، Lookalike audiences من قوائم مختلفة.</div></div></div>
-    <div class="step"><div class="stnum">٣</div><div class="stcon"><div class="sttitle">تجديد الإعلانات (Creative Refresh)</div><div class="stdesc">عندما تنخفض النتائج، لا تُوقف الحملة. جدّد التصميم والنص مع إبقاء الاستهداف الناجح. هذا يُجدّد اهتمام الجمهور.</div></div></div>
-  </div>
-  <div class="callout cg rv">
-    <div class="clb">🏆 قاعدة الـ ٨٠/٢٠ في الإعلانات</div>
-    <div class="cbody">عادةً ٢٠٪ من إعلاناتك تُحقق ٨٠٪ من مبيعاتك. ركّز على تحديد هذه الإعلانات الرابحة وأوقف الباقي. لا تتعلق بإعلان خاسر — البيانات هي القاضي، ليس رأيك الشخصي.</div>
-  </div>
-</section>
+    <div class="sh rv"><h2>👥 مجموعة الإعلانات (Ad Set)</h2><div class="sh-line"></div></div>
+    <div class="setblock rv"><div class="settitle"><span>📍</span> الاستهداف الجغرافي</div>
+      <div class="setrow"><span class="setkey">البداية الآمنة:</span><span class="setval">العراق كلياً — لرؤية أين تأتي المبيعات</span></div>
+      <div class="setrow"><span class="setkey">للاستهداف المحلي:</span><span class="setval"><span class="badge bg">بغداد</span> <span class="badge bg">البصرة</span> <span class="badge bg">أربيل</span> <span class="badge bg">النجف</span> <span class="badge bg">كربلاء</span></span></div>
+      <div class="setrow"><span class="setkey">نوع الموقع:</span><span class="setval">اختر <strong>"People living in this location"</strong> فقط</span></div>
+    </div>
+    <div class="setblock rv"><div class="settitle"><span>🎂</span> العمر والجنس والجماهير</div>
+      <div class="setrow"><span class="setkey">الفئة العمرية العامة:</span><span class="setval"><span class="badge bg">١٨ – ٤٥ سنة</span> — الشريحة الأكثر شراءً</span></div>
+      <div class="setrow"><span class="setkey">Custom Audiences:</span><span class="setval"><span class="badge bg">زوار موقعك (آخر ٣٠ يوم)</span> <span class="badge bg">من أضافوا للسلة</span></span></div>
+      <div class="setrow"><span class="setkey">Lookalike:</span><span class="setval">١٪ في العراق من قائمة عملائك — الأكثر تشابهاً</span></div>
+    </div>
+    <div class="setblock rv"><div class="settitle"><span>📺</span> المواضع الإعلانية</div>
+      <div class="setrow"><span class="setkey">الأفضل للعراق:</span><span class="setval"><span class="badge bg">Facebook Feed</span> <span class="badge bg">Instagram Feed</span> <span class="badge bg">Instagram Reels</span> <span class="badge bg">Stories</span></span></div>
+      <div class="setrow"><span class="setkey">تجنّب في البداية:</span><span class="setval"><span class="badge br">Audience Network</span> — كليكات وهمية في العراق</span></div>
+    </div>
+    <div class="setblock rv"><div class="settitle"><span>💰</span> الميزانية واستراتيجية المزايدة</div>
+      <div class="setrow"><span class="setkey">الحد الأدنى اليومي:</span><span class="setval"><span class="badge bg">١٠-١٥ دولار/يوم</span> لكل مجموعة إعلانية</span></div>
+      <div class="setrow"><span class="setkey">للمبتدئين:</span><span class="setval">ابدأ بـ <span class="badge bb">Daily Budget</span> — أسهل في التحكم</span></div>
+      <div class="setrow"><span class="setkey">استراتيجية المزايدة:</span><span class="setval"><span class="badge bg">Lowest Cost</span> للمبتدئين</span></div>
+    </div>
+  </section>
 
-<!-- CH9 -->
-<section class="chapter" id="ch9">
-  <div class="chero rv">
-    <div class="chero-ghost">٩</div>
-    <div class="clabel">الفصل التاسع</div>
-    <div class="ctitle">📅 خطة عمل ٣٠ يوماً</div>
-    <div class="csub">من الصفر إلى أول ١٠٠ مبيعة — خطوة بخطوة</div>
-  </div>
-  <p class="rv">هذه الخطة مصمّمة للمبتدئين أو من يعيد بناء استراتيجيته. اتبعها بالترتيب:</p>
-  <div class="week rv">
-    <div class="wh w1"><span>🏗️</span> الأسبوع الأول (الأيام ١-٧): الأساسات والإعداد</div>
-    <div class="wb">
-      <div class="di"><span class="dlabel">اليوم ١</span><span class="dtxt">أنشئ/حسّن Business Manager. تأكد من ربط الصفحة وحساب الإعلانات. فعّل 2FA للحماية.</span></div>
-      <div class="di"><span class="dlabel">اليوم ٢</span><span class="dtxt">ثبّت Facebook Pixel على موقعك. تحقق من عمله بـ Pixel Helper. أعدّ الأحداث الأساسية (ViewContent, AddToCart, Purchase).</span></div>
-      <div class="di"><span class="dlabel">اليوم ٣</span><span class="dtxt">صوّر منتجاتك بشكل احترافي (صور واضحة + فيديو قصير). اكتب ٣ نصوص إعلانية مختلفة.</span></div>
-      <div class="di"><span class="dlabel">اليوم ٤</span><span class="dtxt">أنشئ أول حملة بهدف Sales. جمهور: العراق، ١٨-٤٥، اهتمامات متعلقة بمنتجك. ميزانية: ١٠-١٥ دولار/يوم.</span></div>
-      <div class="di"><span class="dlabel">الأيام ٥-٦</span><span class="dtxt">لا تُغيّر شيئاً. راقب بدون تدخل. الـ Pixel يجمع بيانات. الصبر مهم في مرحلة التعلم.</span></div>
-      <div class="di"><span class="dlabel">اليوم ٧</span><span class="dtxt">راجع النتائج الأولية: CTR، CPM، أي مدينة تُعطي أفضل نتيجة. أول تحليل بدون إجراءات عمل.</span></div>
+  <!-- CH4 -->
+  <section class="chapter" id="ch4">
+    <div class="chero rv"><div class="chero-ghost">٤</div><div class="clabel">الفصل الرابع</div><div class="ctitle">🚀 إنشاء حملتك خطوة بخطوة</div><div class="csub">من تثبيت البيكسل إلى إطلاق الإعلان الأول</div></div>
+    <div class="steps rv">
+      <div class="step"><div class="stnum">١</div><div class="stcon"><div class="sttitle">إنشاء Business Manager</div><div class="stdesc">اذهب إلى business.facebook.com وأنشئ حساباً. أضف: صفحة الفيسبوك، حساب الإعلانات، Pixel، الموقع الإلكتروني. فعّل المصادقة الثنائية (2FA) للحماية.</div></div></div>
+      <div class="step"><div class="stnum">٢</div><div class="stcon"><div class="sttitle">تثبيت Facebook Pixel</div><div class="stdesc">Events Manager ← Connect Data Sources ← Web ← Facebook Pixel. انسخ الكود وأضفه لرأس موقعك. إذا تستخدم Shopify أو WooCommerce فهناك إضافة مخصصة.</div></div></div>
+      <div class="step"><div class="stnum">٣</div><div class="stcon"><div class="sttitle">إعداد Conversions API</div><div class="stdesc">بسبب تغييرات iOS 14+، كثير من أحداث الـ Pixel لا تُتتبع. CAPI يُرسل الأحداث مباشرة من سيرفرك لفيسبوك — يُحسّن دقة البيانات ٣٠-٥٠٪.</div></div></div>
+      <div class="step"><div class="stnum">٤</div><div class="stcon"><div class="sttitle">إنشاء الحملة الإعلانية</div><div class="stdesc">Ads Manager ← Create ← هدف Sales ← اضبط ميزانية الحملة (CBO) ← سمّ الحملة بوضوح (مثلاً: "حملة مبيعات - عطور - بغداد").</div></div></div>
+      <div class="step"><div class="stnum">٥</div><div class="stcon"><div class="sttitle">إعداد مجموعة الإعلانات</div><div class="stdesc">Conversion Event = Purchase ← الموقع الجغرافي ← الفئة العمرية ← المواضع ← الميزانية. سمّ المجموعة بوضوح (مثلاً: "بغداد - نساء - ٢٥-٤٠").</div></div></div>
+      <div class="step"><div class="stnum">٦</div><div class="stcon"><div class="sttitle">تصميم الإعلان</div><div class="stdesc">اختر صور أو فيديو ← اكتب النص بالعربية ← أضف العنوان والوصف ← اختر CTA: "تسوّق الآن" أو "اطلب الآن" ← أضف رابط صفحة المنتج.</div></div></div>
+      <div class="step"><div class="stnum">٧</div><div class="stcon"><div class="sttitle">المراجعة والنشر</div><div class="stdesc">تحقق: هل الـ Pixel يعمل؟ هل الرابط صحيح؟ هل السعر مذكور؟ انشر واصبر ٢٤-٤٨ ساعة قبل تقييم النتائج.</div></div></div>
     </div>
-  </div>
-  <div class="week rv">
-    <div class="wh w2"><span>🔬</span> الأسبوع الثاني (الأيام ٨-١٤): التحليل والاختبار</div>
-    <div class="wb">
-      <div class="di"><span class="dlabel">اليوم ٨</span><span class="dtxt">إذا لم يكن هناك نتائج: حلّل ما إذا كانت المشكلة في الإعلان أم الجمهور أم الصفحة. راجع الفصل الثاني.</span></div>
-      <div class="di"><span class="dlabel">اليوم ٩</span><span class="dtxt">أطلق إعلاناً ثانياً (A/B Test): نفس الجمهور، تصميم مختلف. قارن بين الاثنين.</span></div>
-      <div class="di"><span class="dlabel">الأيام ١٠-١١</span><span class="dtxt">أنشئ Custom Audience من زوار موقعك. أطلق حملة Retargeting منفصلة لهم بعرض خاص.</span></div>
-      <div class="di"><span class="dlabel">اليوم ١٢</span><span class="dtxt">راجع تعليقات إعلاناتك. ردّ على كل سؤال. احذف التعليقات السلبية الغير مبررة.</span></div>
-      <div class="di"><span class="dlabel">الأيام ١٣-١٤</span><span class="dtxt">حلّل: أي إعلان أفضل أداءً؟ أي مدينة تُعطي أرخص تحويل؟ أي فئة عمرية؟ احفظ هذه البيانات.</span></div>
+    <div class="callout ci rv"><div class="clb">🧪 قاعدة A/B Testing</div><div class="cbody">اختبر عنصراً <strong>واحداً فقط</strong> في كل مرة: الصورة/الفيديو أولاً ← ثم عنوان الإعلان ← ثم الجمهور المستهدف. لا تغيّر أكثر من متغيّر واحد.</div></div>
+  </section>
+
+  <!-- CH5 -->
+  <section class="chapter" id="ch5">
+    <div class="chero rv"><div class="chero-ghost">٥</div><div class="clabel">الفصل الخامس</div><div class="ctitle">🎨 تصميم إعلانات تُحقق مبيعات</div><div class="csub">الإعلان الصحيح = تصميم + نص + استهداف + توقيت</div></div>
+    <div class="sh rv"><h2>📌 العناصر الإلزامية في كل إعلان ناجح</h2><div class="sh-line"></div></div>
+    <div class="chklist rv">
+      <div class="chi"><span class="chi-i">✅</span><span><strong>السعر بالدينار العراقي بوضوح</strong> — لا تخفِ السعر أبداً.</span></div>
+      <div class="chi"><span class="chi-i">✅</span><span><strong>المنتج واضح من الصورة الأولى</strong> — صور عالية الجودة من زوايا متعددة.</span></div>
+      <div class="chi"><span class="chi-i">✅</span><span><strong>رقم واتساب أو هاتف</strong> — وجود رقم يبني الثقة ويُسهّل الشراء.</span></div>
+      <div class="chi"><span class="chi-i">✅</span><span><strong>معلومات التوصيل والدفع</strong> — "توصيل لجميع المحافظات"، "الدفع عند الاستلام متاح".</span></div>
+      <div class="chi"><span class="chi-i">✅</span><span><strong>دليل اجتماعي</strong> — "١٠٠٠+ عميل راضٍ"، تقييم ⭐⭐⭐⭐⭐.</span></div>
+      <div class="chi"><span class="chi-i">✅</span><span><strong>عرض خاص أو ندرة</strong> — "عرض محدود"، "آخر ٣٠ قطعة". يُحرّك العميل للشراء الفوري.</span></div>
+      <div class="chi"><span class="chi-i">✅</span><span><strong>دعوة واضحة للتصرف (CTA)</strong> — "اطلب الآن"، "تسوّق اليوم".</span></div>
     </div>
-  </div>
-  <div class="week rv">
-    <div class="wh w3"><span>⚡</span> الأسبوع الثالث (الأيام ١٥-٢١): التحسين والتوسع</div>
-    <div class="wb">
+    <div class="sh rv"><h2>📝 هيكل النص الإعلاني المثالي</h2><div class="sh-line"></div></div>
+    <div class="setblock rv"><div class="settitle"><span>✍️</span> صياغة النص خطوة بخطوة</div>
+      <div class="setrow"><span class="setkey">السطر الأول (Hook):</span><span class="setval">سؤال أو مشكلة يتعرف عليها العميل: <em>"تعبت من البشرة الجافة؟"</em></span></div>
+      <div class="setrow"><span class="setkey">الحل / المنتج:</span><span class="setval">قدّم منتجك كحل: <em>"جلكم المرطّب الطبيعي يُحوّل بشرتك خلال ٧ أيام"</em></span></div>
+      <div class="setrow"><span class="setkey">الفوائد:</span><span class="setval"><em>"✅ طبيعي ١٠٠٪ ✅ بدون كيماويات ✅ نتيجة مضمونة"</em></span></div>
+      <div class="setrow"><span class="setkey">السعر والعرض:</span><span class="setval"><em>"السعر: ٢٥,٠٠٠ دينار — توصيل مجاني هذا الأسبوع"</em></span></div>
+      <div class="setrow"><span class="setkey">CTA النهائي:</span><span class="setval"><em>"اضغط اطلب الآن أو راسلنا على واتساب 📱"</em></span></div>
+    </div>
+    <div class="tcol rv">
+      <div class="callout ct"><div class="clb">🎬 الفيديو أفضل للـ:</div><div class="cbody">◆ منتجات تحتاج شرحاً<br>◆ إظهار قبل وبعد<br>◆ بناء الثقة بمراجعة حقيقية<br><strong>الطول:</strong> ١٥-٤٥ ثانية<br><strong>أضف Captions</strong> لمن يشاهد بدون صوت</div></div>
+      <div class="callout ci"><div class="clb">📸 الصورة أفضل للـ:</div><div class="cbody">◆ منتجات بصرية جميلة<br>◆ عروض سريعة وواضحة<br>◆ Retargeting والتذكير<br><strong>المقاس:</strong> ١:١ أو ٤:٥ رأسي<br><strong>نص:</strong> لا يتجاوز ٢٠٪ من المساحة</div></div>
+    </div>
+    <div class="callout cg rv"><div class="clb">🔑 سر النجاح في إعلانات العراق</div><div class="cbody">العراقيون يثقون بالصورة الحقيقية أكثر من المُصممة. أفضل إعلان هو <strong>فيديو شخص حقيقي</strong> يشرح المنتج باللهجة العراقية. هذا النوع يُحقق تحويلات أضعاف الإعلانات الاحترافية.</div></div>
+  </section>
+
+  <!-- CH6 -->
+  <section class="chapter" id="ch6">
+    <div class="chero rv"><div class="chero-ghost">٦</div><div class="clabel">الفصل السادس</div><div class="ctitle">🤝 بناء الثقة مع العميل العراقي</div><div class="csub">الثقة هي العملة الحقيقية في التجارة الإلكترونية بالعراق</div></div>
+    <div class="steps rv">
+      <div class="step"><div class="stnum">١</div><div class="stcon"><div class="sttitle">رقم هاتف / واتساب ظاهر في كل مكان</div><div class="stdesc">ضعه في الإعلان، بيو الصفحة، الموقع، في كل مكان. الرقم الظاهر يقول للعميل: "هناك شخص حقيقي خلف هذا المنتج". استجب خلال ساعة — الرد السريع يُضاعف احتمال البيع.</div></div></div>
+      <div class="step"><div class="stnum">٢</div><div class="stcon"><div class="sttitle">شهادات العملاء الحقيقية</div><div class="stdesc">اطلب من عملائك الراضين فيديو قصير. عبارة "اشتريت المنتج وهو تمام" من شخص حقيقي تُساوي ألف إعلان احترافي.</div></div></div>
+      <div class="step"><div class="stnum">٣</div><div class="stcon"><div class="sttitle">الدفع عند الاستلام (COD)</div><div class="stdesc">٨٠-٩٠٪ من عمليات الشراء في العراق تتم بالدفع عند الاستلام. ابدأ معه وأضف طرق دفع إلكترونية لاحقاً.</div></div></div>
+      <div class="step"><div class="stnum">٤</div><div class="stcon"><div class="sttitle">سياسة استبدال وإرجاع واضحة</div><div class="stdesc">أعلن صراحة: "إذا لم يعجبك المنتج، نُرجع لك فلوسك". نسبة الإرجاع الفعلية صغيرة جداً، لكن وعدك بها يُضاعف قرارات الشراء.</div></div></div>
+      <div class="step"><div class="stnum">٥</div><div class="stcon"><div class="sttitle">تتبع الطلب وإشعارات التوصيل</div><div class="stdesc">أبلغ العميل برسالة واتساب فور استلام طلبه، ثم عند الشحن، ثم قبل التوصيل. هذا يُحسّن التجربة ويُزيد المراجعات الإيجابية.</div></div></div>
+    </div>
+    <div class="sh rv"><h2>📱 ردود واتساب الاحترافية</h2><div class="sh-line"></div></div>
+    <div class="twrap rv"><table><thead><tr><th>الموقف</th><th>الرد المقترح</th></tr></thead><tbody>
+      <tr><td>عميل يستفسر عن منتج</td><td>"مرحبا يعزيزي 🌟 شكراً لتواصلك. [وصف المنتج + السعر + رابط الطلب]"</td></tr>
+      <tr><td>سؤال عن التوصيل</td><td>"نوصّل لجميع محافظات العراق 🇮🇶 خلال ٢-٤ أيام. الدفع عند الاستلام ✅"</td></tr>
+      <tr><td>تأكيد الطلب</td><td>"تم استلام طلبك ✅ سيتم التواصل معك خلال ٢٤ ساعة. شكراً لثقتك 🙏"</td></tr>
+      <tr><td>عميل يشكو</td><td>"نعتذر جداً. نحن نضمن رضاك التام. سأتواصل معك فوراً 🤝"</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <!-- CH7 -->
+  <section class="chapter" id="ch7">
+    <div class="chero rv"><div class="chero-ghost">٧</div><div class="clabel">الفصل السابع</div><div class="ctitle">💳 طرق الدفع والتوصيل في العراق</div><div class="csub">الخيارات الصحيحة تُعظّم مبيعاتك وتُقلّل خسائر التوصيل</div></div>
+    <div class="sh rv"><h2>💰 طرق الدفع المتاحة</h2><div class="sh-line"></div></div>
+    <div class="twrap rv"><table><thead><tr><th>طريقة الدفع</th><th>الانتشار</th><th>الملاحظات</th></tr></thead><tbody>
+      <tr><td>🥇 <strong>الدفع عند الاستلام (COD)</strong></td><td><span class="badge bg">الأعلى: ٨٥٪+</span></td><td>إلزامي لأي متجر جاد. يُزيل أكبر حاجز للشراء.</td></tr>
+      <tr><td>📱 <strong>زين كاش (Zain Cash)</strong></td><td><span class="badge bb">مرتفع</span></td><td>الأكثر انتشاراً من المحافظ الإلكترونية.</td></tr>
+      <tr><td>📱 <strong>آسيا حوالة</strong></td><td><span class="badge bb">متوسط-مرتفع</span></td><td>شائع في بغداد والمحافظات الوسطى.</td></tr>
+      <tr><td>💻 <strong>فاست باي (FastPay)</strong></td><td><span class="badge bb">متوسط</span></td><td>قاعدة مستخدمين متنامية.</td></tr>
+      <tr><td>💳 <strong>كيو كارد (QiCard)</strong></td><td><span class="badge bb">متوسط</span></td><td>مرتبط بالرواتب الحكومية.</td></tr>
+    </tbody></table></div>
+    <div class="callout cw rv"><div class="clb">⚠️ إدارة مخاطر COD</div><div class="cbody">أكبر تحدي مع COD هو <strong>رفض الاستلام</strong>. لتقليل هذه الخسائر:<br>• تأكّد من الطلب بمكالمة هاتفية قبل الشحن<br>• اطلب تفاصيل الموقع الدقيقة<br>• حدّد موعداً للتوصيل مع العميل</div></div>
+    <div class="sh rv"><h2>🚚 شركات التوصيل</h2><div class="sh-line"></div></div>
+    <div class="twrap rv"><table><thead><tr><th>الشركة</th><th>التغطية</th><th>المميزات</th></tr></thead><tbody>
+      <tr><td><strong>مدار للتوصيل</strong></td><td>معظم المحافظات</td><td>تغطية واسعة، COD متاح، سعر تنافسي</td></tr>
+      <tr><td><strong>أرامكس العراق</strong></td><td>المدن الرئيسية</td><td>موثوقية عالية، تتبع الشحنات</td></tr>
+      <tr><td><strong>سوّا (Suwa)</strong></td><td>بغداد والمحافظات</td><td>سعر معقول، خدمة COD</td></tr>
+      <tr><td><strong>التوصيل الذاتي</strong></td><td>مدينتك فقط</td><td>مجاني، بناء ثقة أعلى، مناسب للبداية</td></tr>
+    </tbody></table></div>
+    <div class="callout ct rv"><div class="clb">💡 سر التوصيل المجاني</div><div class="cbody"><strong>التوصيل المجاني يُضاعف معدل الشراء</strong>. أضف تكلفة التوصيل في سعر المنتج وأعلن "توصيل مجاني". بدلاً من "السعر ١٨,٠٠٠ + توصيل ٣,٠٠٠"، اجعلها "السعر ٢٠,٠٠٠ شامل التوصيل المجاني".</div></div>
+  </section>
+
+  <!-- CH8 -->
+  <section class="chapter" id="ch8">
+    <div class="chero rv"><div class="chero-ghost">٨</div><div class="clabel">الفصل الثامن</div><div class="ctitle">📊 قياس الأداء وتحسين النتائج</div><div class="csub">البيانات لا تكذب — تعلّم قراءة الأرقام واتخاذ القرار الصحيح</div></div>
+    <div class="sh rv"><h2>📈 المؤشرات الرئيسية (KPIs)</h2><div class="sh-line"></div></div>
+    <div class="twrap rv"><table><thead><tr><th>المؤشر</th><th>ماذا يعني</th><th>المستوى الجيد</th><th>مشكلة إذا</th></tr></thead><tbody>
+      <tr><td><strong>CTR</strong></td><td>نسبة من ضغط على إعلانك</td><td>&gt; ١.٥٪</td><td>&lt; ٠.٥٪ → غيّر التصميم أو الجمهور</td></tr>
+      <tr><td><strong>CPM</strong></td><td>تكلفة الوصول لـ ١٠٠٠ شخص</td><td>$٣ – $٨</td><td>&gt; $١٥ → الجمهور منافس جداً</td></tr>
+      <tr><td><strong>CPC</strong></td><td>تكلفة كل نقرة</td><td>$٠.١٥ – $٠.٥</td><td>&gt; $١ → أعد النظر في الاستهداف</td></tr>
+      <tr><td><strong>CVR</strong></td><td>نسبة من اشترى من الزوار</td><td>١٪ – ٣٪</td><td>&lt; ٠.٥٪ → مشكلة في الصفحة</td></tr>
+      <tr><td><strong>ROAS</strong></td><td>عائد كل دولار تُنفقه</td><td>&gt; ٣x (مثالياً ٥x+)</td><td>&lt; ٢x → الحملة خاسرة</td></tr>
+      <tr><td><strong>Frequency</strong></td><td>كم مرة رأى نفس الشخص إعلانك</td><td>٢ – ٤ مرات</td><td>&gt; ٦ → تعب الإعلان، غيّر التصميم</td></tr>
+    </tbody></table></div>
+    <div class="tcol rv">
+      <div class="callout cd"><div class="clb">🛑 أوقف الإعلان إذا:</div><div class="cbody">◆ أنفقت ٢-٣x تكلفة المنتج بدون بيع<br>◆ CTR أقل من ٠.٥٪ بعد ٣ أيام<br>◆ Frequency تجاوز ٧-٨ مرات<br>◆ تعليقات سلبية كثيرة<br>◆ ROAS أقل من 1x</div></div>
+      <div class="callout ct"><div class="clb">🚀 ضاعف الميزانية إذا:</div><div class="cbody">◆ ROAS أعلى من 3x باستمرار<br>◆ تكلفة التحويل مستقرة<br>◆ تجاوزت مرحلة التعلم<br>◆ Frequency بين ٢-٤<br>◆ زيادة الميزانية: ٣٠٪ كل مرة فقط</div></div>
+    </div>
+    <div class="callout cg rv"><div class="clb">🏆 قاعدة الـ ٨٠/٢٠ في الإعلانات</div><div class="cbody">٢٠٪ من إعلاناتك تُحقق ٨٠٪ من مبيعاتك. ركّز على تحديد هذه الإعلانات الرابحة وأوقف الباقي. البيانات هي القاضي، ليس رأيك الشخصي.</div></div>
+  </section>
+
+  <!-- CH9 -->
+  <section class="chapter" id="ch9">
+    <div class="chero rv"><div class="chero-ghost">٩</div><div class="clabel">الفصل التاسع</div><div class="ctitle">📅 خطة عمل ٣٠ يوماً</div><div class="csub">من الصفر إلى أول ١٠٠ مبيعة — خطوة بخطوة</div></div>
+    <div class="week rv"><div class="wh w1">🏗️ الأسبوع الأول (١-٧): الأساسات والإعداد</div><div class="wb">
+      <div class="di"><span class="dlabel">اليوم ١</span><span class="dtxt">أنشئ/حسّن Business Manager. ربط الصفحة وحساب الإعلانات. فعّل 2FA للحماية.</span></div>
+      <div class="di"><span class="dlabel">اليوم ٢</span><span class="dtxt">ثبّت Facebook Pixel. تحقق من عمله بـ Pixel Helper. أعدّ الأحداث الأساسية.</span></div>
+      <div class="di"><span class="dlabel">اليوم ٣</span><span class="dtxt">صوّر منتجاتك احترافياً. اكتب ٣ نصوص إعلانية مختلفة.</span></div>
+      <div class="di"><span class="dlabel">اليوم ٤</span><span class="dtxt">أنشئ أول حملة بهدف Sales. جمهور: العراق، ١٨-٤٥. ميزانية: ١٠-١٥ دولار/يوم.</span></div>
+      <div class="di"><span class="dlabel">الأيام ٥-٦</span><span class="dtxt">لا تُغيّر شيئاً. راقب بدون تدخل. الـ Pixel يجمع بيانات.</span></div>
+      <div class="di"><span class="dlabel">اليوم ٧</span><span class="dtxt">راجع النتائج الأولية: CTR، CPM، أي مدينة تُعطي أفضل نتيجة.</span></div>
+    </div></div>
+    <div class="week rv"><div class="wh w2">🔬 الأسبوع الثاني (٨-١٤): التحليل والاختبار</div><div class="wb">
+      <div class="di"><span class="dlabel">اليوم ٨</span><span class="dtxt">إذا لم يكن هناك نتائج: حلّل ما إذا كانت المشكلة في الإعلان أم الجمهور أم الصفحة.</span></div>
+      <div class="di"><span class="dlabel">اليوم ٩</span><span class="dtxt">أطلق إعلاناً ثانياً (A/B Test): نفس الجمهور، تصميم مختلف.</span></div>
+      <div class="di"><span class="dlabel">الأيام ١٠-١١</span><span class="dtxt">أنشئ Custom Audience من زوار موقعك. أطلق حملة Retargeting لهم بعرض خاص.</span></div>
+      <div class="di"><span class="dlabel">اليوم ١٢</span><span class="dtxt">راجع تعليقات إعلاناتك. ردّ على كل سؤال. احذف التعليقات السلبية.</span></div>
+      <div class="di"><span class="dlabel">الأيام ١٣-١٤</span><span class="dtxt">حلّل: أي إعلان أفضل؟ أي مدينة أرخص تحويلاً؟ احفظ هذه البيانات.</span></div>
+    </div></div>
+    <div class="week rv"><div class="wh w3">⚡ الأسبوع الثالث (١٥-٢١): التحسين والتوسع</div><div class="wb">
       <div class="di"><span class="dlabel">اليوم ١٥</span><span class="dtxt">أوقف الإعلانات الأسوأ أداءً. ضاعف ميزانية الإعلانات الرابحة بـ ٢٠-٣٠٪.</span></div>
-      <div class="di"><span class="dlabel">اليوم ١٦</span><span class="dtxt">استهدف المدن التي أعطت أفضل نتائج بـ Ad Set منفصل وميزانية مستقلة.</span></div>
+      <div class="di"><span class="dlabel">اليوم ١٦</span><span class="dtxt">استهدف المدن الأفضل نتائج بـ Ad Set منفصل وميزانية مستقلة.</span></div>
       <div class="di"><span class="dlabel">الأيام ١٧-١٨</span><span class="dtxt">أنشئ Lookalike Audience 1% من قائمة عملائك. أطلق عليهم حملة منفصلة.</span></div>
-      <div class="di"><span class="dlabel">اليوم ١٩</span><span class="dtxt">صوّر محتوى جديد: فيديو عميل حقيقي، مقارنة منتج، أو شرح استخدام. نشّطه كإعلان.</span></div>
-      <div class="di"><span class="dlabel">الأيام ٢٠-٢١</span><span class="dtxt">حلّل ROAS الإجمالي. هل الحملة مربحة؟ كيف تُحسّن صفحة المنتج لرفع معدل التحويل؟</span></div>
+      <div class="di"><span class="dlabel">الأيام ١٩-٢١</span><span class="dtxt">حلّل ROAS الإجمالي. هل الحملة مربحة؟ كيف تُحسّن صفحة المنتج؟</span></div>
+    </div></div>
+    <div class="week rv"><div class="wh w4">🏆 الأسبوع الرابع (٢٢-٣٠): التوسع والنظام</div><div class="wb">
+      <div class="di"><span class="dlabel">الأيام ٢٢-٢٤</span><span class="dtxt">إذا كان ROAS &gt; 3x: ضاعف الميزانية تدريجياً. افتح محافظات جديدة.</span></div>
+      <div class="di"><span class="dlabel">اليوم ٢٥</span><span class="dtxt">أعدّ نظام تتبع المبيعات والعملاء. ابدأ بجمع أرقام عملائك.</span></div>
+      <div class="di"><span class="dlabel">الأيام ٢٦-٢٧</span><span class="dtxt">اتصل بعملائك الذين اشتروا. اطلب تقييماً. الراضون منهم = محتوى ذهبي للإعلانات.</span></div>
+      <div class="di"><span class="dlabel">الأيام ٢٩-٣٠</span><span class="dtxt">تقييم شامل: ما الذي نجح؟ ما الذي فشل؟ كم كان الـ ROAS الإجمالي؟ ضع خطة الشهر القادم.</span></div>
+    </div></div>
+  </section>
+
+  <!-- CONCLUSION -->
+  <section class="chapter" id="con">
+    <div class="conhero rv">
+      <h1>✨ القواعد الذهبية العشر للنجاح</h1>
+      <p>الخلاصة المُكثّفة لكل ما تعلمته — احتفظ بها أمامك دائماً</p>
     </div>
-  </div>
-  <div class="week rv">
-    <div class="wh w4"><span>🏆</span> الأسبوع الرابع (الأيام ٢٢-٣٠): التوسع والنظام</div>
-    <div class="wb">
-      <div class="di"><span class="dlabel">الأيام ٢٢-٢٤</span><span class="dtxt">إذا كان ROAS &gt; 3x: ضاعف الميزانية تدريجياً. افتح محافظات جديدة لم تستهدفها.</span></div>
-      <div class="di"><span class="dlabel">اليوم ٢٥</span><span class="dtxt">أعدّ نظام تتبع المبيعات والعملاء. ابدأ بجمع أرقام عملائك لإعادة الاستهداف المستقبلي.</span></div>
-      <div class="di"><span class="dlabel">الأيام ٢٦-٢٧</span><span class="dtxt">اتصل بعملائك الذين اشتروا. اطلب تقييماً. الراضون منهم = محتوى ذهبي للإعلانات القادمة.</span></div>
-      <div class="di"><span class="dlabel">اليوم ٢٨</span><span class="dtxt">جرّب إعلانات Instagram Reels — قد تُعطي تكلفة أقل مع تفاعل أعلى، خاصة للفئة الشابة.</span></div>
-      <div class="di"><span class="dlabel">الأيام ٢٩-٣٠</span><span class="dtxt">تقييم شامل للشهر: ما الذي نجح؟ ما الذي فشل؟ كم كان الـ ROAS الإجمالي؟ ضع خطة الشهر القادم.</span></div>
+    <div class="grules">
+      <div class="ri rv"><div class="rnum">١</div><div class="rtext"><strong>هدف الحملة = Sales/Conversions دائماً</strong>لا تنفق ريالاً على حملات Traffic وتتوقع مبيعات.</div></div>
+      <div class="ri rv"><div class="rnum">٢</div><div class="rtext"><strong>Facebook Pixel + Purchase Event = أساس كل شيء</strong>بدون Pixel، فيسبوك أعمى ولا يمكنه تحسين حملاتك.</div></div>
+      <div class="ri rv"><div class="rnum">٣</div><div class="rtext"><strong>اعرض السعر دائماً — لا أسرار في التسعير</strong>العميل العراقي يريد رؤية السعر قبل أي شيء آخر.</div></div>
+      <div class="ri rv"><div class="rnum">٤</div><div class="rtext"><strong>الدفع عند الاستلام (COD) غير قابل للتفاوض</strong>٨٥٪ من العملاء لن يشتروا بدون COD.</div></div>
+      <div class="ri rv"><div class="rnum">٥</div><div class="rtext"><strong>اصبر على مرحلة التعلم — ٧ أيام على الأقل</strong>من يُعدّل إعلاناته يومياً يُعيد فيسبوك للصفر في كل مرة.</div></div>
+      <div class="ri rv"><div class="rnum">٦</div><div class="rtext"><strong>Retargeting = مال مجاني على الطاولة</strong>٩٥٪ من زوار موقعك لم يشتروا بعد — استهدفهم.</div></div>
+      <div class="ri rv"><div class="rnum">٧</div><div class="rtext"><strong>اللهجة العراقية + الصورة الحقيقية = الفوز</strong>الأصالة تبني الثقة أكثر من أي تصميم احترافي.</div></div>
+      <div class="ri rv"><div class="rnum">٨</div><div class="rtext"><strong>لا تُوقف الإعلانات الرابحة — فقط طوّرها</strong>عند ROAS &gt; 3x، ضاعف الميزانية تدريجياً.</div></div>
+      <div class="ri rv"><div class="rnum">٩</div><div class="rtext"><strong>الثقة تُبنى بالتفاصيل الصغيرة</strong>رد سريع، صورة واضحة، رقم ظاهر، تتبع شحن — كل هذه تُحوّل الخائف لمشتري وفي.</div></div>
+      <div class="ri rv"><div class="rnum">١٠</div><div class="rtext"><strong>البيانات هي قاضيك — ليس رأيك</strong>إذا قالت الأرقام أنه خاسر — أوقفه. إذا قالت رابح — ضاعفه.</div></div>
     </div>
-  </div>
-</section>
+    <div class="callout cg rv"><div class="clb">🎯 رسالة أخيرة</div><div class="cbody">السوق العراقي في مرحلة نمو رقمي استثنائية. النجاح في الإعلانات الرقمية ليس حظاً — هو <strong>علم + تجربة + صبر</strong>. ابدأ بخطوة واحدة اليوم. ثبّت الـ Pixel. أطلق أول حملة. تعلّم من البيانات. <strong>هذا هو الطريق.</strong></div></div>
+  </section>
 
-<!-- CONCLUSION -->
-<section class="chapter" id="conclusion">
-  <div class="conhero rv">
-    <h1>✨ القواعد الذهبية العشر للنجاح</h1>
-    <p>هذه الخلاصة المُكثّفة لكل ما تعلمته. احتفظ بها أمامك دائماً</p>
-  </div>
-  <div class="grules">
-    <div class="ri rv"><div class="rnum">١</div><div class="rtext"><strong>هدف الحملة = Sales/Conversions دائماً</strong>لا تنفق ريالاً واحداً على حملات Traffic أو Engagement وتتوقع مبيعات. الهدف يُحدد من يُشاهد إعلانك.</div></div>
-    <div class="ri rv"><div class="rnum">٢</div><div class="rtext"><strong>Facebook Pixel + Purchase Event = أساس كل شيء</strong>بدون Pixel وحدث الشراء، فيسبوك أعمى ولا يمكنه تحسين حملاتك. هذا ليس خياراً — هذا ضرورة.</div></div>
-    <div class="ri rv"><div class="rnum">٣</div><div class="rtext"><strong>اعرض السعر دائماً — لا أسرار في التسعير</strong>العميل العراقي يُريد رؤية السعر قبل أي شيء. إخفاؤه يُقلّل تحويلاتك بشكل كبير.</div></div>
-    <div class="ri rv"><div class="rnum">٤</div><div class="rtext"><strong>الدفع عند الاستلام (COD) غير قابل للتفاوض</strong>٨٥٪ من العملاء العراقيين لن يشتروا إذا لم يجدوا COD. وفّره وشاهد مبيعاتك ترتفع.</div></div>
-    <div class="ri rv"><div class="rnum">٥</div><div class="rtext"><strong>اصبر على مرحلة التعلم — ٧ أيام على الأقل</strong>فيسبوك يحتاج وقتاً لتحسين استهدافه. من يُعدّل إعلاناته يومياً يُعيد فيسبوك للصفر كل مرة.</div></div>
-    <div class="ri rv"><div class="rnum">٦</div><div class="rtext"><strong>Retargeting = مال مجاني على الطاولة</strong>٩٥٪ من زوار موقعك لم يشتروا بعد. استهدفهم بإعلانات مخصصة وحوّلهم لمشترين فعليين.</div></div>
-    <div class="ri rv"><div class="rnum">٧</div><div class="rtext"><strong>اللهجة العراقية + الصورة الحقيقية = الفوز</strong>تحدّث كالعراقي، أظهر المنتج كما هو حقاً. الأصالة تبني الثقة أكثر من أي تصميم احترافي.</div></div>
-    <div class="ri rv"><div class="rnum">٨</div><div class="rtext"><strong>لا تُوقف الإعلانات الرابحة — فقط طوّرها</strong>عندما تجد إعلاناً يُحقق ROAS &gt; 3x، لا تلمسه. ضاعف ميزانيته تدريجياً واستنسخ نجاحه.</div></div>
-    <div class="ri rv"><div class="rnum">٩</div><div class="rtext"><strong>الثقة تُبنى بالتفاصيل الصغيرة</strong>رد سريع، صورة واضحة، رقم هاتف ظاهر، تتبع شحن، كلمة شكر — كل هذه تجمعاً تُحوّل العميل الخائف لمشتري وفي.</div></div>
-    <div class="ri rv"><div class="rnum">١٠</div><div class="rtext"><strong>البيانات هي قاضيك — ليس رأيك</strong>لا تتعلق بإعلان لأنك تحبه. إذا قالت الأرقام أنه خاسر — أوقفه. إذا قالت أنه رابح — ضاعفه.</div></div>
-  </div>
-  <div class="callout cg rv">
-    <div class="clb">🎯 رسالة أخيرة</div>
-    <div class="cbody">السوق العراقي في مرحلة نمو رقمي استثنائية. التجار الذين يدخلون الآن بشكل صحيح سيبنون ميزة تنافسية يصعب على الآخرين اللحاق بها.<br><br>النجاح في الإعلانات الرقمية ليس حظاً — هو <strong>علم + تجربة + صبر</strong>. ابدأ بخطوة واحدة اليوم. ثبّت الـ Pixel. أطلق أول حملة. تعلّم من البيانات. كرّر. <strong>هذا هو الطريق.</strong></div>
-  </div>
-</section>
-</div><!-- end wrap -->
+  </div><!-- .wrap -->
 
-<footer>
-  <div class="flogo">📈 دليل المبيعات العراقي</div>
-  <div class="fdesc">دليل احترافي شامل لزيادة المبيعات في العراق باستخدام إعلانات Meta</div>
-  <div class="fdiv"></div>
-  <div class="fcopy">جميع الحقوق محفوظة · ٢٠٢٥ · دليل تجاري احترافي</div>
-</footer>
-
-</div><!-- end #site -->
+  <footer>
+    <div class="flogo">📈 دليل المبيعات العراقي</div>
+    <div class="fdesc">دليل احترافي شامل لزيادة المبيعات في العراق باستخدام إعلانات Meta · ٢٠٢٥</div>
+    <div class="fdiv"></div>
+    <div class="fcopy" id="foot-copy">جميع الحقوق محفوظة · ٢٠٢٥</div>
+  </footer>
+</div><!-- #site -->
 
 <script>
-/* ======================================================
-   UTILITIES
-====================================================== */
-async function sha256(str) {
-  const norm = str.trim().toLowerCase();
-  if (window.crypto && window.crypto.subtle) {
-    const buf = await window.crypto.subtle.digest('SHA-256', new TextEncoder().encode(norm));
-    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
-  }
-  // Fallback for non-HTTPS (less secure)
-  return btoa(norm).replace(/[^a-zA-Z0-9]/g,'').substring(0,32);
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║  🔐 SELLER CONFIGURATION — EDIT THIS SECTION ONLY           ║
+   ║  أضف/احذف أكواد المشترين هنا عند كل عملية شراء جديدة       ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+
+// ── ستظهر هذه الأكواد في لوحة التحكم ──
+// الصيغة: 'اسم#رقم' — أضف سطراً جديداً لكل مشترٍ
+const BUYER_CODES = [
+  'ali#1',        // علي
+  'ahmed#2',      // أحمد
+  'sara#3',       // سارة
+  // أضف أكواداً جديدة هنا ↓
+];
+
+// أكواد مُلغاة الوصول — أضف أي كود تريد منعه هنا
+const REVOKED_CODES = [
+  // 'blocked#1',
+];
+
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║  ⚙️ SYSTEM SETTINGS — DO NOT CHANGE                         ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+const _AP = 'allawizeroxero@#$';          // Admin password (console: openadmin())
+const _SALT = 'IQS2025_v2_#@!SecureKey';
+const _SES_KEY = 'iqsv2_session';
+const _ATT_KEY = 'iqsv2_attempts';
+const _EXT_KEY = 'iqsv2_extra';
+const _REV_KEY = 'iqsv2_revoked';
+const _SES_DAYS = 30;
+const _MAX_ATT = 5;
+const _LOCK_MINS = 15;
+
+/* ── SHA-256 via Web Crypto ── */
+async function sha256(str){
+  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(_SALT+str.toLowerCase().trim()));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
 }
 
-function encodeConfig(cfg) {
-  const json = JSON.stringify(cfg);
-  const bytes = new TextEncoder().encode(json);
-  let bin = '';
-  bytes.forEach(b => { bin += String.fromCharCode(b); });
-  return btoa(bin);
+/* ── Get/Set session ── */
+function getSess(){
+  try{const s=JSON.parse(localStorage.getItem(_SES_KEY));
+    if(!s||s.exp<Date.now())return null;return s;}
+  catch{return null;}
+}
+function setSess(h,code){
+  localStorage.setItem(_SES_KEY,JSON.stringify({h,code,exp:Date.now()+_SES_DAYS*864e5}));
 }
 
-function decodeConfig(b64) {
-  try {
-    if (!b64) return { codes: [], adminHash: '' };
-    const bin = atob(b64);
-    const bytes = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-    return JSON.parse(new TextDecoder().decode(bytes));
-  } catch(e) { return { codes: [], adminHash: '' }; }
+/* ── Attempt tracking ── */
+function getAtt(){
+  try{return JSON.parse(localStorage.getItem(_ATT_KEY))||{c:0,lock:0};}
+  catch{return{c:0,lock:0};}
+}
+function recAtt(ok){
+  if(ok){localStorage.removeItem(_ATT_KEY);return;}
+  const a=getAtt();a.c++;
+  if(a.c>=_MAX_ATT){a.lock=Date.now()+_LOCK_MINS*60000;a.c=0;}
+  localStorage.setItem(_ATT_KEY,JSON.stringify(a));
+}
+function isLocked(){return getAtt().lock>Date.now();}
+function lockLeft(){return Math.ceil((getAtt().lock-Date.now())/1000);}
+
+/* ── Validate a buyer code ── */
+async function validateCode(entered){
+  const h=await sha256(entered);
+  // check revocation (HTML list + localStorage list)
+  const lsRev=JSON.parse(localStorage.getItem(_REV_KEY)||'[]');
+  const builtRev=await Promise.all(REVOKED_CODES.map(sha256));
+  if(lsRev.includes(h)||builtRev.includes(h))return{ok:false,revoked:true};
+  // check built-in codes
+  const builtH=await Promise.all(BUYER_CODES.map(sha256));
+  if(builtH.includes(h))return{ok:true,code:entered};
+  // check admin-added extra codes
+  const ext=JSON.parse(localStorage.getItem(_EXT_KEY)||'[]');
+  if(ext.some(e=>e.h===h))return{ok:true,code:entered};
+  return{ok:false};
 }
 
-function go(id) {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-/* ======================================================
-   CONFIG MANAGEMENT
-====================================================== */
-let _cfg = null;
-
-function loadConfig() {
-  const el = document.getElementById('codes-config');
-  const raw = el ? (el.dataset.codes || '') : '';
-  _cfg = decodeConfig(raw);
-  return _cfg;
-}
-
-function saveConfig(cfg) {
-  _cfg = cfg;
-  const el = document.getElementById('codes-config');
-  if (el) el.dataset.codes = encodeConfig(cfg);
-}
-
-/* ======================================================
-   SESSION MANAGEMENT
-====================================================== */
-const SESSION_KEY = 'iq_sales_guide_v1';
-const RL_KEY = 'iq_sales_rl_v1';
-
-function getSession() {
-  try {
-    const s = JSON.parse(localStorage.getItem(SESSION_KEY) || 'null');
-    if (!s || s.expires < Date.now()) {
-      if (s) localStorage.removeItem(SESSION_KEY);
-      return null;
+/* ── Watermark ── */
+function buildWatermark(code){
+  const wm=document.getElementById('wm');
+  wm.innerHTML='';wm.style.display='block';
+  const txt=`${code} · حقوق محفوظة`;
+  const cw=window.innerWidth+400,ch=document.body.scrollHeight+400;
+  for(let y=-100;y<ch;y+=180){
+    for(let x=-200;x<cw;x+=340){
+      const s=document.createElement('span');
+      s.className='wmt';s.style.left=x+'px';s.style.top=y+'px';
+      s.textContent=txt;wm.appendChild(s);
     }
-    return s;
-  } catch(e) { return null; }
-}
-
-function saveSession(hash, remember) {
-  const s = {
-    h: hash,
-    created: Date.now(),
-    expires: Date.now() + (remember ? 30*24*60*60*1000 : 24*60*60*1000)
-  };
-  localStorage.setItem(SESSION_KEY, JSON.stringify(s));
-}
-
-function clearSession() {
-  localStorage.removeItem(SESSION_KEY);
-}
-
-function isSessionValid(s, cfg) {
-  if (!s || s.expires < Date.now()) return false;
-  const codes = cfg.codes || [];
-  return codes.some(c => c.hash === s.h);
-}
-
-/* ======================================================
-   RATE LIMITING
-====================================================== */
-function checkRL() {
-  try {
-    const rl = JSON.parse(localStorage.getItem(RL_KEY) || '{}');
-    if (rl.until && rl.until > Date.now()) {
-      return { locked: true, mins: Math.ceil((rl.until - Date.now()) / 60000), until: rl.until };
-    }
-    return { locked: false, attempts: rl.attempts || 0 };
-  } catch(e) { return { locked: false, attempts: 0 }; }
-}
-
-function recordFail() {
-  const rl = checkRL();
-  const att = (rl.attempts || 0) + 1;
-  if (att >= 5) {
-    const until = Date.now() + 60*60*1000;
-    localStorage.setItem(RL_KEY, JSON.stringify({ attempts: att, until }));
-    return { locked: true, mins: 60 };
-  }
-  localStorage.setItem(RL_KEY, JSON.stringify({ attempts: att }));
-  return { locked: false, attempts: att, remaining: 5 - att };
-}
-
-function clearRL() {
-  localStorage.removeItem(RL_KEY);
-}
-
-/* ======================================================
-   GATE
-====================================================== */
-function showGate() {
-  document.body.classList.add('gate-active');
-  document.getElementById('gate').style.display = 'flex';
-  document.getElementById('site').style.display = 'none';
-  // Check if currently locked out
-  const rl = checkRL();
-  if (rl.locked) {
-    setGateError('الوصول مقيّد · ' + rl.mins + ' دقيقة متبقية');
-    disableGateInput(true);
-    // Auto-unlock when timer expires
-    setTimeout(() => {
-      const rl2 = checkRL();
-      if (!rl2.locked) {
-        disableGateInput(false);
-        setGateError('');
-      }
-    }, rl.until - Date.now() + 500);
   }
 }
 
-function disableGateInput(d) {
-  const i = document.getElementById('gate-input');
-  const b = document.getElementById('gate-btn');
-  if (i) i.disabled = d;
-  if (b) b.disabled = d;
+/* ── Show site after login ── */
+function unlockSite(code){
+  document.getElementById('ls').style.display='none';
+  document.getElementById('site').style.display='block';
+  buildWatermark(code);
+  initSite();
+  document.getElementById('foot-copy').textContent=
+    `جميع الحقوق محفوظة · ٢٠٢٥ · هذه النسخة خاصة بـ: ${code}`;
 }
 
-function hideGateAndShowSite() {
-  document.getElementById('gate').classList.add('gate-out');
-  setTimeout(() => {
-    document.getElementById('gate').style.display = 'none';
-    document.getElementById('gate').classList.remove('gate-out');
-    document.getElementById('site').style.display = 'block';
-    document.getElementById('logout-btn').style.display = 'flex';
-    document.body.classList.remove('gate-active');
-    setTimeout(initSiteScripts, 60);
-  }, 420);
-}
-
-function setGateError(msg) {
-  const el = document.getElementById('gate-error');
-  if (!el) return;
-  el.textContent = msg;
-  el.classList.remove('shk');
-  if (msg) { void el.offsetWidth; el.classList.add('shk'); }
-}
-
-async function handleGateSubmit() {
-  const inp = document.getElementById('gate-input');
-  const code = (inp.value || '').trim();
-  if (!code) { setGateError('أدخل الكود الخاص بك'); return; }
-
-  // Admin mode trigger
-  if (code.toLowerCase() === 'admin') {
-    showAdminGate();
-    return;
-  }
-
-  const rl = checkRL();
-  if (rl.locked) {
-    setGateError('الوصول مقيّد · ' + rl.mins + ' دقيقة متبقية');
-    return;
-  }
-
-  const btn = document.getElementById('gate-btn');
-  btn.disabled = true;
-  btn.textContent = '⏳ جاري التحقق...';
-
-  try {
-    const hash = await sha256(code);
-    const cfg = _cfg || loadConfig();
-    const valid = (cfg.codes || []).some(c => c.hash === hash);
-
-    if (valid) {
-      clearRL();
-      const rem = document.getElementById('gate-rem').checked;
-      saveSession(hash, rem);
-      setGateError('');
-      hideGateAndShowSite();
+/* ── Lock screen submission ── */
+async function submitCode(){
+  if(isLocked()){showLockout();return;}
+  const btn=document.getElementById('ls-btn');
+  const inp=document.getElementById('lc-inp');
+  const val=inp.value.trim();
+  if(!val){showMsg('أدخل رمز الوصول أولاً','warn');return;}
+  btn.disabled=true;
+  document.getElementById('ls-btn-txt').textContent='جاري التحقق...';
+  try{
+    const res=await validateCode(val);
+    if(res.ok){
+      recAtt(true);setSess(await sha256(val),val);
+      showMsg('✅ تم التحقق! جاري تحميل المحتوى...','ok');
+      setTimeout(()=>unlockSite(val),900);
     } else {
-      const res = recordFail();
-      if (res.locked) {
-        setGateError('كود خاطئ — تم قفل الوصول لساعة كاملة');
-        disableGateInput(true);
-      } else {
-        setGateError('كود غير صحيح · ' + res.remaining + ' محاولة متبقية');
-        inp.value = '';
-        inp.focus();
-        btn.disabled = false;
-        btn.textContent = 'دخول ←';
+      recAtt(false);inp.value='';
+      if(res.revoked){showMsg('❌ هذا الرمز تم إلغاؤه. تواصل مع المتجر.','err');}
+      else{
+        const a=getAtt();
+        const rem=_MAX_ATT-a.c;
+        if(isLocked()){showMsg('🔒 تم قفل حسابك مؤقتاً. حاول بعد '+_LOCK_MINS+' دقيقة.','err');startLockout();}
+        else{showMsg('❌ رمز الوصول غير صحيح. ('+(rem>0?rem+' محاولات متبقية':'آخر محاولة')+')',  'err');}
       }
     }
-  } catch(e) {
-    setGateError('حدث خطأ، حاول مرة أخرى');
-    btn.disabled = false;
-    btn.textContent = 'دخول ←';
+  }catch(e){showMsg('حدث خطأ. حاول مرة أخرى.','warn');}
+  finally{btn.disabled=false;document.getElementById('ls-btn-txt').textContent='دخول';}
+}
+
+function showMsg(txt,type){
+  const m=document.getElementById('ls-msg');
+  m.textContent=txt;m.className='ls-msg '+type+' show';
+}
+
+/* ── Lockout countdown ── */
+let lockTimer=null;
+function startLockout(){
+  const lo=document.getElementById('ls-lockout');
+  lo.classList.add('show');
+  clearInterval(lockTimer);
+  function tick(){
+    const s=lockLeft();
+    if(s<=0){clearInterval(lockTimer);lo.classList.remove('show');
+              document.getElementById('ls-att').textContent='';return;}
+    const m=Math.floor(s/60).toString().padStart(2,'0');
+    const sec=(s%60).toString().padStart(2,'0');
+    document.getElementById('ls-timer').textContent=m+':'+sec;
   }
+  tick();lockTimer=setInterval(tick,1000);
+}
+function showLockout(){startLockout();showMsg('🔒 الحساب مؤقتاً مُغلق.','err');}
+
+/* ── Toggle password visibility ── */
+function togglePass(){
+  const inp=document.getElementById('lc-inp');
+  const eye=document.getElementById('ls-eye');
+  const show=inp.type==='password';
+  inp.type=show?'text':'password';eye.textContent=show?'🙈':'👁';
 }
 
-function showAdminGate() {
-  document.getElementById('gate-main').style.display = 'none';
-  document.getElementById('gate-admin').style.display = 'block';
-  document.getElementById('gate-input').value = '';
-  setTimeout(() => { const i = document.getElementById('admin-pw-input'); if(i) i.focus(); }, 100);
+/* ── Check existing session on load ── */
+(function checkSession(){
+  const s=getSess();
+  if(s&&s.code){
+    // re-validate code isn't revoked
+    validateCode(s.code).then(res=>{
+      if(res.ok)unlockSite(s.code);
+      else{localStorage.removeItem(_SES_KEY);initLockScreen();}
+    }).catch(()=>initLockScreen());
+  } else {initLockScreen();}
+})();
+
+function initLockScreen(){
+  // Set up lock screen canvas
+  const c=document.getElementById('ls-cnv');
+  const x=c.getContext('2d');
+  let W,H,pts=[];
+  function rs(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;}
+  rs();window.addEventListener('resize',rs);
+  function P(){this.x=Math.random()*W;this.y=Math.random()*H;
+    this.vx=(Math.random()-.5)*.4;this.vy=(Math.random()-.5)*.4;
+    this.r=Math.random()*1.5+.4;this.g=Math.random()>.65;}
+  for(let i=0;i<80;i++)pts.push(new P());
+  (function loop(){
+    x.clearRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>W||p.y<0||p.y>H){p.x=Math.random()*W;p.y=Math.random()*H;}
+      x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);
+      x.fillStyle=(p.g?'rgba(212,160,23,':'rgba(180,200,255,')+'.15)';x.fill();
+    });
+    requestAnimationFrame(loop);
+  })();
+  // check lockout on load
+  if(isLocked())startLockout();
 }
 
-function backToMainGate() {
-  document.getElementById('gate-admin').style.display = 'none';
-  document.getElementById('gate-main').style.display = 'block';
-  document.getElementById('admin-pw-input').value = '';
-  document.getElementById('admin-pw-err').textContent = '';
-}
+/* ═══════════════ ADMIN PANEL ═══════════════ */
 
-/* ======================================================
-   ADMIN SYSTEM
-====================================================== */
-let _adminCfg = null;
-
-async function handleAdminLogin() {
-  const pw = (document.getElementById('admin-pw-input').value || '').trim();
-  if (!pw) return;
-  const cfg = _cfg || loadConfig();
-  const inputHash = await sha256(pw);
-  const defaultHash = await sha256('admin2025');
-  const expected = cfg.adminHash || defaultHash;
-  if (inputHash === expected) {
-    _adminCfg = JSON.parse(JSON.stringify(cfg)); // deep copy
-    backToMainGate();
+// Console command — type openadmin() in browser console
+window.openadmin = function(){
+  console.log('%c🛡️ Admin Panel — Enter Password', 'color:#D4A017;font-weight:bold;font-size:13px');
+  const pw=prompt('🔐 Admin Panel\nأدخل كلمة المرور:');
+  if(pw===null)return;
+  if(pw===_AP){
+    console.log('%c✅ Access Granted! Opening admin panel...','color:#2ECC71;font-weight:bold;font-size:13px');
     openAdminPanel();
   } else {
-    document.getElementById('admin-pw-err').textContent = 'كلمة المرور غير صحيحة';
-    document.getElementById('admin-pw-input').value = '';
+    console.error('%c❌ Wrong password!','color:#E74C3C;font-weight:bold;font-size:13px');
+    console.log('%c(Attempts are logged)','color:#888;font-size:11px');
   }
+};
+
+function openAdminPanel(){
+  document.getElementById('ap').style.display='flex';
+  renderAdmin();
+}
+function closeAdmin(){document.getElementById('ap').style.display='none';}
+
+function apSwitch(tab){
+  ['list','add','rev'].forEach(t=>{
+    document.getElementById('ap-'+t+'-tab').classList.toggle('on',t===tab);
+  });
+  document.querySelectorAll('.ap-tab').forEach((b,i)=>{
+    b.classList.toggle('on',['list','add','rev'][i]===tab);
+  });
 }
 
-function openAdminPanel() {
-  document.getElementById('admin-overlay').classList.add('open');
-  renderAdminPanel();
-}
-
-function closeAdminPanel() {
-  document.getElementById('admin-overlay').classList.remove('open');
-}
-
-async function renderAdminPanel() {
-  if (!_adminCfg) return;
-  const codes = _adminCfg.codes || [];
-  const isDefault = !_adminCfg.adminHash;
-  const defHash = await sha256('admin2025');
-  const stillDefault = !_adminCfg.adminHash || _adminCfg.adminHash === defHash;
-
-  // Warning
-  const warn = document.getElementById('a-default-warn');
-  if (warn) warn.style.display = stillDefault ? 'flex' : 'none';
-
-  // Count
-  const cnt = document.getElementById('a-count');
-  if (cnt) cnt.textContent = codes.length;
-
-  // List
-  const list = document.getElementById('codes-list');
-  if (!list) return;
-  if (codes.length === 0) {
-    list.innerHTML = '<div class="codes-empty">لا توجد أكواد مضافة بعد<br><span style="font-size:11px;opacity:.6">أضف الأكواد من الحقل أعلاه</span></div>';
-    return;
+async function renderAdmin(){
+  // stats
+  const ext=JSON.parse(localStorage.getItem(_EXT_KEY)||'[]');
+  const lsRev=JSON.parse(localStorage.getItem(_REV_KEY)||'[]');
+  const total=BUYER_CODES.length+ext.length;
+  document.getElementById('ap-n1').textContent=total;
+  document.getElementById('ap-n2').textContent=REVOKED_CODES.length+lsRev.length;
+  document.getElementById('ap-n3').textContent=ext.length;
+  // render codes list
+  const lsRevH=lsRev; // these are already hashes
+  let html='<div class="ap-list">';
+  // built-in
+  for(const c of BUYER_CODES){
+    const h=await sha256(c);
+    const isRev=lsRevH.includes(h)||REVOKED_CODES.includes(c);
+    html+=`<div class="ap-row">
+      <span class="ap-row-code">${c}</span>
+      <span>${isRev?'<span class="badge br">مُلغى</span>':'<span class="badge bg">نشط</span>'}</span>
+      <span class="badge bb">مدمج</span>
+      ${isRev
+        ?`<button class="ap-restore-btn" onclick="restoreCode('${h}')">استعادة</button>`
+        :`<button class="ap-revoke-btn" onclick="quickRevoke('${h}','${c}')">🚫 إلغاء</button>`}
+    </div>`;
   }
-  list.innerHTML = codes.map(c => `
-    <div class="code-item" id="ci-${c.hash.slice(0,8)}">
-      <span class="code-name">${c.name}</span>
-      <div class="code-acts">
-        <button class="abtn ab-blue" style="padding:5px 9px;font-size:11px" onclick="copyCode('${c.name}')">📋 نسخ</button>
-        <button class="abtn ab-red" style="padding:5px 9px;font-size:11px" onclick="confirmDel('${c.hash.slice(0,8)}','${c.hash}')">🗑 حذف</button>
+  // extra
+  for(const e of ext){
+    const isRev=lsRevH.includes(e.h);
+    html+=`<div class="ap-row">
+      <span class="ap-row-code">${e.code}</span>
+      <span>${isRev?'<span class="badge br">مُلغى</span>':'<span class="badge bg">نشط</span>'}</span>
+      <span class="badge bo">مُضاف</span>
+      ${isRev
+        ?`<button class="ap-restore-btn" onclick="restoreCode('${e.h}')">استعادة</button>`
+        :`<button class="ap-revoke-btn" onclick="quickRevoke('${e.h}','${e.code}')">🚫 إلغاء</button>`}
+    </div>`;
+  }
+  html+='</div>';
+  document.getElementById('ap-codes-list').innerHTML=html;
+}
+
+async function addNewBuyer(){
+  const name=document.getElementById('ap-new-name').value.trim().toLowerCase().replace(/\s+/g,'-');
+  if(!name){alert('أدخل اسم المشتري');return;}
+  const ext=JSON.parse(localStorage.getItem(_EXT_KEY)||'[]');
+  const allCodes=[...BUYER_CODES,...ext.map(e=>e.code)];
+  const nums=allCodes.map(c=>parseInt((c.split('#')[1]||'0'))).filter(n=>!isNaN(n));
+  const next=(nums.length?Math.max(...nums):0)+1;
+  const newCode=`${name}#${next}`;
+  const h=await sha256(newCode);
+  ext.push({code:newCode,h,added:new Date().toLocaleDateString('ar-IQ')});
+  localStorage.setItem(_EXT_KEY,JSON.stringify(ext));
+  document.getElementById('ap-new-result').innerHTML=`
+    <div class="ap-result-box">
+      <div class="ap-result-txt">✅ تم توليد الرمز! أرسله للمشتري:</div>
+      <span class="ap-result-code">${newCode}</span>
+      <div class="ap-result-txt" style="color:var(--orange);margin-top:8px">
+        ⚠️ هذا الرمز مخزّن محلياً. اضغط "تنزيل الموقع" لإضافته بشكل دائم للملف.
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  document.getElementById('ap-new-name').value='';
+  renderAdmin();
 }
 
-async function addCode() {
-  const inp = document.getElementById('new-code');
-  const name = (inp.value || '').trim();
-  if (!name) { showAMsg('أدخل الكود أولاً', 'err'); return; }
-  if (!_adminCfg) return;
-  const codes = _adminCfg.codes || [];
-  if (codes.some(c => c.name.toLowerCase() === name.toLowerCase())) {
-    showAMsg('هذا الكود موجود بالفعل', 'err'); return;
-  }
-  const hash = await sha256(name);
-  codes.push({ name, hash });
-  _adminCfg.codes = codes;
-  saveConfig(_adminCfg);
-  inp.value = '';
-  renderAdminPanel();
-  showAMsg('تمت إضافة "' + name + '" بنجاح ✓', 'ok');
+async function revokeCode(){
+  const code=document.getElementById('ap-rev-inp').value.trim();
+  if(!code){alert('أدخل الرمز');return;}
+  const h=await sha256(code);
+  const lsRev=JSON.parse(localStorage.getItem(_REV_KEY)||'[]');
+  if(!lsRev.includes(h))lsRev.push(h);
+  localStorage.setItem(_REV_KEY,JSON.stringify(lsRev));
+  document.getElementById('ap-rev-result').innerHTML=
+    `<div class="ap-result-box" style="background:rgba(231,76,60,.06);border-color:rgba(231,76,60,.2)">
+      <div class="ap-result-txt" style="color:var(--red)">🚫 تم إلغاء وصول الرمز: <strong>${code}</strong></div>
+    </div>`;
+  document.getElementById('ap-rev-inp').value='';
+  renderAdmin();
 }
 
-function confirmDel(shortId, hash) {
-  const item = document.getElementById('ci-' + shortId);
-  if (!item) return;
-  const acts = item.querySelector('.code-acts');
-  acts.innerHTML = `
-    <button class="abtn ab-red" style="padding:5px 9px;font-size:11px" onclick="removeCode('${hash}')">تأكيد</button>
-    <button class="abtn ab-gray" style="padding:5px 9px;font-size:11px" onclick="renderAdminPanel()">إلغاء</button>
-  `;
+async function quickRevoke(h,code){
+  if(!confirm(`إلغاء وصول "${code}"؟`))return;
+  const lsRev=JSON.parse(localStorage.getItem(_REV_KEY)||'[]');
+  if(!lsRev.includes(h))lsRev.push(h);
+  localStorage.setItem(_REV_KEY,JSON.stringify(lsRev));
+  renderAdmin();
 }
 
-async function removeCode(hash) {
-  if (!_adminCfg) return;
-  _adminCfg.codes = (_adminCfg.codes || []).filter(c => c.hash !== hash);
-  saveConfig(_adminCfg);
-  renderAdminPanel();
-  showAMsg('تم حذف الكود بنجاح', 'ok');
+function restoreCode(h){
+  const lsRev=JSON.parse(localStorage.getItem(_REV_KEY)||'[]');
+  const updated=lsRev.filter(x=>x!==h);
+  localStorage.setItem(_REV_KEY,JSON.stringify(updated));
+  renderAdmin();
 }
 
-function copyCode(name) {
-  const copy = (t) => {
-    try { navigator.clipboard.writeText(t); } catch(e) {
-      const ta = document.createElement('textarea');
-      ta.value = t; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+function downloadUpdated(){
+  const ext=JSON.parse(localStorage.getItem(_EXT_KEY)||'[]');
+  const allCodes=[...BUYER_CODES,...ext.map(e=>e.code)];
+  const lsRev=JSON.parse(localStorage.getItem(_REV_KEY)||'[]');
+  // Get all revoked plain codes (best effort — only what we know)
+  let src=document.documentElement.outerHTML;
+  // Replace BUYER_CODES array
+  const codesStr=allCodes.map(c=>`  '${c}',`).join('\n');
+  src=src.replace(/const BUYER_CODES\s*=\s*\[[\s\S]*?\];/,
+    `const BUYER_CODES = [\n${codesStr}\n];`);
+  const blob=new Blob([src],{type:'text/html;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='دليل-المبيعات-محدث.html';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}
+
+/* ═══════════════ SITE INIT ═══════════════ */
+function initSite(){
+  initHeroCanvas();
+  initScrollReveal();
+  initProgress();
+  initNavHighlight();
+}
+
+/* ── Canvas Particles (Hero) ── */
+function initHeroCanvas(){
+  const c=document.getElementById('cnv');
+  if(!c)return;
+  const x=c.getContext('2d');
+  let W,H,pts=[];
+  function rs(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;}
+  rs();window.addEventListener('resize',rs);
+  function P(){this.reset=function(){this.x=Math.random()*W;this.y=Math.random()*H;
+    this.vx=(Math.random()-.5)*.45;this.vy=(Math.random()-.5)*.45;
+    this.r=Math.random()*1.6+.3;this.a=Math.random()*.45+.08;this.g=Math.random()>.68;};
+    this.reset();}
+  for(let i=0;i<120;i++)pts.push(new P());
+  (function loop(){
+    x.clearRect(0,0,W,H);
+    for(let i=0;i<pts.length;i++){
+      const p=pts[i];p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>W||p.y<0||p.y>H)p.reset();
+      x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);
+      x.fillStyle=(p.g?'rgba(212,160,23,':'rgba(180,200,255,')+p.a+')';x.fill();
+      for(let j=i+1;j<pts.length;j++){
+        const q=pts[j];const dx=p.x-q.x,dy=p.y-q.y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<105){x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);
+          x.strokeStyle='rgba(212,160,23,'+(1-d/105)*.1+')';x.lineWidth=.5;x.stroke();}
+      }
     }
-  };
-  copy(name);
-  showAMsg('تم نسخ "' + name + '" ✓', 'ok');
+    requestAnimationFrame(loop);
+  })();
 }
 
-async function changeAdminPw() {
-  const pw = (document.getElementById('new-pw').value || '').trim();
-  if (pw.length < 6) { showAMsg('يجب أن تكون ٦ أحرف على الأقل', 'err'); return; }
-  if (!_adminCfg) return;
-  _adminCfg.adminHash = await sha256(pw);
-  saveConfig(_adminCfg);
-  document.getElementById('new-pw').value = '';
-  showAMsg('تم تغيير كلمة المرور بنجاح ✓', 'ok');
-  renderAdminPanel();
+/* ── Scroll Reveal + Counter ── */
+function initScrollReveal(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        e.target.querySelectorAll('.sn[data-t]').forEach(counter);
+      }
+    });
+  },{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+  // stagger children
+  document.querySelectorAll('.toc-grid,.sgrid,.grules,.steps,.chklist').forEach(g=>{
+    [...g.children].forEach((k,i)=>{k.style.transitionDelay=(i*.07)+'s';});
+  });
+  document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 }
 
-let _aMsgTimer = null;
-function showAMsg(msg, type) {
-  const el = document.getElementById('a-msg');
-  if (!el) return;
-  el.textContent = msg;
-  el.className = 'a-msg ' + type;
-  clearTimeout(_aMsgTimer);
-  _aMsgTimer = setTimeout(() => { el.className = 'a-msg'; }, 3500);
+function counter(el){
+  if(el.dataset.counted)return;el.dataset.counted=1;
+  const t=parseInt(el.dataset.t),s=el.dataset.s||'';
+  const dur=1400,fps=60,inc=t/(dur/1000*fps);
+  let cur=0;
+  const id=setInterval(()=>{
+    cur+=inc;if(cur>=t){cur=t;clearInterval(id);}
+    el.textContent='+'+Math.floor(cur)+s;
+  },1000/fps);
 }
 
-function downloadUpdatedHTML() {
-  if (!_adminCfg) return;
-  const clone = document.documentElement.cloneNode(true);
-
-  // Reset visibility states
-  const gEl = clone.querySelector('#gate');
-  const sEl = clone.querySelector('#site');
-  const aEl = clone.querySelector('#admin-overlay');
-  const logEl = clone.querySelector('#logout-btn');
-  const mmEl = clone.querySelector('#mobile-menu');
-  const hamEl = clone.querySelector('#ham');
-  const bodyEl = clone.querySelector('body');
-  const dtEl = clone.querySelector('#devtools-warning');
-
-  if (gEl) gEl.style.display = '';
-  if (sEl) sEl.style.display = 'none';
-  if (aEl) aEl.classList.remove('open');
-  if (logEl) logEl.style.display = 'none';
-  if (mmEl) mmEl.classList.remove('open');
-  if (hamEl) hamEl.classList.remove('open');
-  if (bodyEl) bodyEl.classList.remove('gate-active');
-  if (dtEl) dtEl.remove();
-
-  // Reset gate views
-  const gMain = clone.querySelector('#gate-main');
-  const gAdm = clone.querySelector('#gate-admin');
-  if (gMain) gMain.style.display = '';
-  if (gAdm) gAdm.style.display = 'none';
-
-  // Clear input values in clone
-  clone.querySelectorAll('input').forEach(i => { i.value = ''; });
-
-  // Update codes config
-  const cfgEl = clone.querySelector('#codes-config');
-  if (cfgEl) cfgEl.dataset.codes = encodeConfig(_adminCfg);
-
-  // Remove "in" classes (reset scroll animations)
-  clone.querySelectorAll('.rv.in,.rv-l.in').forEach(e => { e.classList.remove('in'); });
-
-  const html = '<!DOCTYPE html>\n' + clone.outerHTML;
-  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = 'دليل-المبيعات-العراقي-2025.html';
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  setTimeout(() => URL.revokeObjectURL(url), 60000);
-  showAMsg('تم تنزيل الملف المحدث بنجاح ✓', 'ok');
+/* ── Reading Progress ── */
+function initProgress(){
+  const prog=document.getElementById('prog');
+  const bt=document.getElementById('bt');
+  window.addEventListener('scroll',()=>{
+    const pct=window.scrollY/(document.body.scrollHeight-window.innerHeight);
+    prog.style.width=(pct*100)+'%';
+    bt.classList.toggle('vis',window.scrollY>400);
+  },{passive:true});
 }
 
-/* ======================================================
-   MOBILE MENU
-====================================================== */
-function toggleMobileMenu() {
-  const m = document.getElementById('mobile-menu');
-  const h = document.getElementById('ham');
-  const open = m.classList.toggle('open');
-  h.classList.toggle('open', open);
-  document.body.style.overflow = open ? 'hidden' : '';
+/* ── Nav highlight ── */
+function initNavHighlight(){
+  const secs=[...document.querySelectorAll('[id^="ch"],[id="con"],[id="toc"]')];
+  const nls=[...document.querySelectorAll('.nl,.mob-nl')];
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const id=e.target.id;
+        nls.forEach(l=>l.classList.toggle('on',l.getAttribute('onclick')?.includes("'"+id+"'")));
+      }
+    });
+  },{threshold:.25});
+  secs.forEach(s=>obs.observe(s));
 }
 
-function closeMobileMenu() {
-  document.getElementById('mobile-menu').classList.remove('open');
+/* ── Navigation helpers ── */
+function go(id){
+  const el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  closeMobNav();
+}
+function toggleMobNav(){
+  const mn=document.getElementById('mob-nav');
+  const ham=document.getElementById('ham');
+  mn.classList.toggle('open');ham.classList.toggle('open');
+}
+function closeMobNav(){
+  document.getElementById('mob-nav').classList.remove('open');
   document.getElementById('ham').classList.remove('open');
-  document.body.style.overflow = '';
 }
-
-/* ======================================================
-   LOGOUT
-====================================================== */
-function logout() {
-  clearSession();
-  location.reload();
-}
-
-/* ======================================================
-   SECURITY MEASURES
-====================================================== */
-// Disable right-click
-document.addEventListener('contextmenu', e => e.preventDefault());
-
-// Block inspect shortcuts
-document.addEventListener('keydown', e => {
-  const blocked =
-    e.key === 'F12' ||
-    (e.ctrlKey && e.shiftKey && 'IJCijc'.includes(e.key)) ||
-    (e.ctrlKey && 'uUsS'.includes(e.key));
-  if (blocked) { e.preventDefault(); e.stopPropagation(); return false; }
-}, true);
-
-// DevTools size detection
-let _dtOpen = false;
-setInterval(() => {
-  const open = (window.outerWidth - window.innerWidth > 200) || (window.outerHeight - window.innerHeight > 200);
-  if (open !== _dtOpen) {
-    _dtOpen = open;
-    let w = document.getElementById('devtools-warning');
-    if (open) {
-      if (!w) {
-        w = document.createElement('div');
-        w.id = 'devtools-warning';
-        w.style.cssText = 'position:fixed;inset:0;background:rgba(4,11,36,.97);z-index:9999999;display:flex;align-items:center;justify-content:center;text-align:center;font-family:Cairo,sans-serif;direction:rtl;color:var(--tw)';
-        w.innerHTML = '<div><div style="font-size:52px;margin-bottom:16px">🔒</div><div style="font-size:20px;font-weight:900;color:#D4A017;margin-bottom:8px">محتوى محمي</div><div style="font-size:13px;color:rgba(240,244,255,.6);line-height:1.8">هذا المحتوى محمي بحقوق الملكية الفكرية<br>أغلق أدوات المطور للمتابعة</div></div>';
-        document.body.appendChild(w);
-      }
-    } else if (w) {
-      w.remove();
-    }
-  }
-}, 900);
-
-// Console warning
-setTimeout(() => {
-  console.clear();
-  console.log('%c🔒 محتوى محمي', 'font-size:24px;color:#D4A017;font-weight:bold');
-  console.log('%cهذا الملف محمي بحقوق الملكية الفكرية. أي محاولة للتلاعب محظورة.', 'font-size:14px;color:#E74C3C');
-}, 1000);
-
-/* ======================================================
-   SITE INITIALIZATION (called after authentication)
-====================================================== */
-function initSiteScripts() {
-
-  /* --- CANVAS PARTICLES --- */
-  const canvas = document.getElementById('cnv');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, particles = [], mouse = { x: null, y: null };
-
-  function resize() {
-    W = canvas.width = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  function Particle() {
-    this.reset = function() {
-      this.x = Math.random() * W;
-      this.y = Math.random() * H;
-      this.vx = (Math.random() - .5) * 0.5;
-      this.vy = (Math.random() - .5) * 0.5;
-      this.r = Math.random() * 1.8 + 0.4;
-      this.a = Math.random() * 0.5 + 0.1;
-      this.gold = Math.random() > 0.7;
-    };
-    this.reset();
-  }
-
-  const pCount = window.innerWidth < 768 ? 60 : 130;
-  for (let i = 0; i < pCount; i++) particles.push(new Particle());
-
-  canvas.addEventListener('mousemove', e => {
-    const r = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - r.left;
-    mouse.y = e.clientY - r.top;
-  });
-  canvas.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
-  canvas.addEventListener('touchmove', e => {
-    const r = canvas.getBoundingClientRect();
-    mouse.x = e.touches[0].clientX - r.left;
-    mouse.y = e.touches[0].clientY - r.top;
-  }, { passive: true });
-
-  function drawParticles() {
-    ctx.clearRect(0, 0, W, H);
-    const gC = 'rgba(212,160,23,', wC = 'rgba(180,200,255,';
-    for (let i = 0; i < particles.length; i++) {
-      const p = particles[i];
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0 || p.x > W || p.y < 0 || p.y > H) p.reset();
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = (p.gold ? gC : wC) + p.a + ')';
-      ctx.fill();
-      const connDist = window.innerWidth < 768 ? 80 : 110;
-      for (let j = i + 1; j < particles.length; j++) {
-        const q = particles[j];
-        const dx = p.x - q.x, dy = p.y - q.y;
-        const d = Math.sqrt(dx*dx + dy*dy);
-        if (d < connDist) {
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(q.x, q.y);
-          ctx.strokeStyle = 'rgba(212,160,23,' + ((1 - d/connDist) * 0.12) + ')';
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
-      }
-    }
-    requestAnimationFrame(drawParticles);
-  }
-  drawParticles();
-
-  /* --- READING PROGRESS --- */
-  const prog = document.getElementById('prog');
-  const bt = document.getElementById('bt');
-  window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const maxH = document.body.scrollHeight - window.innerHeight;
-    if (prog) prog.style.width = (maxH > 0 ? (scrolled / maxH * 100) : 0) + '%';
-    if (bt) { scrolled > 400 ? bt.classList.add('vis') : bt.classList.remove('vis'); }
-  });
-
-  /* --- SCROLL REVEAL --- */
-  const revObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('in'), 0);
-        e.target.querySelectorAll('.sn[data-target]').forEach(el => countUp(el));
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-  // Staggered reveal
-  document.querySelectorAll('.toc-grid, .sgrid, .grules, .steps').forEach(grid => {
-    const kids = grid.querySelectorAll('.rv, .tcard, .scard, .ri, .step');
-    kids.forEach((k, i) => { k.style.transitionDelay = (i * 0.07) + 's'; });
-  });
-  document.querySelectorAll('.rv, .rv-l').forEach(el => revObs.observe(el));
-
-  /* --- COUNTER ANIMATION --- */
-  function countUp(el) {
-    if (el.dataset.counted) return;
-    el.dataset.counted = true;
-    const target = parseInt(el.dataset.target);
-    const suffix = el.dataset.suffix || '';
-    let current = 0;
-    const inc = target / (1500 / (1000 / 60));
-    const timer = setInterval(() => {
-      current += inc;
-      if (current >= target) { current = target; clearInterval(timer); }
-      el.textContent = '+' + Math.floor(current) + suffix;
-    }, 1000 / 60);
-  }
-
-  /* --- NAV ACTIVE STATE --- */
-  const sections = document.querySelectorAll('[id^="ch"], #conclusion, #toc');
-  const links = document.querySelectorAll('.nl');
-  const navObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const id = e.target.id;
-        links.forEach(l => {
-          l.classList.remove('on');
-          if (l.getAttribute('onclick')?.includes(id)) l.classList.add('on');
-        });
-      }
-    });
-  }, { threshold: 0.3 });
-  sections.forEach(s => navObs.observe(s));
-
-} // end initSiteScripts
-
-/* ======================================================
-   KEYBOARD ENTER HANDLERS
-====================================================== */
-document.getElementById('gate-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter') handleGateSubmit();
-});
-document.getElementById('admin-pw-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter') handleAdminLogin();
+// Close mobile nav when clicking outside
+document.addEventListener('click',e=>{
+  const mn=document.getElementById('mob-nav');
+  const ham=document.getElementById('ham');
+  if(mn&&mn.classList.contains('open')&&!mn.contains(e.target)&&!ham.contains(e.target))
+    closeMobNav();
 });
 
-/* ======================================================
-   MAIN INIT
-====================================================== */
-document.addEventListener('DOMContentLoaded', async function() {
-  document.body.classList.add('gate-active');
-  const cfg = loadConfig();
-  const session = getSession();
-  if (isSessionValid(session, cfg)) {
-    document.getElementById('gate').style.display = 'none';
-    document.getElementById('site').style.display = 'block';
-    document.getElementById('logout-btn').style.display = 'flex';
-    document.body.classList.remove('gate-active');
-    setTimeout(initSiteScripts, 60);
-  } else {
-    showGate();
-  }
-});
+/* ── Console welcome message ── */
+console.log(
+  '%c📈 دليل المبيعات العراقي ٢٠٢٥\n'+'%cAdmin access: type openadmin() and press Enter',
+  'color:#D4A017;font-weight:900;font-size:16px',
+  'color:#888;font-size:12px'
+);
 </script>
 </body>
 </html>
