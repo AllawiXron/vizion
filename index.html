@@ -25,6 +25,7 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{direction:rtl;font-family:'Cairo',sans-serif;font-size:15px;color:var(--tw);
      background:var(--bg);line-height:1.9;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
 
+/* Custom Scrollbar */
 ::-webkit-scrollbar{width:8px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold),var(--navy2));border-radius:10px}
@@ -669,7 +670,6 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;back
       <span class="nl" onclick="go('ch7')">٧ الدفع</span>
       <span class="nl" onclick="go('ch8')">٨ الأداء</span>
       <span class="nl" onclick="go('ch9')">٩ الخطة</span>
-      <span class="nl" onclick="go('ch10')">١٠ أسرار صغيرة</span>
       <span class="nl" onclick="go('con')">✦ الخلاصة</span>
     </div>
     <button class="ham" id="ham" onclick="toggleMobNav()">
@@ -687,7 +687,6 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;back
     <div class="mob-nl" onclick="go('ch7');closeMobNav()">٧ — طرق الدفع والتوصيل</div>
     <div class="mob-nl" onclick="go('ch8');closeMobNav()">٨ — قياس الأداء وتحسين النتائج</div>
     <div class="mob-nl" onclick="go('ch9');closeMobNav()">٩ — خطة عمل ٣٠ يوماً</div>
-    <div class="mob-nl" onclick="go('ch10');closeMobNav()">١٠ — أسرار المشاريع الصغيرة</div>
     <div class="mob-nl" onclick="go('con');closeMobNav()">✦ القواعد الذهبية العشر</div>
   </div>
 
@@ -727,7 +726,7 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;back
   <section class="toc-sec rv" id="toc">
     <div class="slabel">📋 المحتويات</div>
     <h2 class="stitle">فهرس <span>المحتويات</span></h2>
-    <p class="sdesc">١٠ فصول شاملة من الصفر إلى الإتقان الكامل لإعلانات Meta في السوق العراقي</p>
+    <p class="sdesc">٩ فصول شاملة من الصفر إلى الإتقان الكامل لإعلانات Meta في السوق العراقي</p>
     <div class="toc-grid">
       <div class="tcard rv" onclick="go('ch1')"><div class="tnum">١</div><div class="tinfo"><h3>🇮🇶 فهم السوق العراقي</h3><p>إحصائيات، أوقات الذروة، المواسم الذهبية</p></div></div>
       <div class="tcard rv" onclick="go('ch2')"><div class="tnum">٢</div><div class="tinfo"><h3>🔍 لماذا إعلاناتك لا تبيع؟</h3><p>١٢ خطأً قاتلاً وكيف تصلحها الآن</p></div></div>
@@ -738,12 +737,11 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;back
       <div class="tcard rv" onclick="go('ch7')"><div class="tnum">٧</div><div class="tinfo"><h3>💳 طرق الدفع والتوصيل</h3><p>COD، المحافظ الإلكترونية، شركات التوصيل</p></div></div>
       <div class="tcard rv" onclick="go('ch8')"><div class="tnum">٨</div><div class="tinfo"><h3>📊 قياس الأداء وتحسين النتائج</h3><p>KPIs، متى توقف أو تضاعف الميزانية</p></div></div>
       <div class="tcard rv" onclick="go('ch9')"><div class="tnum">٩</div><div class="tinfo"><h3>📅 خطة عمل ٣٠ يوماً</h3><p>من الصفر إلى أول ١٠٠ مبيعة</p></div></div>
-      <div class="tcard rv" onclick="go('ch10')"><div class="tnum">١٠</div><div class="tinfo"><h3>🚀 أسرار المشاريع الصغيرة</h3><p>تكتيكات محلية ذكية لرفع المبيعات بميزانية قليلة</p></div></div>
       <div class="tcard rv" onclick="go('con')"><div class="tnum">✦</div><div class="tinfo"><h3>🏆 القواعد الذهبية العشر</h3><p>الخلاصة المُكثّفة للنجاح</p></div></div>
     </div>
     <div class="callout ci rv" style="margin-top:28px">
       <div class="clb">💡 كيف تستخدم هذا الدليل؟</div>
-      <div class="cbody">إذا كانت مشكلتك <strong>عدم تحقيق مبيعات</strong> رغم الإعلانات، ابدأ بالفصل الثاني مباشرة. إذا كنت <strong>مبتدئاً</strong>، اقرأ من البداية. إذا أردت <strong>التوسع</strong>، انتقل للفصلين الثامن والتاسع. وإذا كان <strong>مشروعك صغير</strong>، الفصل العاشر مكتوب خصيصاً لك.</div>
+      <div class="cbody">إذا كانت مشكلتك <strong>عدم تحقيق مبيعات</strong> رغم الإعلانات، ابدأ بالفصل الثاني مباشرة. إذا كنت <strong>مبتدئاً</strong>، اقرأ من البداية. إذا أردت <strong>التوسع</strong>، انتقل للفصلين الثامن والتاسع.</div>
     </div>
   </section>
 
@@ -970,54 +968,6 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;back
       <div class="di"><span class="dlabel">الأيام ٢٦-٢٧</span><span class="dtxt">اتصل بعملائك الذين اشتروا. اطلب تقييماً. الراضون منهم = محتوى ذهبي للإعلانات.</span></div>
       <div class="di"><span class="dlabel">الأيام ٢٩-٣٠</span><span class="dtxt">تقييم شامل: ما الذي نجح؟ ما الذي فشل؟ كم كان الـ ROAS الإجمالي؟ ضع خطة الشهر القادم.</span></div>
     </div></div>
-  </section>
-
-  <!-- CH 10 - NEW -->
-  <section class="chapter" id="ch10">
-    <div class="chero rv"><div class="chero-ghost">١٠</div><div class="clabel">الفصل العاشر (إضافي)</div><div class="ctitle">🚀 أسرار المشاريع الصغيرة</div><div class="csub">تكتيكات محلية ذكية لرفع المبيعات بميزانية قليلة</div></div>
-    
-    <div class="callout cg rv"><div class="clb">🎯 لمن هذا الفصل؟</div><div class="cbody">هذا الفصل مصمم خصيصاً لـ <strong>أصحاب المشاريع الصغيرة</strong> اللي شغيلين بميزانية إعلانات بسيطة أو ما يشتغلون بإعلانات مدفوعة حالياً. نصائح عملية ومجرّبة على أرض الواقع العراقي ترفع مبيعاتك ٣ أضعاف بدون ما تنزل قرش زيادة على دعايات فيسبوك.</div></div>
-
-    <div class="sh rv"><h2>⚡ استراتيجية "الزوادة" (The Extra Value)</h2><div class="sh-line"></div></div>
-    <div class="setblock rv">
-      <div class="setrow"><span class="setkey">الفكرة ببساطة:</span><span class="setval">الزبون العراقي يموت بالـ "زوادة" (الهدايا البسيطة). مو شرط تنقص من سعرك، بل زِد قيمة الطلب.</span></div>
-      <div class="setrow"><span class="setkey">التطبيق العملي:</span><span class="setval">لو تبيع عطر، حط معاه ق mẫu صغير أو بخاخ عطر للسيارة. لو تبيع ملابس، حط معاه كيس قماش صغير أو كرت شكر بخط اليد. التكلفة ٥٠٠ دينار، لكن القيمة النفسية للزبون بتطلع بآلاف الدنانير.</span></div>
-      <div class="setrow"><span class="setkey">النتيجة:</span><span class="setval">الزبون بيوصي فيك ربعه وينشرلك ستوري مجاني. <strong>التسويق الشفهي أقوى سلاح للمشاريع الصغيرة.</strong></span></div>
-    </div>
-
-    <div class="sh rv"><h2>📲 ستوري الواتساب: البِلق السري المجاني</h2><div class="sh-line"></div></div>
-    <div class="setblock rv">
-      <div class="setrow"><span class="setkey">السر:</span><span class="setval">ستوري الواتساب مباشرة على شاشة زبونك، وما تحتاج ميزانية! هي بديل ممتاز للإعلانات إذا استخدمتها صح.</span></div>
-      <div class="setrow"><span class="setkey">المحتوى المطلوب:</span><span class="setval">لا تنزل صور منتجات فقط! نزل <strong>فيديو "وراء الكواليس"</strong> وانت تجهز الطلبات، نزل صوتك وانت تشكر زبون خلص طلبه، صور زبون فرحان بطلبه. الناس بيشتر من شخص يبيع، مو منتج يركض بروحه.</span></div>
-      <div class="setrow"><span class="setkey">التكتيك:</span><span class="setval">نزل عروض "لف限定 وقت" (مثلاً: لمدة ساعتين فقط اليوم). هذا بيخلي الزبون يسولف ويطلب بسرعة بدون ما يفكر.</span></div>
-    </div>
-
-    <div class="sh rv"><h2>🤝 فن التعامل مع "المكاسرة" (Haggling)</h2><div class="sh-line"></div></div>
-    <div class="setblock rv">
-      <div class="setrow"><span class="setkey">الواقع العراقي:</span><span class="setval">الزبون العراقي يحب يكاسر وياخذ سعر، حتى لو كان السعر أصلاً مناسب. إذا رفضت بشكل جاف بيروح لغيرك.</span></div>
-      <div class="setrow"><span class="setkey">الحل الذكي:</span><span class="setval">لا تنقص السعر مباشرة. قول: <em>"عزيزي السعر مخفض مسبقاً عشانك، بس بضيفلك (توصيل مجاني / هدية صغيرة)"</em>. هذا يرضي نفسية الزبون إنه "كسب شي"، وانت ما خسرت شي لأنك حاسبهالت من البداية.</span></div>
-    </div>
-
-    <div class="sh rv"><h2>🎯 دعاية "أهل المحلة" (Micro-Influencers)</h2><div class="sh-line"></div></div>
-    <div class="setblock rv">
-      <div class="setrow"><span class="setkey">الخطأ الشائع:</span><span class="setval">تدفع مئات الدولارات لصفحة كبيرة بمليون متابع، وما تجيب ولا مبيعة.</span></div>
-      <div class="setrow"><span class="setkey">البديل الأرخص:</span><span class="setval">دور على صفحات محلية بحي معين أو منطقة (مثلاً صفحة "أخبار المنصور" أو "سلة الكرادة"). صفحات بين ٥,٠٠٠ و ٢٠,٠٠٠ متابع. صاحبها يكون قريب من الناس، وأهله يثكون فيه.</span></div>
-      <div class="setrow"><span class="setkey">التكتيك:</span><span class="setval">اتفق معه يصور منتجك بطريقة طبيعية أو يطرحه كـ "تجربة شخصية". النتيجة أرخص بكثير، والثقة أعلى، والمبيعات محلية وسريعة.</span></div>
-    </div>
-
-    <div class="sh rv"><h2>🎁 سحر "تفاصيل الاستلام" (Unboxing Experience)</h2><div class="sh-line"></div></div>
-    <div class="setblock rv">
-      <div class="setrow"><span class="setkey">السر:</span><span class="setval">التغليف ما يسوى شي بس بيفرق مليون. لو زبون استلم كيس أبيض عادي، بيختفي. لو استلم طرد ملفوف بعناية، عليه ستيكر جميل، وداخله ورقة صغيرة مكتوب بيها "شكراً لثقتك يا عزيزي"، بيصير متيم فيك!</span></div>
-      <div class="setrow"><span class="setkey">التكتيك العراقي:</span><span class="setval">حط حبة حلاوة أو علكة بالطلب! تكلفة الواحدة ٢٥٠ دينار، بس بيخلي الزبون يسولف فيك بمجموعات الفيسبوك ويصور الطلب. <strong>اللي يكتب "شكراً" بخط اليد يكسب ولاء الزبون للأبد.</strong></span></div>
-    </div>
-
-    <div class="sh rv"><h2>🔄 الإرجاع السهل = مبيعات أكثر (Risk Reversal)</h2><div class="sh-line"></div></div>
-    <div class="setblock rv">
-      <div class="setrow"><span class="setkey">الخوف:</span><span class="setval">أغلب الزبائن ما يشترون أونلاين خوفاً من إن المنتج ما يعجبهم وخسارة الفلوس.</span></div>
-      <div class="setrow"><span class="setkey">الحل:</span><span class="setval">اعرض بكل ثقة: <em>"إذا ما عجبك المنتج، رجعه واستلم فلوسك كاملة"</em>. نسبة اللي فعلاً يرجعون المنتج لا تتجاوز ٢-٣٪، بس هالعبارة بتضاعف مبيعاتك ٣ أضعاف لأنها شالت الخوف تماماً.</span></div>
-    </div>
-
-    <div class="callout cw rv"><div class="clb">⚠️ قاعدة ذهبية للمشاريع الصغيرة</div><div class="cbody">لا تنافس على السعر، نافس على <strong>الخدمة والتجربة</strong>. لو زبون كتبلك "السعر عند فلان أرخص"، جاوبه: <em>"صحيح يا عزيزي، بس أنا بضمنلك جودة المنتج، أصلحلك لو في أي مشكلة، وأوصلك لحد باب البيت. إحنا نبيع ثقة مو بس منتج"</em>. العميل العراقي بيدفع زيادة إذا حس إنه بيشتغل مع شخص محترم ويثق فيه.</div></div>
   </section>
 
   <!-- CONCLUSION -->
@@ -1271,6 +1221,7 @@ function initHeroCanvas(){
     for(let i=0;i<pts.length;i++){
       const p=pts[i];p.x+=p.vx;p.y+=p.vy;
       if(p.x<0||p.x>W||p.y<0||p.y>H)p.reset();
+      // Mouse interaction
       if(mouse.x!==null){
         const dx=p.x-mouse.x,dy=p.y-mouse.y;
         const d=Math.sqrt(dx*dx+dy*dy);
@@ -1295,7 +1246,7 @@ function initScrollReveal(){
       if(e.isIntersecting){
         e.target.classList.add('in');
         e.target.querySelectorAll('.sn[data-t]').forEach(counter);
-        obs.unobserve(e.target); 
+        obs.unobserve(e.target); // Performance: stop observing once revealed
       }
     });
   },{threshold:.1,rootMargin:'0px 0px -50px 0px'});
@@ -1311,7 +1262,7 @@ function counter(el){
   const dur=1600,startTime=performance.now();
   function animate(now){
     const p=Math.min((now-startTime)/dur,1);
-    const eased=1-Math.pow(1-p,3); 
+    const eased=1-Math.pow(1-p,3); // easeOutCubic
     el.textContent=Math.floor(eased*t)+s;
     if(p<1)requestAnimationFrame(animate);
     else el.textContent=t+s;
@@ -1343,6 +1294,7 @@ function initNavHighlight(){
   secs.forEach(s=>obs.observe(s));
 }
 
+// 3D Tilt Effect for TOC Cards
 function initTilt(){
   document.querySelectorAll('.tcard').forEach(card=>{
     card.addEventListener('mousemove',e=>{
