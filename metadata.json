@@ -1,0 +1,8 @@
+{
+  "name": "Remix Elite Iraqi Sales Guide",
+  "description": "A luxury Arabic RTL digital platform offering exclusive sales courses and professional dashboards within a premium dark-gold interface.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
