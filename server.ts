@@ -69,22 +69,8 @@ app.get(["/api/health", "/health"], (_req, res) => {
   res.json({ status: "ok", service: "Vizion AI Advisor Server" });
 });
 
-// Serve static files from dist directory if available
-const distPath = path.join(process.cwd(), "dist");
-if (fs.existsSync(distPath)) {
-  app.use(express.static(distPath));
-  app.get("*", (_req, res) => {
-    const indexPath = path.join(distPath, "index.html");
-    if (fs.existsSync(indexPath)) {
-      res.sendFile(indexPath);
-    } else {
-      res.status(404).send("Index file not found");
-    }
-  });
-}
-
 async function startServer() {
-  const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+  const PORT = 3000;
 
   // Vite development middleware vs Static Production serving
   if (process.env.NODE_ENV !== "production") {
@@ -107,10 +93,8 @@ async function startServer() {
   });
 }
 
-if (!process.env.VERCEL) {
-  startServer().catch((err) => {
-    console.error("Failed to start Vizion server:", err);
-  });
-}
+startServer().catch((err) => {
+  console.error("Failed to start Vizion server:", err);
+});
 
 export default app;
